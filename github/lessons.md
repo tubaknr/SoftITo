@@ -26,3 +26,5 @@ Thumbs.db
 bir klasörde git init edip, sonra içinde yeni klasör içinde tekrar git init yaparsan, içerideki klasördeki git init i kapatman gerekir.
 
 gitignore, tüm proje içini yakalar, path path yazmak gerekmez. tüm projedeki .env vs dosyaları yakalar.
+
+versiyonlama
