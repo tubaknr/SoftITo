@@ -1,6 +1,6 @@
 .env
 .env.local
-
+.key
 secret_keys.json
 google_services.json
 
