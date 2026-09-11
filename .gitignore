@@ -1,1 +1,14 @@
 .env
+.env.local
+
+secret_keys.json
+google_services.json
+
+/node_modules/
+/builds/
+/.dart_tool/
+/dist/
+.key
+
+.DS_Store
+Thumbs.db
