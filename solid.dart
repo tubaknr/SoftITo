@@ -116,7 +116,7 @@ class SiparisYoneticisi implements ISiparisIslemleri { //Dependency Inversion İ
       sepet[i].stok--;
     }
 
-    if (kuponKodu == "INDIRIM10") {
+    if (kuponKodu == "INDIRIM10") { // Open Closed İhlali
       toplam = toplam * 0.90;
     } else if (kuponKodu == "YAZ20") {
       toplam = toplam * 0.80;
