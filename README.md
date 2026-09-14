@@ -3,4 +3,5 @@
 ## Hakkımda
 
 Mobil Yazılımcı olma hedefim
+
 .
