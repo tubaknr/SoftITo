@@ -67,9 +67,12 @@ class SiparisYoneticisi implements ISiparisIslemleri { //Dependency Inversion İ
   }
 
   @override// Open Closed İhlali
-  // Closed for modification DEĞİL => yeni bir ödeme yöntemi ekleneceği zaman, bu if-else kırılacak ve
-  //  yeni bir else kısmı açılması gerek, bu da çalışan koda müdahale ediyoruz anlamına gelir.
-  // Open for extension => yeni bir ödeme yöntemi ekleneceği zaman, mevcut kodu bozmadan yapılabilir olmalıydı. 
+  // Closed for modification DEĞİL => yeni bir ödeme yöntemi 
+  // ekleneceği zaman, bu if-else kırılacak ve
+  //  yeni bir else kısmı açılması gerek, bu da çalışan koda 
+  // müdahale ediyoruz anlamına gelir.
+  // Open for extension => yeni bir ödeme yöntemi ekleneceği zaman, 
+  // mevcut kodu bozmadan yapılabilir olmalıydı. 
   void odemeYap(String tip, double tutar) { 
     if (tip == "KREDI_KARTI") {
       print("$tutar TL Kredi kartindan POS ile cekildi.");
@@ -127,9 +130,12 @@ class SiparisYoneticisi implements ISiparisIslemleri { //Dependency Inversion İ
     }
 
     if (kuponKodu == "INDIRIM10") { // Open Closed İhlali
-    // Closed for modification DEĞİL => yeni bir kupon ekleneceği zaman, bu if-else kırılacak ve
-    //  yeni bir else kısmı açılması gerek, bu da çalışan koda müdahale ediyoruz anlamına gelir.
-    // Open for extension => yeni bir kupon ekleneceği zaman, mevcut kodu bozmadan yapılabilir olmalıydı.
+    // Closed for modification DEĞİL => yeni bir kupon 
+    // ekleneceği zaman, bu if-else kırılacak ve
+    //  yeni bir else kısmı açılması gerek, bu da çalışan 
+    // koda müdahale ediyoruz anlamına gelir.
+    // Open for extension => yeni bir kupon ekleneceği zaman, 
+    // mevcut kodu bozmadan yapılabilir olmalıydı.
       toplam = toplam * 0.90;
     } else if (kuponKodu == "YAZ20") {
       toplam = toplam * 0.80;
