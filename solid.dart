@@ -18,11 +18,16 @@ class DijitalUrun extends Urun {
 
   @override
   double kargoUcretiHesapla() { // Liskov Substitution İhlali
+  // Parent class = Urun, Child class = DijitalUrun
+  // Parent class'dan aldığını kırıyor, bozuyor => Liskov Substitution İhlali
+  // Çözüm: Interface ayrımı ve doğru hiyerarşi ile Liskov Substitution Principle'ı sağlamak.
     throw Exception("Dijital urunlerde kargo hesaplanamaz!");
   }
 }
 
 abstract class ISiparisIslemleri { // Interface Segregation İhlali
+// Tüm sipariş işlemlerini tek bir interface'de toplamak yerine, 
+// her bir işlev için ayrı interface'ler oluşturmak daha doğru olur.
   void siparisKaydet(String orderId, double tutar);
   void odemeYap(String tip, double tutar);
   void kargoGonder(String orderId, String adres);
@@ -50,6 +55,8 @@ class NetgsmSmsServisi {
 }
 
 class SiparisYoneticisi implements ISiparisIslemleri { //Dependency Inversion İhlali
+// Yüksek seviye modüller içine düşük seviye modüller eklenmiş
+// bu durum bağımlılığı artırır ve kodun esnekliğini azaltır.
   SqliteVeritabani db = SqliteVeritabani();
   SmtpMailServisi mailci = SmtpMailServisi();
   NetgsmSmsServisi smsci = NetgsmSmsServisi();
@@ -60,6 +67,9 @@ class SiparisYoneticisi implements ISiparisIslemleri { //Dependency Inversion İ
   }
 
   @override// Open Closed İhlali
+  // Closed for modification DEĞİL => yeni bir ödeme yöntemi ekleneceği zaman, bu if-else kırılacak ve
+  //  yeni bir else kısmı açılması gerek, bu da çalışan koda müdahale ediyoruz anlamına gelir.
+  // Open for extension => yeni bir ödeme yöntemi ekleneceği zaman, mevcut kodu bozmadan yapılabilir olmalıydı. 
   void odemeYap(String tip, double tutar) { 
     if (tip == "KREDI_KARTI") {
       print("$tutar TL Kredi kartindan POS ile cekildi.");
@@ -117,6 +127,9 @@ class SiparisYoneticisi implements ISiparisIslemleri { //Dependency Inversion İ
     }
 
     if (kuponKodu == "INDIRIM10") { // Open Closed İhlali
+    // Closed for modification DEĞİL => yeni bir kupon ekleneceği zaman, bu if-else kırılacak ve
+    //  yeni bir else kısmı açılması gerek, bu da çalışan koda müdahale ediyoruz anlamına gelir.
+    // Open for extension => yeni bir kupon ekleneceği zaman, mevcut kodu bozmadan yapılabilir olmalıydı.
       toplam = toplam * 0.90;
     } else if (kuponKodu == "YAZ20") {
       toplam = toplam * 0.80;
