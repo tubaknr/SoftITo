@@ -39,3 +39,30 @@ CREATE TABLE IF NOT EXISTS enrollments(
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
     FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
 );
+
+------ SQL TOPLAMA İŞLEMİ ARAŞTIRMASI 
+--- SUM() bir sütundaki nümerik toplamı bulur. NULL değerleri görmezden gelir. 
+-- Örn:
+SELECT SUM(sütun_ismi)
+FROM tablo
+WHERE şart;
+
+SELECT SUM(student_note) FROM enrollments;
+SELECT SUM(quantity) AS total FROM orders WHERE product_id=11;
+
+--- AVG AVERAGE
+SELECT AVG(student_notes) FROM enrollments;
+
+--- MAX
+SELECT MAX(student_notes) FROM enrollments;
+
+--- MIN
+SELECT MIN(student_notes) FROM enrollments;
+
+--- COUNT
+SELECT COUNT(*) FROM enrollments --- toplam kaç kişi kayıtlı
+SELECT COUNT(student_notes) FROM enrollments --- kaç kişi sınava girdi
+SELECT COUNT(*) FROM students --- toplam kaç öğrenci var
+SELECT COUNT(*) AS 50_uzeri_notlu_ogrenci_sayisi FROM enrollments WHERE student_notes > 50 --- notu 50 üzerinde olan öğrenci sayısı
+
+
