@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script src="jquery.js"></script>
+    <script>
+      $(function () {
+        $("#yerimleri").load("yerimleri.html");
+        $("#cevirmen").load("cevirmen.html");
+      });
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <title>SÖZLÜK</title>
+  </head>
+  <body>
+    <header>
+      <h2 id="geriGit">SÖZLÜK</h2>
+      <nav>
+        <ul>
+          <li>
+            <a href="#sozlukSec"><i class="fa-solid fa-book-bookmark"></i></a>
+          </li>
+          <li>
+            <a href="#yerImleri"><i class="fa-solid fa-bookmark"></i></a>
+          </li>
+          <li>
+            <a href="#cevirmen"><i class="fa-solid fa-language"></i></a>
+          </li>
+          <li>
+            <a href="#ayarlar"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <table border="1" width="100%">
+          <thead>
+            <tr>
+              <td colspan="2">
+                <sstrong>Popüler Sözlük - İngilizce</sstrong
+                ><a href="yenile"><i class="fa-solid fa-rotate-right"></i></a>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2"><strong>sack </strong>kovmak; çuval</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <strong>associate </strong>bağdaştırmak; birleşmiş
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <strong>bestiality </strong>canavarlık, vahşilik
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <a href="pratikYap"><i class="fa-solid fa-list-check"></i></a>
+              </td>
+              <!--Pratik Yapın-->
+              <td>
+                <a href="tara"><i class="fa-solid fa-magnifying-glass"></i></a>
+              </td>
+              <!--Tara-->
+              <td>
+                <a href="gramer"><i class="fa-solid fa-brain"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <td><a href="pratikYap">Pratik Yapın</a></td>
+              <td><a href="tara">Tara</a></td>
+              <td><a href="gramer">Gramer</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <a><i class="fa-solid fa-magnifying-glass"></i></a>
+    </footer>
+    <div id="yerimleri"></div>
+    <div id="cevirmen"></div>
+  </body>
+</html>
