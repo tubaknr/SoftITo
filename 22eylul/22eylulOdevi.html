@@ -5,40 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* TODO EXTERNAL CSS E ÇEVİR!!!!!! */
         *, *::before, *::after{
             box-sizing: border-box;
             margin: o;
             padding: 0;
         }
-        body{
-            margin: 20px;
-        }
         .product-page{
-            
+            max-width: 480px;
         }
         .row-header{
             display: flex;
             justify-content: space-between;
-            gap: 20px;
+            align-items: center;   
+            width: 100%;         
         }
         .top-bar{
             position: sticky;
             top: 0;
+            left: 0;
             z-index: 20;
             display: flex;
             flex-direction: column;
-
+            background-color: white;
         }
+        
         .user-profile{
             display: flex;
             align-items: center;
             gap: 4px;
-            right: 20px;
+            margin-left: auto;
         }
         .horizontal-menu{
             display: flex;
             flex-direction: row;
             left: 0;
+            width: 100%;
         }
         .menu-btn{
             padding: 10px 20px;
@@ -56,7 +58,9 @@
         }
         .welcome-text{
             display: flex;
-            gap: 10px;
+            gap: 5px;
+            font-size: 14px;
+            text-align: right;
         }
         .bell-btn{
             border: none;
@@ -88,7 +92,7 @@
         .seller{
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            gap: 14px;
             left: 0;
         }
         .seller-name{
@@ -97,7 +101,8 @@
             border-radius: 15px;
         }
         .former-seller{
-            color: orange;
+            color: rgb(16, 145, 220);
+            
         }
         .follow-seller{
             padding: 10px 20px;
@@ -114,10 +119,173 @@
         .price{
             font-size: 40px;
             font-weight: bold;
-            margin: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: rgb(63, 63, 63);
         }
-        
 
+        /* CHIP CONTAINER */
+        .size-selections{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        /* CHIP */
+        .size-btn{
+            padding: 14px 6px;
+            border: 1px solid rgb(151, 151, 151);
+            background-color: white;
+            border-radius: 10px;
+            font-size: 14px
+        }
+        .size-btn:hover{
+            cursor: pointer;
+        }
+
+        /*CHIP-CONTAINER*/
+        .color-selections{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        /*CHIP*/
+        .color-title, .selected-selection{
+            display: flex;
+            gap: 4px;
+            left: 0;
+            font-size: 14px;
+        }
+        .renk-text, .selection-text{
+            color: black;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .renk-text-explanation, .selection-text-explanation{
+            color: gray;
+            left: 0;
+            font-weight: bold;
+            flex-wrap: nowrap;
+        }
+        .color-figures{
+            display: flex;
+        }
+        .color-image{
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            margin-left: -40px;
+            cursor: pointer;
+        }
+        .basket-btn{
+            margin-top: 30px;
+            font-weight: bold;
+            display: flex;
+            gap: 4px;   
+            border: none;
+            background-color: rgb(255, 94, 0);
+            padding: 15px 20px;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .basket-btn-text{
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+            border: none;
+            background-color: rgb(255, 94, 0);
+        }
+        .product-informations{
+            font-weight: bold;
+            color: rgb(62, 62, 62);
+            margin-bottom: 80px;
+        }
+        .product-information-line{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 4px;
+        }
+        .product-info-btn{
+            padding: 6px;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+        }     
+        .product-image{
+            position: relative;
+            left: 0;
+        }
+        .badge-discount-40{
+            position: absolute;
+            top: 30px;
+            right: 14px;
+            background: rgb(200, 1, 1);
+            color: azure;
+            font-size: 18px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(239, 68, 68, 0.5);
+        }
+        .badge-discount-cargo{
+            position: absolute;
+            top: 30px;
+            left: 14px;
+            background: rgb(1, 150, 200);
+            color: azure;
+            font-size: 18px;
+            font-weight: 800;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(68, 188, 239, 0.5);
+        }
+        .fab-btn{
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgb(255, 111, 0);
+            color: white;
+            font-size: 24px;
+            border: none;
+            box-shadow: 0 8px 24px rgba(255, 111, 0, 0.5);
+            cursor: pointer;
+            z-index: 150;
+            font-size: 15px;
+
+        }
+        .bottom-nav{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 64px;
+            color: rgb(52, 52, 52);
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            background: rgb(255, 111, 0);
+            border-top: 1px solid rgb(255, 111, 0);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 200;
+        }
+        .main-cols{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10%;
+        }
+        .logo{
+            margin: 10px;
+        }
 
     </style>
 </head>
@@ -126,7 +294,7 @@
         <header class="top-bar">
             <div class="row-header">
                 <div class="logo">
-                    <img src="logo.png" width="120%">
+                    <img src="logo.png" width="100%">
                     <figcaption></figcaption>
                 </div>
                 <div class="user-profile">
@@ -150,8 +318,10 @@
         <main class="main-cols">
             <section class="product-image">
                 <div>
+                    <span class="badge-discount-40">%40 İndirim</span>
+                    <span class="badge-discount-cargo">Kargo Bedava</span>
                     <figure>
-                        <img src="img1.png" width="50%" alt="ürün...." width="100%" loading="lazy">
+                        <img src="img1.png" width="100%" alt="ürün...." loading="lazy">
                         <figcaption></figcaption>
                     </figure>
                 </div>
@@ -167,52 +337,72 @@
                 </div>
                 <div class="price">27.000,00 TL</div>
                 <div class="size-selections">
-                    <p>Beden: S-M</p>
+                    <p><strong>Beden:</strong> S-M</p>
                     <div class="size-btns">
-                        <button class="size-btn">S-M</button>
-                        <button class="size-btn">M-L</button>
+                        <button class="size-btn">S - M</button>
+                        <button class="size-btn">M - L</button>
                     </div>
                 </div>
 
                 <div class="color-selections">
-                    <figure>
-                        <img src="..." alt="ürün...." width="100%" loading="lazy">
-                        <figcaption>Gri</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="..." alt="ürün...." width="100%" loading="lazy">
-                        <figcaption>Siyah</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="..." alt="ürün...." width="100%" loading="lazy">
-                        <figcaption>Koyu Bronz</figcaption>
-                    </figure>
+                    <div class="color-title">
+                        <p class="renk-text">Renk:</p>
+                        <p class="renk-text-explanation">Koyu Bronz - Klasik Zeytin Yeşili</p>
+                    </div>
+                    <div class="color-figures">
+                        <figure>
+                            <img class="color-image" src="img2.png" alt="ürün...." width="150%" loading="lazy">
+                            <figcaption></figcaption>
+                        </figure>
+                        <figure>
+                            <img class="color-image" src="img3.png" alt="ürün...." width="150%" loading="lazy">
+                            <figcaption></figcaption>
+                        </figure>
+                        <figure>
+                            <img class="color-image" src="img4.png" alt="ürün...." width="150%" loading="lazy">
+                            <figcaption></figcaption>
+                        </figure>
+                    </div>
                 </div>
 
                 <div class="length-selections">
-                    <p>Seçenek: 42 mm</p>
+                    <div class="selected-selection">
+                        <p class="selection-text">Seçenek:</p>
+                        <p class="selection-text-explanation">42 mm</p>
+
+                    </div>
                     <div class="size-btns">
-                        <button class="size-btn">42 mm</button>
-                        <button class="size-btn">42 mm</button>
+                        <button class="size-btn">42mm</button>
+                        <button class="size-btn">46mm</button>
                     </div>
                 </div>
 
-                <div>
-                    <div>Sepet simgesi</div>
-                    <button>Sepete Ekle</button>
+                <div class="basket-btn">
+                    <div><i class="fa-solid fa-basket-shopping"></i></div>
+                    <button class="basket-btn-text">Sepete Ekle</button>
                 </div>
 
-                <div>
+                <div class="product-informations">
                     <p>Ürün Bilgileri</p>
-                    <div class="product-informations">
-                        <button>Kamera Yok</button>
-                        <button>GPS Var</button>
-                        <button>Sesli Görüşme Var</button>
-                        <button>Su Geçirmezlik 5ATM</button>
-                        <button>Tüm Ürün bilgileri</button>
+                    <div class="product-information-line">
+                        <button class="product-info-btn">Kamera Yok</button>
+                        <button class="product-info-btn">GPS Var</button>
+                        <button class="product-info-btn">Sesli Görüşme Var</button>
+                        <button class="product-info-btn">Su Geçirmezlik 5ATM</button>
+                        <button class="product-info-btn">Tüm Ürün bilgileri</button>
                     </div>
                 </div>
             </section>
+
+            <div class="footer">
+                <button class="fab-btn">Sepete Ekle</button>
+                <nav class="bottom-nav">
+                    <span class="bottom-nav-btn">Anasayfa</span>
+                    <span class="bottom-nav-btn">Arama</span>
+                    <span class="bottom-nav-btn">Sepetim</span>
+                    <span class="bottom-nav-btn">Profil</span>
+                </nav>
+            </div>
         </main>
 
     </div>
