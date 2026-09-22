@@ -165,6 +165,8 @@
             justify-content: center;
             align-items: center;
             font-size: 18px; /* ikonu büyütür */
+            background-color: rgba(244, 63, 94, 0.15); 
+            color: #f43f5e;
         }
         .tx-title{
             font-weight: 600;
@@ -182,6 +184,28 @@
         .tx-amount.negative{
             color: red;
         }
+        .welcome-text{
+            font-size: 11px; 
+            color: var(--text-muted);
+        }
+        .bell{
+            background: none; 
+            border: none; 
+            font-size: 20px; 
+            cursor: pointer;
+        }
+        .totals{
+            font-size: 13px; 
+            opacity: 0.85;
+        }
+        .iban{
+            font-size: 12px; 
+            opacity: 0.7;
+        }
+        .negatives{
+            background-color: rgba(59,230,246,0.15); 
+            color: #3b82fa;
+        }
 
     </style>
 </head>
@@ -194,13 +218,13 @@
                 <div class="avatar">TA</div>
 
                 <div>
-                    <p style="font-size: 11px; color: var(--text-muted);">
+                    <p class="welcome-text">
                         Hoş Geldin,</p>
                     <strong>Tuba Aydın</strong>
                 </div>
 
             </div>
-            <button style="background: none; border: none; font-size: 20px; cursor: pointer;">
+            <button class="bell">
                 🔔
             </button>
         </header>
@@ -208,10 +232,10 @@
         <!-- Bakiye Kartı -->
         <section class="balance-card">
             <span class="card-chip-badge">PLATINUM</span>
-            <p style="font-size: 13px; opacity: 0.85;">
+            <p class="totals">
                 Toplam Varlıkları</p>
             <div class="balance-num">1.420.890.00 ₺</div>
-            <p style="font-size: 12px; opacity: 0.7;">
+            <p class="iban">
                 IBAN: TR45 0006 1005 **** 9210</p>
         </section>
 
@@ -264,7 +288,7 @@
 
             <div class="tx-item">
                 <div class="tx-left">
-                    <div class="tx-icon" style="background-color: rgba(244, 63, 94, 0.15); color: #f43f5e;">💼</div>
+                    <div class="tx-icon negatives">💼</div>
                     <div>
                         <div class="tx-title">Ürün Satışı</div>
                         <div class="tx-date">20 Eyl, 14:30 - Kredi</div>
@@ -275,8 +299,8 @@
             </div>
 
             <div class="tx-item">
-                <div class="tx-left">
-                    <div class="tx-icon" style="background-color: rgba(59,230,246,0.15); color: #3b82fa;">💼</div>
+                <div class="tx-left"> 
+                    <div class="tx-icon negatives" class="">💼</div>
                     <div>
                         <div class="tx-title">Zara Ceket</div>
                         <div class="tx-date">Bugün, 13:30 - Nakit</div>
@@ -288,7 +312,7 @@
 
             <div class="tx-item">
                 <div class="tx-left">
-                    <div class="tx-icon" style="background-color: rgba(59,230,246,0.15); color: #3b82fa;">💼</div>
+                    <div class="tx-icon negatives" >💼</div>
                     <div>
                         <div class="tx-title">Eğitim Satışı</div>
                         <div class="tx-date">Bugün, 13:30 - Nakit</div>
