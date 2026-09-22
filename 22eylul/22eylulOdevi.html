@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *, *::before, *::after{
+            box-sizing: border-box;
+            margin: o;
+            padding: 0;
+        }
+        body{
+            margin: 20px;
+        }
+        .product-page{
+            
+        }
+        .row-header{
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .top-bar{
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+
+        }
+        .user-profile{
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            right: 20px;
+        }
+        .horizontal-menu{
+            display: flex;
+            flex-direction: row;
+            left: 0;
+        }
+        .menu-btn{
+            padding: 10px 20px;
+            color: rgb(76, 76, 76);
+            font-weight: bold;
+            font-size: small;
+            border: none;
+            border-bottom: 0.5px solid gray;
+            border-right: 0.5px solid rgb(214, 213, 213);
+            cursor: pointer;
+        }
+        .menu-btn:hover{
+            background-color: rgb(104, 104, 104);
+            color: white;
+        }
+        .welcome-text{
+            display: flex;
+            gap: 10px;
+        }
+        .bell-btn{
+            border: none;
+            background-color: white;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+        .main-cols{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-details{
+            margin-top: 50px;
+        }
+        .product-title{
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .product-title-detail{
+            font-size: 18px;
+        }
+        .stars{
+            color: orange;
+            font-size: 20px;
+
+        }
+        .seller{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            left: 0;
+        }
+        .seller-name{
+            border: 1px solid orange;
+            padding: 10px 20px;
+            border-radius: 15px;
+        }
+        .former-seller{
+            color: orange;
+        }
+        .follow-seller{
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: white;
+            background-color: orange;
+            border: none;
+        }
+        .follow-seller:hover{
+            background-color: rgb(125, 81, 0);
+            color: white;
+            cursor: pointer;
+        }
+        .price{
+            font-size: 40px;
+            font-weight: bold;
+            margin: 20px;
+        }
+        
+
+
+    </style>
+</head>
+<body>
+    <div class="product-page">
+        <header class="top-bar">
+            <div class="row-header">
+                <div class="logo">
+                    <img src="logo.png" width="120%">
+                    <figcaption></figcaption>
+                </div>
+                <div class="user-profile">
+                    <div>
+                        <p class="welcome-text">Hoş Geldin,<strong>Tuba Aydın</strong></p>
+                    </div>
+                    <button class="bell-btn">🔔</button>
+                </div>
+            </div>
+            <div class="horizontal-menu">
+                <button class="menu-btn">Elektronik</button>
+                <button class="menu-btn">Moda</button>
+                <button class="menu-btn">Ev, Yaşam, Kırtasiye, Ofis</button>
+                <button class="menu-btn">Oto, Bahçe, Yapı Market</button>
+                <button class="menu-btn">Anne, Bebek, Oyuncak</button>
+                <button class="menu-btn">Spor, Outdoor</button>
+                <button class="menu-btn">Kozmetik, Kişisel Bakım</button>
+            </div>
+
+        </header>
+        <main class="main-cols">
+            <section class="product-image">
+                <div>
+                    <figure>
+                        <img src="img1.png" width="50%" alt="ürün...." width="100%" loading="lazy">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+            </section>
+            <section class="product-details">
+                <div class="product-title"><strong>Apple</strong> Watch Series</div>
+                <p class="product-title-detail">12 GPS, 42mm Uçuk Altın Rengi ve Kum Beji Spor Kordon - S/M</p>
+                <div class="stars">★★★★★</div>
+                <div class="seller">
+                    <div class="seller-name">Satıcı: <strong>Hepsiburada</strong></div>
+                    <p class="former-seller">Resmi Satıcı</p>
+                    <button class="follow-seller">Takip Et</button>
+                </div>
+                <div class="price">27.000,00 TL</div>
+                <div class="size-selections">
+                    <p>Beden: S-M</p>
+                    <div class="size-btns">
+                        <button class="size-btn">S-M</button>
+                        <button class="size-btn">M-L</button>
+                    </div>
+                </div>
+
+                <div class="color-selections">
+                    <figure>
+                        <img src="..." alt="ürün...." width="100%" loading="lazy">
+                        <figcaption>Gri</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="..." alt="ürün...." width="100%" loading="lazy">
+                        <figcaption>Siyah</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="..." alt="ürün...." width="100%" loading="lazy">
+                        <figcaption>Koyu Bronz</figcaption>
+                    </figure>
+                </div>
+
+                <div class="length-selections">
+                    <p>Seçenek: 42 mm</p>
+                    <div class="size-btns">
+                        <button class="size-btn">42 mm</button>
+                        <button class="size-btn">42 mm</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div>Sepet simgesi</div>
+                    <button>Sepete Ekle</button>
+                </div>
+
+                <div>
+                    <p>Ürün Bilgileri</p>
+                    <div class="product-informations">
+                        <button>Kamera Yok</button>
+                        <button>GPS Var</button>
+                        <button>Sesli Görüşme Var</button>
+                        <button>Su Geçirmezlik 5ATM</button>
+                        <button>Tüm Ürün bilgileri</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+    
+</body>
+</html>
