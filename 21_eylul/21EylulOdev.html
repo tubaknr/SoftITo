@@ -1,0 +1,307 @@
+<!-- Hocam kabul etmeyeceksiniz ama,
+  sabah şehirdışına gidip akşam şehirdışından geldim. 
+  tüm gün araba sürdüm, eve geldiğimde aşırı yorgundum,
+  yapabildiğim kadarını yapmaya çalıştım -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hepsiburada Tanıtım Sayfası</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: whitesmoke;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            background-color: orangered;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+
+        iframe {
+            width: 100%;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .player-container {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+        }
+
+        .custom-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: opacity 0.3s ease;
+        }
+
+        .timeline-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .progress-bar {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 5px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .progress-bar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #38bdf8;
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .left-controls,
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 6px 10px;
+            cursor: pointer;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .speed-badge {
+            background: #0284c7;
+            color: white;
+        }
+
+        .card-gosterge {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        progress,
+        meter {
+            width: 100%;
+            height: 24px;
+            margin-bottom: 8px;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-modal {
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn-modal:hover {
+            background: #000;
+        }
+
+        dialog {
+            border: none;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 360px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        dialog::backdrop {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blue(3px);
+        }
+
+        details {
+            margin-bottom: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #1e293b;
+        }
+
+        details[open] {
+            background: #eff6ff;
+            color: #1e293b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h3 style="font-size: 40px;">Aradığın Her Şeyin Hepsiburada!</h3>
+        <div>
+            <iframe style="margin-top: 20px;" width="560" height="315"
+                src="https://www.youtube.com/embed/wJjHcDXVPq4?si=cwJEpJM9cTynSACO" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <br>
+        </div>
+
+        <div style="align-items: center; text-align: center;">
+            <p
+                style="align-items: center; font-size: 30px; margin-top: 50px;margin-bottom:20px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-weight: bold;">
+                İNDİRİM GÜNLERİNİ KAÇIRMA!
+            </p>
+            <label for="m1" style="font-size: 20px;">STOKLAR SINIRLI!</label>
+            <meter value="50" id="m1" min="0" max="100" low="20" high="80" optimum="90"></meter>
+
+            <div class="modal-box">
+                <h3>Seçili Ürünlerde Geçerli %70 İndirim!</h3>
+                <p style="font-size: 13px;margin-top: 10px; color: #64748b;">Detaylı bilgi için tıkla!</p>
+                <button class="btn-modal" onclick="document.getElementById('indirimModal').showModal()">%70 İndirim
+                    Kuponun</button>
+            </div>
+
+            <dialog id="indirimModal" style="align-items: center; text-align: center; margin:auto; font-size: 15px;">
+                <h3>%70 indirim kuponun:</h3>
+                <div
+                    style="background: #f1f5f9;padding: 12px;text-align: center;font-weight: bold;border-radius: 6px; color:black; font-size: 18px; margin-top: 10px;">
+                    HEPSIBURADA70
+                </div>
+                <div style="margin-top: 16px;text-align: right;">
+                    <div>
+                        <button onclick="document.getElementById('indirimModal').close()"
+                            style="padding: 6px 12px; color: black; border-color: black; border-radius: 4px;cursor: pointer;">
+                            Kapat
+                        </button>
+                    </div>
+                </div>
+            </dialog>
+        </div>
+
+        <div class="player-container" id="videoBox">
+            <video id="myVideo" playsinline webkit-playsinline preload="metadata">
+                <source src="/hb-video.mp4" type="video/mp4">
+                Tarayıcınız HTML5 video etiketini desteklemiyor
+            </video>
+
+
+            <div class="custom-controls">
+                <div class="timeline-container">
+                    <span id="currentTime">00:00</span>
+                    <input type="range" id="progressBar" class="progress-bar" min="0" max="100" value="0">
+                    <span id="durationTime">00:00</span>
+                </div>
+
+                <div class="button-group">
+                    <div class="left-controls">
+                        <button id="btnPlay">Oynat</button>
+                        <button id="btnMute">Sesli</button>
+                    </div>
+                    <div class="right-controls">
+                        <button id="btnSpeed" class="speed-badge">1.0x</button>
+                        <button id="btnPip">Pip</button>
+                        <button id="btnFull">Tam Ekran</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="faqs">
+            <h3 style="margin: 20px; margin-top: 30px; color: #000;">Sıkça Sorulan Sorular</h3>
+            <details style="background: white;" open>
+                <summary>Kargo teslimat süresi ne kadardır?</summary>
+                <p style="margin-top: 10px;">Siparişlerimiz Aynı Gün kargoya verilir.</p>
+            </details>
+            <details style="background: white;">
+                <summary>İade ve değişim şartları nelerdir?</summary>
+                <p style="margin-top: 10px;">Ürünü teslim aldığınız andan itibaren 14 gün içinde iade edebilirsiniz.</p>
+            </details>
+            <details style="background: white;">
+                <summary>Taksit seçenekleri varmı?</summary>
+                <p style="margin-top: 10px;">Tüm kredi kartlarına vade farksız 9 taksit seçeneğimiz bulunmaktadır.</p>
+            </details>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
