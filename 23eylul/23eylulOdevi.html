@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *,*::before,*::after{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        :root{
+            --bg: white;
+            --back-bg: rgb(140, 139, 139);
+            --text: black;
+            --border: rgb(140, 139, 139);
+            --text-gray: #505056;
+        }
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            background: var(--back-bg);
+            color: white;
+        }
+        .page{
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            grid-template-rows: 60px 1fr 40px;
+            grid-template-areas:
+            "nav header"
+            "nav main"
+            "nav footer";
+            height: 100vh;
+            gap: 12px;
+            padding: 12px;
+        }
+        .panel{
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+        header{
+            grid-area: header;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav{
+            grid-area: nav;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        main{
+            grid-area: main;
+            overflow-y: auto;
+            min-width: 50%;
+        }
+        footer{
+            grid-area: footer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        .menu-item{
+            padding: 9px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .menu-item:hover{
+            background: #bcbbbb;
+            color: black;
+        }
+        .menu-item.active{
+            background: #bcbbbb;
+            font-weight: 600;
+            border: 1px solid #bcbbbb;
+        }
+        .panel-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+            gap: 18px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .product-card{
+            background: white;
+            padding: 2px 10px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+        }
+        .product-card:hover{
+            transform: translateY(-5px);
+            background: var(--bg);
+            border-color: var(--border);
+            box-shadow: 0 16px 20px 8px var(--border);
+        }
+        .product-name{
+            color: black;
+            margin-top: 10px;
+        }
+        .product-explanation{
+            color: var(--text-gray);
+            margin-top: 10px;
+        }
+        .product-size{
+            margin-top: 30px;
+            color: var(--text);
+            font-size: 13px;
+        }
+        .product-price{
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        @media (min-width: 768px){
+            .panel-grid{
+                grid-template-columns: repeat(3,1fr);
+            }
+        }
+        @media (min-width: 1024px){
+            .panel-grid{
+                grid-template-columns: repeat(4,1fr);
+            }
+        }
+        h1{
+            font-size: clamp(1.2rem,1.6vw,2.2rem);
+        }
+        .pulse-dot{
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: red;
+            display: inline-block;
+            animation: pulseAnim 2s infinite;
+        }
+        @keyframes pulseAnim{
+            0%, 100%{opacity:1; transform: scale(1,1);}
+            50%{opacity: 0.35; transform: scale(1.4);}
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="panel">
+            <h1>ATELIER RIPTYQUE</h1>
+            
+            <div>
+                <span>Oturum: <strong>Tuba Aydın</strong>
+                </span>
+                <span class="bell">🔔</span>
+                <span class="pulse-dot"></span>
+            </div>
+
+        </header>
+
+        <nav class="panel">
+            <div>
+                <strong>A.R.</strong>
+            </div>
+            <div class="menu-item active">Dashboard</div>
+            <div class="menu-item">Moda</div>
+            <div class="menu-item">Kokular</div>
+            <div class="menu-item">Parfümler</div>
+
+        </nav>
+
+        <main class="panel">
+            <div class="panel-grid">
+                <div class="product-card">
+                    <img src="1.png" class="product-image">
+                    <figcaption></figcaption>
+                    <div class="product-name">Set of 5 Eaux de toilette - To compose</div>
+                    <div class="product-explanation">Bespoke fragrance set of 5 eaux de toilette to mix, match and gift.</div>
+                    <div class="product-size">7.5 ml</div>
+                    <div class="product-price">115 €</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="2.png" class="product-image">
+                    <figcaption></figcaption>
+                    <div class="product-name">Set of 5 Eaux de toilette</div>
+                    <div class="product-explanation">Bespoke fragrance set of 5 eaux de toilette to mix, match and gift.</div>
+                    <div class="product-size">7.5 ml</div>
+                    <div class="product-price">115 €</div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="3.png" class="product-image">
+                    <figcaption></figcaption>
+                    <div class="product-name">Set of 5 Eaux de toilette</div>
+                    <div class="product-explanation">Bespoke fragrance set of 5 eaux de toilette to mix, match and gift.</div>
+                    <div class="product-size">7.5 ml</div>
+                    <div class="product-price">115 €</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="4.png" class="product-image">
+                    <figcaption></figcaption>
+                    <div class="product-name">Set of 5 Eaux de toilette</div>
+                    <div class="product-explanation">Bespoke fragrance set of 5 eaux de toilette to mix, match and gift.</div>
+                    <div class="product-size">7.5 ml</div>
+                    <div class="product-price">115 €</div>
+                </div>
+
+                <div class="product-card">
+                    <img src="5.png" class="product-image">
+                    <figcaption></figcaption>
+                    <div class="product-name">Set of 5 Eaux de toilette</div>
+                    <div class="product-explanation">Bespoke fragrance set of 5 eaux de toilette to mix, match and gift.</div>
+                    <div class="product-size">7.5 ml</div>
+                    <div class="product-price">115 €</div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="panel">
+            <address>Contact: 
+            Maison Riptyque, 7 Rue Duphot, Paris, France</address>
+        </footer>
+
+    </div>
+    
+</body>
+</html>
