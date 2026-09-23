@@ -1,0 +1,63 @@
+TUBA AYDIN 23 EYLÜL ÖDEVLERİ
+GITHUB LİNKİ: https://github.com/tubaknr/SoftITo/blob/main/23eylul/23eylulOdevi.html
+HİÇ YAPAY ZEKA KULLANMADIM HOCAM KOD YAZARKEN!!
+—----------------------------------------------------------------------------------------
+Soru Cevap Ödevi
+
+1. Flexbox ile CSS Grid arasındaki mimari fark nedir ve ne zaman hangisi seçilmelidir? 
+Flexbox: tek eksen üzerinde elemanları akıtır. Burada dizayn 2.plandadır, içerik odaklıdır çünkü . buna content first denir. Mesela bir metin bir kutuya girilse, dizaynı bozmak pahasına yazı uzatılır.
+Grid: hems atırları hem sütunalrı aynı anda yönetmemizi sağlar. Bu yüzden dizayn önceliklidir burada. Buna layout first denir. Mesela bir metin bir kutuya girilse, dizayn asla bozulmaz, yazı sıkıştırılır.
+
+Flexbox Kullanılır:
+Grid Kullanılır:
+Navbar içlerinde
+Tüm sayfa iskeletinde
+Buton içinde ikon metin ortalamada
+Ürün, fotoğraf, galeri vb de
+Mesaj balonu, liste satırlarında
+Dashboard, metrik akrtları vb de
+Tek boyutlu akışlarda.
+2 boyutlu akışlarda.
+
+
+2. CSS Grid'deki fr (fractional unit) birimi, geleneksel yüzde ( % ) birimine göre neden daha güvenlidir?
+Fr ile taşma riski sıfırdır. % ile hesap yapıldığında taşma olabilir. Bunun sebebi hesaplama yöntemidir. % hesaplanırken gap padding vb hesaba katılmaz ancak fr’de katılır. Bu yüzden fr de taşma asla olmaz, hesap hatası olmaz.
+
+ 3. Neden "Desktop-First" ( max-width ) yerine "Mobile-First" ( min-width ) mimarisi tercih edilir? 
+Artık kullanıcı etkileşimlerinin %90’ından fazlası mobilden geliyor. 
+Mobil cihazlara sadece gerekli olan kodlar ve stiller yüklenmiş olur, desktopda kullanılan ağır stiller yüklenmez.
+Büyükten küçüğe gitmek (desktop->mobile) daha zordur çünkü sıkıştırmak gerekir. Bu da, küçükten büyüğe (mobile->desktop) gitmekten daha çok kod ister. 
+Mobile first odaklanmak, daha kodun başındayken en kritik adımlara odaklanmayı sağlar, ekstralar elenir.
+
+4. CSS3'te transition ve animation yazarken neden top , left , width yerine transform ve opacity tercih edilmelidir? 
+Top,left,width gibi özellikler tarayıcı adımlarını her değişiklikte baştan çalıştırır. Bu da cPU kullanımını arttırır. Ekran donar, takılır vb. UX kötü olur. Transform ve opacity ise bu CPU kullanan adımalrı atlar, direk birleştirme aşamasına geçer, CPU tasarrufu sağlar.
+Transform ve opacity, değişiklikleri GPU’ya aktarır,60fps ile çalışır, pil tüketimini düşürür.
+
+5. CSS Grid'de auto-fit ile minmax() birleşimi nasıl çalışır ve responsive tasarım açısından ne avantaj sağlar? 
+Grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+Minmax, her bir sütuna en az 250px ol ama alan genişlerse 1fr kadar yer kapla demektir. 
+Auto-fit, ekran genişliği her ne kadar ise, ona sığabilecek kadar 250px lik sütunlar oluşturur. Ekranı büyütüp küçülttüğümüzde ekrandaki kutu sayısının değişmesi buna örnektir…
+
+6. grid-template-areas özelliğinin sağladığı en büyük kurumsal avantaj nedir? 
+Ekran boyutuna göre düzeni değiştirmek gerketiğinde html yapısına ve elemanların sıralamasına dokunulmaz, sadece tek bir css bloğunda elemanların sırasını değiştirmek yeter.
+Ayrıca başka yazılımcılar,dosya içinde kaybolmadan, sayfa yapısını hemen anlar.
+
+7. CSS'te clamp() fonksiyonunun 3 parametresi ne anlama gelir? 
+clamp (minimum, tercih edilen, maksimum)
+Minimum = düşebileceği en küçük boyuttur.
+Tercih edilen = alan elverdiği sürece uygulanacak olan değerdir. Dinamik değişen vw li değerler kullanılır. Çünkü ekrana göre değişecek…
+Maksimum = çıkabileceği max boyuttur. 
+
+8. Bir CSS animasyonunun sonsuza kadar kesintisiz çalışması için hangi CSS kuralı kullanılır? 
+infinite.
+
+9. Flutter'da CSS Grid'in ve Flexbox'ın doğrudan karşılığı olan widget'lar nelerdir? 
+Flexbox karşılığı = Row(), Column(), Flex()
+Grid karşılığı = GridView, CustomMultiChildLayout
+
+
+10. React Native'de CSS Grid kullanılabilir mi? Kullanılamıyorsa çok sütunlu ızgara yapısı nasıl oluşturulabilir?
+Hayır. Çünkü oda yerleşik layout motoru Yoga’dır oda sadece flexbox türlerini kullanır. Bu yüzden display:grid çalışmaz.
+
+FlatList ve numColumns kullanılabilir:
+<FlatList data={products} numColumns={2} renderItem={({item}) => <Card item={item} />} keyExtractor={(item) => item.id}
