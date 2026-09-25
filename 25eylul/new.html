@@ -74,33 +74,59 @@
 </head>
 
 <body>
+    <!-- en genel ve kapsayıcı div açılır. -->
     <div class="kokpit"> <!-- en büyük kapsayıcı div. içine : HEADER, MAIN, FOOTER.-->
+        <!-- sayfanın en üstüne header açılır -->
         <header class="header">
+            <!-- açılan header'ın en üstteki tag i verilir -->
             <span class="header__tag">Sipariş Takip</span>
+            <!-- header ın title ı verilir, burası sayfanın da başlığıdır. -->
             <h1 class="header__title">Sipariş Yönetim Kokpiti</h1>
 
+        <!-- header biter -->
         </header>
 
+        <!-- header altına, main tarafına geçilir, section açılır ve grid 
+         açılır. çünkü arama sonuçlarının toplamı ve ortalamsı vb değerleri 
+         burada grid içeriisnde kutucuklar içerisinde verilecektir.-->
         <section class="kpi-grid">
+            <!-- toplam kayıtlı sipariş sayısını gösterecek olan karttır.-->
             <div class="kpi-card">
+                <!--kartın ismi-->
                 <span>Kayıtlı Sipariş</span>
+                <!--toplam kart sayısı. -->
                 <h3 id="kpiCount">0</h3>
+            <!-- kart kapatılır-->
             </div>
 
+            <!-- toplam kayıtlı sipariş toplam tutarını gösterecek olan karttır.-->
             <div class="kpi-card">
+                <!--kartın ismi-->
                 <span>Toplam Sipariş Tutar</span>
+                <!--toplam fiyat. updateKPI metodu ile hespalanır. -->
                 <h3 id="kpiTotal">0 TL</h3>
+            <!-- kart kapatılır-->
             </div>
 
+            <!-- toplam kayıtlı sipariş toplam tutarını gösterecek olan karttır.-->
             <div class="kpi-card">
+                <!--kartın ismi-->
                 <span>Ortalama Ürün Fiyatı</span>
+                <!--ortalama toplam fiyat. updateKPI metodu ile hespalanır. -->
                 <h3 id="kpiAvg">0 TL</h3>
+            <!-- kart kapatılır-->
             </div>
 
+            <!-- main layout başlatılır -->
             <main class="layout">
+                <!-- main içine section balatılır -->
                 <section class="panel">
+                    <!-- h4 ile section ın başlığı girilir -->
                     <h4>Yeni Sipariş Kaydı</h4>
+                    <!-- form başlatılır, js içinde çekilebilmesi için
+                     içerisine id si verilir.-->
                     <form id="orderForm">
+                        <!-- arama yeri başlatılır -->
                         <div class="field">
                             <label for="prodName">Ürün adı</label>
                             <input type="text" id="prodName" placeholder="Sehpa" required>
@@ -148,6 +174,8 @@
     </div>
 
     <script>
+        // sisteme kaydedilecek tüm elemanlar orders değikeni içine her biri birer obje
+        //  halinde bir array ierisine verilir. 4 propertysi var:id, name, category, price. 
         let orders = [
             {id: 1, name:"Sehpa", category: "Mobilya", price: 6500},
             {id: 2, name:"Abajür", category: "Aydınlatma", price: 8500},
@@ -157,6 +185,8 @@
         ];
 
         // DOM elementleri toplayalım
+        // id si orderContainer olan element alınır, değişkene atanır.
+        // aşağıdaki tüm elemanalr id lerine göre çekilirler, bir değişkene atanaırlar.
         const orderContainer = document.getElementById('orderContainer');
         const orderForm = document.getElementById('orderForm');
         const searchInput = document.getElementById('searchInput');
