@@ -1,0 +1,198 @@
+<script>
+    /*
+    let sayi1 = 100;
+    sayi2 = sayi1;
+    sayi2 = 250;
+    console.log(sayi1, sayi2);
+
+    // Dizi Kopyalama
+    // YANLIŞ YOL:
+    const istasyonlarA = ["Kadıköy DC", "Beşiktaş AC"];
+    const istasyonlarB = istasyonlarA; // ikisini eşitledik!!
+    istasyonlarB.push("Üsküdar Ultra DC"); // A'ya da ekledi!!!
+
+    console.log("istasyonA: ", istasyonlarA, "istasyonB: ", istasyonlarB);
+    console.log(istasyonlarA === istasyonlarB);
+
+
+    // DOĞRU YOL: 
+    // EŞİTLEME YAPMA!!! KLON OLUŞTUR!!!!
+    const bagimsizKopya = [...istasyonlarA]; // SPREAD OP = KLONLAMA YAPAR! İÇERİDEKİ VERİLERİ BAĞIMSIZ KOPYAYA KLONLAR!!!
+    bagimsizKopya.push("Maltepe Hızlı");
+    console.log("orijinal: ", istasyonlarA.length);
+    console.log("yeni klon: ", bagimsizKopya.length);
+
+    // Dizi Elemanlarımız Ham Veri Seti
+    const sarjİstasyonlari = [
+        {id:"IST-01", lokasyon:"Zorlu Center", 
+        tip:"DC", GucKw: 180, durum: "Aktif", 
+        seansAdet: 45, tarifeTL: 8.5},
+
+        {id:"IST-02", lokasyon:"Akasya AVM", 
+        tip:"AC", GucKw: 22, durum: "Aktif", 
+        seansAdet: 76, tarifeTL: 9},
+
+        {id:"IST-03", lokasyon:"Kanyon AVM", 
+        tip:"AC", GucKw: 120, durum: "Aktif", 
+        seansAdet: 12, tarifeTL: 12},
+
+        {id:"IST-04", lokasyon:"Vadistanbul", 
+        tip:"DC", GucKw: 300, durum: "Aktif", 
+        seansAdet: 34, tarifeTL: 15},
+
+        {id:"IST-05", lokasyon:"Mall of Istanbul", 
+        tip:"DC", GucKw: 180, durum: "Pasif", 
+        seansAdet: 55, tarifeTL: 55}
+    ];
+
+    // MAP ile DÖNGÜ
+    // Veriyi dönüştürür ve her elemanı işer, 
+    // aynı boyutta yeni dizi döner!!!! 
+    const istasyonOzetleri = sarjİstasyonlari.map(ist => {
+        return `${ist.lokasyon} (${ist.tip} - ${ist.GucKw}) -> ${ist.durum.toUpperCase()}`;
+    });
+    console.log("Map Sonucu: ", istasyonOzetleri);
+    istasyonOzetleri.push({id:"IST-06", lokasyon:"Mall of Istanbul", 
+        tip:"DC", GucKw: 180, durum: "Pasif", 
+        seansAdet: 55, tarifeTL: 55})
+
+        console.log("aa:", sarjİstasyonlari); // eklenmemiş 1!!!
+
+    // tek bir şey istediğimiz zaman süslü parantez yok ! Arrow fcn mantığı !!!
+    const sadeceLokasyonlar = sarjİstasyonlari.map(ist => ist.lokasyon);
+    
+    // süslü prntz koaycaksan RETURN şart!!!!!
+    const sadeceLokasyonlar2 = sarjİstasyonlari.map(ist => {
+        return ist.lokasyon;
+    });
+
+    console.log(sadeceLokasyonlar2);
+
+    // 2. filter() şartı sağlayanları ayıklar !!!
+    // filtreler ve yeni dizi döner !!!!
+    // Sadece dc ve aktif istasyonları göster
+
+    const aktifDcIstasyonlar = sarjİstasyonlari.filter(ist => ist.tip === "DC" && ist.durum === "Aktif");
+    console.table(aktifDcIstasyonlar);
+
+    // find ve findIndex 
+    const bulunan = sarjİstasyonlari.find(ist => ist.id === "IST-03");
+    console.log(bulunan);
+
+    // some ve every - Mantıksal kontorllerdir (boolean dönerler!!!)
+    const bakimdaOlanVarmi = sarjİstasyonlari.some(ist => ist.durum === "bakim");
+    console.log(bakimdaOlanVarmi);
+
+    const hepsiAktifmi = sarjİstasyonlari.every(ist => ist.durum === "Aktif");
+    console.log(hepsiAktifmi);
+
+    // reduce() Toplama
+    const toplamSeans = sarjİstasyonlari.reduce((aku, istasyon) => {
+        return aku + istasyon.seansAdet;
+    }, 0); // başlangı. değeri 0
+    console.log("toplam seans: ", toplamSeans);
+
+    // Zincirleme filter->map->reduce
+    // Aktif DC istasyonarının toplam anlık maksimum güç kapasitesi nedir?
+
+    const aktifDcToplamGuc = sarjİstasyonlari
+            .filter(ist => ist.durum === "Aktif" && ist.tip === "DC")
+            .map(ist => ist.GucKw)
+            .reduce((toplam, guc) => toplam+guc, 0);
+    console.log(aktifDcToplamGuc);
+
+
+    const pahaliAktifLokasyonlar = sarjİstasyonlari
+            .filter(ist => ist.durum === "Aktif" && ist.tarifeTL > 10)
+            .map(ist => ist.lokasyon);
+    console.log(pahaliAktifLokasyonlar);
+
+    const ucuzDcAktifLokasyonlar = sarjİstasyonlari
+            .filter(ist => ist.tarifeTL < 10 && ist.durum === "Aktif" && ist.tip === "DC")
+            .map(ist => ist.lokasyon);
+    console.log(ucuzDcAktifLokasyonlar);
+
+    
+
+   const istasyonYonetim = {
+    kod: "TR-IST-006",
+    ad: "Kadıköy DC Hızlı Şarj",
+    kapasiteSoket: 4,
+    aktifSoketler: ["Soket-A", "Soket-B"],
+    tarife: {
+        birimTL: 12,
+        geceIndirimYuzdesi: 20
+    },
+
+    musaitlikRaporu: function(){
+    const bostaAdet = this.kapasiteSoket - this.aktifSoketler.length;
+    return `${this.ad} istasyonunda ${bostaAdet} adet soket boştadır.`;
+   },
+
+   geceTarifesiHesapla: function(){
+    const indirim = this.tarife.birimTL * (this.tarife.geceIndirimYuzdesi/100);
+    return this.tarife.birimTL - indirim;
+   },
+
+};
+
+console.log(istasyonYonetim.musaitlikRaporu());
+console.log("Gece birim fiyat: ", istasyonYonetim.geceTarifesiHesapla(), " TL");
+
+console.log("Keys: ", Object.keys(istasyonYonetim));
+console.log("Values: ", Object.values(istasyonYonetim.tarife));
+
+
+const aracVerisi = {
+    marka: "Togg",
+    model: "T10X",
+    yil: 2026,
+    batarya: {
+        kapasiteKwh: 88.5,
+        kimya: "NMC",
+        garantiYil: 8
+    },
+    renk: undefined // "Gece MAvisi" yazılıysa aşağıdaki beyaz'ı almaz! undefined olursa alır. 
+};
+
+const {marka, model, renk="Beyaz"} = aracVerisi; // VERİ EKLEMEK İÇİN PUSH GEREKLİ! BU ŞEKİLDE GİRİLİRSE ALGILAMAZ!
+console.log(`Araç: ${marka} ${model} | Renk: ${renk}`)
+
+// İç içe ve yeniden isimlendirme
+const {batarya: {kapasiteKwh: bataryaBoyutu, kimya}} = aracVerisi;
+
+console.log(`Batarya ${bataryaBoyutu} Kwh, Hücre Kimyası: ${kimya}`);
+
+// React prop parametre ile aynı mantık
+const araciEkranaBas=({marka, model, batarya: {kapasiteKwh}}) => {
+    console.log(`Gelen Araç ${marka} ${model} [${kapasiteKwh} Kwh]`);
+};
+
+araciEkranaBas(aracVerisi);
+
+
+const koordinatlar = [41.0082,28.9785];
+const [enlem, boylam] = koordinatlar; // sağ taradf arrayse sol tarafa da array aç, objeyse obje aç.
+console.log(`Enlem: ${enlem}, Boylam: ${boylam}`);
+
+*/
+
+const puanlar = [95, 88, 76, 65, 54];
+const [birinci,ikinci,...kalanlar] = puanlar; // kalanlar da array oldu!!!!!!!
+console.log("1. :", birinci, "2.: ", ikinci, "kalanlar: ", kalanlar);
+
+const temelTarife = {
+    kdvOrani: 0.20,
+    paraBirimi:"TL",
+    geceTarifesiVar:true
+};
+const guncelTarife = {
+    ...temelTarife, // eski özellikleri aynen kopyala
+    birimFiyat: 11.50, // yeni özellik ekle (obje)
+    paraBirimi: "TRY", // var olan özelliği ez (override)
+};
+
+console.log("Yeni tarife objesi: ", guncelTarife); 
+
+
+</script>
