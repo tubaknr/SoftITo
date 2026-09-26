@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sipariş & Gelir Kokpit Dashboard</title>
     <style>
+    /* en baştan ballangıçta ekranı default gelen tüm stilllerden temizliyoruz her seyi fsıfırlıyoruz.
+    ve border-box seçiyoruz.*/
         *,*::before,*::after{
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+        /* burada marka renkleri, tüm sitede kullanılacak renkler bir değişkene atanıyor, 
+        daha kolay kullanılabilmeleri için  */
     :root {
       --bg: #f8f7f4;
       --card: #ffffff;
@@ -22,57 +26,94 @@
       --font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* arkaplan rengi, yazı rengi, fontu, ve iç boşluğu veriliyor. ayrıca line-height ile satır yüksekliği veriliyor.*/
     body { background: var(--bg); color: var(--text); font-family: var(--font-main); padding: 36px 16px; line-height: 1.5; }
+    /* en dıştaki en kapsayıcı div in stilleri, max-width 960, ve margin düzeltmeleri. */
     .kokpit { max-width: 960px; margin: 0 auto; }
 
     /* Header & KPI */
+    /* alta margin ve padding yani iç ve dış boşluklar verlyor. alta ince biz çizgi çiziliyor.  */
     .header { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    /* header üzerindeki ufak sipariş takip yazısının fontu, büyük harf yapılması, harf aralığı, rengi, fontun kalınlığı veriliyor*/
     .header__tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--clay); font-weight: 700; }
+    /* header başlığının font boyutu, fontunun kalınlığı, ve yukarısındaki dış bşluğu veriliyor. */
     .header__title { font-size: 26px; font-weight: 700; margin-top: 2px; }
 
+    /* başlık altına grid açılır çünkü istatistiksel veriler buraya verilecektir, 3 sütun olacak, her biri 1fr olacak, 
+    aralarındaki boşluk 14px olacak, alt dış boşluk 24px olacak.*/
     .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+    /* istatistiği gösterecek olan her bir kartın arka plan rengi, kenarlık çizgileri, çizgilerin radiusu ve iç boşlukları veriliyor. */
     .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; }
+    /* her bir kartın başlığının font boyutu, rengi, fontunun kalınlığı veriliyor */
     .kpi-card span { font-size: 12px; color: var(--muted); font-weight: 600; }
+    /* her bir karttaki istatistiksel verinin font boyutu, font kalınlığı, font tpi, dış üst boluğu veriliyor, üstte 4px boşluk olacak.*/
     .kpi-card h3 { font-size: 22px; font-weight: 700; font-family: var(--font-mono); margin-top: 4px; }
 
     /* Layout */
+    /* istatistiksel verilerin altında, yine grid açılıyor, aralarındaki boşluk 24px olacak şekilde grid açılıyor. */
     .layout { display: grid; grid-template-columns: 320px 1fr; gap: 24px; }
+    /* 768px e kadar olan boyutlarda, grid tarafı 1fr olacak, yani bir sütun. ama genişledikçe artacak.  */
     @media (max-width: 768px) { .layout, .kpi-grid { grid-template-columns: 1fr; } }
 
     /* Form & Panel */
+    /* yeni sipariş kaydı bölümü section'ı. arkaplan rengi, çevre çizgisi, çizginin radiusu ve iç boşluk veriliyor.*/
     .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+    /* yeni sipariş kaydı bölümü panelin başlığı font boyutu, font kalınlığı, alt dış bşluğu,  alt iç boşluğu, alt çizgisi veriliyor */
     .panel h4 { font-size: 15px; font-weight: 700; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
     
+    /* kategori seçme bölümü alt dış boşluğu veriliyor */
     .field { margin-bottom: 12px; }
+    /* başlığın display tarzı, font boyutu, font kalınlığı, alt dış boşluğu veriliyor */
     .field label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+    /* inputun girileceği alan ve seçimin yapılacağı alanın maximum genişliği, iç boşluğu, font boyutu, font tipi, arkafon rengi, dış çizgisi, ve çizgi raidusu veriliyor. */
     .field input, .field select { width: 100%; padding: 8px 10px; font-size: 13px; font-family: inherit; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+    /* input giriş bölgesinin ve seçim yapıldığı yerin odak çizgi rengi kaldırılıyor, kenar çizgi rengi, arkafon rengi veriliyor*/
     .field input:focus, .field select:focus { outline: none; border-color: var(--clay); background: #fff; }
     
+    /* submit butonunun genişliği, arkafon rengi, yazı rengi, kenarlık çizgileri, iç boşlukları 4 eksende de, font boyutu, 
+    font kalınlığı, dış çizgisinin radiusu, imlecin el şeklini alacağı, doş üst boşluğun miktarı veriliyor */
     .btn-submit { width: 100%; background: var(--clay); color: #fff; border: none; padding: 10px; font-size: 13px; font-weight: 600; border-radius: 6px; cursor: pointer; margin-top: 6px; }
+    /* sumit butonunun üzerine gelince arkaplan renginin değişip ahngi renk olacağı veriliyor*/
     .btn-submit:hover { background: var(--clay-hover); }
 
     /* Liste & Filtre */
+    /* ürün ismine göre filtreleme yapmak için açılmış bu yer. yan yana sıralanıyorlar, 
+    aralarındaki boşluk 10px yapılıyor, alt dış boşluk 14px yapılıyor.*/
     .filter-bar { display: flex; gap: 10px; margin-bottom: 14px; }
+    /* listenin üst üste durması ve aralarındaki booşluğun 10px olması sağlanıyor.*/
     .order-list { display: flex; flex-direction: column; gap: 10px; }
     
+    /* sonuçta sıralanan ürünlerin arkaplan rengi, kenarlık çizgileri, kenarlık radisuları, iç boşlukları, 
+    display tarzları, ve aralarında boşluk max olacak şekilde sıralanmaları, dikeyde ise merkezde olmaları komutu veriliyor */
     .order-item { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; }
+    /* order ların başlıkları font boyutu, fnt kalınlığı veriliyor*/
     .order-item h5 { font-size: 13px; font-weight: 600; }
+    /* order ların birim fiyat yazılarının font boyutu, renkleri veriliyor */
     .order-item p { font-size: 12px; color: var(--muted); }
     
+    /* burada dikeyde merkezde, yatayda yan yana ve aradaki boşluk 10px olacak şekilde aktegori ve sil butonu stilleri veriliyor*/
     .meta-box { display: flex; align-items: center; gap: 10px; }
+    /* kategori yazısının etraf stilleri veriliyor. font boyutu, iç boşlukları, kenarlık çizgileri radiusu, 
+    font kalınlıkları, arkaplan rengi, yazı rngi, fotn tipi veriliyor */
     .badge { font-size: 11px; padding: 2px 7px; border-radius: 4px; font-weight: 600; background: #fef3c7; color: #92400e; font-family: var(--font-mono); }
+    /* mobilya kategorisinin stilleri arka plan rengi ve yazı rengi veriliyor*/
     .badge--mobilya { background: #e0e7ff; color: #3730a3; }
+    /* aydınlatma kategorisinin stilleri arka plan rengi ve yazı rengi veriliyor**/
     .badge--aydinlatma { background: #fef3c7; color: #b45309; }
+    /* seramik kategorisinin stilleri arka plan rengi ve yazı rengi veriliyor**/
     .badge--seramik { background: #d1fae5; color: #065f46; }
 
+    /* sil butonunun arkaplan renginin transarent olması yani renksiz, kenarlık çizgisi, yazı rengi, font boyutu, 
+    iç boşluğu, kenarlık çizgisinin radiusu, imlecin el şeklinde olacağı komutları veriliyor*/
     .btn-del { background: transparent; border: 1px solid var(--border); color: var(--muted); font-size: 11px; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+    /* sil butonu üzerine gelindiğinde arkaplan rengi, yazı rengi, kenarlık çizgisi rengi belirleniyor.*/
     .btn-del:hover { background: #ef4444; color: #fff; border-color: #ef4444; }
 
+    /* projenin stil css tarafı bitiriliyor.*/
     </style>
 </head>
 
+<!-- html tarafına body tag i ile geçiliyor -->
 <body>
     <!-- en genel ve kapsayıcı div açılır. -->
     <div class="kokpit"> <!-- en büyük kapsayıcı div. içine : HEADER, MAIN, FOOTER.-->
@@ -131,9 +172,11 @@
                             <label for="prodName">Ürün adı</label>
                             <input type="text" id="prodName" placeholder="Sehpa" required>
                         </div>
-
+                        <!-- kategori seçme bölümü -->
                         <div class="field">
+                            <!-- kategori seçme başlığı-->
                             <label for="prodCat">Kategori</label>
+                            <!-- kategori seçme seçenekleri-->
                             <select name="prodCat" id="prodCat">
                                 <option value="Mobilya">Mobilya</option>
                                 <option value="Aydınlatma">Aydınlatma</option>
@@ -141,26 +184,34 @@
                             </select>
                         </div>
 
+                        <!-- eklenecek siparişin fiyatının girileceği ekran-->
                         <div class="field">
+                            <!-- fiyat başlığı-->
                             <label for="prodPrice">Fiyat</label>
+                            <!-- fiyatın girileceği input bölümü-->
                             <input type="number" id="prodPrice" value="3250" min="100" step="50" required>
                         </div>
 
+                        <!-- siparişin kaydedileceği submit tipinde buton.-->
                         <button type="submit" class="btn-submit">Siparişi Kaydet</button>
                     </form>
                 </section>
 
+                <!-- filtreleme bölümü -->
                 <section class="panel">
                     <div class="filter-bar">
+                        <!-- ürün ismine göre arama yapılacağı bölge-->
                         <input type="text" id="searchInput" class="field" 
                         style="margin-bottom: 0;" placeholder="Ürün Adına Göre Filtrele">
                         <select id="categoryFilter" style="width: 130px; font-size: 12px; padding: 6px;">
+                            <!-- kategoriye göre arama yapılacağı bölge-->
                             <option value="ALL">Tüm Kategoriler</option>
                             <option value="Mobilya">Mobilya</option>
                             <option value="Aydınlatma">Aydınlatma</option>
                             <option value="Mutfak">Mutfak</option>
                         </select>
                     </div>
+                    <!-- burada filtrelemeye göre sonuçların ekrana basılacağı alan-->
                     <div id="orderContainer" class="order-list">
                         <!-- Dinamik olarak elemanlar buraya basılacak / eklenecek-->
                     </div>
@@ -366,6 +417,10 @@
         //  bu yüzden eğer bu satır olmasaydı ilk 
         // sayfa yüklendiğinde renderrders metodu hiç çalıştırılmamış olacaktı. 
         renderOrders();
+
+        function deleteOrder(){
+            orderContainer.addEventListener("click", deleteOrder);
+        }
     </script>
 
 ÖDEV:
