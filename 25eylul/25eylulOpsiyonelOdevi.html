@@ -164,6 +164,21 @@
             font-size: 14px;
             opacity: 0.9px;
         }
+        .orders{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .orders-question{
+            margin-bottom: 20px;
+            font-size: 25px;
+            font-weight: bold;
+            font-style: italic;
+            padding-bottom: 30px;
+            border-bottom: 0.5px solid var(--border);
+        }
         
         
         
@@ -226,7 +241,8 @@
                 </div>
 
             </section>
-            <section>
+            <section class="orders">
+                <div class="orders-question">Siz de sipariş vermek ister misiniz?</div>
                 <h2>Güncel Siparişler</h2>
                 <div id="order-list"></div>
             </section>
