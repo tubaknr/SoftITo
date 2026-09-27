@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SİPARİŞ EKLMEE SİLME EKLENDİ.
+     FİLTRELEME EKLENECEK
+     STİL DÜZELTMELERİ YAPIALCAK
+     VİDEO OYNAMA SORUNU ÇÖZÜLECEK. -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *,*::before,*::after{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        :root{
+            --border: rgb(165, 164, 164);
+        }
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            background: white;
+            color: black;
+            padding: 20px;
+            width: 100%;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .general{
+            width: 100%;
+        }
+        .header{
+            width: 100%;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+        .header-col{
+            display: flex;
+            flex-direction: column;
+        }
+        .header-row{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 20px 0px;
+            padding-bottom: 12px;
+            border-bottom: 0.5px solid var(--border);
+        }
+        .header-search{
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .header-search-icon{
+            color: black;
+            width: 20px;
+            height: 20px;
+        }
+        .header-search-input{
+            height: 22px;
+            width: 60px;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            outline: none;
+            font-size: 12px;
+        }
+        .header-logo-div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header-logo{
+            text-transform: uppercase;
+            font-size: 18px;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+        }
+        .header-logo-tag{
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+        }
+        .header-account{
+            display: flex;
+            justify-content: space-evenly;
+            gap: 4px;
+        }
+        .header-menu{
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .header-cart-icon, .header-account-icon{
+            color: black;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .header-menu{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 16px;
+            padding: 12px 0 4px 0;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .header-menu-tag{
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+        .hero{
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #000000;
+        }
+        .hero-video{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        .hero::after{
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 2;
+        }
+        .hero-content{
+            position: relative;
+            z-index: 3;
+            color: #ffffff;
+            text-align: center;
+            padding: 0 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .hero-content h1{
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .hero-content p{
+            font-size: 14px;
+            opacity: 0.9px;
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+    <div class="general">
+        <header class="header">
+            <div class="header-row">
+                <div class="header-search">
+                    <div class="header-search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                    </div>
+                    <input class="header-search-input">
+                </div>
+                <div class="header-logo-div">
+                    <div class="header-logo">LUXURY</div>
+                    <span class="header-logo-tag">ISTANBUL</span>
+                </div>
+                <div class="header-account">
+                    <div>
+                        <svg class="header-account-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <svg class="header-cart-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+                <div>
+                    <nav class="header-menu">
+                        <span class="header-menu-tag">Women</span>
+                        <span class="header-menu-tag">Men</span>
+                        <span class="header-menu-tag">Leather Goods</span>
+                        <span class="header-menu-tag">Jewelry</span>
+                        <span class="header-menu-tag">Watches</span>
+                        <span class="header-menu-tag">Fragrance and MAke-up</span>
+                        <span class="header-menu-tag">Home and Art of Living</span>
+                    </nav>
+            </div>
+
+
+        </header>
+        <main>
+            <section class="hero">
+                <video class="hero-video" autoplay muted loop playsinline preload="auto">
+                    <source src="hero-video.mp4" type="video/mp4">
+                    <source src="hero-video.webm" type="video/webm">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+                <div class="hero-content">
+                    <h1>Hero Content</h1>
+                    <p>Alt başlıklarrrr</p>
+                </div>
+
+            </section>
+            <section>
+                <h2>Güncel Siparişler</h2>
+                <div id="order-list"></div>
+            </section>
+            <section>
+                <form id="orderForm" class="add">
+                    <div class="field">
+                        <label class="prodName">İsim</label>
+                        <input type="text" id="prodName">
+                    </div>
+                    <div class="field">
+                        <label for="prodCat">Kategori</label>
+                        <select name="prodCat" id="prodCat">
+                            <option value="Women">Women</option>
+                            <option value="Men">Men</option>
+                            <option value="Leathers">Leathers</option>
+                            <option value="Jewelry">Jewelry</option>
+                            <option value="Watches">Watches</option>
+                            <option value="Fragrance">Fragrance</option>
+                            <option value="Home">Home and Art of Living</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="prodPrice">Fiyat</label>
+                        <input type="number" id="prodPrice" value="2000" min="1000" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Siparişi Kaydet</button>
+
+                </form>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script>
+        const orderForm = document.getElementById("orderForm");
+        const orderList = document.getElementById("order-list");
+
+        let orders = [];
+        
+        const renderOrders = () => {
+            orderList.innerHTML = "";
+
+            orders.forEach(order => {
+                const item = document.createElement("article");
+                item.className = "order-item";
+                item.setAttribute("data-id", order.id);
+                console.log(order.id);
+
+                item.innerHTML = `
+                <div>
+                    <h5>${order.name}</h5>
+                    <p>${order.category}</p>
+                    <p>${order.price}</p>
+                    <button class="btn-del" data-action="delete">Sil</button>
+                </div>
+                `;
+
+                orderList.appendChild(item);
+            
+            });
+        }
+
+        orderForm.addEventListener("submit", function(e){
+            e.preventDefault();
+
+            const nameInput = document.getElementById("prodName");
+            const categoryInput = document.getElementById("prodCat");
+            const priceInput = document.getElementById("prodPrice");
+
+            const newOrder = {
+                id: Date.now(),
+                name: nameInput.value.trim(),
+                category: categoryInput.value,
+                price: Number(priceInput?.value) ?? 0
+            };
+
+            orders = [...orders, newOrder];
+            orderForm.reset();
+            renderOrders();
+        });
+
+        orderList.addEventListener("click", function(e){
+            if (e.target.dataset.action === "delete"){
+                const orderItem = e.target.closest(".order-item");
+                if (orderItem){
+                    console.log("orderitem:", orderItem);
+                    const orderId = Number(orderItem.getAttribute('data-id'));
+                    console.log(orderId);
+                    orders = orders.filter(order => order.id !== orderId);
+                    renderOrders();
+                }
+            }
+        })
+
+        renderOrders();
+    </script>
+</body>
+</html>
