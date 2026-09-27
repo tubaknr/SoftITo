@@ -364,7 +364,7 @@
                 // eğer kategori mobilya değilse, aydınlatma mı diye kontrol edilir:
                 : order.category === "Aydınlatma" 
                 // eğer kategori aydınlatma ise badge--aydınlatma tag i seçilir
-                ? "badge-aydınlatma" 
+                ? "badge--aydınlatma" 
                 // eğer aydınlatma da değilse badge--seramik atanır. 
                 : "badge--seramik";
 
@@ -406,6 +406,76 @@
         // renderOrders çalışır ve eşleşen elemanlar varsa hemen gösterilirler. 
         categoryFilter.addEventListener("change", renderOrders);
 
+        // orderContainer içine clikc event listener koyduk. bu click çalışıtğı anda yanındaki
+        // callback function devreye girecek ve çalışacak.
+        orderContainer.addEventListener('click', function(e){
+            // burada click tipi delete mi onu kontrol ediyoruz. 
+            // o an tıklanan HTML elemanı = e.target
+            // dataset = HTML elemanı üzerinde data- önekiyle başlayan tüm özellikleri toplar.
+            // gelen dataset içerisinde biz action ı seçiyoruz, action değeri delete ise, 
+            // kullanıcı silmek için sil tuşuna basmıştır. çünkü sil butonunda dikkat 
+            // edersek data-action'ı delete:
+            // <button class="btn-del" data-action="delete">Sil</button>
+            if (e.target.dataset.action === "delete"){
+                // e.target tıklanan HTML elemanıdır. closest->DOM ağacında
+                // elemandan yukarıya doğru tırmanır. En yakında ve class ismi
+                // "order-item" olan ilk elemanı bulduğu anda o elemanı döndürür
+                const orderItem= e.target.closest(".order-item");
+                // eğer orderItem varsa, null değilse, undefined değilse, falsy değilse, gir:
+                if (orderItem){
+                    // orderITem içindeki data-id attribute'unu bul ve getir ve Number tipine çevir.
+                    // çünkü yukarıda item.setAttribute("data-id", order.id); derken zaten
+                    // seetattribute demiştik, şimdi de getAttribute dedik.
+                    const orderId = Number(orderItem.getAttribute('data-id'));
+                    // orderID'yi bulduktan sonra, o id yi, orders arrayinden ele.
+                    // o id ye eşit olmayan id li order ları tut.
+                    orders = orders.filter(o => o.id !== orderId);
+                    // sonucu ekranda görebilmemiz ve 
+                    // güncel listeyi görebilmemeiz ve aynı zamanda 
+                    // updateKPIın tekrar çalışması ve istatistiklerin 
+                    // de güncellenebilmesi için renderOrders ı çalıştırıyoruz. 
+                    renderOrders();
+                }
+            }
+        });
+
+        // form üzerine bir eventListener ekledik, burada submit olduğu anda 
+        // yanındaki fonksiyon triggerlanacak ve çalışacak.
+        orderForm.addEventListener("submit", function(e){
+            // e.preventDefault() diyerek default modda gelen, submit 
+            // yapınca sayfanın yeniden yüklenmesi özelliğini kaldırmış olduk.
+            e.preventDefault();
+            // form üzerinde doldurulan alanalrdan id ler vasıtasıyla verileri çekiyoruz.
+            const nameInput = document.getElementById("prodName");
+            const categoryInput = document.getElementById("prodCat");
+            const priceInput = document.getElementById("prodPrice");
+            
+            // çektğimiz verilerle yeni bir order objesi oluşturuyoruz.
+            const newOrder = {
+                id: Date.now(), // benzersiz bir değer olması için verildi.
+                // gelen değeri value ile aldık, trim yaptık, baştaki sonraki boşluklar gitti
+                name: nameInput.value.trim(), 
+                // kategori değeri value ile alındı
+                category: categoryInput.value,
+                // girilen price değeri value ile alındı, Number a çevirdim çünkü ilk 
+                // orders datası içerisinde, tüm fiyatlar Number data tipindeydi. 
+                price: Number(priceInput.value)
+            };
+
+            // tüm orderları güncellemek için: ... spead operator ile her bir önceden 
+            // kayıtlı order'ı alıyorum, yanına yeni order ı ekliyorum ve bu yeni toplam 
+            // arrayimi orders a atıyorum ki güncellesin, eski orders artık geçerli olmasın. 
+            orders = [...orders, newOrder];
+            // fomru sıfırlıyorum çünkü artık orders güncellendi, forun üzreinde kullanıcının 
+            // girdiği eski değerler kalmasın.
+            orderForm.reset();
+            // güncellenen orderların ekranda görülebilmesi için renderOrders'ı çağırıyorum. 
+            // hem orders listesi güncel hali basılıyor hem de updateKPI, renderOrders içinde 
+            // tekrar çalıştığı için istatistiksel veriler de güncellenmiş oluyor. 
+            renderOrders();
+        })
+        
+
         // renderOrders fonksiyonu çağrılır, çalıştırılır. burası, yukarıda addeventListener'lara 
         // verilmiş olmasına rağmen burada da çağrılmıştır, bunun sebebi, sayfanın yüklendiği ilk anda
         // da listeyi ekrana basmasını sağlamaktır. eğer bu satır olmasaydı, sayfa ilk açıldığında 
@@ -418,18 +488,10 @@
         // sayfa yüklendiğinde renderrders metodu hiç çalıştırılmamış olacaktı. 
         renderOrders();
 
-        function deleteOrder(){
-            orderContainer.addEventListener("click", deleteOrder);
-        }
+        
     </script>
 
-ÖDEV:
-1. Şua nki sayfadaki her şeyin satır satır açıklama satırı yazılacak. comment satır olarak. her birinin üzerine.
-bu bu işe yarıyor, bunu yapınca bu bu işe yarıyor.... hem css hem html hem js
-3. sile basınca silinecek, formdan ekle deyince ürün eklenecek. 
-4. kendine özel e ticaret sayfası oluştur. kartlarla ürün ekle. formla ürün ekle ürün sil, filtreleme yap. opsiyonel. hepsiburada ana sayfası. hublot. hermes. 
-5. direk gşhub a yükle. ,
-6. pzt sabahı çok hazırlıklı gel1!!! 
+<!-- ops ödev: kendine özel e ticaret sayfası oluştur. kartlarla ürün ekle. formla ürün ekle ürün sil, filtreleme yap. opsiyonel. hepsiburada ana sayfası.-->
 </body>
 
 </html>
