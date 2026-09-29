@@ -16,7 +16,6 @@ class CpuOverload extends Cloud{
   CpuOverload({
     required this.mevcutCpu, 
     required this.limit,
-
   }):super(
     "Err_cpu_overload",
     "Cpu kullanımı eşik limitini ($limit) aştı: $mevcutCpu%",
@@ -25,8 +24,12 @@ class CpuOverload extends Cloud{
 
 class NodeUnavailable extends Cloud{
   final String nodeId;
-  NodeUnavailable(this.nodeId):super("Err_node_offline","Yanıt vermiyor: $nodeId");
 
+  NodeUnavailable(
+    this.nodeId
+  ):super(
+    "Err_node_offline","Yanıt vermiyor: $nodeId"
+  );
 }
 
 void podKaynagiTahsisEt(
@@ -65,7 +68,7 @@ void main(){
   } on Cloud catch(e){
     print("Bulut hatası: ${e.mesaj}");
   } catch(e, stackTrace){
-    print("Bilinmedik Ssitem Hatası $e");
+    print("Bilinmedik Sistem Hatası $e");
   } finally{
     print("Pod tahsis günlüğü kapatıldı.");
   }
