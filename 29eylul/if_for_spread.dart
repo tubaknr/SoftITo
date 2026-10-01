@@ -1,4 +1,4 @@
-// Spread op.  ... ...? ve collection if ve collection for kullanmıı
+// Spread op.  ... ...? ve collection if ve collection for kullanımı
 
 
 // ...? null aware spread op. => ğer sağdaki liste null değilse

@@ -1,6 +1,4 @@
 
-
-
 class SunucuMetrigi{
   final String hostAdi;
   final String bolge;

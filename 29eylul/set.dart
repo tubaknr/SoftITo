@@ -23,13 +23,15 @@ void main(){
 
   print("Frankfurt IPleri: $frankfurtVeriMerkeziIpleri");
 
+// intersection
   final ortakKopruIpleri = istanbulVeriMerkeziIpleri.intersection(frankfurtVeriMerkeziIpleri);
   print("Ortak Ağ Ipleri(kesişim): $ortakKopruIpleri");
 
-
+// union
   final tumGlobalIpler = istanbulVeriMerkeziIpleri.union(frankfurtVeriMerkeziIpleri);
   print("Toplam Glbal Ipler(birleşim): $tumGlobalIpler");
 
+// difference
   final sadeceIstanbul = istanbulVeriMerkeziIpleri.difference(frankfurtVeriMerkeziIpleri);
   print("Sadece Istanbul: $sadeceIstanbul"); // istanbulda olup frankfurtta olmayanalrı getirir
 

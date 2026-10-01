@@ -30,10 +30,10 @@ String httpKoduYorumlar(int kod){
 
 void main(){
   print("Switch Expressions");
-  print("Warning Kanalı                     : ${alarmKanaliniBelirle(OlaySeviyesi.warning, 1)}");
-  print("Tekil Error Kanalı                 : ${alarmKanaliniBelirle(OlaySeviyesi.error, 2)}");
-  print("5 Kez Tekrarlanan Error Kanalı     : ${alarmKanaliniBelirle(OlaySeviyesi.error, 5)}");
-  print("Kritik Kanal                       : ${alarmKanaliniBelirle(OlaySeviyesi.critical, 1)}");
+  print("Warning Kanalı                : ${alarmKanaliniBelirle(OlaySeviyesi.warning, 1)}");
+  print("Tekil Error Kanalı            : ${alarmKanaliniBelirle(OlaySeviyesi.error, 2)}");
+  print("5 Kez Tekrarlanan Error Kanalı: ${alarmKanaliniBelirle(OlaySeviyesi.error, 5)}");
+  print("Kritik Kanal                  : ${alarmKanaliniBelirle(OlaySeviyesi.critical, 1)}");
 
 
   print("HTTP 204:    ${httpKoduYorumlar(204)}");

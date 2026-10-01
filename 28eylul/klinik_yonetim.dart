@@ -1,5 +1,5 @@
 // 1. Enumları (derleme zamanı güvenliği; yazım hatalarını engellemek için)
-// enum kullanmanın amacı, typo hatasını daha kod çalışmadan yakalamktır. 
+// enum kullanmanın amacı, typo hatasını daha kod çalışmadan yakalamaktır. 
 // bu şekilde sabit bir seçenek listesi tanımlanır. 
 enum HizmetKategorisi{
   ciltYenileme,
@@ -161,6 +161,7 @@ class KlinikYoneticisi{
   //sadece bu sınıfın kendi metotlarıyla yapılabilir. bu encapsulation dır. 
   // _seanslar = tüm seansların tutulduğu listedir.
   // boş liste ile başlar.
+  // aşağıya requred olarak ayzmicaksan burada default bir değer ver.
   final List<SeansKaydi> _seanslar = [];
   // anahtar değer çifti sözlüğüdür.
   // anahter: danışan idsi. key: danışan objesi. 

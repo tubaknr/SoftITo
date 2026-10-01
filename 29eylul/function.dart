@@ -1,11 +1,13 @@
 // Tip Güvenli Fonksiyon imzaları ile tnaımlanır:
+// fonksiyona takma ad verildi: MetrikUyariKurali 
+// "Artık MetrikUyariKurali adında bir tipim var. Bu tip, dışarıdan double türünde bir parametre alan ve geriye bool (true/false) döndüren her türlü fonksiyonu temsil eder."
 typedef MetrikUyariKurali = bool Function(double deger);
 
 
 void metrikDenetle({
   required String metrikAdi,
   required double mevcutDeger,
-  required MetrikUyariKurali kural,
+  required MetrikUyariKurali kural, //MetrikUyariKurali tipinde bir fonk = kural fonksiyonu.  
   required void Function(String mesaj) alertTetikleyici,
 }){
   if (kural(mevcutDeger)){

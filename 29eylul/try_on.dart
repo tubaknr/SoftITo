@@ -3,6 +3,12 @@ class Cloud implements Exception{
   final String mesaj;
   final DateTime zaman = DateTime.now();
 
+  // positional 
+  // Değerler sırasıyla (positional) eşleştirilir. Fonksiyonu çağırırken hangi değere ne yazdığınızı sırasına bakarak anlar.
+
+  //Zorunluluk: Varsayılan olarak hepsi zorunludur (Dart'ta pozisyonel parametreler aksi belirtilmedikçe zorunludur).
+
+  //Kullanım Yeri: Parametre sayısı az olduğunda ve sırası çok net bilindiğinde (örneğin önce hata kodu, sonra mesaj) pratiklik sağlar.
   Cloud(this.hataKodu, this.mesaj);
 
   @override 
@@ -50,6 +56,8 @@ void podKaynagiTahsisEt(
 
 void main(){
   print("Yönetim Panei");
+
+  
   // başarılı tahsis
   try{
     podKaynagiTahsisEt("ingress-controller", 15.0, 40);

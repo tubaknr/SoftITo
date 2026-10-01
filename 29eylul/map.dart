@@ -44,9 +44,9 @@ void main(){
     //güvenle erişebilirsin" demektir.
     mikroservisRehberi["payment-gateway"]! 
 
-// ünlem => null gelmeyecek. ama gelirse de null değil de boş olarak algıla.
-// boş olarak tanımla. boş null aynı değil. 
-// null gelirse dart patlar. 
+  // ünlem => null gelmeyecek. ama gelirse de null değil de boş olarak algıla.
+  // boş olarak tanımla. boş null aynı değil. 
+  // null gelirse dart patlar. 
     ["restartSayisi"] = (mikroservisRehberi["payment-gateway"]!
     // mikroservisRehberi haritası muhtemelen Map<String, dynamic> 
     //şeklinde tanımlandığı için Dart, gelen verinin tipini otomatik kestiremez

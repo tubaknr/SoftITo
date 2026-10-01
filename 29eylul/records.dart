@@ -2,7 +2,7 @@
 
 ({ // Fonksiyonun dönüş tipi: Named Record !!!! POZİSYONEL RECORD
 // birden fazla farklı tipteki veriyi tip güvenliği (type-safety) korunarak paketler.
-  String nodeAdi,  // sıralama önemli, isimle gelmez, 1 2 olarak gellir aşağıda return'e!!!
+  String nodeAdi,  // sıralama önemli, isimle gelmez, 1 2 olarak gelir aşağıda return'e!!!
   int statusCode, 
   double latencyMs, 
   bool baglantiBasarili
