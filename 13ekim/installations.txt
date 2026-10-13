@@ -1,0 +1,30 @@
+code --install-extension Dart-Code.dart-code \
+     --install-extension Dart-Code.flutter \
+     --install-extension usernamehw.error-lens \
+     --install-extension Nash.awesome-flutter-snippets \
+     --install-extension PKief.material-icon-theme \
+     --install-extension eamodio.gitlens \
+     --install-extension pflannery.vscode-version-lens \
+     --install-extension FelixAngelov.bloc \
+     --install-extension naumovs.color-highlight \
+     --install-extension streetsidesoftware.code-spell-checker 
+
+
+xcode-select --install
+
+xcode-select -p
+/Applications/Xcode.app/Contents/Developer
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+mkdir -p ~/development
+cd ~/development
+
+git clone https://github.com/flutter/flutter.git -b stable
+
+brew install cocoapods
+
+open - a 'Simulator'
+
+flutter doctor --android-licenses
+
