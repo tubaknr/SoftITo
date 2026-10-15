@@ -8,7 +8,6 @@ class DtmMasterApp extends StatelessWidget{
   const DtmMasterApp({super.key}); // super verdiğimiz Stateless'e key i gönderir.
 
   @override 
-  Widget @override 
   Widget build(BuildContext context){
 
     return MaterialApp(
@@ -16,7 +15,7 @@ class DtmMasterApp extends StatelessWidget{
       title:"DTM Flutter Sınıfı",
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme, fromSeed(
+        colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF6366F1),
           brightness: Brightness.light,
         ),
@@ -33,6 +32,7 @@ class LiveCanvasScreen extends StatelessWidget{
 
   @override 
   Widget build(BuildContext context){
+    
     return Scaffold(
       backgroundColor:const Color(0xFFF8FaFC),
       appBar: AppBar(
@@ -43,17 +43,17 @@ class LiveCanvasScreen extends StatelessWidget{
         centerTitle:true,
         backgroundColor:Colors.white,
         elevation:0,
-        action: [
+        actions: [
           IconButton(
             icon:const Icon(Icons.notifications_active_outlined),
             onPressed: () {},
           )
         ],
+     ), // AppBar
         body: const Center(
           child: Text("Buraya Canlı Arayüz Gelecek"),
         )
 
-     ), // AppBar
     );
   }
 }
