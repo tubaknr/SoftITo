@@ -8,18 +8,22 @@ void main() {
 class DtmMasterApp extends StatelessWidget {
   const DtmMasterApp({super.key});
 
+  // ThemeData oluşturmak görece maliyetlidir. Uygulama yaşam döngüsünde aynı
+  // tema kullanılacağı için her build çağrısında yeniden üretmek yerine sakla.
+  static final ThemeData _theme = ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: const Color(0xFF6366F1),
+      brightness: Brightness.light,
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "DTM Flutter Sınıfı",
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF6366F1),
-          brightness: Brightness.light,
-        ),
-      ),
+      theme: _theme,
       home: const HomeShell(),
     );
   }
