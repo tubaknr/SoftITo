@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'pages/habits_page.dart';
 import 'pages/stats_page.dart';
 import 'pages/today_page.dart';
@@ -8,9 +7,11 @@ import 'widgets/habit_form_sheet.dart';
 
 void main() => runApp(const RutinApp());
 
+// RUTIN APP GENERAL 
 class RutinApp extends StatelessWidget {
   const RutinApp({super.key});
 
+// BUILD RUTIN APP 
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -20,18 +21,23 @@ class RutinApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFEA580C)),
           scaffoldBackgroundColor: const Color(0xFFFFF8F1),
         ),
+        // HOME APP SHELL ARAYÜZ KATMANI UI 
         home: const AppShell(),
       );
 }
 
+// APP SHELL CLASS 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
 
+// CREATE APP SHELL STATE
   @override
   State<AppShell> createState() => _AppShellState();
 }
 
+// APP SHELL STATE
 class _AppShellState extends State<AppShell> {
+  // STATE 
   final HabitStore _store = HabitStore();
   int _currentIndex = 0;
 
@@ -39,17 +45,21 @@ class _AppShellState extends State<AppShell> {
 
   @override
   void dispose() {
+    // STATE DISPOSE
     _store.dispose();
     super.dispose();
   }
 
   void _openAddHabit() => showHabitFormSheet(context, _store);
 
+// BUILD INSIDE APP SHELL STATE 
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
+      // LISTEN TO STATE 
       listenable: _store,
       builder: (context, _) => Scaffold(
+        // APPBAR
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
@@ -59,11 +69,14 @@ class _AppShellState extends State<AppShell> {
             style: const TextStyle(fontWeight: FontWeight.w700),
           ),
         ),
+        // BODY
         body: SafeArea(
           top: false,
           child: IndexedStack(
             index: _currentIndex,
             children: [
+              // PAGES UI (içlerinde widgets (UI) var)
+              // İÇERİDE STATE 
               TodayPage(store: _store, onAddHabit: _openAddHabit),
               HabitsPage(store: _store),
               StatsPage(store: _store),
@@ -77,6 +90,7 @@ class _AppShellState extends State<AppShell> {
                 label: const Text('Yeni alışkanlık'),
               )
             : null,
+          // NAVIGATION BAR
         bottomNavigationBar: NavigationBar(
           selectedIndex: _currentIndex,
           onDestinationSelected: (index) => setState(() => _currentIndex = index),

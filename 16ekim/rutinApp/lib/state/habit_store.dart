@@ -87,15 +87,18 @@ class HabitStore extends ChangeNotifier {
     return null;
   }
 
+// ADD HABIT 
   String? addHabit({
     required String name,
     required int iconIndex,
     required int colorIndex,
     required int weeklyGoal,
   }) {
+    // VALIDATION 
     if (_habits.length >= maxHabits) return 'En fazla $maxHabits alışkanlık eklenebilir.';
     final error = _validate(name: name, weeklyGoal: weeklyGoal);
     if (error != null) return error;
+
     _habits.add(Habit(
       id: _newId(),
       name: name.trim(),
@@ -109,6 +112,7 @@ class HabitStore extends ChangeNotifier {
     return null;
   }
 
+// UPDATE HABIT 
   String? updateHabit(
     String id, {
     required String name,
@@ -116,10 +120,13 @@ class HabitStore extends ChangeNotifier {
     required int colorIndex,
     required int weeklyGoal,
   }) {
+    // FIND HABIT 
     final index = _habits.indexWhere((h) => h.id == id);
     if (index == -1) return 'Alışkanlık bulunamadı.';
+    // VALIDATE
     final error = _validate(name: name, weeklyGoal: weeklyGoal, ignoreId: id);
     if (error != null) return error;
+    //UPDATE WITH COPYWITH 
     _habits[index] = _habits[index].copyWith(
       name: name.trim(),
       iconIndex: iconIndex,
@@ -130,16 +137,20 @@ class HabitStore extends ChangeNotifier {
     return null;
   }
 
+// DELETE HABIT 
   /// Alışkanlığı siler; son silineni "geri al" için hatırlar.
   bool deleteHabit(String id) {
+    // FIND HABIT 
     final index = _habits.indexWhere((h) => h.id == id);
     if (index == -1) return false;
+    // DELETE 
     _lastDeleted = _habits.removeAt(index);
     _lastDeletedIndex = index;
     notifyListeners();
     return true;
   }
 
+// UNDO DELETE 
   bool undoDelete() {
     final habit = _lastDeleted;
     if (habit == null) return false;
@@ -152,13 +163,18 @@ class HabitStore extends ChangeNotifier {
 
   /// Bir günün işaretini tersine çevirir (yapıldı <-> yapılmadı).
   String? toggle(String id, DateTime date) {
+    // FİND DAY
     final day = dateOnly(date);
+    // EDGE CASE
     if (day.isAfter(today())) return 'Gelecekteki günler işaretlenemez.';
+    // FIND HABIT 
     final index = _habits.indexWhere((h) => h.id == id);
     if (index == -1) return 'Alışkanlık bulunamadı.';
     final habit = _habits[index];
+    // EDGE CASE 
     if (!habit.existsOn(day)) return 'Bu alışkanlık o gün henüz yoktu.';
     final key = dateKey(day);
+    // UPDATE 
     final updated = Set<String>.of(habit.completed);
     if (!updated.add(key)) updated.remove(key);
     _habits[index] = habit.copyWith(completed: updated);
