@@ -177,6 +177,7 @@ class HabitStore extends ChangeNotifier {
     // UPDATE 
     final updated = Set<String>.of(habit.completed);
     if (!updated.add(key)) updated.remove(key);
+    
     _habits[index] = habit.copyWith(completed: updated);
     notifyListeners();
     return null;

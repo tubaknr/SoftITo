@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../state/habit_store.dart';
 import '../utils/date_utils.dart';
 import '../widgets/habit_check_tile.dart';
