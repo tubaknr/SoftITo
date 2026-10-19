@@ -8,9 +8,11 @@ Bu doküman, **Susadım v1** projesinin gereksinimler, mimari, tasarım standart
 - **Uygulama Adı:** Susadım v1
 - **Paket Kimliği (Bundle Identifier):** `com.softito.susadim` / `susadim`
 - **Hedef Cihaz:** iPhone 17 (iOS 27.0 Simülatörü - Booted)
-- **Tasarım Dili:** Material 3, Dark Obsidian & Neon Gym Renk Paleti (Koyu Spor Teması)
-- **Mimari:** Feature-Driven (Temiz UI, `ValueNotifier` ile reaktif durum yönetimi, `StatelessWidget` ayrımı)
-- **Çalışma Durumu:** 🟢 Aktif ve iOS Simülatöründe Çalışıyor
+- **Tasarım Dili:** Material 3, Çift Tema Desteği:
+  - **Karanlık Tema (Dark Mode):** Gece spor salonu paleti, Dark Obsidian (`#080C14`), koyu yüzeyler ve neon vurgular (cyan, lime, orange).
+  - **Aydınlık Tema (Light Mode):** Ferah spor stüdyosu paleti, açık zemin (`#F8FAFC`), saf beyaz kartlar (`#FFFFFF`), yüksek kontrastlı metinler ve dinamik spor vurguları.
+- **Mimari:** Feature-Driven (Temiz UI, `ValueNotifier` ile reaktif durum yönetimi, `ThemeController` ile hafif tema geçişi, `StatelessWidget` ayrımı)
+- **Çalışma Durumu:** 🟢 Aktif ve iOS Simülatöründe Canlı Çalışıyor
 
 ---
 
@@ -35,9 +37,12 @@ Bu doküman, **Susadım v1** projesinin gereksinimler, mimari, tasarım standart
 - `ios/Runner/Info.plist` dosyasında `CFBundleDisplayName` değeri **Susadım v1** olarak güncellendi.
 - **Sonuç:** ✅ Başarılı
 
-### 4. Çekirdek Renk ve Tema Mimarisi (`core/`)
-- [app_colors.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/core/constants/app_colors.dart): Dark obsidian zemin (`#080C14`), kart yüzeyleri (`#141D30`), neon camgöbeği (`#00E5FF`), neon lime (`#00E676`), neon alev turuncusu (`#FF6D00`) renk sabitleri oluşturuldu.
-- [app_theme.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/core/theme/app_theme.dart): Material 3 koyu tema, `CardThemeData`, `NavigationBarThemeData`, `AppBarTheme` ve tipografi kuralları tanımlandı.
+### 4. Çekirdek Renk ve Çift Tema Mimarisi (`core/`)
+- [project.md](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/project.md) güncellenerek Karanlık ve Aydınlık mod tasarım şartları eklendi.
+- [app_colors.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/core/constants/app_colors.dart): Koyu spor salonu paleti ve açık ferah stüdyo paleti renk sabitleri tanımlandı.
+- [app_theme.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/core/theme/app_theme.dart): Hem `darkTheme` hem de `lightTheme` Material 3 standartlarında, `CardThemeData`, `NavigationBarThemeData`, `AppBarTheme` ve `TextTheme` ile modellendi.
+- [theme_controller.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/core/theme/theme_controller.dart): Ağır `setState` kullanmadan, anlık ve reaktif mod değişimi için `ValueNotifier<ThemeMode>` tabanlı kontrolör yazıldı.
+- [theme_extensions.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/core/extensions/theme_extensions.dart): `BuildContext` üzerinden `context.cardBackground`, `context.textPrimaryColor`, `context.accentWater` gibi dinamik tema özelliklerine erişim sağlayan extension yazıldı.
 - **Sonuç:** ✅ Başarılı
 
 ### 5. Özellik (Feature) Bazlı Modüllerin Geliştirilmesi
@@ -46,14 +51,14 @@ Bu doküman, **Susadım v1** projesinin gereksinimler, mimari, tasarım standart
 #### A. Su Takibi Modülü (`features/water_tracker/`)
 - [water_record_model.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/water_tracker/models/water_record_model.dart): İmmutable su modeli, `copyWith`, `toJson`, `fromJson` metotları.
 - [water_tracker_controller.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/water_tracker/controllers/water_tracker_controller.dart): `ValueNotifier<WaterRecordModel>` ile hafif ve reaktif su ekleme/sıfırlama mantığı.
-- [water_progress_card.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/water_tracker/widgets/water_progress_card.dart): Neon ilerleme çubuğu ve günlük kalan ml göstergesi.
+- [water_progress_card.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/water_tracker/widgets/water_progress_card.dart): Tema duyarlı ilerleme çubuğu ve günlük kalan ml göstergesi.
 - [water_quick_add_card.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/water_tracker/widgets/water_quick_add_card.dart): 200ml, 250ml, 500ml hızlı ekleme butonları ve sıfırlama aksiyonu.
 - [water_tracker_view.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/water_tracker/views/water_tracker_view.dart): `ValueListenableBuilder` ile ana ekran görünümü.
 
 #### B. Egzersiz ve Kalori Modülü (`features/workout/`)
-- [workout_model.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/workout/models/workout_model.dart): Egzersiz öğeleri, tamamlanma durumu, süre ve kalori hesaplamaları.
+- [workout_model.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/workout/models/workout_model.dart): Egzersiz modelleri ve kalori hesaplamaları.
 - [workout_controller.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/workout/controllers/workout_controller.dart): HIIT, Ağırlık, Core ve Esneme rutinlerini yöneten durum yöneticisi.
-- [workout_summary_card.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/workout/widgets/workout_summary_card.dart): Yakılan kalori ve tamamlanan süre göstergesi.
+- [workout_summary_card.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/workout/widgets/workout_summary_card.dart): Yakılan kalori ve süre paneli.
 - [workout_item_tile.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/workout/widgets/workout_item_tile.dart): İnteraktif egzersiz tamamlama kutucukları.
 - [workout_view.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/workout/views/workout_view.dart): Modüler liste görünümü.
 
@@ -64,17 +69,15 @@ Bu doküman, **Susadım v1** projesinin gereksinimler, mimari, tasarım standart
 - [habit_item_tile.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/sport_habit_tracker/widgets/habit_item_tile.dart): Alışkanlık kartları.
 - [habit_view.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/features/sport_habit_tracker/views/habit_view.dart): Alışkanlık takip görünümü.
 
-#### D. Ana Navigasyon ve Başlatma (`lib/main.dart`)
-- [main.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/main.dart): Dairesel neon logolu modern AppBar, alt navigasyon çubuğu (`NavigationBar`) ve 3 modül arası geçiş.
+#### D. Ana Navigasyon, Tema Geçişi ve Başlatma (`lib/main.dart`)
+- [main.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/lib/main.dart): Dairesel neon logolu AppBar, anlık Karanlık/Aydınlık mod geçiş ikonu (`_buildThemeToggle`), alt navigasyon çubuğu (`NavigationBar`) ve 3 modül arası geçiş.
 
 ### 6. Test ve Doğrulama Süreci
-- [unit_test.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/test/unit_test.dart) ve [widget_test.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/test/widget_test.dart) yazıldı.
+- [unit_test.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/test/unit_test.dart) (ThemeController, WaterTracker, Workout, Habit testleri) ve [widget_test.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/test/widget_test.dart) (Arayüzde tema geçişi smoke testi) yazıldı.
 - `flutter analyze` çalıştırıldı: **0 hata, 0 uyarı** (`No issues found!`).
-- `flutter test` çalıştırıldı: **Tüm testler başarıyla geçti** (`All tests passed! - 4/4`).
+- `flutter test` çalıştırıldı: **Tüm testler başarıyla geçti** (`All tests passed! - 5/5`).
 - **Sonuç:** ✅ Başarılı
 
 ### 7. iOS Simülatöründe Çalıştırma ve Görsel Doğrulama
-- Uygulama `iPhone 17` simülatöründe `flutter run` komutuyla Impeller Metal motoru üzerinden derlendi ve başarıyla ayağa kaldırıldı.
-- Simülatörden tam ekran ekran görüntüsü alındı ([simulator_screenshot.png](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/assets/images/simulator_screenshot.png)).
-- Arayüzün Dark Obsidian & Neon Gym temasına, logo yerleşimine ve reaktif su takibi bileşenlerine tam uyumlu olduğu doğrulandı.
+- Hem **Karanlık Mod** ([dark_mode_screenshot.png](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/assets/images/dark_mode_screenshot.png)) hem de **Aydınlık Mod** ([light_mode_screenshot.png](file:///Users/d1-20/Documents/GitHub/SoftITo/19ekim2/assets/images/light_mode_screenshot.png)) simülatör ekranında canlı olarak test edildi ve ekran görüntüleri doğrulandı.
 - **Sonuç:** ✅ Başarılı
