@@ -27,4 +27,44 @@ brew install cocoapods
 open - a 'Simulator'
 
 flutter doctor --android-licenses
+Eklentiler:
+Error Lens
+Awesome Flutter Snippets
+Material Icon Theme
+GitLens
+Version Lens
+Flutter Riverpod / Bloc Snippets
+Color Highlight
+Code Spell Checker
+MAC:
+xcode-select --install
 
+xcode-select -p
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+mkdir -p ~/development
+cd ~/development
+
+echo 'export PATH="$PATH:$HOME/development/flutter/bin"' >> ~/.zshrc
+source ~/.zshrc
+
+flutter --version
+
+sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -runFirstLaunch
+
+sudo xcodebuild -license accept
+
+brew install cocoapods
+
+Android studio indirin kurun
+
+flutter doctor --android-licenses
+
+sudo softwareupdate --install-rosetta --agree-to-license
+
+flutter doctor -v
