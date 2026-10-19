@@ -21,7 +21,7 @@ class RutinApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFEA580C)),
           scaffoldBackgroundColor: const Color(0xFFFFF8F1),
         ),
-        // HOME APP SHELL ARAYÜZ KATMANI UI 
+        // HOME: APP SHELL. ARAYÜZ KATMANI UI 
         home: const AppShell(),
       );
 }
