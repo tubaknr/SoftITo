@@ -1,40 +1,39 @@
 import 'package:flutter/foundation.dart';
-import '../models/water_tracker_model.dart';
+import '../models/water_record_model.dart';
 
 class WaterTrackerController {
-  final ValueNotifier<WaterTrackerModel> state =
-      ValueNotifier<WaterTrackerModel>(
-    WaterTrackerModel(
-      id: 'default_id',
-      title: 'WaterTracker',
-      value: 0,
-      isCompleted: false,
+  final ValueNotifier<WaterRecordModel> state = ValueNotifier<WaterRecordModel>(
+    WaterRecordModel(
+      currentIntakeMl: 1250,
+      dailyGoalMl: 2500,
+      glassCount: 5,
       lastUpdated: DateTime.now(),
     ),
   );
 
-  WaterTrackerModel get current => state.value;
+  WaterRecordModel get current => state.value;
 
-  void increment() {
+  void addWater(int amountMl) {
+    final newAmount = current.currentIntakeMl + amountMl;
     state.value = current.copyWith(
-      value: current.value + 1,
+      currentIntakeMl: newAmount,
+      glassCount: current.glassCount + 1,
       lastUpdated: DateTime.now(),
     );
   }
 
-  void toggleStatus() {
+  void resetWater() {
     state.value = current.copyWith(
-      isCompleted: !current.isCompleted,
+      currentIntakeMl: 0,
+      glassCount: 0,
       lastUpdated: DateTime.now(),
     );
   }
 
-  void reset() {
-    state.value = current.copyWith(
-      value: 0,
-      isCompleted: false,
-      lastUpdated: DateTime.now(),
-    );
+  void updateDailyGoal(int newGoalMl) {
+    if (newGoalMl > 0) {
+      state.value = current.copyWith(dailyGoalMl: newGoalMl);
+    }
   }
 
   void dispose() {
