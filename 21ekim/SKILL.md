@@ -46,10 +46,6 @@ Sırasıyla dört sekme:
 - Alt bar şu sayfalarda **görünmez:** Giriş, Kayıt, Karşılama, Giriş Yap, Şifremi Unuttum, Odaklanma Sayfası.
 - Sekmeler `IndexedStack` içinde durumunu korur.
 
-### 1.4. Her Sayfada Ortak Olanlar
-
-- Sağ alt köşede **F&G** imzası bulunur. Alt bar olan sayfalarda alt barın üstünde, içerikle çakışmayacak şekilde durur.
-
 ---
 
 ## 2. Sayfa İçerikleri
@@ -120,7 +116,7 @@ Yukarıdan aşağı sırayla:
   - 7 gün giriş yoksa: çiçek **solgun** görünür, başı bükülür.
   - 30 gün giriş yoksa: çiçek **ölür**, kullanıcı **tohum** aşamasından baştan başlar.
   - Bu mantık controller'da saf Dart olarak yazılır ve birim test edilir.
-- **"Odaklanmaya başla"** butonu: Tıklanınca Odaklanma Sayfasına geçer.
+- **"Odaklanmaya başla"** butonu: Tıklanınca Odaklanma Sayfasına geçer. Uygulama ekranı büyür tüm ekranı kaplar ve sayaç başlar, odaklanma sayfasına geçer. Ekran eğer küçültülürse sayaç durur, süre kaydedilir. Durdur butonuna basılınca da sayaç durur, süre kaydedilir. 
 
 ### 2.6. Odaklanma Sayfası
 

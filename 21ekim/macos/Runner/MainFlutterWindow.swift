@@ -60,7 +60,7 @@ class MainFlutterWindow: NSWindow {
   }
 
   @objc private func handleWindowShrink() {
-    windowChannel?.invokeMethod("onWindowShrink", nil)
+    windowChannel?.invokeMethod("onWindowShrink", arguments: nil)
   }
 
   deinit {

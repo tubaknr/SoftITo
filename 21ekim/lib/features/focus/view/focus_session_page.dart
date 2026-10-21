@@ -23,6 +23,7 @@ class _FocusSessionPageState extends State<FocusSessionPage>
   static const MethodChannel _windowChannel =
       MethodChannel('focus_and_grow/window');
   bool _isStopping = false;
+  bool _isReady = false;
   Size? _initialSize;
 
   @override
@@ -30,23 +31,35 @@ class _FocusSessionPageState extends State<FocusSessionPage>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     FocusController.instance.startFocusSession();
-    _enterFullScreen();
+    _setupFullScreen();
+  }
+
+  Future<void> _setupFullScreen() async {
+    await _enterFullScreen();
 
     if (!kIsWeb && Platform.isMacOS) {
       try {
         _windowChannel.setMethodCallHandler((call) async {
-          if (call.method == 'onWindowShrink') {
+          if (call.method == 'onWindowShrink' && _isReady) {
             _handleStop();
           }
         });
       } catch (_) {}
     }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (const bool.fromEnvironment('FLUTTER_TEST')) {
       if (mounted) {
         _initialSize = MediaQuery.maybeOf(context)?.size;
+        _isReady = true;
       }
-    });
+    } else {
+      // Ekranın tam ekrana geçiş animasyonunun tamamlanmasını bekle (1200ms)
+      await Future<void>.delayed(const Duration(milliseconds: 1200));
+      if (mounted) {
+        _initialSize = MediaQuery.maybeOf(context)?.size;
+        _isReady = true;
+      }
+    }
   }
 
   Future<void> _enterFullScreen() async {
@@ -80,9 +93,9 @@ class _FocusSessionPageState extends State<FocusSessionPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    // Mobilde veya masaüstünde kullanıcı başka uygulamaya geçerse, arka plana atarsa veya ekranı küçültürse
+    if (!_isReady) return;
+    // Mobilde veya masaüstünde kullanıcı başka uygulamaya geçerse, arka plana atarsa veya pencereyi gizlerse
     if (state == AppLifecycleState.paused ||
-        state == AppLifecycleState.inactive ||
         state == AppLifecycleState.hidden) {
       _handleStop();
     }
@@ -91,13 +104,14 @@ class _FocusSessionPageState extends State<FocusSessionPage>
   @override
   void didChangeMetrics() {
     super.didChangeMetrics();
+    if (!_isReady) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted || _isStopping) return;
+      if (!mounted || _isStopping || !_isReady) return;
       final currentSize = MediaQuery.maybeOf(context)?.size;
       if (currentSize != null && _initialSize != null) {
-        // Eğer ekran boyutu başlangıçtaki tam ekran boyutundan belirgin şekilde küçültülmüşse
-        if (currentSize.width < _initialSize!.width - 60 ||
-            currentSize.height < _initialSize!.height - 60) {
+        // Eğer ekran boyutu başlangıçtaki tam ekran boyutundan belirgin şekilde (en az 100px) küçültülmüşse
+        if (currentSize.width < _initialSize!.width - 100 ||
+            currentSize.height < _initialSize!.height - 100) {
           _handleStop();
         }
       }

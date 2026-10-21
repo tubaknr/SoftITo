@@ -183,6 +183,38 @@ Bu doküman, `project.md`, `SKILL.md` ve `style.md_focus_grow_t_m_uygulama_k_lav
     - `maxLines: 2` ile metin artık hiçbir kelime bölünmeden zarifçe "Odaklanmaya" (1. satır) ve "Başla" (2. satır) olarak konumlandırıldı.
 - **Doğrulama:** `flutter analyze` 0 hata ile tamamlandı, 28/28 birim ve widget testinin tamamı başarıyla geçti.
 
+### 18. SKILL.md Kılavuzu ile Tam Senkronizasyon (Bölüm 2.5 & 2.6)
+- [SKILL.md](file:///Users/d1-20/Documents/GitHub/SoftITo/21ekim/SKILL.md):
+  - Bölüm 1.4'teki F&G filigranı yönergesi kaldırıldı.
+  - Bölüm 2.5'e *"Uygulama ekranı büyür tüm ekranı kaplar. Ekran eğer küçültülürse sayaç durur, süre kaydedilir. Durdur butonuna basılınca da sayaç durur, süre kaydedilir."* şartnamesi eklendi.
+- [lib/features/focus/view/focus_session_page.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/21ekim/lib/features/focus/view/focus_session_page.dart) & [macos/Runner/MainFlutterWindow.swift](file:///Users/d1-20/Documents/GitHub/SoftITo/21ekim/macos/Runner/MainFlutterWindow.swift):
+  - Kılavuzdaki bu davranış kod tabanında tam olarak hayata geçirildi:
+    1. **"Odaklanmaya Başla" Tıklandığında:** Uygulama ekranı tam ekran moduna büyüyerek tüm ekranı kaplar (`SystemUiMode.immersiveSticky` / `enterFullScreen`).
+    2. **Ekran Küçültüldüğünde:** Pencere küçültüldüğünde (`onWindowShrink`), boyut küçültüldüğünde (`didChangeMetrics`) veya uygulama arka plana atıldığında (`didChangeAppLifecycleState`), sayaç anında durur ve süre kaydedilir ("Durdur" butonuna basılmış gibi davranır).
+    3. **"Durdur" Butonuna Basıldığında:** Sayaç durur, süre kaydedilir, tam ekrandan çıkılarak ekran normale küçülür (`exitFullScreen` / `SystemUiMode.edgeToEdge`) ve ana sayfaya dönülür.
+- **Doğrulama:** `flutter analyze` 0 hata/uyarı; 28/28 birim ve widget testinin tamamı başarıyla geçti.
+
+### 19. macOS Swift Derleme Hatasının Düzeltilmesi (MainFlutterWindow.swift)
+- [macos/Runner/MainFlutterWindow.swift](file:///Users/d1-20/Documents/GitHub/SoftITo/21ekim/macos/Runner/MainFlutterWindow.swift):
+  - Swift derleyicisinin `missing argument label 'arguments:' in call` hatası giderildi: `invokeMethod("onWindowShrink", arguments: nil)` olarak güncellendi.
+- **Doğrulama:**
+  - `flutter build macos --debug` komutu başarıyla derlendi (`✓ Built build/macos/Build/Products/Debug/focus_and_grow.app`).
+  - `flutter analyze`: **0 hata, 0 uyarı** (`No issues found!`).
+  - `flutter test`: 28 birim ve widget testinin tamamı başarıyla geçti (`28/28 passed`).
+
+### 20. Tam Ekrana Geçişte Sayfadan Erken Çıkma Sorununun Giderilmesi
+- **Sorun:** "Odaklanmaya Başla" butonuna tıklandığında ekran tam ekrana büyürken, macOS pencere geçişi esnasında `didChangeMetrics` ve `AppLifecycleState` olaylarının anlık dalgalanması sebebiyle sayfa henüz oturmadan `_handleStop()` tetikleniyor ve kullanıcıyı yeniden ana sayfaya atıyordu (kullanıcının tam ekran olduktan sonra butona tekrar basması gerekiyordu).
+- **Uygulanan Çözüm:**
+  - [lib/features/focus/view/focus_session_page.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/21ekim/lib/features/focus/view/focus_session_page.dart):
+    - `_isReady` durum kilidi eklendi.
+    - Tam ekrana geçiş animasyonu tamamlanana kadar (1200ms) boyut ve yaşam döngüsü küçülme dinleyicileri bekletildi.
+    - Tam ekran boyutu (`_initialSize`) animasyon tamamlandıktan sonra doğru şekilde kaydedildi.
+    - Artık "Odaklanmaya Başla" butonuna tek tıkla basıldığında doğrudan tam ekranda odaklanma sayfası açılır, sayaç başlar ve kullanıcı sayfada kalır; tekrar basmaya gerek kalmaz.
+- **Doğrulama:** `flutter analyze` 0 hata; 28/28 test başarıyla geçti.
+
+
+
+
 
 
 
