@@ -1,0 +1,599 @@
+# Focus & Grow (F&G) — Kapsamlı Mobil Uygulama & Flutter Tasarım Sistemi Kılavuzu (`style.md`)
+*Tüm ekran akışları, veri modelleri, iş mantığı, Flutter widget mimarisi, animasyonlar ve UI/UX standartlarını içeren eksiksiz teknik kılavuz.*
+
+---
+
+## 1. Genel Bakış & Ürün Vizyonu
+
+- **Uygulama Adı:** Focus & Grow (`F&G`)
+- **Motto / Slogan:** *“Odaklanarak yaşamı daha derinden hissetmek ister misin?”*
+- **Tasarım Felsefesi:** Organik, meditatif, dingin ve ödüllendirici. Dijital detoks ve derin odaklanma (Deep Work / Pomodoro) deneyimini, kullanıcının gerçek zamanda büyütebildiği canlı bir çiçek metaforuyla birleştirir.
+- **Hedef Platform:** Flutter (iOS & Android) — Mobil Dikey (`device_type: mobile`, 390x844 tabanlı responsive).
+- **Tipografik Kimlik:** Zarif, ince (light/thin) ve belirgin şekilde italik karakter.
+- **İmza (Watermark):** İstisnasız her ekranın sağ alt köşesinde %60 opaklıkta küçük, italik `F&G` imzası.
+
+---
+
+## 2. Renk Sistemi, Tokenlar & Gradyanlar (Color Palette)
+
+Uygulamanın ayırt edici özelliği; keskin, parlak ve göz yoran renkler yerine tamamı pastel, mat, dinlendirici ve pürüzsüz gradyan geçişleridir.
+
+### 2.1. Renk Tokenları Tablosu
+
+| Token Adı | Hex Kodu | Flutter `Color` | Rol & Kullanım Alanı |
+| :--- | :--- | :--- | :--- |
+| `sunlightYellow` | `#FFF7D6` | `const Color(0xFFFFF7D6)` | Gradyan başlangıçları, aydınlık ışıltı, rozet arka planları |
+| `sproutSage` | `#D5E8D4` | `const Color(0xFFD5E8D4)` | Büyüme, yapraklar, canlılık vurguları |
+| `blushPetal` | `#FAD2E1` | `const Color(0xFFFAD2E1)` | Çiçek taç yaprakları, sevgi & dinginlik dokunuşu |
+| `dustyRoseAccent` | `#E8A598` | `const Color(0xFFE8A598)` | Primary CTA butonları (`Register`, `Kaydol`), kritik eylemler |
+| `coralRedError` | `#E57373` | `const Color(0xFFE57373)` | Hatalı form çerçevesi, uyarı metinleri, "Hesabı Sil" |
+| `textCharcoal` | `#2D312E` | `const Color(0xFF2D312E)` | Aydınlık mod birincil gövde ve başlık metinleri |
+| `textMuted` | `#767E78` | `const Color(0xFF767E78)` | İkincil metinler, placeholderlar, pasif ikonlar |
+| `darkBackground` | `#1E2522` | `const Color(0xFF1E2522)` | Karanlık mod zemin köşe başlangıcı (Derin orman) |
+| `darkCardSurface` | `#2B332F` | `const Color(0xFF2B332F)` | Karanlık mod elevated kartlar ve form arka planları |
+| `darkTextPrimary` | `#F3F4F1` | `const Color(0xFFF3F4F1)` | Karanlık mod ana metin rengi |
+
+### 2.2. Global Arka Plan Gradyanları (Background Gradients)
+
+```dart
+// lib/core/theme/app_colors.dart
+
+import 'package:flutter/material.dart';
+
+class AppColors {
+  // Pastel Aydınlık Gradyan (Tüm ana ekranların arka planı)
+  static const LinearGradient lightAppGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFFFFF7D6), // Pastel Sarı (Soft Sunlight)
+      Color(0xFFD5E8D4), // Pastel Yeşil (Sprout Sage)
+      Color(0xFFFAD2E1), // Toz Pembe (Blush Petal)
+    ],
+    stops: [0.0, 0.52, 1.0],
+  );
+
+  // Karanlık Mod Meditatif Gece Gradyanı
+  static const LinearGradient darkAppGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFF1C221F), // Karartılmış orman yeşili
+      Color(0xFF241F25), // Karartılmış mürdüm / soft gül
+      Color(0xFF28231C), // Karartılmış kehribar
+    ],
+    stops: [0.0, 0.50, 1.0],
+  );
+
+  // Buton Soft Gül Gradyanı
+  static const LinearGradient primaryButtonGradient = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [
+      Color(0xFFF8C8DC), // Açık pembe
+      Color(0xFFE8A598), // Gül tonu
+    ],
+  );
+}
+```
+
+---
+
+## 3. Tipografi Sistemi & Google Fonts (Typography)
+
+Tasarımın can damarı **ince, zarif ve italik** yazı karakterleridir.
+- **Önerilen Birincil Font:** `GoogleFonts.cormorantGaramond` (veya modern-soft alternatif olarak `GoogleFonts.plusJakartaSans`).
+- **Tüm başlıklar, etiketler ve mottolar varsayılan olarak italik uygulanır.**
+
+### 3.1. Tipografi Skalası & Dart Tanımı
+
+```dart
+// lib/core/theme/app_typography.dart
+
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'app_colors.dart';
+
+class AppTypography {
+  // Display / Hero (Büyük Başlıklar: Focus & Grow, Sayaç vb.)
+  static TextStyle heroDisplay = GoogleFonts.cormorantGaramond(
+    fontSize: 34,
+    fontWeight: FontWeight.w300,
+    fontStyle: FontStyle.italic,
+    letterSpacing: 0.5,
+    color: AppColors.textCharcoal,
+  );
+
+  // Büyük Odak Sayacı (00:45:56)
+  static TextStyle timerDisplay = GoogleFonts.cormorantGaramond(
+    fontSize: 58,
+    fontWeight: FontWeight.w200,
+    fontStyle: FontStyle.italic,
+    letterSpacing: 2.0,
+    color: AppColors.textCharcoal,
+  );
+
+  // Başlık 1 (Kullanıcı Karşılama, Kart Başlıkları)
+  static TextStyle heading1Light = GoogleFonts.cormorantGaramond(
+    fontSize: 24,
+    fontWeight: FontWeight.w300,
+    fontStyle: FontStyle.italic,
+    color: AppColors.textCharcoal,
+  );
+
+  static TextStyle heading1Bold = GoogleFonts.cormorantGaramond(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    fontStyle: FontStyle.italic,
+    color: AppColors.textCharcoal,
+  );
+
+  // Motto & Slogan
+  static TextStyle mottoText = GoogleFonts.cormorantGaramond(
+    fontSize: 16,
+    fontWeight: FontWeight.w300,
+    fontStyle: FontStyle.italic,
+    height: 1.4,
+    color: AppColors.textMuted,
+  );
+
+  // Input Placeholder ve Etiketleri
+  static TextStyle inputLabel = GoogleFonts.cormorantGaramond(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.italic,
+    color: AppColors.textCharcoal.withOpacity(0.8),
+  );
+
+  // Hata Metinleri (Validation Error)
+  static TextStyle errorCaption = GoogleFonts.plusJakartaSans(
+    fontSize: 11,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    color: AppColors.coralRedError,
+  );
+
+  // Sağ Alt Köşe Filigranı
+  static TextStyle watermark = GoogleFonts.cormorantGaramond(
+    fontSize: 13,
+    fontWeight: FontWeight.w300,
+    fontStyle: FontStyle.italic,
+    color: AppColors.textMuted.withOpacity(0.6),
+    letterSpacing: 1.0,
+  );
+
+  // Buton Yazısı
+  static TextStyle buttonText = GoogleFonts.cormorantGaramond(
+    fontSize: 17,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.italic,
+    letterSpacing: 0.5,
+    color: Colors.white,
+  );
+
+  // Altı Çizili Bağlantı Metinleri
+  static TextStyle underlineLink = GoogleFonts.cormorantGaramond(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.italic,
+    decoration: TextDecoration.underline,
+    color: AppColors.textCharcoal,
+  );
+}
+```
+
+---
+
+## 4. UI Bileşen Standartları (UI Components & Glassmorphism)
+
+### 4.1. Butonlar (Buttons)
+
+1. **Primary Pill CTA (`Register`, `Kaydol`, `Kod Gönder`):**
+   - Yükseklik: `54px`, `BorderRadius.circular(28.0)`.
+   - Arka Plan: `AppColors.primaryButtonGradient`.
+   - Gölge: `BoxShadow(color: Color(0x25E8A598), blurRadius: 14, offset: Offset(0, 6))`.
+   - Dokunma Geri Bildirimi: `ScaleTransition` veya `opacity` ile hafif sönümleme.
+
+2. **İkincil / Metin Butonları ("Giriş Yap", "İlerle", "Şifremi unuttum"):**
+   - İtalik, altı çizili metin (`decoration: TextDecoration.underline`).
+   - Tıklanabilir alan (Hitbox): Minimum `48x48px`.
+
+3. **Google OAuth Butonu:**
+   - Şekil: Tam dairesel (`BoxShape.circle`), `52x52px`.
+   - Zemin: `Colors.white.withOpacity(0.85)` + ince pastel kenarlık.
+   - İkon: Orijinal renkli Google "G" SVG vektörü.
+
+4. **Dairesel Odaklanma Butonu ("Odaklanmaya Başla"):**
+   - Çap: `110x110px`, tam yuvarlak.
+   - Zemin: Pastel sarı-yeşil-pembe yumuşak gradyan.
+   - İçi: İtalik zarif "Odaklan" yazısı veya çiçek filiz ikonu.
+   - Animasyon: Kullanıcı odaklanmadan beklerken 3 saniyelik nefes alan nabız efekti (`Breathing Pulse Animation`).
+
+5. **Odak Durdurma Butonu ("Durdur"):**
+   - Boyut: `64x64px` daire veya `160x48px` pill.
+   - Renk: Soft gül/pastel kırmızı (`#DF828A`).
+   - İşlev: Tıklandığında sayacı durdurur, süreyi veritabanına kaydeder ve Ana Sayfaya yönlendirir.
+
+### 4.2. Girdi Alanları (Form Inputs)
+
+- **Radius:** `BorderRadius.circular(20.0)`
+- **Dolgu (Fill Color):** Aydınlık modda `Colors.white.withOpacity(0.60)`, Karanlık modda `Colors.white.withOpacity(0.08)`.
+- **Blur & Glass:** Arka plandaki gradyanın formun arkasından hafifçe hissedilmesi (`BackdropFilter(filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8))`).
+- **Kenarlık (Default):** `Border.all(color: Colors.white.withOpacity(0.8), width: 1.2)`.
+- **Kenarlık (Hata / Error):** `Border.all(color: Color(0xFFE57373), width: 1.5)`.
+- **Kenarlık (Odaklanılmış / Focused):** `Border.all(color: Color(0xFFE8A598), width: 1.4)`.
+- **İç Boşluk:** `EdgeInsets.symmetric(horizontal: 20, vertical: 16)`.
+
+### 4.3. Üst Bar (Topbar)
+
+- **Genel Yapı:** Şeffaf (`backgroundColor: Colors.transparent`, `elevation: 0`).
+- **Sol / Orta Bileşen:**
+  - *Giriş Sayfaları (Welcome/Register/Login):* Profil bilgisi **görünmez**, sadece logo başlığı veya geri butonu.
+  - *İç Sayfalar (Home, İstatistikler, Topluluk, Profil):*
+    - Minik dairesel kullanıcı avatarı (36x36px).
+    - Yanında yatay dizilim: *“Hoşgeldin, ”* (`w300`, italik, ince) + *“[İsim]”* (`w700`, italik, belirgin).
+- **Sağ Eylemler:**
+  - **Tema Değiştirici:** ☀️ Güneş / 🌙 Ay ikonu (`AnimatedSwitcher` ile pürüzsüz rota/dönüş geçişi).
+  - **Dil Desteği:** `TR | EN` pill butonu (Aktif dil pastel arka planla hafifçe parlar).
+- **İstisna:** Odaklanma oturumu ekranında Topbar **tamamen gizlenir**.
+
+### 4.4. Alt Menü Çubuğu (Floating Glassmorphic Bottombar)
+
+- **Yapı:** Ekranın altından 16px yukarıda yüzen (Floating Dock) yapı.
+- **Glassmorphism:** `BackdropFilter` (Blur 15), `Colors.white.withOpacity(0.70)`, kenarlık `Colors.white.withOpacity(0.90)`, `BorderRadius.circular(32)`.
+- **4 Temel Sekme:**
+  1. 🏠 **Anasayfa:** `Icons.eco_outlined` / Vektörel Çiçek
+  2. 📊 **İstatistikler:** `Icons.bar_chart_rounded`
+  3. 🌍 **Topluluk:** `Icons.public_rounded`
+  4. 👤 **Profil:** `Icons.person_outline_rounded`
+- **Aktif Durum:** Pastel pembe/yeşil soft ışıltı damlası ve hafif ölçek büyümesi (Scale 1.15).
+- **İstisna:** Odaklanma oturumu ekranında Bottombar **tamamen gizlenir**.
+
+---
+
+## 5. Çiçek Yaşam Döngüsü & Büyüme Algoritması (Flower Evolution)
+
+Kullanıcının odaklandığı her saniye yerel ve bulut veritabanına eklenir. Çiçeğin görsel durumu ve boyutları toplam birikimli süreye göre 5 ana evreden geçer:
+
+```text
+       [ 0 - 2 Saat ]  ──>  Evre 1: Tohum & Filiz (Seed / Tiny Sprout)
+       [ 2 - 10 Saat ] ──>  Evre 2: Gelişen Fidan & İlk Yapraklar (Growing Stem)
+       [ 10 - 30 Saat] ──>  Evre 3: Renklenen Tomurcuk (Pastel Bud)
+       [ 30+ Saat ]    ──>  Evre 4: Tam Çiçeklenme (Blooming Flower & Shimmer)
+             │
+             ├──> [ 7 Gün Girilmezse ]  ──> Evre 5A: Solma, Boyun Bükme, Desatürasyon
+             └──> [ 30 Gün Girilmezse ] ──> Evre 5B: Çiçek Ölümü & Tohuma Sıfırlanma
+```
+
+### 5.1. Evre Detayları & Kod Karşılıkları
+
+| Evre Adı | Odaklanma Süresi | Görsel Durum & Davranış | Efekt / Animasyon |
+| :--- | :--- | :--- | :--- |
+| **1. Tohum / Filiz** | 0 – 120 dakika | Topraktan yeni çıkmış iki küçük pastel yeşil yaprakçık. | Hafif rüzgar salınımı (Sway animation). |
+| **2. Fidan** | 2 – 10 saat | 4-6 yapraklı uzayan yeşil gövde. | Yaprak açma geçiş efekti. |
+| **3. Tomurcuk** | 10 – 30 saat | Uç kısmı pastel sarı ve toz pembe tonlarında kapalı tomurcuk. | Güneş ışıltısı efekti. |
+| **4. Çiçeklenme** | 30 saat ve üzeri | Tamamen açılmış, çok katmanlı pastel taç yapraklar. | Etrafında süzülen hafif ışıltı parçacıkları (Floating particles). |
+| **5. Solma (Ceza 1)** | 7 gün inaktiflik | Çiçeğin başı öne bükülür, renk doygunluğu %50 düşer. | `ColorFiltered` grileşme filtresi. |
+| **6. Ölüm (Ceza 2)** | 30 gün inaktiflik | Yapraklar dökülür; çiçek durumu sıfırlanır, yeniden tohum olur. | Yaprak dökülme animasyonu + Bilgilendirme dialogu. |
+
+---
+
+## 6. Tüm Ekranların Mimarisi & Kullanıcı Akışları (Screen Architecture)
+
+Uygulama baştan sona aşağıdaki ekran hiyerarşisi üzerinden çalışır:
+
+### 6.1. Giriş / Karşılama Sayfası (`WelcomeScreen`)
+- **Topbar:** Şeffaf; kullanıcı bilgisi yok, sadece Güneş/Ay teması ve `TR|EN` dil seçici.
+- **Hero Alanı:** Ekranın üst-orta kısmında estetik, pastel renkli vektörel çiçek logosu.
+- **Başlık:** `Focus & Grow` (İtalik, Display Hero stil).
+- **Motto:** *“Odaklanarak yaşamı daha derinden hissetmek ister misin?”* (İtalik, soft gri).
+- **Aksiyonlar:**
+  - `Register` Pill CTA butonu -> Yavaş, akışkan yatay kaydırma animasyonuyla Kayıt ekranına geçer.
+  - Altı çizili metin: *“Kayıtlı hesabın varsa Giriş Yap”* -> Giriş Yap ekranına yönlendirir.
+  - Dairesel Google OAuth butonu -> Tek tıkla Google ile giriş.
+- **Sağ Alt Köşe:** İtalik `F&G` filigranı.
+
+### 6.2. Kayıt Ol Sayfası (`RegisterScreen`)
+- **Topbar:** Geri dön butonu + Dark mode + Dil toggle (Avatar ve isim yok).
+- **Başlık / Soru:** *“Sana nasıl hitap edelim?”* (İtalik, ince).
+- **Form Alanları:**
+  1. *Ad-Soyad* inputu (placeholder: "Adın veya sana nasıl hitap edelim?")
+  2. *Email* inputu
+  3. *Şifre* inputu (Doğrulama kuralı: En az 8 karakter, 1 büyük harf, 1 küçük harf, 1 sembol)
+  4. *Şifre Doğrulama* inputu
+  5. *Yaş* inputu (Sayısal klavye)
+  6. *Ülke Seçici* (Dokununca açılan zarif pastel BottomSheet ülke listesi)
+- **Doğrulama (Validation) Davranışı:**
+  - Kullanıcı eksik alan bırakır veya şifre kuralına uymazsa ilgili inputun kenarlığı anında `coralRedError` (`#E57373`) rengine döner.
+  - Hatanın hemen altına 11sp boyutunda ince uyarı metni eklenir: *"En az 8 karakter, 1 büyük, 1 küçük harf ve sembol içermelidir."*
+- **Kayıt Butonu:** `Kaydol` (Pastel gül gradyanlı CTA).
+- **Başarılı Kayıt Ara Geçiş Ekranı (`WelcomeTransitionScreen`):**
+  - Akışkan yavaş fade-in animasyonu ile açılır.
+  - *“Merhaba [Kullanıcı İsmi]”* (İtalik, zarif).
+  - *“Odaklanarak hayatını daha derinden hissetmeye başlamak için <u>ilerle</u>”*.
+  - *“<u>ilerle</u>”* kelimesi altı çizilidir; tıklandığında `HomeScreen`e geçiş yapılır.
+
+### 6.3. Giriş Yap & Şifremi Unuttum (`LoginScreen` & `ForgotPasswordScreen`)
+- **Giriş Yap Ekranı:**
+  - Karşılama Metni: *“Doğanın tadını çıkarmaya”* (ince italik) / *“Hoşgeldin”* (kalın italik).
+  - Email ve Şifre inputları.
+  - Sağ tarafta altı çizili: *“Şifremi unuttum”*.
+  - `Giriş Yap` butonu ve alternatif dairesel Google OAuth butonu.
+- **Şifremi Unuttum Ekranı:**
+  - Başlık: *“Çiçeğini kurtarmamız için emailini girebilirsin.”* (Duygusal bağ kuran dil).
+  - Email girdi alanı.
+  - `Kod Gönder` butonu.
+  - Tıklandıktan sonra butonun altında beliren zarif yeşil bilgilendirme: *“Sıfırlama kodu email adresine gönderildi.”*
+
+### 6.4. Ana Sayfa (`HomeScreen`)
+- **Topbar:** Sol tarafta profil avatarı + *“Hoşgeldin,”* (ince) + *“[İsim]”* (kalın) + Sağda Gece/Gündüz ve TR/EN.
+- **Merkez Vitrini (Canlı Çiçek):**
+  - Kullanıcının toplam odaklanma süresine göre boyutlanmış, yaprakları canlı çiçek illüstrasyonu.
+  - Çiçeğin altında toplam seviye/gün bilgisi (Örn: *“3. Seviye — Tomurcuk Evresi”*).
+- **Odaklanma Başlatma Alanı:**
+  - Merkezde nefes alan pulsasyon animasyonlu `Odaklanmaya Başla` dairesel butonu.
+- **Alt Çubuk:** Yüzen cam efektli Bottombar (Anasayfa sekmesi aktif).
+
+### 6.5. Odaklanma Oturumu Ekranı (`FocusSessionScreen` - Kilitli Mod)
+- **Tasarım Kuralları:**
+  - **Sıfır Dikkat Dağınıklığı (Zero Distraction):** Topbar ve Bottombar **tamamen gizlenir**.
+  - Tüm diğer sayfa rotaları ve uygulama içi butonlar bu ekrandayken geçici olarak kilitlenir.
+- **Görsel Düzen:**
+  - Ekranın merkezini ve neredeyse tamamını kaplayan dev, huzur verici çiçek görseli.
+  - Çiçeğin altında büyük ve zarif sayaç: `00:45:56` (`timerDisplay` stili).
+  - Sayacın altında tek eylem: Soft pembe/gül tonunda dairesel veya oval `Durdur` butonu.
+- **Aksiyon:**
+  - `Durdur` butonuna basıldığında oturum durdurulur, geçen net süre kullanıcının istatistiklerine ve çiçeğin büyüme havuzuna eklenir; kilitler açılır ve Ana Sayfaya dönülür.
+
+### 6.6. İstatistikler Sayfası (`StatisticsScreen`)
+- **Topbar:** Standart kullanıcı avatarı, isim ve tema/dil araçları.
+- **1. Vitrin Kartı (Bugünkü Başarı):**
+  - *“Bugünkü Odaklanma Süresi”*: Büyük, okunaklı sayaç kartı (Örn: `45:56 dk` veya `02:15 sa`).
+- **2. Haftalık Analiz Bölümü:**
+  - Başlık: *“Haftalık Analiz”*.
+  - Son 7 günün çubuk grafiği (`fl_chart` BarChart ile pastel yeşil ve sarı çubuklar).
+  - Grafiğin altında son 7 günün gün gün net sürelerini listeleyen döküm tablosu.
+- **3. Aylık Analiz Bölümü:**
+  - Başlık: *“Aylık Analiz”*.
+  - 30 günlük trend çizgi grafiği (`LineChart`).
+  - Haftalık toplamların döküldüğü aylık özet tablosu.
+- **4. En Alt Vurgu Alanı:**
+  - Büyük elevated kart: *“Tüm Zamanlar Toplam Odaklanma: 14 Gün 08 Saat 32 Dakika”*.
+
+### 6.7. Topluluk Sayfası (`CommunityScreen`)
+- **Topbar:** Standart.
+- **Ülke Filtresi:** Sol üstte sola dayalı küçük `Filtrele` butonu (Tıklanınca aşağıdan açılan ModalBottomSheet).
+- **1. Ülkeler Sıralaması (İlk 10):**
+  - Ülkelerin tüm vatandaşlarının kümülatif odaklanma süresi.
+  - Örnek: `1. 🇹🇷 Türkiye (52 gün 14 sa)`, `2. 🇺🇸 ABD (51 gün 02 sa)`, `3. 🇫🇷 Fransa (50 gün 56 dk)`.
+- **2. Dünyada İlk 50 (Global Liderlik Panosu):**
+  - Dünyanın en çok odaklanan ilk 50 kullanıcısının listesi.
+  - Liste elemanı: Sıralama no (1, 2, 3 rozetli), Profil Avatarı, İsim, Çiçek Rozeti/Evresi, Toplam Süre.
+  - **Etkileşim:** Herhangi bir kullanıcının kartına tıklandığında o kişinin salt okunur `Kişi Profil Sayfası`na yönlenir.
+
+### 6.8. Profil Sayfaları
+
+#### A. Topluluk Kişi Profili (`PublicProfileScreen` - Salt Okunur)
+- Başkalarının gördüğü vitrin profili.
+- Üstte Google avatarı, İsim, Yaş (Örn: *Mahmut Yılmaz, 57*).
+- Mahmut'un çiçeğinin canlı 3D/vektörel görseli ve evresi.
+- Mahmut'un Günlük, Haftalık ve Yıllık toplam odaklanma kartları.
+- Şeffaf Topbar ve Floating Bottombar aktif.
+
+#### B. Kullanıcı Kendi Profil & Ayarlar Sayfası (`MyProfileScreen`)
+- **Profil Yönetimi:**
+  - Profil fotoğrafı (Google ile giriş yapılmışsa hazır gelir; değilse üzerine tıklanarak galeriden/dosyadan yeni görsel seçilebilir).
+  - İsim, Soyisim, Yaş ve Ülke düzenleme.
+  - Çiçeğinin anlık detaylı sağlık durumu (Sulama/Odaklanma oranı).
+- **Kişisel İstatistikler:**
+  - Kişi profilindeki tüm metrik kartlarının tam kopyası.
+- **Gizlilik & Hesap Eylemleri:**
+  - `Hesabını Toplulukta Gösterme`: Açılıp kapanabilir `SwitchListTile` toggle (Açılırsa kullanıcı dünya sıralamasında ve aramalarda gizlenir).
+  - `İstatistikleri Sıfırla`: Onay modalı açan pastel sarı buton (Onaylanırsa tüm süreleri sıfırlar).
+  - `Hesabı Kalıcı Olarak Sil`: Soft kırmızı uyarı stili (`coralRedError`), iki adımlı güvenlik dialoguyla hesabı tamamen siler.
+
+---
+
+## 7. Proje Klasör Mimarisi & Dart Dosya Ağacı
+
+Aşağıdaki yapı, Flutter için önerilen temiz mimari (Clean Feature-First Architecture) şablonudur:
+
+```text
+lib/
+├── main.dart                      # Uygulama başlangıcı, tema ve Provider tanımları
+│
+├── core/
+│   ├── theme/
+│   │   ├── app_colors.dart        # Pastel renk tokenları ve gradyanlar
+│   │   ├── app_typography.dart    # Cormorant Garamond italik font tanımları
+│   │   └── app_theme.dart         # ThemeData.light() ve ThemeData.dark()
+│   ├── constants/
+│   │   ├── app_strings_tr.dart    # Türkçe metin sabitleri
+│   │   ├── app_strings_en.dart    # İngilizce metin sabitleri
+│   │   └── app_assets.dart        # Çiçek SVG ve illüstrasyon dosya yolları
+│   └── utils/
+│       ├── validators.dart        # Şifre kuralı (8 hane, 1 büyük, 1 küçük, 1 sembol) regex
+│       └── time_formatter.dart    # Saniyeyi 00:00:00 ve Gün/Saat/Dakika formatına çevirici
+│
+├── models/
+│   ├── user_model.dart            # id, name, email, age, country, isPrivate, photoUrl
+│   ├── flower_state.dart          # stage (seed, sprout, bud, bloom, wilted, dead), totalHours
+│   └── focus_session.dart         # id, startTime, endTime, durationSeconds
+│
+├── providers/ / blocs/
+│   ├── theme_provider.dart        # Dark / Light mod toggle yönetimi
+│   ├── locale_provider.dart       # TR / EN dil değişim yönetimi
+│   ├── auth_provider.dart         # Kayıt, giriş, Google OAuth ve profil durumu
+│   └── timer_provider.dart        # Odaklanma sayacı, canlı süre ve çiçek evrilme mantığı
+│
+├── screens/
+│   ├── auth/
+│   │   ├── welcome_screen.dart
+│   │   ├── register_screen.dart
+│   │   ├── welcome_transition_screen.dart
+│   │   ├── login_screen.dart
+│   │   └── forgot_password_screen.dart
+│   ├── home/
+│   │   ├── home_screen.dart
+│   │   └── focus_session_screen.dart  # Kilitli tam ekran odaklanma oturumu
+│   ├── statistics/
+│   │   └── statistics_screen.dart
+│   ├── community/
+│   │   ├── community_screen.dart
+│   │   ├── country_filter_modal.dart
+│   │   └── public_profile_screen.dart
+│   └── profile/
+│       └── my_profile_screen.dart
+│
+└── widgets/
+    ├── custom_top_bar.dart        # Şeffaf dinamik üst çubuk (Avatar + İsim + Tema + Dil)
+    ├── custom_bottom_bar.dart     # Yüzen glassmorphic 4 sekmeli alt çubuk
+    ├── animated_flower_view.dart  # Süreye göre büyüyen dinamik çiçek bileşeni
+    ├── gradient_scaffold.dart     # Tüm ekranları saran pastel gradyan zemin
+    ├── rounded_input_field.dart   # 20px radiuslu hata duyarlı input bileşeni
+    ├── pulsing_focus_button.dart  # Nefes alan dairesel odaklanma butonu
+    └── fg_watermark.dart          # Sağ alt köşe F&G italik filigranı
+```
+
+---
+
+## 8. Kritik Dart Kod Şablonları & Yardımcı Sınıflar
+
+### 8.1. Şifre ve Form Doğrulayıcı (Validator)
+
+```dart
+// lib/core/utils/validators.dart
+
+class FormValidators {
+  // En az 8 hane, 1 büyük harf, 1 küçük harf, 1 sembol
+  static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Lütfen şifrenizi giriniz.';
+    }
+    if (value.length < 8) {
+      return 'Şifre en az 8 haneli olmalıdır.';
+    }
+    if (!RegExp(r'[A-Z]').hasMatch(value)) {
+      return 'En az 1 büyük harf içermelidir.';
+    }
+    if (!RegExp(r'[a-z]').hasMatch(value)) {
+      return 'En az 1 küçük harf içermelidir.';
+    }
+    if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+      return 'En az 1 sembol içermelidir.';
+    }
+    return null; // Geçerli
+  }
+
+  static String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Lütfen email adresinizi giriniz.';
+    }
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    if (!emailRegex.hasMatch(value)) {
+      return 'Geçerli bir email adresi giriniz.';
+    }
+    return null;
+  }
+}
+```
+
+### 8.2. Ortak Gradyan İskeleti (Gradient Scaffold & Watermark)
+
+```dart
+// lib/widgets/gradient_scaffold.dart
+
+import 'package:flutter/material.dart';
+import '../core/theme/app_colors.dart';
+import '../core/theme/app_typography.dart';
+
+class GradientScaffold extends StatelessWidget {
+  final Widget body;
+  final PreferredSizeWidget? appBar;
+  final Widget? bottomNavigationBar;
+  final bool showWatermark;
+
+  const GradientScaffold({
+    Key? key,
+    required this.body,
+    this.appBar,
+    this.bottomNavigationBar,
+    this.showWatermark = true,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      decoration: BoxDecoration(
+        gradient: isDark ? AppColors.darkAppGradient : AppColors.lightAppGradient,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: appBar,
+        bottomNavigationBar: bottomNavigationBar,
+        body: Stack(
+          children: [
+            body,
+            if (showWatermark)
+              Positioned(
+                right: 18,
+                bottom: bottomNavigationBar != null ? 90 : 18,
+                child: Text('F&G', style: AppTypography.watermark),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+---
+
+## 9. `pubspec.yaml` Paket Bağımlılıkları
+
+```yaml
+name: focus_and_grow
+description: "Focus & Grow (F&G) - Flutter Odaklanma ve Çiçek Büyütme Uygulaması"
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Tipografi ve İkonlar
+  google_fonts: ^6.1.0          # Cormorant Garamond italik yazı tipleri
+  flutter_svg: ^2.0.9           # Çiçek ve logo vektörleri
+  cupertino_icons: ^1.0.6
+
+  # Durum Yönetimi (State Management)
+  provider: ^6.1.1              # veya flutter_bloc / flutter_riverpod
+
+  # Grafikler ve Veri Görselleştirme
+  fl_chart: ^0.66.0             # Haftalık ve aylık analiz grafikleri
+
+  # Yerel Depolama ve Tercihler
+  shared_preferences: ^2.2.2    # Tema (dark/light) ve dil (TR/EN) saklama
+
+  # Kimlik Doğrulama
+  google_sign_in: ^6.2.1        # Dairesel Google OAuth girişi
+  image_picker: ^1.0.7          # Profil fotoğrafı seçimi
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/flowers/
+```
