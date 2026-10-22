@@ -261,7 +261,7 @@
 ## 6. Çoklu Dil & Bildirimler (TR / EN & Notifications)
 
 ### 6.1. Dil Anahtarları (TR / EN Core Strings)
-- `motto_1`: "Kritik adımlar, büyük hedeflerin ruhudur." / "Critical steps are the soul of great goals."
+- `motto_1`: "Küçük adımlar, büyük hedeflerin ruhudur." / "Critical steps are the soul of great goals."
 - `motto_2`: "Hedeflerine ulaşmak için alışkanlıkların gücünden yararlanmaya hazır mısın?" / "Ready to harness the power of habits to reach your goals?"
 - `empty_state`: "Hiç alışkanlık eklememişsin!" / "You haven't added any habits yet!"
 - `notification_prompt`: "Haydi şimdi bir bardak su iç 💧 / birkaç sayfa kitap oku 📖" / "Time for a glass of water 💧 / read a few pages 📖"

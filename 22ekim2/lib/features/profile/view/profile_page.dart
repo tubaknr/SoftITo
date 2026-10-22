@@ -56,6 +56,7 @@ class _ProfilePageState extends State<ProfilePage>
         widget.habitsController.habits,
         widget.habitsController.completions,
         widget.habitsController.badges,
+        LocaleController.instance,
       ]),
       builder: (context, _) {
         final user = widget.authController.currentUser.value;
@@ -64,15 +65,15 @@ class _ProfilePageState extends State<ProfilePage>
         final avgMood = _analyticsEngine.calculateAverageMoodScore(completions);
 
         return SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 12, 20, 120),
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 75),
           child: Column(
             children: [
               _buildAvatarCard(context, user, avgMood),
-              const SizedBox(height: 18),
+              const SizedBox(height: 10),
               _buildTabBar(context),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
               _buildTabContent(context, completions, badges),
-              const SizedBox(height: 24),
+              const SizedBox(height: 10),
               _buildSettingsCard(context),
             ],
           ),
@@ -90,23 +91,23 @@ class _ProfilePageState extends State<ProfilePage>
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: colors.bgCard,
-        borderRadius: BorderRadius.circular(26),
+        borderRadius: BorderRadius.circular(22),
         border: Border.all(color: colors.borderLight.withValues(alpha: 0.8)),
         boxShadow: [
           BoxShadow(
             color: const Color(0xFF1E3A8A).withValues(alpha: 0.05),
-            blurRadius: 20,
-            offset: const Offset(0, 6),
+            blurRadius: 16,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Column(
         children: [
           _buildUserProfileHeaderRow(context, colors, name, initial),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           _buildMetricsBentoSplit(context, colors, completedTotal, growScore),
         ],
       ),
@@ -144,9 +145,9 @@ class _ProfilePageState extends State<ProfilePage>
                       color: const Color(0xFFD8E2FF),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Text(
-                      'Pro Üye',
-                      style: TextStyle(
+                    child: Text(
+                      context.loc.proMember,
+                      style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w700,
                         color: Color(0xFF001A42),
@@ -161,7 +162,7 @@ class _ProfilePageState extends State<ProfilePage>
                   Icon(Icons.calendar_today_rounded, size: 12, color: colors.primary),
                   const SizedBox(width: 4),
                   Text(
-                    'Birlikte büyüyoruz 🌱',
+                    context.loc.growingTogether,
                     style: TextStyle(fontSize: 12, color: colors.textMuted),
                   ),
                 ],
@@ -178,9 +179,9 @@ class _ProfilePageState extends State<ProfilePage>
                     ),
                   ),
                   const SizedBox(width: 5),
-                  const Text(
-                    'Aktif Seri Takibi',
-                    style: TextStyle(
+                  Text(
+                    context.loc.activeStreakTracking,
+                    style: const TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w700,
                       color: Color(0xFF006947),
@@ -281,9 +282,9 @@ class _ProfilePageState extends State<ProfilePage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Tamamlanan', style: TextStyle(fontSize: 10.5, color: colors.textMuted)),
+                        Text(context.loc.completedLabel, style: TextStyle(fontSize: 10.5, color: colors.textMuted)),
                         Text(
-                          '$completedTotal Küçük Tik',
+                          context.loc.smallTicksCount(completedTotal),
                           style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: colors.primary),
                         ),
                       ],
@@ -316,9 +317,9 @@ class _ProfilePageState extends State<ProfilePage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Büyüme', style: TextStyle(fontSize: 10.5, color: colors.textMuted)),
+                        Text(context.loc.growthLabel, style: TextStyle(fontSize: 10.5, color: colors.textMuted)),
                         Text(
-                          '$growScore Big Grow',
+                          context.loc.bigGrowScore(growScore),
                           style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFF006947)),
                         ),
                       ],

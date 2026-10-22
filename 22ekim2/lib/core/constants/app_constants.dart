@@ -5,7 +5,7 @@ class AppConstants {
   static const String appName = 'Small Tick & Big Grow';
   static const String brandSub = 'Small Tick';
   static const String brandMain = 'Big Grow';
-  static const String appTagline = 'Kritik adımlar, büyük hedeflerin ruhudur.';
+  static const String appTagline = 'Küçük adımlar, büyük hedeflerin ruhudur.';
 
   // Storage Keys
   static const String keyThemeMode = 'penguhabit_theme_mode';

@@ -15,7 +15,7 @@ Giriş Yap → Şifremi Unuttum
 Oturum açık kullanıcı uygulamayı açınca doğrudan Ana Sayfa'ya gider.
 
 ### 1.1 Karşılama Ekranı (`features/onboarding`)
-- Marka mottosu: "Kritik adımlar, büyük hedeflerin ruhudur."
+- Marka mottosu: "Küçük adımlar, büyük hedeflerin ruhudur."
 - Maskot alanı (penguen): yer tutucu widget; görsel `style.md` ile gelir.
 - **Kayıt Ol** butonu (birincil) ve **Giriş Yap** (metin bağlantısı, altı çizili) bulunur.
 - **Google ile devam et** seçeneği bulunur (bkz. 3.1).

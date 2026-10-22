@@ -38,7 +38,7 @@ class NotificationsController {
     // Apply notification schedules via service
     if (newSettings.dailyMotivationEnabled) {
       await notificationService.scheduleDailyMotivation(
-        quote: 'Kritik adımlar, büyük hedeflerin ruhudur.',
+        quote: 'Küçük adımlar, büyük hedeflerin ruhudur.',
         time: TimeOfDay(
           hour: newSettings.motivationHour,
           minute: newSettings.motivationMinute,

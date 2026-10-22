@@ -27,7 +27,7 @@ Fr ile taşma riski sıfırdır. % ile hesap yapıldığında taşma olabilir. B
 Artık kullanıcı etkileşimlerinin %90’ından fazlası mobilden geliyor. 
 Mobil cihazlara sadece gerekli olan kodlar ve stiller yüklenmiş olur, desktopda kullanılan ağır stiller yüklenmez.
 Büyükten küçüğe gitmek (desktop->mobile) daha zordur çünkü sıkıştırmak gerekir. Bu da, küçükten büyüğe (mobile->desktop) gitmekten daha çok kod ister. 
-Mobile first odaklanmak, daha kodun başındayken en kritik adımlara odaklanmayı sağlar, ekstralar elenir.
+Mobile first odaklanmak, daha kodun başındayken en Küçük adımlara odaklanmayı sağlar, ekstralar elenir.
 
 4. CSS3'te transition ve animation yazarken neden top , left , width yerine transform ve opacity tercih edilmelidir? 
 Top,left,width gibi özellikler tarayıcı adımlarını her değişiklikte baştan çalıştırır. Bu da cPU kullanımını arttırır. Ekran donar, takılır vb. UX kötü olur. Transform ve opacity ise bu CPU kullanan adımalrı atlar, direk birleştirme aşamasına geçer, CPU tasarrufu sağlar.

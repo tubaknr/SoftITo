@@ -217,7 +217,7 @@ class _CalendarHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Bu ay alışkanlık takibi',
+                    context.loc.monthlyTracking,
                     style: TextStyle(
                       fontSize: 11,
                       color: colors.textMuted,
@@ -301,13 +301,13 @@ class _CalendarGrid extends StatelessWidget {
   double get _childAspectRatio {
     switch (filter) {
       case CalendarFilter.weekly:
-        return 0.46;
+        return 0.42;
       case CalendarFilter.twoWeeks:
-        return 0.50;
+        return 0.45;
       case CalendarFilter.monthly:
       case CalendarFilter.twoMonths:
       case CalendarFilter.threeMonths:
-        return 0.54;
+        return 0.48;
     }
   }
 
@@ -410,7 +410,7 @@ class _CalendarGrid extends StatelessWidget {
                       color: isDone ? context.colors.success : c,
                     ),
                     title: Text(
-                      h.title,
+                      h.displayTitle(context.loc.isTr),
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: context.colors.textMain,
@@ -477,7 +477,7 @@ class _DayCell extends StatelessWidget {
               child: Text(
                 '${day.day}',
                 style: context.typography.bodySmall?.copyWith(
-                  fontSize: 10,
+                  fontSize: 11,
                   fontWeight: isToday ? FontWeight.w800 : FontWeight.w600,
                   color: isFuture
                       ? colors.textDisabled
@@ -528,22 +528,22 @@ class _HabitPillItem extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.only(bottom: 2),
-      padding: const EdgeInsets.symmetric(horizontal: 2.5, vertical: 1),
+      padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 1.5),
       decoration: BoxDecoration(
         color: isDone ? habitColor : habitColor.withValues(alpha: 0.16),
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(5),
         border: Border.all(
           color: isDone ? habitColor : habitColor.withValues(alpha: 0.5),
           width: 0.6,
         ),
       ),
       child: Text(
-        '${isDone ? "✓ " : ""}${habit.title}',
+        '${isDone ? "✓ " : ""}${habit.displayTitle(context.loc.isTr)}',
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
-          fontSize: 7.5,
-          height: 1.1,
+          fontSize: 9.5,
+          height: 1.15,
           fontWeight: FontWeight.w600,
           color: isDone ? Colors.white : (context.isDark ? colors.textMain : habitColor),
           decoration: isDone ? TextDecoration.lineThrough : null,
@@ -566,7 +566,7 @@ class _OverflowPill extends StatelessWidget {
       child: Text(
         '+$count',
         style: TextStyle(
-          fontSize: 7.5,
+          fontSize: 8.5,
           fontWeight: FontWeight.w800,
           color: context.colors.textMuted,
         ),

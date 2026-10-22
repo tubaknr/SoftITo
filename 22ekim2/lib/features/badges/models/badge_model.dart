@@ -1,3 +1,5 @@
+import '../../../core/l10n/app_localizations.dart';
+
 /// Immutable badge award model
 class BadgeModel {
   const BadgeModel({
@@ -15,6 +17,27 @@ class BadgeModel {
   final DateTime earnedAt;
   final String? habitId;
   final String description;
+
+  String displayTitle(AppLocalizations loc) {
+    switch (level) {
+      case 21:
+        return loc.badgeSilverPenguin;
+      case 42:
+        return loc.badgeGoldPenguin;
+      case 66:
+        return loc.badgeDiamondPenguin;
+      case 84:
+        return loc.badgeMasterPenguin;
+      default:
+        if (title.contains('Seri') ||
+            title.contains('Tamamlama') ||
+            title.contains('Streak') ||
+            title.contains('Rozeti')) {
+          return loc.badgeStepTitle(level);
+        }
+        return title;
+    }
+  }
 
   BadgeModel copyWith({
     String? id,

@@ -26,7 +26,7 @@ class AppLocalizations {
   String get brandSub => 'Small Tick';
   String get brandMain => 'Big Grow';
   String get brandMotto => isTr
-      ? 'Kritik adımlar, büyük hedeflerin ruhudur.'
+      ? 'Küçük adımlar, büyük hedeflerin ruhudur.'
       : 'Critical steps are the soul of great goals.';
   String get mottoQuestion => isTr
       ? 'Hedeflerine ulaşmak için alışkanlıkların gücünden yararlanmaya hazır mısın?'
@@ -68,6 +68,8 @@ class AppLocalizations {
       : 'Invalid email or password.';
 
   // --- TopBar & Navigation ---
+  String get smallSteps => isTr ? 'Minik Adımlar' : 'Tiny Steps';
+  String get newAction => isTr ? 'Yeni' : 'New';
   String welcomeUser(String name) => isTr ? 'Hoşgeldin $name' : 'Welcome $name';
   String get tabHome => isTr ? 'Anasayfa' : 'Home';
   String get tabCalendar => isTr ? 'Takvim' : 'Calendar';
@@ -76,6 +78,19 @@ class AppLocalizations {
 
   // --- Home Screen ---
   String get todayHabits => isTr ? 'Bugünkü Alışkanlıklar' : "Today's Habits";
+  String get todayGreatDay => isTr ? 'Bugün harika bir gün! ✨' : 'Today is a great day! ✨';
+  String get todaySubQuote => isTr
+      ? 'Küçük bir tik at, büyük büyümeni keyifle izle.'
+      : 'Tick a small step, watch your big growth.';
+  String get dailyMotivation => isTr ? 'Günün Motivasyonu' : "Daily Motivation";
+  String get dailyProgress => isTr ? 'Günlük İlerleme' : 'Daily Progress';
+  String habitsRemaining(int count) => isTr ? '$count alışkanlık kaldı' : '$count habits remaining';
+  String get allStepsCompletedToday => isTr ? 'Bugünkü tüm adımlar tamamlandı! 🎉' : 'All steps completed today! 🎉';
+  String activeStreakDays(int days) => isTr ? '🔥 $days gün serisi aktif' : '🔥 $days day streak active';
+  String get addAwarenessNote => isTr ? 'Farkındalık Notu Ekle' : 'Add Mindfulness Note';
+  String get awarenessNoteSub => isTr
+      ? 'Tamamladığın adımların hissini kaydet'
+      : 'Record how your completed steps felt';
   String get emptyHabitsTitle => isTr ? 'Hiç alışkanlık eklememişsin!' : "You haven't added any habits yet!";
   String get emptyHabitsSubtitle => isTr
       ? 'Büyük hedefler, küçük bir tik ile başlar.'
@@ -110,13 +125,17 @@ class AppLocalizations {
   // --- Habits Management ---
   String get editHabit => isTr ? 'Alışkanlığı Düzenle' : 'Edit Habit';
   String get habitTitleLabel => isTr ? 'Alışkanlık Adı' : 'Habit Name';
+  String get habitTitleHint => isTr ? 'Örn: Kitap Oku, Su İç' : 'e.g. Read Book, Drink Water';
   String get habitDescLabel => isTr ? 'Açıklama (İsteğe bağlı)' : 'Description (Optional)';
+  String get habitDescHint => isTr ? 'Açıklama...' : 'Description...';
   String get repeatDaysLabel => isTr ? 'Tekrar Günleri' : 'Repeat Days';
   String get reminderTimeLabel => isTr ? 'Hatırlatma Saati' : 'Reminder Time';
+  String get pickTimeAction => isTr ? 'Saat Seç' : 'Pick Time';
   String get selectColorLabel => isTr ? 'Takvim Rengi' : 'Calendar Color';
   String get saveAction => isTr ? 'Kaydet' : 'Save';
   String get cancelAction => isTr ? 'İptal' : 'Cancel';
   String get deleteAction => isTr ? 'Sil' : 'Delete';
+  String get changeAction => isTr ? 'Değiştir' : 'Change';
   String get confirmDeleteHabit => isTr
       ? 'Bu alışkanlığı silmek istediğinize emin misiniz? Tüm geçmiş silinecektir.'
       : 'Are you sure you want to delete this habit? All history will be lost.';
@@ -143,12 +162,18 @@ class AppLocalizations {
   String get cannotCompleteFuture => isTr ? 'Gelecek günler tamamlanamaz.' : 'Future days cannot be completed.';
   String get noHabitsOnThisDay => isTr ? 'Bu güne planlanmış alışkanlık yok.' : 'No habits scheduled on this day.';
   String get dayDetails => isTr ? 'Gün Detayı' : 'Day Details';
+  String get monthlyTracking => isTr ? 'Bu ay alışkanlık takibi' : 'Monthly habit tracking';
 
   // --- Analytics Screen ---
   String get analyticsTitle => isTr ? 'Analiz ve İlerleme' : 'Analytics & Progress';
   String get overallContinuity => isTr ? 'Genel Devamlılık Başarısı' : 'Overall Continuity Rate';
   String get habitPerformance => isTr ? 'Alışkanlık Bazlı Başarı' : 'Habit Performance';
   String get moodDistributionTitle => isTr ? 'Duygu Dağılım Çizelgesi' : 'Mood Distribution';
+  String get continuityChartTitle => isTr ? 'Devamlılık Grafiği' : 'Continuity Chart';
+  String get greatConsistency => isTr ? 'Müthiş bir istikrar! ' : 'Great consistency! ';
+  String get consistencySub => isTr
+      ? 'Küçük adımların büyük büyümeni inşa ediyor.'
+      : 'Your small steps are building your big growth.';
   String get range7Days => isTr ? 'Son 7 Gün' : 'Last 7 Days';
   String get range30Days => isTr ? 'Son 30 Gün' : 'Last 30 Days';
   String get range90Days => isTr ? 'Son 90 Gün' : 'Last 90 Days';
@@ -158,6 +183,15 @@ class AppLocalizations {
 
   // --- Profile Screen ---
   String get profileTitle => isTr ? 'Profil & Ayarlar' : 'Profile & Settings';
+  String get proMember => isTr ? 'Pro Üye' : 'Pro Member';
+  String get growingTogether => isTr ? 'Birlikte büyüyoruz 🌱' : 'Growing together 🌱';
+  String get activeStreakTracking => isTr ? 'Aktif Seri Takibi' : 'Active Streak Tracking';
+  String get completedLabel => isTr ? 'Tamamlanan' : 'Completed';
+  String smallTicksCount(int count) => isTr ? '$count Küçük Tik' : '$count Small Ticks';
+  String get growthLabel => isTr ? 'Büyüme' : 'Growth';
+  String bigGrowScore(int score) => '$score Big Grow';
+  String daysCount(int count) => isTr ? '$count Gün' : '$count Days';
+  String get noNotesYet => isTr ? 'Henüz farkındalık notu eklenmedi.' : 'No mindfulness notes added yet.';
   String get sectionHabits => isTr ? 'Alışkanlıklarım' : 'My Habits';
   String get sectionBadges => isTr ? 'Rozetlerim' : 'My Badges';
   String get sectionNotifications => isTr ? 'Bildirimler' : 'Notifications';

@@ -59,7 +59,7 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
                 Row(
                   children: [
                     Text(
-                      'Minik Adımlar',
+                      context.loc.smallSteps,
                       style: context.typography.bodySmall?.copyWith(
                         color: context.colors.textMuted,
                         fontWeight: FontWeight.w600,
@@ -75,7 +75,7 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
                   context.loc.welcomeUser(displayName),
                   style: context.typography.headlineSmall?.copyWith(
                     fontWeight: FontWeight.w800,
-                    color: context.colors.primaryDark,
+                    color: context.colors.textMain,
                     fontSize: 18,
                     letterSpacing: -0.2,
                   ),

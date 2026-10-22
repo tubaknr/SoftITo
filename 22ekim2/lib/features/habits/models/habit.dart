@@ -24,6 +24,76 @@ class Habit {
 
   bool get isEveryday => repeatDays.length == 7;
 
+  String displayTitle([bool isTr = true]) {
+    if (isTr) {
+      switch (id) {
+        case 'h_water':
+          return 'Günlük 2 Litre Su İç 💧';
+        case 'h_book':
+          return '20 Sayfa Kitap Oku 📖';
+        case 'h_walk':
+          return '30 Dakika Yürüyüş & Temiz Hava 🏃';
+        case 'h_meditation':
+          return 'Sabah Meditasyonu & Nefes 🧘';
+        case 'h_code':
+          return 'Temiz Kod Pratiği 💻';
+      }
+      return title;
+    } else {
+      switch (id) {
+        case 'h_water':
+          return 'Drink 2L Water Daily 💧';
+        case 'h_book':
+          return 'Read 20 Pages 📖';
+        case 'h_walk':
+          return '30 Min Walk & Fresh Air 🏃';
+        case 'h_meditation':
+          return 'Morning Meditation & Breathing 🧘';
+        case 'h_code':
+          return 'Clean Code Practice 💻';
+      }
+      final lower = title.toLowerCase();
+      if (lower.contains('su iç') || lower.contains('2 litre')) return 'Drink 2L Water Daily 💧';
+      if (lower.contains('kitap') || lower.contains('sayfa')) return 'Read 20 Pages 📖';
+      if (lower.contains('yürüyüş') || lower.contains('temiz hava')) return '30 Min Walk & Fresh Air 🏃';
+      if (lower.contains('meditasyon') || lower.contains('nefes')) return 'Morning Meditation & Breathing 🧘';
+      if (lower.contains('kod pratiği') || lower.contains('temiz kod')) return 'Clean Code Practice 💻';
+      return title;
+    }
+  }
+
+  String displayDescription([bool isTr = true]) {
+    if (isTr) {
+      switch (id) {
+        case 'h_water':
+          return 'Vücudunu canlı ve enerjik tutmak için düzenli su tüket.';
+        case 'h_book':
+          return 'Yeni ufuklar keşfetmek için sakin bir okuma seansı.';
+        case 'h_walk':
+          return 'Zihnini boşalt, penguen gibi adımlarını sıklaştır.';
+        case 'h_meditation':
+          return 'Dingin bir gün başlangıcı için 10 dakika nefes egzersizi.';
+        case 'h_code':
+          return 'Mimariye sadık kalarak bir modülü gözden geçir ve geliştir.';
+      }
+      return description;
+    } else {
+      switch (id) {
+        case 'h_water':
+          return 'Stay hydrated and energetic with regular water intake.';
+        case 'h_book':
+          return 'A calm reading session to discover new horizons.';
+        case 'h_walk':
+          return 'Clear your mind, take quick steps like a penguin.';
+        case 'h_meditation':
+          return 'A 10-minute breathing exercise for a serene start to the day.';
+        case 'h_code':
+          return 'Review and improve a module sticking to clean architecture.';
+      }
+      return description;
+    }
+  }
+
   Habit copyWith({
     String? id,
     String? title,

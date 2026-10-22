@@ -12,7 +12,7 @@ logo: penguenlidir. penguen tatlı ve sıcak bir şekilde gülümser.
 
 - **Uygulama Türü:** Alışkanlık takip uygulaması (günlük alışkanlık, seri, rozet, duygu notu, analiz).
 - **Ne yapar:** Kullanıcı kayıt olur, alışkanlıklarını tanımlar, her gün tamamlar; seriler ve rozetlerle motive olur; tamamlama sonrası isteğe bağlı duygu ve not girer; takvim, grafik ve analizlerle ilerlemesini izler; bildirimlerle desteklenir.
-- **Marka Mottosu:** "Kritik adımlar, büyük hedeflerin ruhudur." (TR/EN karşılığı l10n dosyalarında tutulur.)
+- **Marka Mottosu:** "Küçük adımlar, büyük hedeflerin ruhudur." (TR/EN karşılığı l10n dosyalarında tutulur.)
 - **Hedef Platformlar:** iOS ve Android öncelikli; ardından web ve masaüstü.
 - **Flutter SDK:** 3.27.x
 - **Dart SDK:** 3.6.0
