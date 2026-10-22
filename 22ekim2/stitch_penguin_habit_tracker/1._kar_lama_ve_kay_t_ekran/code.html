@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Small Tick &amp; Big Grow - Kayıt Ol</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#b6c4ff",
+            "accent-sprout": "#34D399",
+            "success-light": "#D1FAE5",
+            "on-background": "#151c22",
+            "surface-variant": "#dce3eb",
+            "surface-tint": "#005ac2",
+            "primary": "#0058be",
+            "surface-container-low": "#edf4fc",
+            "surface-bright": "#f6faff",
+            "primary-container": "#2170e4",
+            "on-surface-variant": "#424754",
+            "on-tertiary-fixed": "#002113",
+            "tertiary-container": "#00855b",
+            "inverse-on-surface": "#eaf1f9",
+            "cloud-blue": "#93C5FD",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#1d3989",
+            "on-tertiary-container": "#f5fff6",
+            "surface-container-high": "#e2e9f1",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#2a3137",
+            "inverse-primary": "#adc6ff",
+            "on-secondary-fixed-variant": "#264191",
+            "surface-container-highest": "#dce3eb",
+            "error": "#ba1a1a",
+            "accent-orange": "#FB923C",
+            "outline-variant": "#c2c6d6",
+            "accent-blush": "#FDA4AF",
+            "on-surface": "#151c22",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-primary-fixed": "#001a42",
+            "on-tertiary-fixed-variant": "#005236",
+            "on-primary-container": "#fefcff",
+            "on-secondary-fixed": "#00164e",
+            "on-primary-fixed-variant": "#004395",
+            "on-error": "#ffffff",
+            "surface-dim": "#d4dbe3",
+            "tertiary-fixed": "#6ffbbe",
+            "surface": "#f6faff",
+            "secondary-fixed": "#dce1ff",
+            "surface-container": "#e8eff7",
+            "streak-amber": "#F59E0B",
+            "accent-sun": "#FDE047",
+            "primary-fixed": "#d8e2ff",
+            "on-error-container": "#93000a",
+            "outline": "#727785",
+            "primary-fixed-dim": "#adc6ff",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#8fa7fe",
+            "secondary": "#4059aa",
+            "tertiary": "#006947",
+            "background": "#f6faff",
+            "surface-container-lowest": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-lg": "1.5rem",
+            "space-lg": "1.25rem",
+            "space-sm": "0.5rem",
+            "margin-sm": "1rem",
+            "space-xs": "0.25rem",
+            "gutter-sm": "0.75rem",
+            "gutter": "1rem",
+            "space-xl": "1.75rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-2xl": "2.5rem"
+          },
+          "fontFamily": {
+            "label-brand-sub": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-brand-sub": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .soft-card-shadow {
+      box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.06), 0 4px 6px -2px rgba(30, 58, 138, 0.03);
+    }
+    .dawn-glow {
+      box-shadow: 0 10px 24px -4px rgba(59, 130, 246, 0.38);
+    }
+    .avatar-glow {
+      box-shadow: 0 14px 30px -6px rgba(96, 165, 250, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen selection:bg-cloud-blue selection:text-primary">
+<!-- Ambient Decorative Dawn Glows -->
+<div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-96 bg-gradient-to-b from-primary-fixed/40 via-surface-container-low/20 to-transparent blur-3xl pointer-events-none -z-10"></div>
+<div class="fixed -bottom-20 right-0 w-72 h-72 bg-accent-blush/20 blur-3xl pointer-events-none -z-10"></div>
+<!-- Main Container (Centered Responsive Canvas) -->
+<div class="w-full max-w-md mx-auto min-h-screen flex flex-col justify-between px-5 py-6">
+<!-- Top Utility Bar: Language Selector & Theme Toggle -->
+<header class="flex items-center justify-between w-full pt-1 pb-4">
+<!-- Minimalist Logo Badge -->
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-cloud-blue flex items-center justify-center text-on-primary text-sm font-bold shadow-sm">
+          ✓
+        </div>
+<div class="flex flex-col leading-tight">
+<span class="text-[10px] uppercase font-bold tracking-widest text-primary">HABIT TRACKER</span>
+</div>
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-2">
+<!-- Language Toggle -->
+<div class="flex items-center bg-surface-container-low border border-surface-container-highest/60 rounded-full p-1 shadow-inner">
+<button class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest text-primary shadow-xs font-bold transition-all" id="lang-tr">TR</button>
+<button class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-all" id="lang-en">EN</button>
+</div>
+<!-- Dark/Light Mode Toggle Button -->
+<button aria-label="Temayı Değiştir" class="w-9 h-9 rounded-full bg-surface-container-lowest border border-surface-container-highest/60 flex items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-transform duration-150 soft-card-shadow" id="theme-toggle">
+<span class="material-symbols-outlined text-[20px]">light_mode</span>
+</button>
+</div>
+</header>
+<!-- Hero Identity & Mascot Section -->
+<main class="w-full flex-1 flex flex-col items-center">
+<!-- Mascot Container with Dawn Sunrise Horizon -->
+<div class="relative w-full max-w-[320px] flex flex-col items-center mt-2 mb-4">
+<!-- Ambient Radial Sunset Glow -->
+<div class="absolute -top-3 w-52 h-52 bg-gradient-to-b from-accent-sun/30 via-accent-blush/25 to-cloud-blue/15 rounded-full blur-2xl -z-10"></div>
+<!-- Penguin Mascot Frame -->
+<div class="relative group cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-98">
+<div class="w-32 h-32 sm:w-36 sm:h-36 rounded-3xl p-1 bg-gradient-to-b from-surface-container-lowest via-surface-container-low to-primary-fixed avatar-glow border border-white flex items-center justify-center overflow-hidden">
+<img alt="Küçük Penguen Maskot" class="w-full h-full object-cover rounded-2xl select-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtVCWqe6ef-YRJvxRbdHW6ETZ2wPQ-trdMp7dOD6ZHalQBY--KV-sF4IUE09OW1S4yFoC7Y8PW3JGKG3M3fIPaZphcC-utbVnjPIqtf9IIOIkGFCgkBehw8PlmhbMYasExrjt2wYBTtqbtwjm2H5D8qYYCCmnPHcGWacER0VgiZIY-hW6qLdXIwxniNUhYkPtw3MMucyakOJXD9NON4-8zdgkH9_idzuu5q8YlZU9He3d7rb09ZbdV"/>
+</div>
+<!-- Tactile Micro Tick Badge -->
+<div class="absolute -bottom-2 -right-2 bg-gradient-to-tr from-accent-sprout to-tertiary-fixed text-on-tertiary-fixed rounded-full w-9 h-9 flex items-center justify-center shadow-md border-2 border-surface-container-lowest font-bold text-sm animate-bounce">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<!-- Two-line Brand Title Hierarchy -->
+<div class="text-center mt-4">
+<h2 class="font-label-brand-sub text-label-brand-sub text-on-surface-variant uppercase tracking-widest text-slate-500">SMALL TICK</h2>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile sm:font-headline-xl sm:text-headline-xl text-primary font-extrabold tracking-tight">Big Grow</h1>
+</div>
+<!-- Mascot Motto & Motivation -->
+<p class="text-center font-body-sm text-body-sm text-on-surface-variant mt-1.5 px-4">
+<span class="font-semibold text-primary">“Kritik adımlar, büyük hedeflerin ruhudur.”</span>
+</p>
+<p class="text-center font-label-sm text-label-sm text-outline mt-0.5">
+          Hedeflerine ulaşmak için ilk küçük adımını at.
+        </p>
+</div>
+<!-- Registration Card Surface (Glassmorphic Tinted Depth) -->
+<section class="w-full bg-surface-container-lowest/95 backdrop-blur-md rounded-3xl p-5 sm:p-6 border border-surface-container-high/60 soft-card-shadow mb-6">
+<!-- Google OAuth Primary Button -->
+<button class="w-full h-[50px] bg-surface-container-lowest border border-outline-variant/70 rounded-2xl flex items-center justify-center gap-3 text-on-surface font-body-lg text-body-lg hover:bg-surface-container-low active:scale-[0.98] transition-all duration-150 shadow-xs mb-4">
+<!-- Google G Logo SVG -->
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+</svg>
+<span class="text-sm font-semibold text-on-surface">Google ile Devam Et</span>
+</button>
+<!-- Divider with Text -->
+<div class="relative flex items-center justify-center my-4">
+<div class="w-full border-t border-surface-container-highest"></div>
+<span class="absolute px-3 bg-surface-container-lowest text-label-sm font-label-sm text-outline">veya e-posta ile kayıt ol</span>
+</div>
+<!-- Registration Form -->
+<form class="space-y-3.5" onsubmit="event.preventDefault();">
+<!-- Input 1: Ad Soyad -->
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1 ml-1" for="fullname">Adın Soyadın</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[19px]">person</span>
+<input class="w-full h-[48px] pl-11 pr-4 bg-surface-container-low/60 border border-surface-container-highest/80 rounded-xl text-on-surface text-body-md font-body-md placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all outline-none" id="fullname" placeholder="Ayşe Yılmaz" type="text"/>
+</div>
+</div>
+<!-- Input 2: E-Posta -->
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1 ml-1" for="email">E-posta</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[19px]">mail</span>
+<input class="w-full h-[48px] pl-11 pr-4 bg-surface-container-low/60 border border-surface-container-highest/80 rounded-xl text-on-surface text-body-md font-body-md placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all outline-none" id="email" placeholder="ayse@example.com" type="email"/>
+</div>
+</div>
+<!-- Input 3 & 4: Password & Confirm Password Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1 ml-1" for="password">Şifre</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[19px]">lock</span>
+<input class="w-full h-[48px] pl-11 pr-3 bg-surface-container-low/60 border border-surface-container-highest/80 rounded-xl text-on-surface text-body-md font-body-md placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all outline-none" id="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1 ml-1" for="password-confirm">Şifre Doğrulama</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[19px]">verified_user</span>
+<input class="w-full h-[48px] pl-11 pr-3 bg-surface-container-low/60 border border-surface-container-highest/80 rounded-xl text-on-surface text-body-md font-body-md placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all outline-none" id="password-confirm" placeholder="••••••••" type="password"/>
+</div>
+</div>
+</div>
+<!-- Gentle Mascot Micro-Encouragement Pill -->
+<div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low/80 border border-cloud-blue/30 text-on-secondary-container">
+<span class="text-base select-none">🐧</span>
+<p class="text-xs text-on-surface-variant leading-tight">
+              Her gün 1 küçük tik ile başla, pengueninle birlikte hedefini büyüt!
+            </p>
+</div>
+<!-- Primary Submit Action: Dawn Gradient Button -->
+<button class="w-full h-[52px] mt-2 rounded-2xl bg-gradient-to-r from-primary via-primary-container to-cloud-blue text-on-primary font-body-lg text-body-lg font-bold flex items-center justify-center gap-2 dawn-glow hover:opacity-95 active:scale-[0.98] transition-transform duration-150" type="submit">
+<span>Kayıt Ol</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+<!-- Secondary Action: Login Redirect Link -->
+<div class="text-center mt-5">
+<p class="text-label-sm font-label-sm text-on-surface-variant">
+            Zaten hesabın var mı? 
+            <a class="font-bold text-primary hover:text-primary-container underline decoration-cloud-blue decoration-2 underline-offset-4 transition-colors" href="#">
+              Giriş Yap
+            </a>
+</p>
+</div>
+</section>
+</main>
+<!-- Footer Security / Legal Micro-Text -->
+<footer class="w-full text-center pb-2">
+<p class="text-[11px] text-outline">
+        Kayıt olarak <a class="underline hover:text-primary" href="#">Kullanım Şartları</a> ve <a class="underline hover:text-primary" href="#">Gizlilik Politikası</a>'nı onaylamış olursunuz.
+      </p>
+</footer>
+</div>
+<!-- Interactive Logic for Language & Theme Toggles -->
+<script>
+    // Theme Switcher Logic
+    const themeBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+    let isDark = false;
+
+    themeBtn.addEventListener('click', () => {
+      isDark = !isDark;
+      if (isDark) {
+        htmlEl.classList.remove('light');
+        htmlEl.classList.add('dark');
+        themeBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">dark_mode</span>';
+      } else {
+        htmlEl.classList.remove('dark');
+        htmlEl.classList.add('light');
+        themeBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">light_mode</span>';
+      }
+    });
+
+    // Language Toggle Interactive State
+    const langTr = document.getElementById('lang-tr');
+    const langEn = document.getElementById('lang-en');
+
+    langTr.addEventListener('click', () => {
+      langTr.className = 'px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest text-primary shadow-xs font-bold transition-all';
+      langEn.className = 'px-2.5 py-0.5 rounded-full text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-all';
+    });
+
+    langEn.addEventListener('click', () => {
+      langEn.className = 'px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest text-primary shadow-xs font-bold transition-all';
+      langTr.className = 'px-2.5 py-0.5 rounded-full text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-all';
+    });
+  </script>
+</body></html>

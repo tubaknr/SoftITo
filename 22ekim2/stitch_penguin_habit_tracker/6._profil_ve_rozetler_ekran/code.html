@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profil, Rozetler &amp; Ayarlar - Small Tick &amp; Big Grow</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#b6c4ff",
+            "accent-sprout": "#34D399",
+            "success-light": "#D1FAE5",
+            "on-background": "#151c22",
+            "surface-variant": "#dce3eb",
+            "surface-tint": "#005ac2",
+            "primary": "#0058be",
+            "surface-container-low": "#edf4fc",
+            "surface-bright": "#f6faff",
+            "primary-container": "#2170e4",
+            "on-surface-variant": "#424754",
+            "on-tertiary-fixed": "#002113",
+            "tertiary-container": "#00855b",
+            "inverse-on-surface": "#eaf1f9",
+            "cloud-blue": "#93C5FD",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#1d3989",
+            "on-tertiary-container": "#f5fff6",
+            "surface-container-high": "#e2e9f1",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#2a3137",
+            "inverse-primary": "#adc6ff",
+            "on-secondary-fixed-variant": "#264191",
+            "surface-container-highest": "#dce3eb",
+            "error": "#ba1a1a",
+            "accent-orange": "#FB923C",
+            "outline-variant": "#c2c6d6",
+            "accent-blush": "#FDA4AF",
+            "on-surface": "#151c22",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-primary-fixed": "#001a42",
+            "on-tertiary-fixed-variant": "#005236",
+            "on-primary-container": "#fefcff",
+            "on-secondary-fixed": "#00164e",
+            "on-primary-fixed-variant": "#004395",
+            "on-error": "#ffffff",
+            "surface-dim": "#d4dbe3",
+            "tertiary-fixed": "#6ffbbe",
+            "surface": "#f6faff",
+            "secondary-fixed": "#dce1ff",
+            "surface-container": "#e8eff7",
+            "streak-amber": "#F59E0B",
+            "accent-sun": "#FDE047",
+            "primary-fixed": "#d8e2ff",
+            "on-error-container": "#93000a",
+            "outline": "#727785",
+            "primary-fixed-dim": "#adc6ff",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#8fa7fe",
+            "secondary": "#4059aa",
+            "tertiary": "#006947",
+            "background": "#f6faff",
+            "surface-container-lowest": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-lg": "1.5rem",
+            "space-lg": "1.25rem",
+            "space-sm": "0.5rem",
+            "margin-sm": "1rem",
+            "space-xs": "0.25rem",
+            "gutter-sm": "0.75rem",
+            "gutter": "1rem",
+            "space-xl": "1.75rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-2xl": "2.5rem"
+          },
+          "fontFamily": {
+            "label-brand-sub": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-brand-sub": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-app-shadow {
+      box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.06), 0 4px 6px -2px rgba(30, 58, 138, 0.03);
+    }
+    .badge-card-glow {
+      box-shadow: 0 8px 20px -4px rgba(30, 58, 138, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed pb-28">
+<!-- Mobile Viewport Container -->
+<div class="max-w-md mx-auto min-h-screen flex flex-col relative px-4 pt-3">
+<!-- TopAppBar (Matching JSON Shell & Strict Identity) -->
+<header class="flex justify-between items-center w-full px-2 pt-2 pb-3 bg-background">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-cloud-blue/30 p-0.5 flex items-center justify-center overflow-hidden border border-cloud-blue/50">
+<img class="w-full h-full object-cover rounded-full" data-alt="Charming and joyful 3D rendered baby penguin character avatar with sweet pastel pink blush cheeks, twinkling happy eyes, and soft arctic studio lighting in a soothing calm blue background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd5ghHhKQkrDoR1CVKtbwrjfitMxu57qxrleXDu4HU70cXMsewZR5cCZe_3NmSIuW4dzUlYwk8kTTrWrqAZM8tDY0yu1Qh1nC-A_V8BiWKMeGJ2XWL3wre4dnQRtXY-yCXq783eEBNvMrjbL1k2MMFoAzJx48LYfg3mM60lGh4CTdD12Fiwk440BqSJp7sikP0jZNVM-lLGhOWsBtOHvb575jOvpfWTbOaan52P08BROwt0HGRMXsM"/>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Profil Detayları</span>
+<h1 class="text-headline-md font-headline-md font-extrabold text-primary tracking-tight">Hoşgeldin Ayşe</h1>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<!-- TR / EN Toggle -->
+<div class="flex items-center bg-surface-container rounded-full p-1 border border-outline-variant/30">
+<button class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container-lowest text-primary font-bold shadow-xs transition-transform duration-150 active:scale-95">TR</button>
+<button class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-transform duration-150">EN</button>
+</div>
+<!-- Settings Gear Icon -->
+<button aria-label="Ayarlar" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-transform duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[22px]">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="space-y-4 mt-2">
+<!-- Profile Header Hero Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-5 custom-app-shadow border border-outline-variant/20 relative overflow-hidden">
+<div class="absolute -top-12 -right-12 w-36 h-36 bg-cloud-blue/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-8 -left-8 w-28 h-28 bg-accent-sprout/15 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center gap-4 relative z-10">
+<div class="relative">
+<div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-accent-blush via-cloud-blue to-accent-sprout shadow-sm">
+<div class="w-full h-full bg-surface-container-lowest rounded-full p-0.5 overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="Close-up portrait of an adorable smiling baby penguin mascot with bright rosy cheeks and miniature green sprout accessory, vector soft 3D style, warm friendly aesthetic with gentle pastel rim light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6wKFbMQ-ywHGvbvIir7tluOa3MZthmvaQ0734CpSG9PEyWVS72yfFsRrxGqoXegUXdLo8pKtz0g_9DpcqV_W10BqIZMZ82vR_1_dDLRIEj8-7EjvtjSWagzGCd7BYxr9MtZ9AfsSYModza1RPClX8QT0CAsAdiQBlw_t9tC_BUgabILzDToo7oqMc2XFlh4C_E07oPpsCG_ImsFVnbUnZ0NnvZr6Oaq-CJb0IQIiz4vOcmlnwfivG"/>
+</div>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-accent-sprout text-on-tertiary-fixed w-6 h-6 rounded-full flex items-center justify-center border-2 border-surface-container-lowest text-[13px] font-bold shadow-xs">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<h2 class="text-headline-sm font-headline-sm text-on-background">Ayşe Yılmaz</h2>
+<span class="bg-primary-fixed text-on-primary-fixed text-label-sm font-label-sm px-2 py-0.5 rounded-full font-bold">Pro Üye</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span>
+              Ekim 2024'ten beri birlikte
+            </p>
+<div class="flex items-center gap-1.5 mt-2">
+<span class="inline-block w-2 h-2 rounded-full bg-accent-sprout"></span>
+<span class="text-label-sm font-label-sm font-semibold text-tertiary">23 Gün Kesintisiz Seri!</span>
+</div>
+</div>
+</div>
+<!-- Metrics Bento Split -->
+<div class="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-surface-container">
+<div class="bg-surface-container-low/70 rounded-2xl p-3 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Tamamlanan</p>
+<p class="text-headline-sm font-headline-sm text-primary">148 <span class="text-label-sm font-label-sm font-normal text-on-surface-variant">Küçük Tik</span></p>
+</div>
+</div>
+<div class="bg-surface-container-low/70 rounded-2xl p-3 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Büyüme Puanı</p>
+<p class="text-headline-sm font-headline-sm text-tertiary">840 <span class="text-label-sm font-label-sm font-normal text-on-surface-variant">Big Grow</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- Streak Badges Section (Bento Gallery) -->
+<section class="space-y-3">
+<div class="flex items-center justify-between px-1">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-background">Seri ve Başarı Rozetleri</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Her 5 tamamlayışta mikro rozet, kalıcı alışkanlık zaferleri</p>
+</div>
+<span class="bg-surface-container-high px-2.5 py-1 rounded-full text-label-sm font-label-sm text-on-surface-variant font-bold">3 / 4 Seviye</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Badge 1: Gümüş Penguen (21 Gün) -->
+<div class="bg-surface-container-lowest rounded-3xl p-4 custom-app-shadow border border-outline-variant/20 flex flex-col justify-between relative overflow-hidden transition-all duration-200 hover:scale-[1.01] active:scale-98">
+<div class="absolute top-2 right-2 bg-success-light text-tertiary px-2 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check</span> Kazanıldı
+            </div>
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 p-0.5 shadow-sm flex items-center justify-center border border-white mt-1">
+<div class="w-full h-full bg-surface-container-lowest rounded-2xl flex items-center justify-center text-slate-500 font-extrabold text-[22px]">
+                🥈
+              </div>
+</div>
+<div class="mt-3">
+<h4 class="text-label-md font-label-md text-on-background">21 Gün "Gümüş Penguen"</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Alışkanlığın ilk tohumu kök saldı. Muhteşem istikrar!</p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container-low flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Tamamlandı
+              </span>
+<span class="text-on-surface-variant text-[11px]">12 Eki</span>
+</div>
+</div>
+<!-- Badge 2: Altın Penguen (42 Gün) -->
+<div class="bg-surface-container-lowest rounded-3xl p-4 custom-app-shadow border border-outline-variant/20 flex flex-col justify-between relative overflow-hidden transition-all duration-200 hover:scale-[1.01] active:scale-98">
+<div class="absolute top-2 right-2 bg-success-light text-tertiary px-2 py-0.5 rounded-full text-[11px] font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check</span> Kazanıldı
+            </div>
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-200 via-accent-sun to-amber-400 p-0.5 shadow-sm flex items-center justify-center border border-white mt-1">
+<div class="w-full h-full bg-surface-container-lowest rounded-2xl flex items-center justify-center text-streak-amber font-extrabold text-[22px]">
+                🥇
+              </div>
+</div>
+<div class="mt-3">
+<h4 class="text-label-md font-label-md text-on-background">42 Gün "Altın Penguen"</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Zihinsel direnç kırıldı, rutin artık bir yaşam biçimi.</p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container-low flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Tamamlandı
+              </span>
+<span class="text-on-surface-variant text-[11px]">Dün</span>
+</div>
+</div>
+<!-- Badge 3: Elmas Penguen (66 Gün - Locked) -->
+<div class="bg-surface-container-low/60 rounded-3xl p-4 border border-dashed border-outline-variant/60 flex flex-col justify-between relative">
+<div class="flex items-center justify-between mt-1">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center text-outline text-[22px] grayscale opacity-75">
+                💎
+              </div>
+<span class="bg-surface-container-highest text-on-surface-variant text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">lock</span> Kilitli
+              </span>
+</div>
+<div class="mt-3">
+<h4 class="text-label-md font-label-md text-on-background">66 Gün "Elmas Penguen"</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Kalıcı dönüşüm zirvesi. Otomatik refleks haline gelir.</p>
+</div>
+<div class="mt-3 pt-2">
+<div class="flex justify-between text-label-sm font-label-sm mb-1 text-on-surface-variant">
+<span>İlerleme (43/66 gün)</span>
+<span class="font-bold text-primary">%65</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full w-[65%]"></div>
+</div>
+</div>
+</div>
+<!-- Badge 4: Mikro Rozetler (5 Tamamlama Yıldızı) -->
+<div class="bg-surface-container-lowest rounded-3xl p-4 custom-app-shadow border border-outline-variant/20 flex flex-col justify-between">
+<div class="flex items-center justify-between mt-1">
+<div class="w-14 h-14 rounded-2xl bg-primary-fixed flex items-center justify-center text-primary text-[24px]">
+                🌟
+              </div>
+<span class="bg-primary-fixed-dim text-on-primary-fixed font-extrabold text-[12px] px-2.5 py-0.5 rounded-full">x12 Rozet</span>
+</div>
+<div class="mt-3">
+<h4 class="text-label-md font-label-md text-on-background">5 Tamamlama Yıldızı</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Her 5 küçük tikte bir kazanılan mikro kutlama takdisi.</p>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container-low flex items-center gap-1">
+<div class="flex -space-x-1.5 overflow-hidden">
+<span class="inline-block w-6 h-6 rounded-full bg-accent-sun/50 border border-white text-center text-[12px] leading-5">⭐</span>
+<span class="inline-block w-6 h-6 rounded-full bg-cloud-blue/50 border border-white text-center text-[12px] leading-5">⭐</span>
+<span class="inline-block w-6 h-6 rounded-full bg-accent-sprout/50 border border-white text-center text-[12px] leading-5">⭐</span>
+<span class="inline-block w-6 h-6 rounded-full bg-secondary-fixed border border-white text-center text-[11px] font-bold text-primary leading-5">+9</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant ml-auto">Koleksiyonda</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Mindfulness Journal History Section -->
+<section class="bg-surface-container-lowest rounded-3xl p-5 custom-app-shadow border border-outline-variant/20 space-y-3.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">psychology_alt</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-background">Son Farkındalık Notların</h3>
+</div>
+<span class="text-label-sm font-label-sm font-bold text-primary bg-primary-fixed px-2.5 py-0.5 rounded-full">34 Not</span>
+</div>
+<div class="space-y-2.5">
+<!-- Journal Entry 1 -->
+<div class="p-3.5 rounded-2xl bg-surface-container-low/70 border border-surface-container transition-transform duration-150 active:scale-98">
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="font-medium">Dün, 22:30</span>
+<span class="flex items-center gap-1 bg-surface-container-lowest px-2 py-0.5 rounded-full text-label-sm font-label-sm text-on-surface">
+<span>📖</span> Kitap Okuma
+              </span>
+</div>
+<div class="flex items-start gap-2.5 mt-2">
+<span class="text-2xl select-none">😌</span>
+<div>
+<span class="text-label-sm font-label-sm font-bold text-tertiary">Dingin &amp; Huzurlu</span>
+<p class="text-body-md font-body-md text-on-surface mt-0.5 italic">"Gece okumak zihnimi çok yatıştırdı, telefon ekranından uzak kalmak çok iyi geldi."</p>
+</div>
+</div>
+</div>
+<!-- Journal Entry 2 -->
+<div class="p-3.5 rounded-2xl bg-surface-container-low/70 border border-surface-container transition-transform duration-150 active:scale-98">
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span class="font-medium">23 Ekim</span>
+<span class="flex items-center gap-1 bg-surface-container-lowest px-2 py-0.5 rounded-full text-label-sm font-label-sm text-on-surface">
+<span>💧</span> Su İçme
+              </span>
+</div>
+<div class="flex items-start gap-2.5 mt-2">
+<span class="text-2xl select-none">🤩</span>
+<div>
+<span class="text-label-sm font-label-sm font-bold text-primary">Harika Enerji</span>
+<p class="text-body-md font-body-md text-on-surface mt-0.5 italic">"Bugün 2.5L içtim ve baş ağrım tamamen kayboldu, küçük adımlar gerçekten işe yarıyor."</p>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-surface-container-low text-primary rounded-2xl text-label-md font-label-md font-bold flex items-center justify-center gap-1.5 hover:bg-surface-container transition-all duration-150 active:scale-98">
+<span>Tüm Notları Gör</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</section>
+<!-- Notification & Customization Preferences Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-5 custom-app-shadow border border-outline-variant/20 space-y-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-accent-blush/30 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-background">Kişiselleştirme &amp; Bildirimler</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Şefkatli penguen arkadaşının bildirim dili</p>
+</div>
+</div>
+<div class="space-y-3.5 pt-1">
+<!-- Toggle Item 1 -->
+<label class="flex items-start justify-between gap-3 cursor-pointer select-none">
+<div class="space-y-0.5 pr-2">
+<span class="text-label-md font-label-md text-on-surface block">Günlük Motivasyon Cümlesi</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant block">Güne başlarken tatlı ve destekleyici bir selamlama al.</span>
+</div>
+<input checked="" class="mt-1 h-6 w-11 rounded-full border-transparent bg-surface-variant text-primary focus:ring-0 focus:ring-offset-0 cursor-pointer checked:bg-primary transition-colors" type="checkbox"/>
+</label>
+<hr class="border-surface-container"/>
+<!-- Toggle Item 2 -->
+<label class="flex items-start justify-between gap-3 cursor-pointer select-none">
+<div class="space-y-0.5 pr-2">
+<span class="text-label-md font-label-md text-on-surface block">Akıllı Empatik Hatırlatıcı</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant block">"Haydi şimdi bir bardak su iç 💧 / birkaç sayfa kitap oku 📖"</span>
+</div>
+<input checked="" class="mt-1 h-6 w-11 rounded-full border-transparent bg-surface-variant text-primary focus:ring-0 focus:ring-offset-0 cursor-pointer checked:bg-primary transition-colors" type="checkbox"/>
+</label>
+<hr class="border-surface-container"/>
+<!-- Toggle Item 3 -->
+<label class="flex items-start justify-between gap-3 cursor-pointer select-none">
+<div class="space-y-0.5 pr-2">
+<span class="text-label-md font-label-md text-on-surface block">Cesaretlendirici Uyarı (Düşüş Koruması)</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant block">Yapamadığın günlerde suçluluk hissettirmeyen destek sözleri.</span>
+</div>
+<input checked="" class="mt-1 h-6 w-11 rounded-full border-transparent bg-surface-variant text-primary focus:ring-0 focus:ring-offset-0 cursor-pointer checked:bg-primary transition-colors" type="checkbox"/>
+</label>
+<hr class="border-surface-container"/>
+<!-- Time Selector Row -->
+<div class="flex items-center justify-between pt-1">
+<div class="space-y-0.5">
+<span class="text-label-md font-label-md text-on-surface block">Günlük Özet Saati</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant block">Günün değerlendirme anketi vakti</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-xl border border-outline-variant/30 text-on-surface font-semibold text-body-md">
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+<span>21:00</span>
+</div>
+</div>
+</div>
+</section>
+<!-- App Theme & System Row -->
+<section class="bg-surface-container-lowest rounded-3xl p-4 custom-app-shadow border border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[20px]">palette</span>
+</div>
+<div>
+<span class="text-label-md font-label-md text-on-surface block">Görünüm Modu</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant block">Şu anda Açık (Gündüz) Modu aktif</span>
+</div>
+</div>
+<div class="flex items-center bg-surface-container rounded-full p-1 border border-outline-variant/30">
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm bg-surface-container-lowest text-primary font-bold shadow-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">light_mode</span>
+            Açık
+          </button>
+<button class="px-3 py-1 rounded-full text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">dark_mode</span>
+            Koyu
+          </button>
+</div>
+</section>
+<!-- Mascot Encouragement Floating Banner -->
+<div class="bg-gradient-to-r from-primary/10 via-cloud-blue/20 to-accent-sprout/20 rounded-3xl p-4 border border-cloud-blue/40 flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-white p-1 shrink-0 shadow-xs">
+<img class="w-full h-full object-contain" data-alt="Chubby cartoon penguin with happy expression giving thumbs up encouragement, clean isolated transparent vector style, soft pastel blue and rosy pink cheeks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7Js-V73teqLmYcWjL3pjpQWUGxD0VdFdA1gZPfq523L4VlWRATJaIvnCC4j_nFH0CMnLoaSasd6wtUG9r6gmczYmDjvWRWVXte5gs9mUffdPMiW5VXsyyrD7aMN3xYjc79HJhmqa9iwbmx2WJ-kZHvJ1Ssgt3aGcBg2IjZQJLrr_np7b4k3YcxuDbnJVZgqLmiBGoV6kUil00jvHhXXhSFGjZLqjGKrERhTHGA0QYgujyfLpYdHq1"/>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface">
+<span class="font-bold text-primary block text-label-sm font-label-sm">Penguin Bobo diyor ki:</span>
+          "Kendine karşı nazik ol. Her küçük tik, yarının büyük ormanını büyütüyor!"
+        </div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Strict Executable Implementation from JSON) -->
+<!-- Label Texts: ["Anasayfa", "Takvim", "Analiz", "Profil"] -->
+<!-- Active Tab: "Profil" (Exact Match for Screen 6 Intent) -->
+<nav class="fixed bottom-0 left-0 right-0 w-full z-50 flex justify-around items-center px-4 pb-2 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_12px_28px_-4px_rgba(59,130,246,0.28)] rounded-full mx-auto max-w-md mb-4 border border-white/60">
+<!-- Tab 1: Anasayfa (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition-all duration-150 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-label-sm font-label-sm mt-0.5">Anasayfa</span>
+</a>
+<!-- Tab 2: Takvim (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition-all duration-150 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[24px]">calendar_month</span>
+<span class="text-label-sm font-label-sm mt-0.5">Takvim</span>
+</a>
+<!-- Tab 3: Analiz (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 hover:text-primary transition-all duration-150 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[24px]">insights</span>
+<span class="text-label-sm font-label-sm mt-0.5">Analiz</span>
+</a>
+<!-- Tab 4: Profil (Active - Strict Executable Class Injection) -->
+<a class="flex flex-col items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-full px-4 py-1.5 transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-label-sm font-label-sm font-bold mt-0.5">Profil</span>
+</a>
+</nav>
+</body></html>

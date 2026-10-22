@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Small Tick &amp; Big Grow - Anasayfa</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#b6c4ff",
+            "accent-sprout": "#34D399",
+            "success-light": "#D1FAE5",
+            "on-background": "#151c22",
+            "surface-variant": "#dce3eb",
+            "surface-tint": "#005ac2",
+            "primary": "#0058be",
+            "surface-container-low": "#edf4fc",
+            "surface-bright": "#f6faff",
+            "primary-container": "#2170e4",
+            "on-surface-variant": "#424754",
+            "on-tertiary-fixed": "#002113",
+            "tertiary-container": "#00855b",
+            "inverse-on-surface": "#eaf1f9",
+            "cloud-blue": "#93C5FD",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#1d3989",
+            "on-tertiary-container": "#f5fff6",
+            "surface-container-high": "#e2e9f1",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#2a3137",
+            "inverse-primary": "#adc6ff",
+            "on-secondary-fixed-variant": "#264191",
+            "surface-container-highest": "#dce3eb",
+            "error": "#ba1a1a",
+            "accent-orange": "#FB923C",
+            "outline-variant": "#c2c6d6",
+            "accent-blush": "#FDA4AF",
+            "on-surface": "#151c22",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-primary-fixed": "#001a42",
+            "on-tertiary-fixed-variant": "#005236",
+            "on-primary-container": "#fefcff",
+            "on-secondary-fixed": "#00164e",
+            "on-primary-fixed-variant": "#004395",
+            "on-error": "#ffffff",
+            "surface-dim": "#d4dbe3",
+            "tertiary-fixed": "#6ffbbe",
+            "surface": "#f6faff",
+            "secondary-fixed": "#dce1ff",
+            "surface-container": "#e8eff7",
+            "streak-amber": "#F59E0B",
+            "accent-sun": "#FDE047",
+            "primary-fixed": "#d8e2ff",
+            "on-error-container": "#93000a",
+            "outline": "#727785",
+            "primary-fixed-dim": "#adc6ff",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#8fa7fe",
+            "secondary": "#4059aa",
+            "tertiary": "#006947",
+            "background": "#f6faff",
+            "surface-container-lowest": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-lg": "1.5rem",
+            "space-lg": "1.25rem",
+            "space-sm": "0.5rem",
+            "margin-sm": "1rem",
+            "space-xs": "0.25rem",
+            "gutter-sm": "0.75rem",
+            "gutter": "1rem",
+            "space-xl": "1.75rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-2xl": "2.5rem"
+          },
+          "fontFamily": {
+            "label-brand-sub": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-brand-sub": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined[data-weight="fill"] {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-scroll-hidden::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scroll-hidden {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes floatGentle {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-4px) rotate(1deg); }
+    }
+    .animate-float-penguin {
+      animation: floatGentle 3.5s ease-in-out infinite;
+    }
+    @keyframes softPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .animate-soft-pulse {
+      animation: softPulse 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md text-body-md min-h-screen pb-28 selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Mobile Container Wrapper with responsive constraints -->
+<div class="max-w-md mx-auto min-h-screen relative flex flex-col justify-between">
+<!-- Top App Bar (Shared Component Anchor) -->
+<header class="bg-background dark:bg-background flex justify-between items-center w-full px-5 pt-3 pb-2 max-w-md mx-auto sticky top-0 z-30">
+<!-- Leading: Mascot Avatar & Name -->
+<div class="flex items-center space-x-3">
+<div class="relative w-11 h-11 rounded-full p-0.5 bg-gradient-to-tr from-cloud-blue to-accent-sprout shadow-sm cursor-pointer active:scale-95 transition-transform duration-150">
+<img alt="Penguen Maskot Profil Avatarı" class="w-full h-full object-cover rounded-full bg-surface-container-lowest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtVCWqe6ef-YRJvxRbdHW6ETZ2wPQ-trdMp7dOD6ZHalQBY--KV-sF4IUE09OW1S4yFoC7Y8PW3JGKG3M3fIPaZphcC-utbVnjPIqtf9IIOIkGFCgkBehw8PlmhbMYasExrjt2wYBTtqbtwjm2H5D8qYYCCmnPHcGWacER0VgiZIY-hW6qLdXIwxniNUhYkPtw3MMucyakOJXD9NON4-8zdgkH9_idzuu5q8YlZU9He3d7rb09ZbdV"/>
+<span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-accent-sprout border-2 border-surface-container-lowest rounded-full"></span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+            Minik Adımlar 🐧
+          </span>
+<h1 class="font-headline-sm text-headline-sm text-primary tracking-tight">Hoşgeldin Ayşe</h1>
+</div>
+</div>
+<!-- Trailing Controls: Language switch & Notifications with Red Dot badge -->
+<div class="flex items-center space-x-2">
+<div class="bg-surface-container-low px-2 py-1 rounded-full flex items-center border border-outline-variant/40 text-on-surface-variant">
+<button class="font-label-sm text-label-sm font-bold text-primary px-1.5 py-0.5 rounded-full bg-surface-container-lowest shadow-xs">TR</button>
+<button class="font-label-sm text-label-sm text-outline px-1.5 py-0.5 hover:text-primary transition-colors">EN</button>
+</div>
+<button aria-label="Bildirimler" class="relative w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-2 right-2 w-2.5 h-2.5 bg-error rounded-full ring-2 ring-background animate-pulse"></span>
+</button>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="px-5 pt-2 space-y-5 flex-1">
+<!-- Motivational Hero Banner (Bento-style with Mascot & Progress Meter) -->
+<section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-primary-fixed/30 p-5 shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06),0_4px_6px_-2px_rgba(30,58,138,0.03)] border border-outline-variant/30">
+<!-- Floating atmospheric pastel glow blobs -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-accent-sun/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-8 -left-8 w-28 h-28 bg-cloud-blue/25 rounded-full blur-xl pointer-events-none"></div>
+<div class="relative z-10 flex items-start justify-between gap-3">
+<div class="space-y-1.5 flex-1">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-success-light/80 text-tertiary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-sm" data-weight="fill">spa</span>
+              Günün Motivasyonu
+            </div>
+<h2 class="font-headline-md text-headline-md text-on-background tracking-tight">
+              Bugün harika bir gün! ✨
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Küçük bir tik at, büyük büyümeni keyifle izle.
+            </p>
+</div>
+<!-- Hero Mascot Graphic snippet -->
+<div class="w-16 h-16 shrink-0 relative flex items-center justify-center animate-float-penguin">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cloud-blue to-primary/20 flex items-center justify-center shadow-inner">
+<img alt="Mascot Mascot Hero" class="w-12 h-12 object-contain drop-shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtVCWqe6ef-YRJvxRbdHW6ETZ2wPQ-trdMp7dOD6ZHalQBY--KV-sF4IUE09OW1S4yFoC7Y8PW3JGKG3M3fIPaZphcC-utbVnjPIqtf9IIOIkGFCgkBehw8PlmhbMYasExrjt2wYBTtqbtwjm2H5D8qYYCCmnPHcGWacER0VgiZIY-hW6qLdXIwxniNUhYkPtw3MMucyakOJXD9NON4-8zdgkH9_idzuu5q8YlZU9He3d7rb09ZbdV"/>
+</div>
+<span class="absolute -top-1 -right-1 text-base">🌱</span>
+</div>
+</div>
+<!-- Daily Progress Bar (3/5 tamamlandı, %60) -->
+<div class="mt-4 pt-3.5 border-t border-outline-variant/30">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-base" data-weight="fill">task_alt</span>
+              Günlük İlerleme
+            </span>
+<span class="font-label-md text-label-md text-primary font-bold">
+              3/5 <span class="text-on-surface-variant font-normal">(%60)</span>
+</span>
+</div>
+<!-- Outer track -->
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden p-0.5 flex items-center">
+<div class="h-full bg-gradient-to-r from-primary via-primary-container to-accent-sprout rounded-full transition-all duration-700 ease-out shadow-sm" style="width: 60%"></div>
+</div>
+<div class="flex justify-between items-center mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span>2 alışkanlık kaldı</span>
+<span class="text-accent-orange font-semibold flex items-center gap-0.5">
+              🔥 14 gün serisi aktif
+            </span>
+</div>
+</div>
+</section>
+<!-- Habit List Header with '+ Yeni Alışkanlık Ekle' Pill -->
+<div class="flex items-center justify-between pt-1">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Bugünkü Alışkanlıkların</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pazartesi, 24 Ekim</p>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-primary-fixed text-on-primary-fixed hover:bg-primary hover:text-on-primary transition-all duration-200 active:scale-95 shadow-sm font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Yeni Alışkanlık</span>
+</button>
+</div>
+<!-- Habit List (Tactile Cards) -->
+<div class="space-y-3">
+<!-- 1. 2 Litre Su İç (Checked State: Green mint gradient tick, strike-through, soft mint background) -->
+<article class="flex items-center justify-between p-3.5 rounded-2xl bg-surface-container-lowest border border-accent-sprout/40 shadow-[0_4px_14px_rgba(52,211,153,0.12)] transition-all">
+<div class="flex items-center gap-3 min-w-0">
+<!-- 44px circular pastel category badge -->
+<div class="w-11 h-11 rounded-2xl bg-sky-100/70 text-primary flex items-center justify-center text-xl shrink-0 shadow-inner">
+              💧
+            </div>
+<div class="truncate">
+<h3 class="font-body-lg text-body-lg text-on-surface-variant line-through opacity-60 truncate">
+                2 Litre Su İç
+              </h3>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-streak-amber font-semibold flex items-center gap-0.5">
+                  🔥 14 Günlük Seri
+                </span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Her gün</span>
+</div>
+</div>
+</div>
+<!-- Completed Tick Target Trigger -->
+<button aria-label="Alışkanlık Tamamlandı" class="w-11 h-11 rounded-full bg-gradient-to-tr from-tertiary-container to-accent-sprout flex items-center justify-center text-on-tertiary shadow-[0_4px_12px_rgba(52,211,153,0.35)] shrink-0 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[24px] font-bold" data-weight="fill">check</span>
+</button>
+</article>
+<!-- 2. 15 Sayfa Kitap Oku (Checked with micro-confetti badge trigger) -->
+<article class="relative overflow-hidden flex items-center justify-between p-3.5 rounded-2xl bg-surface-container-lowest border border-accent-sprout/30 shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06),0_4px_6px_-2px_rgba(30,58,138,0.03)] transition-all">
+<!-- Confetti spark decoration overlay -->
+<span class="absolute top-1.5 right-14 text-xs animate-bounce select-none">🎉</span>
+<span class="absolute bottom-2 right-16 text-[10px] text-accent-orange select-none">✨</span>
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-11 h-11 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl shrink-0 shadow-inner">
+              📖
+            </div>
+<div class="truncate">
+<h3 class="font-body-lg text-body-lg text-on-surface-variant line-through opacity-60 truncate">
+                15 Sayfa Kitap Oku
+              </h3>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-streak-amber font-semibold flex items-center gap-0.5">
+                  🔥 7 Günlük Seri
+                </span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Her gün</span>
+</div>
+</div>
+</div>
+<!-- Completed Tick Target Trigger -->
+<button aria-label="Alışkanlık Tamamlandı" class="w-11 h-11 rounded-full bg-gradient-to-tr from-tertiary-container to-accent-sprout flex items-center justify-center text-on-tertiary shadow-[0_4px_12px_rgba(52,211,153,0.35)] shrink-0 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[24px] font-bold" data-weight="fill">check</span>
+</button>
+</article>
+<!-- 3. Sabah Yürüyüşü (Pending State: Round border ready to tick) -->
+<article class="flex items-center justify-between p-3.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06)] hover:border-cloud-blue transition-all">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-11 h-11 rounded-2xl bg-emerald-50 text-accent-sprout flex items-center justify-center text-xl shrink-0 shadow-inner">
+              🏃
+            </div>
+<div class="truncate">
+<h3 class="font-body-lg text-body-lg text-on-surface truncate">
+                Sabah Yürüyüşü (20 dk)
+              </h3>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-streak-amber font-semibold flex items-center gap-0.5">
+                  🔥 4 Günlük Seri
+                </span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sabah</span>
+</div>
+</div>
+</div>
+<!-- Inactive Tick Target -->
+<button aria-label="Alışkanlığı Tamamla" class="w-11 h-11 rounded-full border-2 border-cloud-blue hover:border-primary hover:bg-surface-container-low flex items-center justify-center text-cloud-blue hover:text-primary transition-all duration-150 active:scale-95 shrink-0" onclick="document.getElementById('mindfulness-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+</article>
+<!-- 4. 5 Dk Meditasyon (Pending State with Milestone Badge) -->
+<article class="flex items-center justify-between p-3.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06)] hover:border-cloud-blue transition-all">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-11 h-11 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl shrink-0 shadow-inner">
+              🧘
+            </div>
+<div class="truncate">
+<div class="flex items-center gap-2">
+<h3 class="font-body-lg text-body-lg text-on-surface truncate">
+                  5 Dk Meditasyon
+                </h3>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-secondary font-semibold flex items-center gap-1 bg-secondary-fixed/50 px-2 py-0.5 rounded-full">
+                  🔥 21 Gün (Gümüş Penguen!)
+                </span>
+</div>
+</div>
+</div>
+<!-- Inactive Tick Target -->
+<button aria-label="Alışkanlığı Tamamla" class="w-11 h-11 rounded-full border-2 border-cloud-blue hover:border-primary hover:bg-surface-container-low flex items-center justify-center text-cloud-blue hover:text-primary transition-all duration-150 active:scale-95 shrink-0" onclick="document.getElementById('mindfulness-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+</article>
+<!-- 5. Günlük Yazımı (Pending State) -->
+<article class="flex items-center justify-between p-3.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/40 shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06)] hover:border-cloud-blue transition-all">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-11 h-11 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center text-xl shrink-0 shadow-inner">
+              ✍️
+            </div>
+<div class="truncate">
+<h3 class="font-body-lg text-body-lg text-on-surface truncate">
+                Günlük Yazımı
+              </h3>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm text-streak-amber font-semibold flex items-center gap-0.5">
+                  🔥 2 Günlük Seri
+                </span>
+<span class="text-outline text-xs">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Akşam</span>
+</div>
+</div>
+</div>
+<!-- Inactive Tick Target -->
+<button aria-label="Alışkanlığı Tamamla" class="w-11 h-11 rounded-full border-2 border-cloud-blue hover:border-primary hover:bg-surface-container-low flex items-center justify-center text-cloud-blue hover:text-primary transition-all duration-150 active:scale-95 shrink-0" onclick="document.getElementById('mindfulness-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</button>
+</article>
+</div>
+<!-- Quick Reflection Trigger Card (Visual Cue for Mindfulness Modal) -->
+<div class="rounded-2xl p-4 bg-gradient-to-r from-secondary-fixed/30 to-primary-fixed/20 border border-outline-variant/30 flex items-center justify-between cursor-pointer active:scale-[0.98] transition-transform" onclick="document.getElementById('mindfulness-modal').classList.remove('hidden')">
+<div class="flex items-center gap-3">
+<span class="text-2xl animate-soft-pulse">💭</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Farkındalık Notu Ekle</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tamamladığın adımların hissini kaydet</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-xl">arrow_upward</span>
+</div>
+</main>
+<!-- Bottom Sheet Modal (Alttan Açılan Duygu & Farkındalık Notu Modalı overlay) -->
+<div class="fixed inset-0 z-50 flex items-end justify-center bg-inverse-surface/40 backdrop-blur-sm transition-opacity duration-300" id="mindfulness-modal">
+<!-- Modal Inner Container -->
+<div class="w-full max-w-md bg-surface-container-lowest rounded-t-3xl shadow-[0_20px_40px_-12px_rgba(15,23,42,0.22)] p-5 border-t border-outline-variant/40 animate-in slide-in-from-bottom duration-250">
+<!-- Grabber Pill -->
+<div class="w-10 h-1 bg-outline-variant rounded-full mx-auto mb-4 cursor-pointer" onclick="document.getElementById('mindfulness-modal').classList.add('hidden')"></div>
+<!-- Header with mascot & Close button -->
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-2xl bg-success-light flex items-center justify-center text-xl shrink-0 shadow-sm">
+              🐧
+            </div>
+<div>
+<span class="font-label-sm text-label-sm font-semibold text-tertiary uppercase tracking-wider">Tebrikler Ayşe!</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">
+                Bu adımı tamamlamak sana nasıl hissettirdi?
+              </h3>
+</div>
+</div>
+<button aria-label="Kapat" class="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:text-on-surface hover:bg-surface-container transition-colors" onclick="document.getElementById('mindfulness-modal').classList.add('hidden')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- 5 Cute Large Emoji Mood Pills -->
+<div class="grid grid-cols-5 gap-2 mb-4">
+<!-- 1: 🤩 Harika (Selected State with glow) -->
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-primary-fixed border-2 border-primary text-on-primary-fixed shadow-[0_4px_16px_rgba(59,130,246,0.25)] transition-all active:scale-95" type="button">
+<span class="text-3xl filter drop-shadow">🤩</span>
+<span class="font-label-sm text-label-sm font-bold mt-1 text-primary">Harika</span>
+</button>
+<!-- 2: 😊 Mutlu -->
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-surface-container-low border border-transparent hover:border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all active:scale-95" type="button">
+<span class="text-3xl">😊</span>
+<span class="font-label-sm text-label-sm mt-1">Mutlu</span>
+</button>
+<!-- 3: 😌 Dingin -->
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-surface-container-low border border-transparent hover:border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all active:scale-95" type="button">
+<span class="text-3xl">😌</span>
+<span class="font-label-sm text-label-sm mt-1">Dingin</span>
+</button>
+<!-- 4: 🥱 Yorgun -->
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-surface-container-low border border-transparent hover:border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all active:scale-95" type="button">
+<span class="text-3xl">🥱</span>
+<span class="font-label-sm text-label-sm mt-1">Yorgun</span>
+</button>
+<!-- 5: 🤯 Zorlayıcı -->
+<button class="flex flex-col items-center justify-center py-2.5 px-1 rounded-2xl bg-surface-container-low border border-transparent hover:border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all active:scale-95" type="button">
+<span class="text-3xl">🤯</span>
+<span class="font-label-sm text-label-sm mt-1">Zorlu</span>
+</button>
+</div>
+<!-- Reflection Input -->
+<div class="mb-4">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1.5 font-medium" for="reflection-notes">
+            Kısa Bir Düşünce Bırak (İsteğe Bağlı)
+          </label>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low border border-outline-variant/60 rounded-2xl p-3 text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" id="reflection-notes" placeholder="Bana neler düşündürdü / ne fark ettim? (Örn: Su içtikçe enerjim yükseldi...)" rows="3"></textarea>
+<span class="material-symbols-outlined absolute bottom-3 right-3 text-outline text-lg pointer-events-none">edit_note</span>
+</div>
+</div>
+<!-- CTA Button (Gradient) -->
+<button class="w-full h-[52px] rounded-2xl bg-gradient-to-r from-primary via-primary-container to-accent-sprout text-on-primary font-headline-sm text-headline-sm font-bold flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(59,130,246,0.35)] active:scale-[0.98] transition-transform" onclick="document.getElementById('mindfulness-modal').classList.add('hidden')">
+<span>Notu Kaydet &amp; Büyümeye Devam Et</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Shared Component Anchor) -->
+<!-- Destination 4: Anasayfa (Active), Takvim, Analiz, Profil -->
+<nav class="fixed bottom-0 left-0 right-0 w-full z-40 flex justify-around items-center px-4 pb-2">
+<div class="w-full max-w-md mx-auto bg-surface-container-lowest/90 dark:bg-inverse-surface/90 backdrop-blur-md rounded-full shadow-[0_12px_28px_-4px_rgba(59,130,246,0.28)] dark:shadow-none flex justify-around items-center px-2 py-2 border border-outline-variant/20">
+<!-- Tab 1: Anasayfa (ACTIVE ITEM based on JSON and prompt intent) -->
+<a class="flex flex-col items-center justify-center bg-primary-fixed dark:bg-primary text-on-primary-fixed dark:text-on-primary rounded-full px-4 py-1.5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[22px]" data-weight="fill">home</span>
+<span class="text-label-sm font-label-sm font-bold mt-0.5">Anasayfa</span>
+</a>
+<!-- Tab 2: Takvim (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">calendar_month</span>
+<span class="text-label-sm font-label-sm mt-0.5">Takvim</span>
+</a>
+<!-- Tab 3: Analiz (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">insights</span>
+<span class="text-label-sm font-label-sm mt-0.5">Analiz</span>
+</a>
+<!-- Tab 4: Profil (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="text-label-sm font-label-sm mt-0.5">Profil</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Small Tick &amp; Big Grow - Takvim &amp; Planlama</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed-dim": "#b6c4ff",
+            "accent-sprout": "#34D399",
+            "success-light": "#D1FAE5",
+            "on-background": "#151c22",
+            "surface-variant": "#dce3eb",
+            "surface-tint": "#005ac2",
+            "primary": "#0058be",
+            "surface-container-low": "#edf4fc",
+            "surface-bright": "#f6faff",
+            "primary-container": "#2170e4",
+            "on-surface-variant": "#424754",
+            "on-tertiary-fixed": "#002113",
+            "tertiary-container": "#00855b",
+            "inverse-on-surface": "#eaf1f9",
+            "cloud-blue": "#93C5FD",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#1d3989",
+            "on-tertiary-container": "#f5fff6",
+            "surface-container-high": "#e2e9f1",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#2a3137",
+            "inverse-primary": "#adc6ff",
+            "on-secondary-fixed-variant": "#264191",
+            "surface-container-highest": "#dce3eb",
+            "error": "#ba1a1a",
+            "accent-orange": "#FB923C",
+            "outline-variant": "#c2c6d6",
+            "accent-blush": "#FDA4AF",
+            "on-surface": "#151c22",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-primary-fixed": "#001a42",
+            "on-tertiary-fixed-variant": "#005236",
+            "on-primary-container": "#fefcff",
+            "on-secondary-fixed": "#00164e",
+            "on-primary-fixed-variant": "#004395",
+            "on-error": "#ffffff",
+            "surface-dim": "#d4dbe3",
+            "tertiary-fixed": "#6ffbbe",
+            "surface": "#f6faff",
+            "secondary-fixed": "#dce1ff",
+            "surface-container": "#e8eff7",
+            "streak-amber": "#F59E0B",
+            "accent-sun": "#FDE047",
+            "primary-fixed": "#d8e2ff",
+            "on-error-container": "#93000a",
+            "outline": "#727785",
+            "primary-fixed-dim": "#adc6ff",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#8fa7fe",
+            "secondary": "#4059aa",
+            "tertiary": "#006947",
+            "background": "#f6faff",
+            "surface-container-lowest": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-lg": "1.5rem",
+            "space-lg": "1.25rem",
+            "space-sm": "0.5rem",
+            "margin-sm": "1rem",
+            "space-xs": "0.25rem",
+            "gutter-sm": "0.75rem",
+            "gutter": "1rem",
+            "space-xl": "1.75rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-2xl": "2.5rem"
+          },
+          "fontFamily": {
+            "label-brand-sub": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-brand-sub": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+            "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom delicate scrollbar hide for chip horizontal scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen selection:bg-cloud-blue selection:text-primary pb-32">
+<!-- Main Container constrained for mobile/tablet ergonomic view -->
+<div class="max-w-md mx-auto min-h-screen flex flex-col relative">
+<!-- TopAppBar Shared Component Anchor -->
+<header class="bg-background dark:bg-background text-primary dark:text-inverse-primary flex justify-between items-center w-full px-5 pt-4 pb-2 max-w-md mx-auto sticky top-0 z-40">
+<div class="flex items-center gap-3">
+<!-- Penguin Mascot Avatar -->
+<div class="relative w-11 h-11 rounded-full bg-surface-container-lowest p-1 shadow-sm ring-2 ring-primary-fixed flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="An adorable round smiling penguin mascot with glowing pink blush cheeks, cozy cartoon style, light pastel sky-blue backdrop, high detail digital character art for a habit tracking application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqaIbJhVK_NUvL-ZtCVAzsf6bGSD2zWa-DZsSsqLbrd36Gcb6J62eBBUe3mKDos4cYRzTrWiNyhuR0L93m8K_0kZiCu2TZ-jHT4xMl6EhHr_Z1d_0dew0JUIwLaS2DsPse4b0a3S8zFwZymzcYXoCSpiZuN5JAF8C0u-MgjDifke411scr1LKrvmRXldvC3r9R3_Gk2qhBB5YX0bhOrFcNV-LrDbAtuFHYhS4GIPFCIfG6lWhbPRfw"/>
+</div>
+<div>
+<span class="text-label-brand-sub font-label-brand-sub text-on-surface-variant block leading-tight">Takvim &amp; Planlama</span>
+<h1 class="text-headline-sm font-headline-sm font-extrabold text-primary tracking-tight">Hoşgeldin Ayşe</h1>
+</div>
+</div>
+<button aria-label="Bildirimler" class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150 shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="flex-1 px-5 pt-2 space-y-5">
+<!-- Range Filter Pills -->
+<section class="overflow-x-auto no-scrollbar -mx-5 px-5 py-1">
+<div class="flex items-center gap-2 w-max">
+<button class="px-4 py-2 rounded-xl bg-surface-container-lowest text-on-surface-variant text-label-md font-label-md border border-outline-variant/40 hover:bg-surface-container active:scale-95 transition-all">
+            Haftalık
+          </button>
+<button class="px-4 py-2 rounded-xl bg-surface-container-lowest text-on-surface-variant text-label-md font-label-md border border-outline-variant/40 hover:bg-surface-container active:scale-95 transition-all">
+            2 Haftalık
+          </button>
+<!-- Active Highlighted Chip -->
+<button class="px-4 py-2 rounded-xl bg-primary text-on-primary text-label-md font-label-md shadow-[0_8px_20px_rgba(59,130,246,0.30)] active:scale-95 transition-all flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-sprout"></span>
+            Aylık
+          </button>
+<button class="px-4 py-2 rounded-xl bg-surface-container-lowest text-on-surface-variant text-label-md font-label-md border border-outline-variant/40 hover:bg-surface-container active:scale-95 transition-all">
+            2 Aylık
+          </button>
+<button class="px-4 py-2 rounded-xl bg-surface-container-lowest text-on-surface-variant text-label-md font-label-md border border-outline-variant/40 hover:bg-surface-container active:scale-95 transition-all">
+            3 Aylık
+          </button>
+</div>
+</section>
+<!-- Calendar Bento Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-5 shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06),0_4px_6px_-2px_rgba(30,58,138,0.03)] border border-outline-variant/30">
+<!-- Month Navigation Bar -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="p-2 rounded-xl bg-primary-fixed/40 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Ekim 2024</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Bu ay %88 tamamlama oranı</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Önceki ay" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container text-on-surface-variant active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button aria-label="Sonraki ay" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container text-on-surface-variant active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Days of Week Header -->
+<div class="grid grid-cols-7 gap-1 text-center mb-2">
+<span class="text-label-sm font-label-sm text-on-surface-variant/70">Pzt</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70">Sal</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70">Çar</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70">Per</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70">Cum</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70">Cmt</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant/70">Paz</span>
+</div>
+<!-- Interactive Calendar Grid -->
+<div class="grid grid-cols-7 gap-1.5 text-center">
+<!-- Prior month trailing days -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl opacity-25">
+<span class="text-body-sm font-body-sm">30</span>
+<div class="h-1.5 w-1.5 mt-1"></div>
+</div>
+<!-- Day 1 to 20 -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">1</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-cloud-blue"></span>
+<span class="w-1 h-1 rounded-full bg-accent-sprout"></span>
+</div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">2</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-accent-sun"></span>
+</div>
+</div>
+<!-- 3: 100% Star day -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl bg-success-light/40 hover:bg-success-light/70 transition-colors">
+<span class="text-body-sm font-body-sm font-bold text-tertiary">3</span>
+<span class="material-symbols-outlined text-streak-amber text-xs mt-0.5" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">4</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-cloud-blue"></span>
+<span class="w-1 h-1 rounded-full bg-accent-orange"></span>
+</div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">5</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-accent-sprout"></span>
+</div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">6</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-cloud-blue"></span>
+</div>
+</div>
+<!-- Week 2 -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">7</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-accent-sprout"></span>
+<span class="w-1 h-1 rounded-full bg-accent-sun"></span>
+</div>
+</div>
+<!-- 8: Sprout badge -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl bg-success-light/40 hover:bg-success-light/70 transition-colors">
+<span class="text-body-sm font-body-sm font-bold text-tertiary">8</span>
+<span class="material-symbols-outlined text-accent-sprout text-xs mt-0.5" data-icon="eco" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">9</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-cloud-blue"></span>
+<span class="w-1 h-1 rounded-full bg-accent-sprout"></span>
+</div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">10</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-accent-orange"></span>
+</div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">11</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-cloud-blue"></span>
+</div>
+</div>
+<!-- 12: 100% Star day -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl bg-success-light/40 hover:bg-success-light/70 transition-colors">
+<span class="text-body-sm font-body-sm font-bold text-tertiary">12</span>
+<span class="material-symbols-outlined text-streak-amber text-xs mt-0.5" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">13</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-accent-sun"></span>
+</div>
+</div>
+<!-- Week 3 -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">14</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-cloud-blue"></span></div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">15</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-accent-sprout"></span></div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">16</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-accent-sun"></span></div>
+</div>
+<!-- 17: Eco Sprout -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl bg-success-light/40 hover:bg-success-light/70 transition-colors">
+<span class="text-body-sm font-body-sm font-bold text-tertiary">17</span>
+<span class="material-symbols-outlined text-accent-sprout text-xs mt-0.5" data-icon="eco" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">18</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-cloud-blue"></span><span class="w-1 h-1 rounded-full bg-accent-orange"></span></div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">19</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-cloud-blue"></span></div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">20</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-accent-sun"></span></div>
+</div>
+<!-- Week 4 -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">21</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-accent-sprout"></span></div>
+</div>
+<!-- 22: Star -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl bg-success-light/40 hover:bg-success-light/70 transition-colors">
+<span class="text-body-sm font-body-sm font-bold text-tertiary">22</span>
+<span class="material-symbols-outlined text-streak-amber text-xs mt-0.5" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">23</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-cloud-blue"></span><span class="w-1 h-1 rounded-full bg-accent-sprout"></span></div>
+</div>
+<!-- SELECTED DAY: 24 Ekim Perşembe -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl bg-primary text-on-primary ring-4 ring-primary-fixed shadow-md active:scale-95 transition-all">
+<span class="text-body-sm font-body-sm font-extrabold text-on-primary">24</span>
+<div class="flex gap-0.5 mt-1">
+<span class="w-1 h-1 rounded-full bg-accent-sprout"></span>
+<span class="w-1 h-1 rounded-full bg-accent-sun"></span>
+<span class="w-1 h-1 rounded-full bg-cloud-blue"></span>
+</div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">25</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-outline-variant"></span></div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">26</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-outline-variant"></span></div>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl hover:bg-surface-container-low transition-colors">
+<span class="text-body-sm font-body-sm">27</span>
+<div class="flex gap-0.5 mt-1"><span class="w-1 h-1 rounded-full bg-outline-variant"></span></div>
+</div>
+<!-- Week 5 -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl opacity-60">
+<span class="text-body-sm font-body-sm">28</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl opacity-60">
+<span class="text-body-sm font-body-sm">29</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl opacity-60">
+<span class="text-body-sm font-body-sm">30</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl opacity-60">
+<span class="text-body-sm font-body-sm">31</span>
+</div>
+<!-- Next month filler -->
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl opacity-25">
+<span class="text-body-sm font-body-sm">1</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl opacity-25">
+<span class="text-body-sm font-body-sm">2</span>
+</div>
+<div class="py-2 flex flex-col items-center justify-center rounded-2xl opacity-25">
+<span class="text-body-sm font-body-sm">3</span>
+</div>
+</div>
+<!-- Legend Bar -->
+<div class="mt-4 pt-3 border-t border-outline-variant/30 flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-streak-amber text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>%100 Başarı</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-accent-sprout"></span>
+<span>Tamamlandı</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<span>Bekliyor</span>
+</div>
+</div>
+</section>
+<!-- Selected Day Detail Card -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-primary text-label-sm font-label-sm font-bold">Bugün</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">24 Ekim Perşembe</h2>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">3 / 4 Alışkanlık tamamlandı (Küçük bir adım kaldı!)</p>
+</div>
+<span class="text-headline-md font-headline-md text-primary font-extrabold">%75</span>
+</div>
+<!-- Color-Coded Habit List for Today -->
+<div class="space-y-2.5">
+<!-- Habit 1: Su İçme (Pastel blue badge - Completed) -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06),0_4px_6px_-2px_rgba(30,58,138,0.03)] border border-accent-sprout/40 active:scale-[0.98] transition-all">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-2xl bg-primary-fixed/60 flex items-center justify-center text-xl shadow-inner">
+                💧
+              </div>
+<div>
+<h3 class="text-body-lg font-body-lg text-on-surface line-through opacity-70">Su İçme</h3>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span>🔥 14 Günlük Seri</span>
+<span>•</span>
+<span>2.5 Litre</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm font-bold text-tertiary">Tamamlandı</span>
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-tertiary to-accent-sprout text-on-tertiary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+</div>
+</div>
+</div>
+<!-- Habit 2: Kitap Okuma (Pastel yellow badge - Completed) -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06),0_4px_6px_-2px_rgba(30,58,138,0.03)] border border-accent-sprout/40 active:scale-[0.98] transition-all">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-2xl bg-accent-sun/30 flex items-center justify-center text-xl shadow-inner">
+                📖
+              </div>
+<div>
+<h3 class="text-body-lg font-body-lg text-on-surface line-through opacity-70">Kitap Okuma</h3>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span>🔥 9 Günlük Seri</span>
+<span>•</span>
+<span>20 Sayfa</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm font-bold text-tertiary">Tamamlandı</span>
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-tertiary to-accent-sprout text-on-tertiary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+</div>
+</div>
+</div>
+<!-- Habit 3: Yürüyüş (Pastel emerald badge - Pending) -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06),0_4px_6px_-2px_rgba(30,58,138,0.03)] border border-outline-variant/40 active:scale-[0.98] transition-all hover:border-cloud-blue">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-2xl bg-success-light flex items-center justify-center text-xl shadow-inner">
+                🏃
+              </div>
+<div>
+<h3 class="text-body-lg font-body-lg text-on-surface">Yürüyüş</h3>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span>🔥 5 Günlük Seri</span>
+<span>•</span>
+<span>6.000 Adım</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm font-semibold text-on-surface-variant">Bekliyor</span>
+<button aria-label="Alışkanlığı tamamla" class="w-8 h-8 rounded-full border-2 border-cloud-blue hover:bg-cloud-blue/20 flex items-center justify-center transition-colors active:scale-90">
+<span class="w-2 h-2 rounded-full bg-cloud-blue"></span>
+</button>
+</div>
+</div>
+<!-- Habit 4: Meditasyon (Pastel purple badge - Completed) -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 flex items-center justify-between shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06),0_4px_6px_-2px_rgba(30,58,138,0.03)] border border-accent-sprout/40 active:scale-[0.98] transition-all">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-2xl bg-secondary-fixed/50 flex items-center justify-center text-xl shadow-inner">
+                🧘
+              </div>
+<div>
+<h3 class="text-body-lg font-body-lg text-on-surface line-through opacity-70">Meditasyon</h3>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span>🔥 12 Günlük Seri</span>
+<span>•</span>
+<span>10 Dakika</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-sm font-label-sm font-bold text-tertiary">Tamamlandı</span>
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-tertiary to-accent-sprout text-on-tertiary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="check">check</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Tüm Alışkanlıkları Yönet -->
+<section class="space-y-3 pt-2">
+<div class="flex items-center justify-between">
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Tüm Alışkanlıkları Yönet</h2>
+<button class="text-label-md font-label-md text-primary hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+            Yeni Ekle
+          </button>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl p-3 divide-y divide-outline-variant/20 shadow-[0_10px_25px_-5px_rgba(30,58,138,0.06),0_4px_6px_-2px_rgba(30,58,138,0.03)] border border-outline-variant/30">
+<!-- Habit Manage Row 1 -->
+<div class="py-3 px-2 flex items-center justify-between hover:bg-surface-container-low/50 rounded-2xl transition-colors">
+<div class="flex items-center gap-3">
+<span class="text-2xl">💧</span>
+<div>
+<h4 class="text-body-lg font-body-lg text-on-surface">Su İçme</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Her gün • Günlük 2.5L</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-xl text-primary hover:bg-primary-fixed/40 transition-colors flex items-center gap-1 text-label-sm font-label-sm active:scale-95" title="Düzenle">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span>Düzenle</span>
+</button>
+<button class="p-2 rounded-xl text-error hover:bg-error-container/40 transition-colors flex items-center gap-1 text-label-sm font-label-sm active:scale-95" title="Sil">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span>Sil</span>
+</button>
+</div>
+</div>
+<!-- Habit Manage Row 2 -->
+<div class="py-3 px-2 flex items-center justify-between hover:bg-surface-container-low/50 rounded-2xl transition-colors">
+<div class="flex items-center gap-3">
+<span class="text-2xl">📖</span>
+<div>
+<h4 class="text-body-lg font-body-lg text-on-surface">Kitap Okuma</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Haftada 5 gün • 20 Sayfa</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-xl text-primary hover:bg-primary-fixed/40 transition-colors flex items-center gap-1 text-label-sm font-label-sm active:scale-95" title="Düzenle">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span>Düzenle</span>
+</button>
+<button class="p-2 rounded-xl text-error hover:bg-error-container/40 transition-colors flex items-center gap-1 text-label-sm font-label-sm active:scale-95" title="Sil">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span>Sil</span>
+</button>
+</div>
+</div>
+<!-- Habit Manage Row 3 -->
+<div class="py-3 px-2 flex items-center justify-between hover:bg-surface-container-low/50 rounded-2xl transition-colors">
+<div class="flex items-center gap-3">
+<span class="text-2xl">🏃</span>
+<div>
+<h4 class="text-body-lg font-body-lg text-on-surface">Yürüyüş</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Her gün • 6.000 Adım</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-xl text-primary hover:bg-primary-fixed/40 transition-colors flex items-center gap-1 text-label-sm font-label-sm active:scale-95" title="Düzenle">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span>Düzenle</span>
+</button>
+<button class="p-2 rounded-xl text-error hover:bg-error-container/40 transition-colors flex items-center gap-1 text-label-sm font-label-sm active:scale-95" title="Sil">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span>Sil</span>
+</button>
+</div>
+</div>
+<!-- Habit Manage Row 4 -->
+<div class="py-3 px-2 flex items-center justify-between hover:bg-surface-container-low/50 rounded-2xl transition-colors">
+<div class="flex items-center gap-3">
+<span class="text-2xl">🧘</span>
+<div>
+<h4 class="text-body-lg font-body-lg text-on-surface">Meditasyon</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Haftada 6 gün • 10 Dakika</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-xl text-primary hover:bg-primary-fixed/40 transition-colors flex items-center gap-1 text-label-sm font-label-sm active:scale-95" title="Düzenle">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+<span>Düzenle</span>
+</button>
+<button class="p-2 rounded-xl text-error hover:bg-error-container/40 transition-colors flex items-center gap-1 text-label-sm font-label-sm active:scale-95" title="Sil">
+<span class="material-symbols-outlined text-base" data-icon="delete">delete</span>
+<span>Sil</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Supportive Mascot Encouragement Card -->
+<section class="bg-gradient-to-r from-primary-fixed/50 via-surface-container-low to-success-light/40 rounded-3xl p-4 flex items-center gap-4 border border-cloud-blue/40">
+<div class="w-14 h-14 shrink-0 rounded-2xl bg-surface-container-lowest p-1 shadow-sm flex items-center justify-center">
+<img class="w-full h-full object-contain rounded-xl" data-alt="A close-up smiling cheerful baby penguin with rosy pink cheeks holding a small green leaf sprout, clean modern 3D vector illustration style with pastel colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhlM8ETs1EKhLQm-JgjOWI8zX3Xt32U6FAEUcH5YkjH2ZGqrrXDA0CLyTl9OdlY7iJG__TuYWQ42o52Gty-7kCUubDfA7ctPnqD6imfrLKh1oUCvNLDNnhOiLJ_V4Tp1oCHUHmznhcwwFtK5Koa8sVM_53nt8Bml9IrAc8A4kHCKIDhtjZCGoSOdNZthSFAwkbZpbp1dQWOam8qAF7BrBPPp-G50JiDM00Mf7Rn1kOY3_6ao9rvAFR"/>
+</div>
+<div class="flex-1">
+<h4 class="text-body-lg font-body-lg text-primary font-bold">Harika Gidiyorsun!</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Ekim ayında 18 gün seriyi korudun. Küçük bir yürüyüşle bugünü de yıldızla taçlandırabilirsin!</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Shared Component -->
+<!-- Destination count: 4 | Exact match for current screen is 'Takvim' which is active -->
+<nav class="fixed bottom-0 left-0 right-0 w-full z-50 flex justify-around items-center px-4 pb-2 bg-surface-container-lowest/90 dark:bg-inverse-surface/90 backdrop-blur-md shadow-[0_12px_28px_-4px_rgba(59,130,246,0.28)] dark:shadow-none">
+<div class="max-w-md w-full mx-auto flex justify-between items-center py-2 px-2">
+<!-- Tab 1: Anasayfa (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm mt-0.5">Anasayfa</span>
+</button>
+<!-- Tab 2: Takvim (Active Target Match) -->
+<button class="flex flex-col items-center justify-center bg-primary-fixed dark:bg-primary text-on-primary-fixed dark:text-on-primary rounded-full px-4 py-1.5 transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="calendar_month" data-weight="fill" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="text-label-sm font-label-sm font-bold mt-0.5">Takvim</span>
+</button>
+<!-- Tab 3: Analiz (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="text-label-sm font-label-sm mt-0.5">Analiz</span>
+</button>
+<!-- Tab 4: Profil (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-3 py-1.5 hover:text-primary dark:hover:text-inverse-primary active:scale-95 transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm mt-0.5">Profil</span>
+</button>
+</div>
+</nav>
+</div>
+</body></html>
