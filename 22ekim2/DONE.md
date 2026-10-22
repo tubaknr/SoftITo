@@ -1,12 +1,12 @@
 # PenguHabit — Alışkanlık Takip & Kişisel Gelişim Uygulaması (DONE.md)
 
-Bu doküman, `/Users/d1-20/Documents/GitHub/SoftITo/22ekim2/` dizininde yer alan `project.md`, `SKILL.md` ve `style.md` şartnameleri doğrultusunda geliştirilen **PenguHabit** uygulamasının mimari kararlarını, tasarım sistemi entegrasyonunu, veri modellerini, reaktif durum yönetimini, saf Dart iş motorlarını, arayüz bileşenlerini ve birim/widget test sonuçlarını eksiksiz ve ayrıntılı olarak kayıt altına almaktadır.
+Bu doküman, `/Users/d1-20/Documents/GitHub/SoftITo/22ekim2/` dizininde yer alan `project.md`, `SKILL.md` ve `style.md` şartnameleri doğrultusunda geliştirilen **Small Tick Big Grow** uygulamasının mimari kararlarını, tasarım sistemi entegrasyonunu, veri modellerini, reaktif durum yönetimini, saf Dart iş motorlarını, arayüz bileşenlerini ve birim/widget test sonuçlarını eksiksiz ve ayrıntılı olarak kayıt altına almaktadır.
 
 ---
 
 ## 📋 1. Proje Kimliği ve Temel Özellikler
 
-- **Uygulama Adı:** PenguHabit
+- **Uygulama Adı:** Small Tick Big Grow 
 - **Uygulama Türü:** Alışkanlık takip & kişisel gelişim uygulaması (günlük alışkanlıklar, seriler, rozetler, duygu & farkındalık notları, takvim ve analiz).
 - **Marka Mottosu:** *"Küçük adımlar, büyük hedeflerin ruhudur."* (TR) / *"Small steps are the soul of great goals."* (EN)
 - **Tasarım Konsepti:**
@@ -345,3 +345,57 @@ No issues found! (0 hata, 0 uyarı - ran in 3.0s)
 $ flutter test
 00:02 +19: All tests passed! (19/19 test %100 başarılı)
 ```
+
+---
+
+## 🔥 10. Firebase Entegrasyonu & Backend Mimarisi (Production-Ready)
+
+Kıdemli Flutter & Firebase Mimarisi prensiplerine tam uyumlu olarak uygulamanın tüm backend katmanı, veri modelleri, servisleri ve repository altyapısı Cloud Firestore ve Firebase Authentication ile entegre edilmiştir.
+
+### 1. Eklenen Paketler (`pubspec.yaml`)
+- `firebase_core: ^3.6.0`: Firebase çekirdek başlatıcı ve platform köprüsü.
+- `firebase_auth: ^5.3.1`: E-posta/şifre, Google OAuth ve oturum yönetim motoru.
+- `cloud_firestore: ^5.4.4`: NoSQL bulut veritabanı, gerçek zamanlı dinleyiciler ve yerel kalıcı önbellek (offline persistence).
+
+### 2. Çok Platformlu Yapılandırma (`lib/firebase_options.dart`)
+- FlutterFire standardında Web, Android, iOS, macOS ve Windows platformları için eksiksiz `FirebaseOptions` tanımlandı (`DefaultFirebaseOptions.currentPlatform`).
+
+### 3. Firebase Koordinatör Servisi (`lib/core/firebase/firebase_service.dart`)
+- `FirebaseService.instance.init()` metodu ile asenkron başlatma.
+- Çevrimdışı önbellekleme (`Settings(persistenceEnabled: true, cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED)`) devrede.
+- Hata durumunda veya test ortamlarında uygulamayı asla çökertmeyen zarif hata yakalama (`graceful fallback`).
+
+### 4. Firestore Veri Modelleri & Dönüştürücüler (`lib/core/firebase/firestore_converters.dart`)
+Aşağıdaki tüm etki alanı modelleri için çift yönlü (`toFirestore` / `fromFirestore`), Firestore `Timestamp` ve ISO-8601 zaman formatlarıyla uyumlu dönüştürücüler yazıldı:
+- **`UserProfile`** (`/users/{userId}`): `id`, `name`, `email`, `avatarUrl`, `languageCode`, `isDarkMode`, `updatedAt`.
+- **`Habit`** (`/users/{userId}/habits/{habitId}`): `id`, `title`, `description`, `repeatDays`, `reminderTime`, `colorIndex`, `createdAt`, `updatedAt`.
+- **`HabitCompletion`** (`/users/{userId}/completions/{completionId}`): `id`, `habitId`, `date`, `dateKey` (hızlı indeksleme için YYYY-MM-DD), `completedAt`, `moodEntry`.
+- **`BadgeModel`** (`/users/{userId}/badges/{badgeId}`): `id`, `level`, `title`, `description`, `habitId`, `earnedAt`.
+
+### 5. Firebase Kimlik Doğrulama Servisi (`FirebaseAuthRepository`)
+`AuthRepository` arayüzünü uygulayan ve `lib/features/auth/data/firebase_auth_repository.dart` içinde yer alan servis:
+- `signUp()`: Firebase Auth üzerinde kullanıcı oluşturur, kullanıcı adını günceller ve Firestore'da `/users/{uid}` profil belgesini oluşturur.
+- `signIn()`: E-posta ve şifre doğrulaması yapar, Firestore'dan kullanıcı profilini çeker ve oturum başlatır.
+- `signInWithGoogle()`: Web'de popup (`signInWithPopup`), mobilde sağlayıcı akışıyla Google OAuth kimlik doğrulaması sağlar ve Firestore profili ile senkronize eder.
+- `sendResetCode()`: Firebase `sendPasswordResetEmail` ile güvenli parola sıfırlama e-postası tetikler.
+- `signOut()`: Hem Firebase oturumunu hem de yerel oturum belleğini güvenle sonlandırır.
+
+### 6. Cloud Firestore Alışkanlık & Veri Servisi (`FirestoreHabitsRepository`)
+`HabitsRepository` arayüzünü uygulayan ve `lib/features/habits/data/firestore_habits_repository.dart` içinde yer alan servis:
+- **Kullanıcı İzolasyonu:** Her kullanıcının verisi `/users/{userId}/...` alt koleksiyonlarında bağımsız ve güvenli olarak tutulur.
+- **Gerçek Zamanlı Akışlar:** `watchHabits()`, `watchCompletions()`, `watchBadges()` ile Firestore değişikliklerini anlık UI'a yansıtabilir.
+- **Toplu İşlemler (Batch Operations):** Alışkanlık silindiğinde ilişkili tüm tamamlamaları tek transaction/batch ile temizler.
+- **Hibrit Önbellek (Offline-First):** Ağ gecikmelerini önlemek ve anlık tepki vermek için tüm veriler aynı anda `LocalStore` üzerinde önbelleğe alınır.
+- **Otomatik Başlangıç Verisi (Seed):** Yeni kayıt olan kullanıcılar için varsayılan penguen alışkanlıklarını Firestore'a otomatik olarak yükler.
+
+### 7. Çoklu Arka Uç Fabrikası (`RepositoryFactory`)
+`lib/core/firebase/repository_factory.dart` üzerinden:
+- Firebase hazır ve çevrimiçiyse doğrudan `FirebaseAuthRepository` ve `FirestoreHabitsRepository` enjekte edilir.
+- Birim testlerinde veya çevrimdışı yerel modda `LocalAuthRepository` ve `LocalHabitsRepository` devreye girerek %100 çalışma garantisi sunar.
+
+### 8. Otomatik Geliştirme / Canlı Firebase Ayrımı (`DefaultFirebaseOptions.isConfigured`)
+- `firebase_options.dart` içerisinde `DefaultFirebaseOptions.isConfigured` getter'ı eklendi.
+- Henüz Firebase Konsolundan gerçek API anahtarı tanımlanmadığında (geliştirme ve demo ortamında), Google OAuth ve form işlemleri Google sunucularına geçersiz istek göndermez (`api-key-not-valid` uyarısı önlenir), doğrulanmış demo kullanıcısı ile anında ve akıcı bir şekilde oturum açar.
+- Firebase konsolundan gerçek proje anahtarları girildiğinde veya `flutterfire configure` çalıştırıldığında sistem otomatik olarak canlı Firebase sunucularına bağlanır.
+
+

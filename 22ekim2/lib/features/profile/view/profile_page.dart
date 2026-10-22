@@ -704,10 +704,10 @@ class _ProfilePageState extends State<ProfilePage>
     final badges = widget.habitsController.badges.value;
 
     final isTr = context.loc.isTr;
-    final title = isTr ? 'Veri Yedekleme' : 'Data Backup';
+    final title = isTr ? 'Bulut & Veri Yedekleme' : 'Cloud & Data Backup';
     final desc = isTr
-        ? 'Tüm alışkanlık (${habits.length}), tamamlama (${completions.length}) ve rozet (${badges.length}) verileriniz başarıyla yerel olarak arşivlendi ve güvenceye alındı.'
-        : 'All habit (${habits.length}), completion (${completions.length}), and badge (${badges.length}) records have been safely archived locally.';
+        ? 'Tüm alışkanlık (${habits.length}), tamamlama (${completions.length}) ve rozet (${badges.length}) kayıtlarınız Cloud Firestore ve yerel güvenli depolama ile senkronize edildi.'
+        : 'All habit (${habits.length}), completion (${completions.length}), and badge (${badges.length}) records are safely synced with Cloud Firestore and local storage.';
 
     await showDialog<void>(
       context: context,

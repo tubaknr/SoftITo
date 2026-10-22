@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1094670098245",
+    "project_id": "small-tick-big-grow",
+    "storage_bucket": "small-tick-big-grow.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094670098245:android:1348dea74ce21a203ca82c",
+        "android_client_info": {
+          "package_name": "com.penguhabit.penguhabit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeiWdfeB9ZDrWgrbcjJsbLTGjHryfsbGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
