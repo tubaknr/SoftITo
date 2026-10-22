@@ -395,7 +395,15 @@ Aşağıdaki tüm etki alanı modelleri için çift yönlü (`toFirestore` / `fr
 
 ### 8. Otomatik Geliştirme / Canlı Firebase Ayrımı (`DefaultFirebaseOptions.isConfigured`)
 - `firebase_options.dart` içerisinde `DefaultFirebaseOptions.isConfigured` getter'ı eklendi.
-- Henüz Firebase Konsolundan gerçek API anahtarı tanımlanmadığında (geliştirme ve demo ortamında), Google OAuth ve form işlemleri Google sunucularına geçersiz istek göndermez (`api-key-not-valid` uyarısı önlenir), doğrulanmış demo kullanıcısı ile anında ve akıcı bir şekilde oturum açar.
-- Firebase konsolundan gerçek proje anahtarları girildiğinde veya `flutterfire configure` çalıştırıldığında sistem otomatik olarak canlı Firebase sunucularına bağlanır.
+- Canlı proje bağlantısı başarıyla tamamlandı:
+  - **Firebase Proje Adı:** `small-tick-big-grow`
+  - **Proje Kimliği:** `small-tick-big-grow`
+  - **Uygulama Kimlikleri:**
+    - Web: `1:1094670098245:web:cff6ee53a53637c33ca82c`
+    - Android: `1:1094670098245:android:1348dea74ce21a203ca82c` (`android/app/google-services.json` oluşturuldu)
+    - iOS / macOS: `1:1094670098245:ios:c89fca5db71187603ca82c`
+    - Windows: `1:1094670098245:web:2115caf8b665f6a93ca82c`
+- Sistem canlı Firebase API anahtarlarıyla doğrudan **Firebase Authentication** ve **Cloud Firestore** sunucularına bağlandı. Kullanıcı kayıtları, alışkanlıklar, seriler ve rozetler artık doğrudan kullanıcının kendi Firebase veritabanında saklanmaktadır.
+
 
 

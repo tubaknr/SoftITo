@@ -26,6 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _emailError;
   String? _passwordError;
   String? _confirmPasswordError;
+  String? _generalError;
 
   @override
   void dispose() {
@@ -55,6 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
       _confirmPasswordError = AuthController.doPasswordsMatch(password, confirm)
           ? null
           : context.loc.errorPasswordMismatch;
+      _generalError = null;
     });
 
     return _nameError == null &&
@@ -82,6 +84,10 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
       );
+    } else {
+      setState(() {
+        _generalError = 'Kayıt işlemi başarısız oldu. E-posta kullanımda olabilir veya şifre çok zayıf.';
+      });
     }
   }
 
@@ -101,6 +107,21 @@ class _RegisterPageState extends State<RegisterPage> {
             _RegisterHeader(),
             const SizedBox(height: 24),
             _buildFormFields(),
+            if (_generalError != null) ...[
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.redAccent.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.redAccent.withValues(alpha: 0.3)),
+                ),
+                child: Text(
+                  _generalError!,
+                  style: const TextStyle(color: Colors.redAccent, fontSize: 13),
+                ),
+              ),
+            ],
             const SizedBox(height: 28),
             _buildSubmitButton(),
             const SizedBox(height: 24),
