@@ -112,7 +112,7 @@ class _HomeHabitScrollBody extends StatelessWidget {
                       );
                       ReflectionBottomSheet.show(
                         context,
-                        habitTitle: firstDone.title,
+                        habitTitle: firstDone.displayTitle(context.loc.isTr),
                         onSave: (mood, note) {
                           controller.saveMoodAndNote(
                               firstDone.id, today, mood, note);
@@ -173,7 +173,7 @@ class _HomeHabitScrollBody extends StatelessWidget {
       if (comp != null) {
         await ReflectionBottomSheet.show(
           context,
-          habitTitle: habit.title,
+          habitTitle: habit.displayTitle(context.loc.isTr),
           onSave: (mood, note) {
             controller.saveMoodAndNote(habit.id, today, mood, note);
           },
@@ -190,7 +190,7 @@ class _HomeHabitScrollBody extends StatelessWidget {
   ) {
     ReflectionBottomSheet.show(
       context,
-      habitTitle: habit.title,
+      habitTitle: habit.displayTitle(context.loc.isTr),
       initialMood: completion?.moodEntry?.mood,
       initialNote: completion?.moodEntry?.note,
       onSave: (mood, note) {
@@ -267,14 +267,14 @@ class _HomeHabitsHeader extends StatelessWidget {
             color: const Color(0xFFD8E2FF),
             borderRadius: BorderRadius.circular(20),
           ),
-          child: const Row(
+          child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.add_rounded, size: 16, color: Color(0xFF001A42)),
-              SizedBox(width: 3),
+              const Icon(Icons.add_rounded, size: 16, color: Color(0xFF001A42)),
+              const SizedBox(width: 3),
               Text(
-                'Yeni',
-                style: TextStyle(
+                context.loc.newAction,
+                style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
                   color: Color(0xFF001A42),
@@ -335,26 +335,26 @@ class _QuickReflectionCard extends StatelessWidget {
             color: const Color(0xFFC7D2FE).withValues(alpha: 0.6),
           ),
         ),
-        child: const Row(
+        child: Row(
           children: [
-            Text('💭', style: TextStyle(fontSize: 24)),
-            SizedBox(width: 12),
+            const Text('💭', style: TextStyle(fontSize: 24)),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Farkındalık Notu Ekle',
-                    style: TextStyle(
+                    context.loc.addAwarenessNote,
+                    style: const TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 13,
                       color: Color(0xFF1E1B4B),
                     ),
                   ),
-                  SizedBox(height: 2),
+                  const SizedBox(height: 2),
                   Text(
-                    'Tamamladığın adımların hissini kaydet',
-                    style: TextStyle(
+                    context.loc.awarenessNoteSub,
+                    style: const TextStyle(
                       fontSize: 11,
                       color: Color(0xFF4338CA),
                     ),
@@ -362,7 +362,7 @@ class _QuickReflectionCard extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(
+            const Icon(
               Icons.arrow_upward_rounded,
               color: Color(0xFF4338CA),
               size: 20,

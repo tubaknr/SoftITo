@@ -170,7 +170,7 @@ class NotificationSettingsSheet extends StatelessWidget {
                       );
                     }
                   },
-                  child: const Text('Değiştir'),
+                  child: Text(context.loc.changeAction),
                 ),
               ],
             ),

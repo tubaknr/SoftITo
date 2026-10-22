@@ -146,7 +146,7 @@ class _HabitListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  habit.title,
+                  habit.displayTitle(context.loc.isTr),
                   style: context.typography.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: colors.textMain,
@@ -154,7 +154,7 @@ class _HabitListItem extends StatelessWidget {
                 ),
                 if (habit.description.isNotEmpty)
                   Text(
-                    habit.description,
+                    habit.displayDescription(context.loc.isTr),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: context.typography.bodySmall?.copyWith(

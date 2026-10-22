@@ -150,7 +150,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           const SizedBox(height: 16),
           _buildGaugeWidget(context, rate, colors),
           const SizedBox(height: 16),
-          _buildGaugeEncouragementBanner(colors),
+          _buildGaugeEncouragementBanner(context, colors),
         ],
       ),
     );
@@ -171,10 +171,12 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '%${rate.toStringAsFixed(0)}',
+                context.loc.isTr
+                    ? '%${rate.toStringAsFixed(0)}'
+                    : '${rate.toStringAsFixed(0)}%',
                 style: context.typography.headlineLarge?.copyWith(
                   fontWeight: FontWeight.w900,
-                  color: colors.primaryDark,
+                  color: colors.textMain,
                   fontSize: 28,
                 ),
               ),
@@ -208,7 +210,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     );
   }
 
-  Widget _buildGaugeEncouragementBanner(dynamic colors) {
+  Widget _buildGaugeEncouragementBanner(BuildContext context, dynamic colors) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
       decoration: BoxDecoration(
@@ -225,13 +227,13 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                 style: TextStyle(fontSize: 11.5, color: colors.textMuted),
                 children: [
                   TextSpan(
-                    text: 'Müthiş bir istikrar! ',
+                    text: context.loc.greatConsistency,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: colors.primary,
                     ),
                   ),
-                  const TextSpan(text: 'Küçük adımların büyük büyümeni inşa ediyor.'),
+                  TextSpan(text: context.loc.consistencySub),
                 ],
               ),
             ),
@@ -256,7 +258,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Devamlılık Grafiği',
+            context.loc.continuityChartTitle,
             style: context.typography.titleMedium?.copyWith(
               fontWeight: FontWeight.w700,
               color: colors.textMain,
@@ -345,7 +347,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              h.title,
+                              h.displayTitle(context.loc.isTr),
                               style: context.typography.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w700,
                               ),
@@ -353,7 +355,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                           ],
                         ),
                         Text(
-                          '%${rate.toStringAsFixed(0)}',
+                          context.loc.isTr
+                              ? '%${rate.toStringAsFixed(0)}'
+                              : '${rate.toStringAsFixed(0)}%',
                           style: TextStyle(
                             color: colors.primary,
                             fontWeight: FontWeight.w800,

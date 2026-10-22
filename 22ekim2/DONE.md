@@ -8,7 +8,7 @@ Bu doküman, `/Users/d1-20/Documents/GitHub/SoftITo/22ekim2/` dizininde yer alan
 
 - **Uygulama Adı:** PenguHabit
 - **Uygulama Türü:** Alışkanlık takip & kişisel gelişim uygulaması (günlük alışkanlıklar, seriler, rozetler, duygu & farkındalık notları, takvim ve analiz).
-- **Marka Mottosu:** *"Küçük adımlar, büyük hedeflerin ruhudur."* (TR) / *"Critical steps are the soul of great goals."* (EN)
+- **Marka Mottosu:** *"Küçük adımlar, büyük hedeflerin ruhudur."* (TR) / *"Small steps are the soul of great goals."* (EN)
 - **Tasarım Konsepti:**
   - Sevimli, motive edici tombul penguen maskotu (`PenguinMascotPainter` ile harici resim bağımlılığı olmadan saf `CustomPainter` ile çizildi; tırmanan, kutlama yapan, meraklı boş durum ve madalyalı rozet pozları).
   - Pastel gök mavisi (`#3B82F6`), doğan güneş sarısı (`#FDE047`), tatlı nane yeşili (`#10B981`), mercan pembesi yanaklar (`#FDA4AF`), buz mavisi arka plan (`#F0F7FF`) ve derin kutup gecesi karanlık teması (`#0B1120`).

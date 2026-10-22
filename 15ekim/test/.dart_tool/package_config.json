@@ -39,7 +39,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///home/tuba/snap/flutter/common/flutter/packages/flutter",
+      "rootUri": "file:///home/tuba/development/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.11"
     },
@@ -51,7 +51,7 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///home/tuba/snap/flutter/common/flutter/packages/flutter_test",
+      "rootUri": "file:///home/tuba/development/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.11"
     },
@@ -105,7 +105,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///home/tuba/snap/flutter/common/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///home/tuba/development/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.11"
     },
@@ -165,8 +165,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.13.4",
-  "flutterRoot": "file:///home/tuba/snap/flutter/common/flutter",
-  "flutterVersion": "3.47.5",
+  "generatorVersion": "3.13.5",
+  "flutterRoot": "file:///home/tuba/development/flutter",
+  "flutterVersion": "3.47.7",
   "pubCache": "file:///home/tuba/.pub-cache"
 }

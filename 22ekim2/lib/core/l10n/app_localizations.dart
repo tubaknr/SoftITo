@@ -27,13 +27,30 @@ class AppLocalizations {
   String get brandMain => 'Big Grow';
   String get brandMotto => isTr
       ? 'Küçük adımlar, büyük hedeflerin ruhudur.'
-      : 'Critical steps are the soul of great goals.';
+      : 'Small steps are the soul of great goals.';
   String get mottoQuestion => isTr
       ? 'Hedeflerine ulaşmak için alışkanlıkların gücünden yararlanmaya hazır mısın?'
       : 'Ready to harness the power of habits to reach your goals?';
 
   // --- Auth & Onboarding ---
   String get welcomeTitle => isTr ? 'Small Tick & Big Grow’a Hoş Geldin!' : 'Welcome to Small Tick & Big Grow!';
+  String get getStarted => isTr ? 'Hemen Başla' : 'Get Started';
+  String get quickGoogleStart => isTr ? 'Google ile Hızlı Başla' : 'Quick Start with Google';
+  String get microTicks => isTr ? 'Mikro Tikler' : 'Micro Ticks';
+  String get microTicksDesc => isTr ? 'Göz korkutmayan atomik adımlar.' : 'Non-intimidating atomic steps.';
+  String get mindfulness => isTr ? 'Farkındalık' : 'Mindfulness';
+  String get mindfulnessDesc => isTr ? 'Her adım sonrası duyguyu kaydet.' : 'Record feeling after each step.';
+  String get polarStreaks => isTr ? 'Kutup Serisi' : 'Polar Streaks';
+  String get polarStreaksDesc => isTr ? '21 & 42 günlük kalıcı rozetler.' : '21 & 42 days permanent badges.';
+  String get welcomeSubtitle => isTr
+      ? 'Büyük değişimler, her gün atılan tek bir küçük tikle başlar. Kendine nazik ol, adım adım büyü.'
+      : 'Big changes start with a single small tick every day. Be kind to yourself, grow step by step.';
+  String get tinyStepBadge => isTr ? 'Minik Adım' : 'Small Step';
+  String get alreadyHaveAccountAction => isTr
+      ? 'Zaten Hesabım Var → Giriş Yap'
+      : 'Already have an account? → Log In';
+  String get termsOfService => isTr ? 'Kullanım Koşulları' : 'Terms of Service';
+  String get privacyPolicy => isTr ? 'Gizlilik Politikası' : 'Privacy Policy';
   String get registerAction => isTr ? 'Kayıt Ol' : 'Sign Up';
   String get loginAction => isTr ? 'Giriş Yap' : 'Log In';
   String get googleContinue => isTr ? 'Google ile Devam Et' : 'Continue with Google';
@@ -197,6 +214,10 @@ class AppLocalizations {
   String get sectionNotifications => isTr ? 'Bildirimler' : 'Notifications';
   String get sectionNotes => isTr ? 'Notlarım' : 'My Notes';
   String get averageMood => isTr ? 'Duygu Ortalaması' : 'Average Mood';
+  String get backupData => isTr ? 'Verileri Yedekle' : 'Backup Data';
+  String get backupSuccess => isTr
+      ? 'Verileriniz başarıyla yedeklendi! 💾'
+      : 'Your data has been backed up successfully! 💾';
   String get logoutAction => isTr ? 'Çıkış Yap' : 'Log Out';
   String get confirmLogout => isTr ? 'Oturumu kapatmak istediğine emin misin?' : 'Are you sure you want to log out?';
   String get themeModeToggle => isTr ? 'Karanlık Tema' : 'Dark Mode';

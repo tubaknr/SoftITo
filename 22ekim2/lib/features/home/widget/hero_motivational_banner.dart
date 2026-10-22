@@ -65,10 +65,10 @@ class HeroMotivationalBanner extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildMotivationPill(colors),
+              _buildMotivationPill(context, colors),
               const SizedBox(height: 6),
               Text(
-                'Bugün harika bir gün! ✨',
+                context.loc.todayGreatDay,
                 style: context.typography.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w800,
                   fontSize: 18,
@@ -78,7 +78,7 @@ class HeroMotivationalBanner extends StatelessWidget {
               ),
               const SizedBox(height: 2),
               Text(
-                'Küçük bir tik at, büyük büyümeni keyifle izle.',
+                context.loc.todaySubQuote,
                 style: context.typography.bodySmall?.copyWith(
                   color: colors.textMuted,
                   fontSize: 12,
@@ -93,21 +93,21 @@ class HeroMotivationalBanner extends StatelessWidget {
     );
   }
 
-  Widget _buildMotivationPill(dynamic colors) {
+  Widget _buildMotivationPill(BuildContext context, dynamic colors) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3.5),
       decoration: BoxDecoration(
         color: const Color(0xFFD1FAE5),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.spa_rounded, size: 13, color: Color(0xFF006947)),
-          SizedBox(width: 4),
+          const Icon(Icons.spa_rounded, size: 13, color: Color(0xFF006947)),
+          const SizedBox(width: 4),
           Text(
-            'Günün Motivasyonu',
-            style: TextStyle(
+            context.loc.dailyMotivation,
+            style: const TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w700,
               color: Color(0xFF006947),
@@ -174,7 +174,7 @@ class HeroMotivationalBanner extends StatelessWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    'Günlük İlerleme',
+                    context.loc.dailyProgress,
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
@@ -193,7 +193,9 @@ class HeroMotivationalBanner extends StatelessWidget {
                   ),
                   children: [
                     TextSpan(
-                      text: '(%$percentage)',
+                      text: context.loc.isTr
+                          ? '(%$percentage)'
+                          : '($percentage%)',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
@@ -256,8 +258,8 @@ class HeroMotivationalBanner extends StatelessWidget {
       children: [
         Text(
           remainingCount > 0
-              ? '$remainingCount alışkanlık kaldı'
-              : 'Bugünkü tüm adımlar tamamlandı! 🎉',
+              ? context.loc.habitsRemaining(remainingCount)
+              : context.loc.allStepsCompletedToday,
           style: TextStyle(
             fontSize: 11,
             color: colors.textMuted,
@@ -266,7 +268,7 @@ class HeroMotivationalBanner extends StatelessWidget {
         ),
         if (activeStreak > 0)
           Text(
-            '🔥 $activeStreak gün serisi aktif',
+            context.loc.activeStreakDays(activeStreak),
             style: const TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w700,

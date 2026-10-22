@@ -120,7 +120,7 @@ class HabitCardItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          habit.title,
+          habit.displayTitle(context.loc.isTr),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: context.typography.titleMedium?.copyWith(
@@ -143,7 +143,7 @@ class HabitCardItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  '🔥 ${context.loc.streakDays(streak)}',
+                  context.loc.streakDays(streak),
                   style: const TextStyle(
                     color: Color(0xFFD97706),
                     fontWeight: FontWeight.w700,

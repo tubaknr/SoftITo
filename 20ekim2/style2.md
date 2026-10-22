@@ -265,7 +265,7 @@ Proje adı **"Small Tick & Big Grow"** iki satır halinde hiyerarşik olarak kon
 |---|---|---|
 | `brand_sub` | Small Tick | Small Tick |
 | `brand_main` | Big Grow | Big Grow |
-| `motto_welcome` | "Küçük adımlar, büyük hedeflerin ruhudur." | "Critical steps are the soul of great goals." |
+| `motto_welcome` | "Küçük adımlar, büyük hedeflerin ruhudur." | "Small steps are the soul of great goals." |
 | `motto_ready` | "Hedeflerine ulaşmak için alışkanlıkların gücünden yararlanmaya hazır mısın?" | "Ready to harness the power of habits to reach your goals?" |
 | `empty_state_title` | "Hiç alışkanlık eklememişsin!" | "You haven't added any habits yet!" |
 | `empty_state_desc` | "Büyük hedefler, küçük bir tik ile başlar." | "Big goals start with a small tick." |

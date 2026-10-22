@@ -163,14 +163,14 @@ class _HabitFormSheetState extends State<HabitFormSheet> {
       children: [
         AppTextField(
           label: context.loc.habitTitleLabel,
-          hintText: 'Örn: Kitap Oku, Su İç',
+          hintText: context.loc.habitTitleHint,
           controller: _titleController,
           errorText: _titleError,
         ),
         const SizedBox(height: 12),
         AppTextField(
           label: context.loc.habitDescLabel,
-          hintText: 'Açıklama...',
+          hintText: context.loc.habitDescHint,
           controller: _descController,
         ),
       ],
@@ -333,7 +333,7 @@ class _HabitFormSheetState extends State<HabitFormSheet> {
             ),
           ),
           child: Text(
-            'Saat Seç',
+            context.loc.pickTimeAction,
             style: context.typography.bodyMedium?.copyWith(
               color: context.colors.textMain,
               fontWeight: FontWeight.w600,

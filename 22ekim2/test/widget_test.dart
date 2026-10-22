@@ -31,7 +31,7 @@ Widget _buildTestApp(Widget child) {
 }
 
 void main() {
-  group('Widget Tests — PenguHabit Critical Flows', () {
+  group('Widget Tests — PenguHabit Small Flows', () {
     testWidgets('Empty state displays curious mascot and add button when no habits', (tester) async {
       final mockStore = MockLocalStore();
       final mockDate = MockDateTimeService(DateTime(2026, 10, 22));
