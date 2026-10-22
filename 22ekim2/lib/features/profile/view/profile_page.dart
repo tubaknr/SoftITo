@@ -65,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage>
         final avgMood = _analyticsEngine.calculateAverageMoodScore(completions);
 
         final double bottomBarSpacing =
-            (context.padding.bottom > 0 ? context.padding.bottom : 16.0) + 64.0;
+            (context.padding.bottom > 0 ? context.padding.bottom : 16.0) + 88.0;
 
         return Padding(
           padding: EdgeInsets.fromLTRB(16, 6, 16, bottomBarSpacing),

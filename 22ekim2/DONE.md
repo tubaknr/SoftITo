@@ -405,5 +405,19 @@ Aşağıdaki tüm etki alanı modelleri için çift yönlü (`toFirestore` / `fr
     - Windows: `1:1094670098245:web:2115caf8b665f6a93ca82c`
 - Sistem canlı Firebase API anahtarlarıyla doğrudan **Firebase Authentication** ve **Cloud Firestore** sunucularına bağlandı. Kullanıcı kayıtları, alışkanlıklar, seriler ve rozetler artık doğrudan kullanıcının kendi Firebase veritabanında saklanmaktadır.
 
+---
+
+## 🎨 11. Arayüz ve Konumlandırma İyileştirmeleri
+
+1. **Giriş Sayfası "Giriş Yap" Buton & Metni:**
+   - [welcome_page.dart](file:///home/tuba/Documents/GitHub/SoftITo/22ekim2/lib/features/onboarding/view/welcome_page.dart): Hem üst çubukta `"Giriş Yap"` etiketli hap buton hem de butonlar bölgesinde `"Zaten Hesabım Var → Giriş Yap"` metin butonu geri getirilerek kullanıcının tek tıkla doğrudan giriş ekranına ulaşması sağlandı.
+
+2. **"Hemen İlk Alışkanlığını Ekle" Butonu:**
+   - [empty_habits_view.dart](file:///home/tuba/Documents/GitHub/SoftITo/22ekim2/lib/features/home/widget/empty_habits_view.dart): Alt boşluk (`bottomBarSpacing`) 110px+ olarak ayarlandı ve penguen maskot boyutu dengelendi. Böylece buton yüzen alt menünün (`AppBottomBar`) altında kalmayıp menünün üzerinde tertemiz ve rahat tıklanabilir hale getirildi.
+
+3. **Profil Sayfası "Çıkış Yap" Butonu:**
+   - [profile_page.dart](file:///home/tuba/Documents/GitHub/SoftITo/22ekim2/lib/features/profile/view/profile_page.dart): Ayarlar kartının alt boşluğu `(padding.bottom + 88.0)` seviyesine çıkarıldı. Böylece `"Çıkış Yap"` satırı ve kartın alt kenarı yüzen alt menünün altında kalmadan, tam menünün hemen üzerinde kesintisiz olarak görüntülendi.
+
+
 
 
