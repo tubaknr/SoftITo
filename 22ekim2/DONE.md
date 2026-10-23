@@ -432,3 +432,25 @@ Kullanıcının talebi doğrultusunda profil sayfasındaki TabBar içerikleri (�
 3. **Doğrulama:**
    - `flutter analyze` 0 hata / 0 uyarı.
    - 28 testin tamamı (%100) başarıyla çalışmaya devam etmektedir.
+
+---
+
+## 🧹 13. Firebase Paket ve Kodlarının Tamamen Kaldırılması — Tarih: 2026-10-23
+
+Kullanıcının talebi ve `project.md` dokümanının "Sadece Flutter ve Dart, yerel SharedPreferences saklama" ilkesi doğrultusunda, git merge sonucu projeye giren Firebase bağımlılıkları ve kodları tamamen temizlenmiştir:
+
+1. **pubspec.yaml Temizliği:**
+   - `firebase_core`, `firebase_auth` ve `cloud_firestore` paketleri bağımlılıklardan kaldırıldı ve `flutter pub get` ile bağımlılık ağacı güncellendi.
+2. **Uygulama Giriş ve Servis Yapılandırması:**
+   - [`main.dart`](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/main.dart): `FirebaseService.instance.init()` ve `RepositoryFactory` kaldırıldı; kimlik doğrulama doğrudan güvenli ve yerel [`LocalAuthRepository`](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/auth/data/auth_repository.dart) servisine bağlandı.
+   - [`shell_page.dart`](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/shell/view/shell_page.dart): `RepositoryFactory` bağımlılığı kaldırılarak doğrudan yerel [`LocalHabitsRepository`](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/habits/data/habits_repository.dart) bağlandı.
+   - [`welcome_page.dart`](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/onboarding/view/welcome_page.dart): Merge sırasında oluşan `colors` referans hatası `context.colors.primary` olarak düzeltildi.
+3. **Kullanılmayan Firebase Dosyalarının Silinmesi:**
+   - `lib/core/firebase/` (FirebaseService ve RepositoryFactory)
+   - `lib/firebase_options.dart`
+   - `lib/features/auth/data/firebase_auth_repository.dart`
+   - `lib/features/habits/data/firestore_habits_repository.dart`
+4. **Doğrulama Sonuçları:**
+   - `flutter analyze`: 0 hata, 0 uyarı.
+   - `flutter test`: 28 testin tamamı (%100) başarılı.
+

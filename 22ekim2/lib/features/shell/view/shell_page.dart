@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../core/firebase/repository_factory.dart';
 import '../../../core/services/date_time_service.dart';
 import '../../../core/services/local_store.dart';
 import '../../../core/services/notification_service.dart';
@@ -52,13 +51,9 @@ class _ShellPageState extends State<ShellPage> {
           localStore: localStore,
           notificationService: notifService,
         );
-    _notificationsController.init();
-
-    final currentUserId = widget.authController.currentUser.value?.id;
     _habitsController = widget.habitsController ??
         HabitsController(
-          repository: RepositoryFactory.createHabitsRepository(
-            userId: currentUserId,
+          repository: LocalHabitsRepository(
             localStore: localStore,
             dateTimeService: dateTimeService,
           ),

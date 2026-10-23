@@ -525,7 +525,7 @@ class WelcomePage extends StatelessWidget {
             context.loc.alreadyHaveAccountAction,
             style: TextStyle(
               fontSize: 13,
-              color: colors.primary,
+              color: context.colors.primary,
               fontWeight: FontWeight.w700,
             ),
           ),
