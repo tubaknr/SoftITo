@@ -310,3 +310,284 @@ Yüksek performanslı nesne depolama
 Orta(isteğe bağlı şifreleme açılabilir.)
 
 
+
+------
+### Cuma öğleden sonra Sümeyye dersi
+
+## Sözleşmeler, SOLID Prensipleri & OOP Mimarisi
+
+### 1.1. `interface` (arayüz/sözleşme)
+**Sözlük anlamı:** iki bağımsız sistemin veya sınıfın birbiriyle nasıl konuşacağını belirleyen, içi boş metot imzalarından oluşan kurallar bütünü.
+
+- İtalyanŞef sınıfı bu arayüzü implements ederse (bu sözleşmeyi imzalarsa), o iki yemeği kendi tarifine göre sıfırdan yapmak zorundadır. İtalyan şef minestrone çorbası yapar, TürkAşçı sınıfı mercimek çorbası yapar. Sistem (restoran müdürü), ikisinin de "çorba" yapabildiğini bilir ve gerisine karışmaz. Gevşek bağlılık (loose coupling) budur.
+
+**Neden kullanılır:** Bir sınıfa göbekten bağımlı kalmamak (örneğin gerçek şarj istasyonu cihazı olmadan sahte/mock şarj seviyesiyle testi çalıştırabilmek) için.
+
+```dart
+abstract interface class StationContract({
+    Future<void> startCharging(String socketId);
+    Stream<double> watchLivePower();
+})
+```
+
+### 1.2. `implements` ve `extends` vs `with`
+#### 1.2.1. `implements` (Arayüz Sözleşmesi)
+**sözlük anlamı:** bir sınıfın, bir şablonun belirlediği kuralları kabul edip **içini sıfırdan kendisinin doldurması** zorunluluğudur. 
+
+**Neden kullanılır:** farklı sınıflara ortak bir standart/sözleşme dayatmak, çoklu arayüz desteği sağlamak ve kodda bağımlılıkları azaltmak için.
+
+```dart
+// İş ilanı (Sözleşme)
+abstract class AscilikSozlesmesi {
+  void yemekYap();
+  void mutfagiTemizle();
+}
+
+// Sözleşmeyi imzalayan sınıf
+class ItalyanSef implements AscilikSozlesmesi {
+  @override
+  void yemekYap() {
+    print("Makarna yapılıyor...");
+  }
+
+  @override
+  void mutfagiTemizle() {
+    print("Mutfak İtalyan standartlarında temizleniyor...");
+  }
+}
+```
+
+#### 1.2.2. `extends` (kalıtım/miras)
+
+**sözlük anlamı:** bir sınıfın, başka bir sınıfın özelliklerini ve metotlarını doğrudan devralması.
+
+- Garson sınıfı oluştururken, bu metotları tekrar tekrar yazmamak için Çalışan sınıfını extends edersin (miras alırsın). Garson, ebeveyninin yeteneklerini doğrudan cebinde bulur. Kod tekrarı (DRY - Don't Repeat Yourself) engellenmiş olur.
+
+**Neden kullanılır:** kod tekrarını önlemek (DRY), mantıksal bir sınıf hiyerarşisi oluşturmak için.
+
+```dart
+// Ebeveyn sınıf
+class Calisan {
+  String isim;
+  Calisan(this.isim);
+
+  void molaVer() {
+    print("$isim mola yapıyor. Çay içiliyor.");
+  }
+}
+
+// Çocuk sınıf ebeveynin tüm yeteneklerini miras alır
+class Garson extends Calisan {
+  Garson(String isim) : super(isim);
+  
+  void siparisAl() {
+    print("$isim siparişleri alıyor.");
+  }
+}
+
+// Kullanımı:
+// var garson = Garson("Ali");
+// garson.molaVer(); // Ebeveynden gelen metot doğrudan kullanılabilir.
+
+```
+
+
+#### 1.2.3. `with` (mixin/yetenek aşılama)
+
+**Neden kullanılır:** sınıf hiyerarşisini bozmadan, bağımsız bir sınıfa hazır kod blokları (metotlar ve değişkenler) enjekte etme mekanizmasıdır. 
+
+- Kalıtım (extends) ağacını bozmadan, akraba olmayan sınıflara hazır yetenek (davranış) paketleri eklemektir.
+- Diyelim ki restoranda bazılarının "İlk Yardım" sertifikası var. Bu kişi bir Aşçı da olabilir, Kasiyer de olabilir. Sadece İlk Yardım için yeni bir "Ebeveyn Sınıf" oluşturmak mantıksızdır.
+Bunun yerine IlkYardim adında bir mixin yazarsın. class Kasiyer extends Çalışan with IlkYardim dediğin an, kasiyere kalp masajı yapma yeteneğini enjekte etmiş olursun. Sınıfın kimliği (Kasiyer) değişmez, sadece çantasına yeni bir alet eklenmiş olur.
+
+**Neden kullanılır:** Akraba olmayan sınıflara ortak yetenekler kazandırmak, çoklu kaltıım kimliğini önlemek ve modülerliği arttırmak için. 
+
+```dart
+// Hazır yetenek paketi (Mixin)
+mixin IlkYardim {
+  void kalpMasajiYap() {
+    print("Kalp masajı yapılıyor! 1-2-3-4...");
+  }
+}
+
+// Ana sınıf
+class Kasiyer extends Calisan with IlkYardim {
+  Kasiyer(String isim) : super(isim);
+
+  void hesapAl() {
+    print("$isim hesabı alıyor.");
+  }
+}
+
+// Kullanımı:
+// var kasiyer = Kasiyer("Ayşe");
+// kasiyer.hesapAl(); // Kendi metodu
+// kasiyer.molaVer(); // Calisan'dan extends ile geldi
+// kasiyer.kalpMasajiYap(); // IlkYardim mixin'inden with ile geldi
+```
+
+| Özellik | extends | implements | with |
+|---|---|---|---|
+| **Temel felsefe** | ben senin çocuğunum, genlerini alıyorum. | seninle sözleşme imzaladım, maddeleri ben yapacağım. | ben ana sınıfıma ek bir uzmanlık yeteneği takıyorum. |
+| **gövdesi dolu metot gelir mi** | evet, üst sınıfın metotlarını doğrudan kullanır. | hayır! üst sınıfın içi dolu olsa bile hepsi silinir, sıfırdan yazılır. | evet, mixin içindeki hazır metotlar sınıfa eklenir. |
+| **kaç tane kullanılabilir?** | sadece 1 tane (dartta çoklu kalıtım yasaktır). | sınırsız (virgülle onlarca interface uygulanabilir). | sınırsız (virgülle birden çok mixin takılabilir). |
+| **Constructor var mıdır** | evet | hayır (interfacein constructor ı olmaz). | hayır. |
+
+
+------
+
+### 1.3. SOLID Prensipleri (Mobil & Dart Odaklı)
+#### 1. S - Single Responsibility Principle
+**Kural:** bir sınıfın veya dosyanın değişmesi için **yalnızca 1 sebebi** olmalıdır. 
+
+### 2. O - Open / Closed Prinsiple
+**Kural:** yazılım varlıkları (sınıflar, modüller) **genişletilmeye AÇIK, ancak değiştirilmeye KAPALI** olmalıdır. 
+
+### 3. L - Liskov Substitution Principle
+**Kural:** bir üst sınıfın yerine, onun alt sınıflarından herhangi biri geçirildiğinde sistemin davranışı bozulmamalıdır ve hata fırlatmamalıdır.
+
+### 4. I - Interface Segregation Principle
+**Kural:** İstemciler (sınıflar), kullanmadıkları metotları içermeye zorlanmamalıdır. Şişman (fat) interface'ler yerine küçük, amaca yönetik arayüzler kurulmalıdır.
+
+### 5. D - Dependency Inversion Principle
+**Kural:** Yüksek seviyeli modüller (UI, iş mantığı), düşük seviyeli modüllere (veritabanı, HTTP istemcisi) bağlı olmamalıdır. Her ikisi de soyutlamalara (`interface`) bağlı olmalıdır.
+
+
+---
+
+### 1.4. `Coupling` (Bağlaşıklık) ve `Cohesion` (Uyum)
+**Tightly Coupled (Sıkı bağımlı):** sınıfların birbirinin her detayını bilmesi. birinde yapılan bir harflik değişiklik, diğer 5 dosyayı bozuyorsa sistem sıkı bağımlıdır. Tightly Couped.
+
+```dart
+class Araba {
+  // Araba, motoru kendisi üretiyor. Başka motor takılamaz.
+  V8Motor motor = V8Motor(); 
+
+  void gazaBas() {
+    motor.calistir();
+  }
+}
+```
+
+**Loosely Coupled (Gevşek bağımlı):** sınıfların sadece interface üzerinden konuşması. Biri değiştiğinde diğeri etkilenmez. Loosely Coupled. 
+
+```dart
+class Araba {
+  Motor motor;
+  
+  // Motor dışarıdan lego parçası gibi takılır. (Dependency Injection)
+  Araba(this.motor); 
+
+  void gazaBas() {
+    motor.calistir();
+  }
+}
+```
+
+**High Cohesion (YÜKSEK UYUM):** Bir sınıfın sadece ve sadece kendi uzmanlık alanını yapması. 
+
+**Low cohesion: KÖTÜ ÖRNEK**
+```dart
+class Personel {
+  void yemekYap() { ... }
+  void maaslariHesapla() { ... }
+  void veritabaninaKaydet() { ... }
+}
+```
+
+**High Cohesion: İYİ ÖRNEK**
+```dart
+class Asci {
+  void yemekYap() { ... }
+}
+
+class Muhasebe {
+  void maaslariHesapla() { ... }
+}
+
+class Veritabani {
+  void kaydet() { ... }
+}
+```
+-------
+
+## STREAM TEMELLERİ, CUBIT & ENTERPRISE BLOC
+
+### 2.1. `Stream` Nedir? (BLoC'un kalbindeki motor)
+**sözlük anlamı:** zaman içinde parça parça gelen, akıp giden asenkron veri dizisi.
+
+**BLoC sırrı:** BLOC kütüphanesi sihirli bir şey yapmaz! BLoC un içinde gizli bir `StreamController` vardır. Event'ler borunun bir ucundan girer (`sink.add`), BLoC onları işler ve diğer ucundan ekrana state akıtır. (`stream.listen`).
+
+- Örnek: 
+- sink (Giriş/Huni): Makinenin üstünden meyveleri attığın yerdir (Kullanıcının butona basması / Event).
+- stream (Çıkış/Musluk): Makineden akan hazır meyve suyudur (Ekranda gösterilecek veri / State).
+- listen (Dinleyici): Musluğun altına bardağı koyup yeni meyve suyu gelmesini bekleyen kişidir (Telefon ekranı / UI).
+
+- BLoC mimarisi, bu makineyi senin yerine güvenle kurup kapatan ve içine giren meyveyi (Event) nasıl meyve suyuna (State) dönüştüreceğinin kurallarını yazdığın hazır bir sistemdir. Sen sadece "elma girerse elma suyu ver" kuralını yazarsın, gerisini BLoC halleder.
+
+```dart
+import 'dart:async';
+
+void main() {
+  // 1. Makineyi kuruyoruz (BLoC'un içindeki gizli motor)
+  final makine = StreamController<String>();
+
+  // 2. Müşteri musluğun altına bardağı koyup bekliyor (UI Ekranı)
+  // Makineden ne zaman yeni bir şey gelse bu blok otomatik çalışır.
+  makine.stream.listen((cikanIcecek) {
+    print("Ekranda güncellenen veri: $cikanIcecek hazır! 🥤");
+  });
+
+  // 3. Makinenin hunisinden içeri malzeme atıyoruz (Event / Kullanıcı Etkileşimi)
+  print("Kullanıcı butona bastı: Portakal atılıyor...");
+  makine.sink.add("Portakal Suyu"); // Bu yapıldığı an yukarıdaki listen tetiklenir
+
+  print("Kullanıcı butona bastı: Elma atılıyor...");
+  makine.sink.add("Elma Suyu");
+
+  // İş bitince makineyi kapatıyoruz (Hafıza sızıntısı olmaması için)
+  makine.close();
+}
+```
+
+## KARŞILAŞTIRMA TABLOSU
+| Kriter | Cubit (hafif BLoC)  | BLoC (event-driven)  |
+|---|---|---|
+| **tetikleme mekanizması** | Doğrudan metot çağrısı: cubit.loadStations()  | event fırlatma: bloc.add(LoadStationsEvent())  |
+| **kod miktarı**  | az dosya, sade ve hızlı  | event dosyası + state dosyası + BLoC dosyası  |
+| **izlenebilirlik (traceability)**  | sadece hangi fonksiyonun çağrıldığı bilinir  | hangi event'in hangi state'e yol açtığı saniye saniye izlenir.  |
+| **event dönüştürücü (debounce/throttle)**  | Elle Timer veya flag kurmak gerekir  | transformer: restartable() ile tek satırda çözülür  |
+| **ne zaman tercih edilmeli**  | basit formlar, tema değiştirme, tab geçişleri, profil  | şarj başlatma/bitirme, sepet akışı, bakiye transferi, kimlik doğrulama  |
+
+---
+### 2.3. BLoC'un 3 Temel Elemanı: `Event`, `State`, `Emitter`
+**Event (olay):** Kullanıcının veya sistemin BLoC'a attığı emir fişi.
+
+*Mini Sözdizimi:* `class StartChargingRequested extends ChargingEvent { final String sockeetId; } `
+
+**State (durum):** ekranın o milisaniyedeki dondurulmuş fotoğrafı (snapshot).
+
+*Mini Sözdizimi:* `class ChargingActiveState extends ChargingState { final double kwh; }`
+
+**Özel durumlar:** `Initial`, `Loading`, `Loaded`, `Error`
+
+**Emitter:** BLoC'un ürettiği yeni state'i ekrana fırlattığı megafon borusu.
+
+**Kural:** Senkron çalışır: `emit(NewState())` dendiği anda UI'daki builder'lar tetiklenir.
+
+app async işlem başlatır, kullanıcı cevap gelmeden uyg kapatır, yada geri tuşuna basar, ne olur?
+
+### Soru: State değiştiğinde ne yapmak istiyorsun?  
+
+| İhtiyaç | Örnek Durumlar | Kullanılacak Widget |
+| :--- | :--- | :--- |
+| **Sadece arayüz çizmek**   | - kart basmak  <br>- spinner döndürmek  <br>- liste render etmek   | **`BlocBuilder`**   |
+| **Sadece yan etki tetiklemek**   | - snackBar patlatmak  <br>- showDialog() açmak  <br>- context.go() ile gitmek   | **`BlocListener`**   |
+| **Hem arayüz çizmek hem yan etki tetiklemek**   | - hata olunca SnackBar bas,  <br>- ama listeyi ekranda tut   | **`BlocConsumer`**   |
+
+
+## 3.1. `Side Effect` (Yan Etki) Neden `BlockBuilder` İçine Yazılmaz?
+* `BlocBuilder`'ın tek görevi **Widget döndürmektir**. 
+* Flutter motoru ekranı saniyede 60 kez çizebilir (Rebuild).  Eğer siz `BlocBuilder` içine `ScaffoldMessenger.showSnackBar` veya `Navigator.push` yazarsanız; kullanıcı cihazı yan çevirdiğinde veya klavye açıldığında kullanıcıya **üst üste 10 defa SnackBar patlar veya 10 kez yeni sayfa açılır!** 
+* **Kural:** Yan etkiler SADECE `BlocListener` içine yazılır; çünkü `listener` sayfa rebuild olduğunda değil, **yalnızca State değiştiğinde 1 kez** tetiklenir! 
+
