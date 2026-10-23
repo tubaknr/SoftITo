@@ -591,3 +591,127 @@ app async işlem başlatır, kullanıcı cevap gelmeden uyg kapatır, yada geri 
 * Flutter motoru ekranı saniyede 60 kez çizebilir (Rebuild).  Eğer siz `BlocBuilder` içine `ScaffoldMessenger.showSnackBar` veya `Navigator.push` yazarsanız; kullanıcı cihazı yan çevirdiğinde veya klavye açıldığında kullanıcıya **üst üste 10 defa SnackBar patlar veya 10 kez yeni sayfa açılır!** 
 * **Kural:** Yan etkiler SADECE `BlocListener` içine yazılır; çünkü `listener` sayfa rebuild olduğunda değil, **yalnızca State değiştiğinde 1 kez** tetiklenir! 
 
+### 3.2. `BlocSelector` (Mikro Performans & Pil Tasarrufu)
+
+* **Kavram:** State'in içindeki onlarca alandan sadece **1 tanesini süzüp izlemek**.
+
+---
+## 4. EŞİTLİK, DEĞİŞMEZLİK & BLOCOBSERVER
+### 4.1. `Referential Equality` vs `Value Equality`
+
+* **Dart Varsayılanı (Referans Eşitliği):** İki nesnenin bellekteki (RAM) adresi aynı mı?
+  `Soket('A') == Soket('A')` -> **FALSE çıkar!** İçerikleri aynı olsa da RAM'deki evleri farklıdır.
+  
+* **Değer Eşitliği (Value Equality):** Nesnelerin içindeki veriler aynı mı?
+  `Equatable` paketi tam olarak bunu çözer: Nesneleri RAM adresine göre değil, `props` listesindeki alanların değerine göre karşılaştırır.
+
+
+### 4.3. `Immutability` (Değişmezlik) & `copyWith`
+* **Kural:** State sınıflarının tüm alanları `final` olmalıdır (Değişmez).
+* **`copyWith` Mantığı:** Eski nesnenin 5 alanını koruyup, sadece değişen 1 alanını güncelleyerek taze bir nesne üretme yöntemidir.
+```dart
+  final guncel = state.copyWith(isCharging: true); // Diğer alanlar bozulmadan kopyalanır
+```
+
+## 1. PRESENTATION
+
+- UI ekranları
+- butonlar
+- theme
+- BLoC
+- Cubit
+- BAĞIMLILIK İÇERİ BAKAR
+
+## 2. DOMAIN
+
+- iş kuralları - en kutsal katman
+- entity (saf veri)
+- useCase (iş kuralları)
+- repository interface (sözleşmeler)
+
+* **Kural:** dış dünyada (JSON, Dio, SQLite) asla bilgi içermez!!!! Sıfır harici paket importu!
+
+## 3. DATA (veri altyapısı)
+ 
+- Model / DTO (fromJson / toJson)
+- Remote DataSource (Dio ile API)
+- Local DataStorage (Hive / sharedPreferences ile disk)
+- Repository Implementation
+- SÖZLEŞMEYİ UYGULAR
+
+--------------
+
+
+## 5. CLEAN ARCHITECTURE KATMANLARI & SORUMLULUK DUVARLARI
+### 5.1. `Entity` vs `Model / DTO`
+
+* **`Entity` (Varlık):** Saf iş nesnesidir. Bir şarj soketinin gerçek hayattaki özelliklerini (`id`, `kw`, `durum`) tutar. `fromJson` veya `toJson` İÇERMEZ.
+
+* **`Model / DTO` (Veri Transfer Nesnesi):** 
+
+AP'den gelen ham JSON verisini karşılayan taşıyıcıdır. `Entity`'den türer. `fromJson` ve `toJson` metotlarını barındırır.
+
+* *"Neden Entity içine `fromJson` yazmıyoruz?"*
+* *(Cevap: Yarın backend JSON yerine XML veya Protobuf formatına geçerse; Domain katmanındaki iş kurallarımız ve UI sayfalarımız zerre kadar etkilenmesin, sadece DATA katmanındaki Model etkilensin diye!)*
+
+### 5.2. `UseCase` (Kullanım Senaryosu)
+* **Kavram:** Kullanıcının veya sistemin gerçekleştirebileceği **tek ve atomik bir iş kuralı**.
+* **Örnekler:** `StartChargingSessionUseCase`, `GetStationSocketsUseCase`, `RefundWalletBalanceUseCase`.
+
+* **Kural:** Her UseCase sınıfının içinde sadece tek bir call() veya execute() fonksiyonu bulunur.
+
+### 5.3. `Repository Contract` vs `Repository Implementation`
+
+
+## 6. BAĞIMLILIK YÖNETİMİ: DEPENDENCY INJECTION & `get_it`
+
+### 6.1. Neden `new Dio()` Yazmak Yasaktır?
+Eğer 5 ayrı sayfada `final dio = Dio();` derseniz:
+
+1. Bellekte 5 ayrı bağlantı havuzu açılır, telefonun soket sınırını zorlar.
+2. Base URL veya Timeout değiştiğinde 5 ayrı dosyayı elle değiştirmek zorunda kalırsınız.
+3. Test yazarken sahte (mock) veri enjekte edemezsiniz.
+
+
+### 6.2. `GetIt` Kayıt Tipleri: Singleton vs LazySingleton vs Factory
+
+* **`Singleton`:** Uygulama açıldığı milisaniyede nesneyi üretir ve belleğe çiviler.
+
+* **`LazySingleton`:** Uygulama açıldığında üretmez! Ne zaman ilk kez birisi `sl<Dio>()` derse o an üretir ve sonrasında hep aynı nesneyi verir. (Bellek ve açılış hızı dostudur).
+
+* **`Factory`:** Her çağrıldığında **yepyeni, sıfır bir kopya** üretir.
+
+
+## 7. KURUMSAL AĞ MİMARİSİ: DIO, INTERCEPTOR & HTTP STATUS KODLARI
+
+* **Sözlük Anlamı:** Ağ isteği telefondan çıkıp internete gitmeden önce veya sunucudan cevap gelip koda düşmeden önce araya girip paketi inceleyen/değiştiren güvenlik noktası.
+
+### 7.2. `Bearer Token` & `Payload`
+
+
+### 7.3. `HTTP STATUS KODLARI` (Sayısal Anlamları)
+* **200 OK:** Başarılı 
+* **400 Bad Request:** Kötü istek (Formu eksik doldurdun, parolan çok kısa)
+* **401 Unauthorized:** Yetkisiz (Giriş yapmadın veya token bayat)
+* **403 Forbidden:** Yasak (Token var ama yetkin yetersiz - Admin rolü lazım)
+* **404 Not Found:** Sayfa/Kaynak bulunamadı
+* **500 Internal Server Error:** Sunucu şoka girdi (Bizim kod hatamız veya backend çöktü)
+
+## 8. VERİ DAYANIKLILIĞI: CACHE-FIRST & SAVUNMACI KODLAMA
+
+### 8.1. `Cache-first` (Önce Bellek) Stratejisi
+
+* **Mantık:** Kullanıcı şarj istasyonu listesini açtığında 1 saniye bile beyaz ekranda spinner bekletme! Diskteki dünkü veriyi **0.01 milisaniyede** ekrana bas. Arka planda sunucudan taze veriyi çek; gelince ekranı ve diski sessizce güncelle.
+
+### 8.2. `Defensive Programming` (Savunmacı Programlama)
+
+* **Mantık:** Sunucudan gelen veriye asla %100 güvenmeme prensibi.
+
+
+
+
+
+
+
+
+
