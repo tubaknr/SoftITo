@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../core/constants/app_colors.dart';
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/l10n/locale_controller.dart';
 import '../../../core/services/url_opener/url_opener.dart';
@@ -434,8 +433,6 @@ class WelcomePage extends StatelessWidget {
 
   // --- 3. CALL TO ACTION BUTTONS & LEGAL ---
   Widget _buildActionButtons(BuildContext context) {
-    final colors = context.colors;
-
     return Column(
       children: [
         // Primary Gradient Action: "Hemen Başla" (clean, NO underline)
@@ -535,10 +532,12 @@ class WelcomePage extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: SizedBox(
+          child: Image.asset(
+            'assets/images/Google__G__logo.svg.webp',
             width: 22,
             height: 22,
-            child: CustomPaint(
+            fit: BoxFit.contain,
+            errorBuilder: (_, _, _) => CustomPaint(
               painter: _GoogleLogoPainter(),
             ),
           ),

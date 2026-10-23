@@ -123,7 +123,13 @@ class GoogleOAuthButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _GoogleIconPainterWidget(size: 20),
+              Image.asset(
+                'assets/images/Google__G__logo.svg.webp',
+                width: 20,
+                height: 20,
+                fit: BoxFit.contain,
+                errorBuilder: (_, _, _) => const _GoogleIconPainterWidget(size: 20),
+              ),
               const SizedBox(width: 12),
               Text(
                 context.loc.googleContinue,
@@ -140,7 +146,7 @@ class GoogleOAuthButton extends StatelessWidget {
   }
 }
 
-/// Underlined text link button
+/// Text link button without underline
 class UnderlineLinkButton extends StatelessWidget {
   const UnderlineLinkButton({
     super.key,
@@ -161,7 +167,7 @@ class UnderlineLinkButton extends StatelessWidget {
         label,
         style: context.typography.labelLarge?.copyWith(
           color: color ?? context.colors.textLink,
-          decoration: TextDecoration.underline,
+          decoration: TextDecoration.none,
           fontWeight: FontWeight.w600,
         ),
       ),

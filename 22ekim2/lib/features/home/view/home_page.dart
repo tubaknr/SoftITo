@@ -306,6 +306,7 @@ class _HomeHabitsHeader extends StatelessWidget {
         style: context.typography.labelLarge?.copyWith(
           color: context.colors.textLink,
           fontSize: 12,
+          decoration: TextDecoration.none,
         ),
       ),
     );

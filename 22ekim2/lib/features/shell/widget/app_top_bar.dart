@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/extensions/context_extensions.dart';
-import '../../../core/l10n/locale_controller.dart';
-import '../../../core/theme/theme_controller.dart';
 import '../../auth/controller/auth_controller.dart';
 import '../../notifications/controller/notifications_controller.dart';
 import '../../notifications/widget/notification_settings_sheet.dart';
@@ -140,16 +138,7 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget _buildActionControls(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _buildLanguagePill(context),
-        const SizedBox(width: 6),
-        _buildNotificationBell(context),
-        const SizedBox(width: 4),
-        _buildThemeToggle(context),
-      ],
-    );
+    return _buildNotificationBell(context);
   }
 
   Widget _buildNotificationBell(BuildContext context) {
@@ -182,79 +171,6 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildLanguagePill(BuildContext context) {
-    return ValueListenableBuilder<Locale>(
-      valueListenable: LocaleController.instance,
-      builder: (context, locale, _) {
-        final isTr = locale.languageCode == 'tr';
-        return Container(
-          padding: const EdgeInsets.all(2),
-          decoration: BoxDecoration(
-            color: context.colors.bgCardSubtle,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: context.colors.borderLight),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _buildLangChip(context, 'TR', isTr),
-              _buildLangChip(context, 'EN', !isTr),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildLangChip(BuildContext context, String text, bool active) {
-    final colors = context.colors;
-    return GestureDetector(
-      onTap: () => LocaleController.instance.toggleLocale(),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 150),
-        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-        decoration: BoxDecoration(
-          color: active ? colors.bgCard : Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: active
-              ? [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.05),
-                    blurRadius: 3,
-                    offset: const Offset(0, 1),
-                  ),
-                ]
-              : null,
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 11,
-            fontWeight: active ? FontWeight.w800 : FontWeight.w500,
-            color: active ? colors.primary : colors.textMuted,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildThemeToggle(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-      valueListenable: ThemeController.instance,
-      builder: (context, mode, _) {
-        final isDark = mode == ThemeMode.dark;
-        return IconButton(
-          onPressed: () => ThemeController.instance.toggleTheme(),
-          icon: Icon(
-            isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-            color: isDark ? context.colors.accentSun : context.colors.textMuted,
-            size: 20,
-          ),
-        );
-      },
     );
   }
 }

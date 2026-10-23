@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/l10n/locale_controller.dart';
-import '../../../core/theme/theme_controller.dart';
 import '../../../core/widgets/penguin_mascot_painter.dart';
 import '../../analytics/controller/analytics_controller.dart';
 import '../../auth/controller/auth_controller.dart';
@@ -12,7 +11,8 @@ import '../../habits/controller/habits_controller.dart';
 import '../../home/models/habit_completion.dart';
 import '../../notifications/controller/notifications_controller.dart';
 import '../../notifications/widget/notification_settings_sheet.dart';
-import '../../onboarding/view/welcome_page.dart';
+import '../../settings/controller/settings_controller.dart';
+import '../../settings/view/settings_view.dart';
 
 /// User Profile screen adhering to `SKILL.md` Section 3.6
 class ProfilePage extends StatefulWidget {
@@ -65,27 +65,19 @@ class _ProfilePageState extends State<ProfilePage>
         final avgMood = _analyticsEngine.calculateAverageMoodScore(completions);
 
         final double bottomBarSpacing =
-            (context.padding.bottom > 0 ? context.padding.bottom : 16.0) + 64.0;
+            (context.padding.bottom > 0 ? context.padding.bottom : 16.0) + 76.0;
 
         return Padding(
           padding: EdgeInsets.fromLTRB(16, 6, 16, bottomBarSpacing),
           child: Column(
             children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      _buildAvatarCard(context, user, avgMood),
-                      const SizedBox(height: 10),
-                      _buildTabBar(context),
-                      const SizedBox(height: 8),
-                      _buildTabContent(context, completions, badges),
-                    ],
-                  ),
-                ),
-              ),
+              _buildAvatarCard(context, user, avgMood),
+              const SizedBox(height: 10),
+              _buildTabBar(context),
               const SizedBox(height: 8),
-              _buildSettingsCard(context),
+              Expanded(
+                child: _buildTabContent(context, completions, badges),
+              ),
             ],
           ),
         );
@@ -141,30 +133,40 @@ class _ProfilePageState extends State<ProfilePage>
             children: [
               Row(
                 children: [
-                  Text(
-                    name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 17,
-                      color: colors.textMain,
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            name,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 17,
+                              color: colors.textMain,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFD8E2FF),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            context.loc.proMember,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF001A42),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFD8E2FF),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      context.loc.proMember,
-                      style: const TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF001A42),
-                      ),
-                    ),
-                  ),
+                  _buildSettingsGearButton(context, colors),
                 ],
               ),
               const SizedBox(height: 2),
@@ -377,17 +379,14 @@ class _ProfilePageState extends State<ProfilePage>
     List<HabitCompletion> completions,
     List<BadgeModel> badges,
   ) {
-    return SizedBox(
-      height: 195,
-      child: TabBarView(
-        controller: _tabController,
-        children: [
-          _buildHabitsTab(context),
-          _buildBadgesTab(context, badges),
-          _buildNotificationsTab(context),
-          _buildNotesTab(context, completions),
-        ],
-      ),
+    return TabBarView(
+      controller: _tabController,
+      children: [
+        _buildHabitsTab(context),
+        _buildBadgesTab(context, badges),
+        _buildNotificationsTab(context),
+        _buildNotesTab(context, completions),
+      ],
     );
   }
 
@@ -506,7 +505,11 @@ class _ProfilePageState extends State<ProfilePage>
         icon: Icon(Icons.tune_rounded, color: context.colors.primary),
         label: Text(
           context.loc.notificationSettingsTitle,
-          style: TextStyle(color: context.colors.textMain, fontWeight: FontWeight.w600),
+          style: TextStyle(
+            color: context.colors.textMain,
+            fontWeight: FontWeight.w600,
+            decoration: TextDecoration.none,
+          ),
         ),
         onPressed: () {
           NotificationSettingsSheet.show(
@@ -569,211 +572,31 @@ class _ProfilePageState extends State<ProfilePage>
     );
   }
 
-  Widget _buildSettingsCard(BuildContext context) {
-    final colors = context.colors;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-      decoration: BoxDecoration(
-        color: colors.bgCard,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: colors.borderLight),
-      ),
-      child: Column(
-        children: [
-          _buildCompactSettingRow(
-            icon: Icons.language_rounded,
-            iconColor: colors.primary,
-            title: context.loc.languageToggle,
-            trailing: ValueListenableBuilder<Locale>(
-              valueListenable: LocaleController.instance,
-              builder: (ctx, locale, _) {
-                final isTr = locale.languageCode == 'tr';
-                return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(
-                    color: colors.bgCardSubtle,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: colors.borderLight),
-                  ),
-                  child: Text(
-                    isTr ? 'TR (Türkçe)' : 'EN (English)',
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w700,
-                      color: colors.primary,
-                    ),
-                  ),
-                );
-              },
-            ),
-            onTap: () => LocaleController.instance.toggleLocale(),
-          ),
-          Divider(height: 1, thickness: 0.8, color: colors.borderLight.withValues(alpha: 0.6)),
-          _buildCompactSettingRow(
-            icon: Icons.dark_mode_outlined,
-            iconColor: context.isDark ? colors.accentSun : colors.textMuted,
-            title: context.loc.themeModeToggle,
-            trailing: ValueListenableBuilder<ThemeMode>(
-              valueListenable: ThemeController.instance,
-              builder: (ctx, mode, _) {
-                return Transform.scale(
-                  scale: 0.8,
-                  child: Switch.adaptive(
-                    value: mode == ThemeMode.dark,
-                    activeTrackColor: colors.primary,
-                    onChanged: (_) => ThemeController.instance.toggleTheme(),
-                  ),
-                );
-              },
-            ),
-          ),
-          Divider(height: 1, thickness: 0.8, color: colors.borderLight.withValues(alpha: 0.6)),
-          _buildCompactSettingRow(
-            icon: Icons.backup_rounded,
-            iconColor: colors.primary,
-            title: context.loc.backupData,
-            trailing: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-              decoration: BoxDecoration(
-                color: colors.primary.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                'JSON',
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w700,
-                  color: colors.primary,
+  Widget _buildSettingsGearButton(BuildContext context, dynamic colors) {
+    return Semantics(
+      label: context.loc.settingsTooltip,
+      button: true,
+      child: IconButton(
+        tooltip: context.loc.settingsTooltip,
+        constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+        icon: Icon(
+          Icons.settings_outlined,
+          color: colors.textMain,
+          size: 22,
+        ),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => SettingsView(
+                controller: SettingsController(
+                  authController: widget.authController,
+                  habitsController: widget.habitsController,
                 ),
               ),
             ),
-            onTap: () => _handleBackupData(context),
-          ),
-          Divider(height: 1, thickness: 0.8, color: colors.borderLight.withValues(alpha: 0.6)),
-          _buildCompactSettingRow(
-            icon: Icons.logout_rounded,
-            iconColor: Colors.redAccent,
-            title: context.loc.logoutAction,
-            titleColor: Colors.redAccent,
-            trailing: const Icon(Icons.chevron_right_rounded, size: 18, color: Colors.redAccent),
-            onTap: () => _confirmLogout(context),
-          ),
-        ],
+          );
+        },
       ),
     );
-  }
-
-  Widget _buildCompactSettingRow({
-    required IconData icon,
-    required Color iconColor,
-    required String title,
-    Color? titleColor,
-    required Widget trailing,
-    VoidCallback? onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 2),
-        child: Row(
-          children: [
-            Icon(icon, size: 18, color: iconColor),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: titleColor,
-                ),
-              ),
-            ),
-            trailing,
-          ],
-        ),
-      ),
-    );
-  }
-
-  Future<void> _handleBackupData(BuildContext context) async {
-    final habits = widget.habitsController.habits.value;
-    final completions = widget.habitsController.completions.value;
-    final badges = widget.habitsController.badges.value;
-
-    final isTr = context.loc.isTr;
-    final title = isTr ? 'Veri Yedekleme' : 'Data Backup';
-    final desc = isTr
-        ? 'Tüm alışkanlık (${habits.length}), tamamlama (${completions.length}) ve rozet (${badges.length}) verileriniz başarıyla yerel olarak arşivlendi ve güvenceye alındı.'
-        : 'All habit (${habits.length}), completion (${completions.length}), and badge (${badges.length}) records have been safely archived locally.';
-
-    await showDialog<void>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: const Color(0xFFD1FAE5),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Icon(Icons.cloud_done_rounded, color: Color(0xFF006947), size: 22),
-            ),
-            const SizedBox(width: 10),
-            Text(title, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
-          ],
-        ),
-        content: Text(desc, style: const TextStyle(fontSize: 13.5)),
-        actions: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: context.colors.primary,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            ),
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: Text(isTr ? 'Harika' : 'Got it', style: const TextStyle(color: Colors.white)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<void> _confirmLogout(BuildContext context) async {
-    final confirm = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(context.loc.logoutAction),
-        content: Text(context.loc.confirmLogout),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(context.loc.cancelAction),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(
-              context.loc.logoutAction,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
-      ),
-    );
-
-    if (confirm == true) {
-      await widget.authController.logout();
-      if (!context.mounted) return;
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (_) => WelcomePage(authController: widget.authController),
-        ),
-        (route) => false,
-      );
-    }
   }
 }

@@ -215,9 +215,6 @@ class AppLocalizations {
   String get sectionNotes => isTr ? 'Notlarım' : 'My Notes';
   String get averageMood => isTr ? 'Duygu Ortalaması' : 'Average Mood';
   String get backupData => isTr ? 'Verileri Yedekle' : 'Backup Data';
-  String get backupSuccess => isTr
-      ? 'Verileriniz başarıyla yedeklendi! 💾'
-      : 'Your data has been backed up successfully! 💾';
   String get logoutAction => isTr ? 'Çıkış Yap' : 'Log Out';
   String get confirmLogout => isTr ? 'Oturumu kapatmak istediğine emin misin?' : 'Are you sure you want to log out?';
   String get themeModeToggle => isTr ? 'Karanlık Tema' : 'Dark Mode';
@@ -231,6 +228,18 @@ class AppLocalizations {
   String badgeStepTitle(int step) => isTr ? '$step Tamamlama Rozeti' : '$step Completion Badge';
   String get badgeEarnedToast => isTr ? 'Yeni bir rozet kazandın! 🏆' : 'You earned a new badge! 🏆';
   String get noBadgesYet => isTr ? 'Henüz kazanılmış bir rozet yok. Alışkanlıklarını tamamla!' : 'No badges earned yet. Complete your habits!';
+
+  // --- Settings Screen ---
+  String get settingsTitle => isTr ? 'Ayarlar' : 'Settings';
+  String get settingsTooltip => isTr ? 'Ayarlar' : 'Settings';
+  String get appearanceSection => isTr ? 'Görünüm' : 'Appearance';
+  String get dataSection => isTr ? 'Veri' : 'Data';
+  String get accountSection => isTr ? 'Hesap' : 'Account';
+  String get backupDialogTitle => isTr ? 'Veri Yedekleme' : 'Data Backup';
+  String backupDialogContent(int habits, int completions, int badges) => isTr
+      ? 'Tüm alışkanlık ($habits), tamamlama ($completions) ve rozet ($badges) verileriniz başarıyla yerel olarak arşivlendi ve güvenceye alındı.'
+      : 'All habit ($habits), completion ($completions), and badge ($badges) records have been safely archived locally.';
+  String get backupOkAction => isTr ? 'Harika' : 'Got it';
 
   // --- Notifications Settings ---
   String get notificationSettingsTitle => isTr ? 'Bildirimleri Kişiselleştir' : 'Customize Notifications';

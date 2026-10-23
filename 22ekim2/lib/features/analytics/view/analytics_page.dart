@@ -107,6 +107,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                 color: isSelected ? Colors.white : colors.textMain,
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                 fontSize: 12,
+                decoration: TextDecoration.none,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),

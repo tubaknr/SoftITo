@@ -48,6 +48,19 @@ Oturum açık kullanıcı uygulamayı açınca doğrudan Ana Sayfa'ya gider.
 - E-posta alanı ve **Kod Gönder** butonu.
 - E-posta geçerlilik kontrolü yapılır. Gönderim mock'tur (bkz. 7).
 
+### 1.6 Ayarlar Sayfası (`features/settings`)
+
+**Erişim:** Profil sayfasında, kullanıcı adının sağında sağa dayalı çark butonuna dokunulur. Ayarlar bottom navigation'da sekme değildir; ayrı bir sayfadır ve geri tuşuyla profile dönülür.
+
+**İçerik:**
+| İşlev | Davranış |
+|---|---|
+| Dil | Türkçe / İngilizce seçimi; anında uygulanır, yerel olarak saklanır |
+| Tema modu | Aydınlık / Karanlık seçimi; anında uygulanır, yerel olarak saklanır |
+| Verileri yedekle | Daha önce profil sayfasında olan yedekleme işlevi, davranışı aynıdır |
+| Çıkış yap | Daha önce profil sayfasında olan çıkış işlevi, davranışı aynıdır |
+
+**Kaldırılanlar:** Profil sayfasından dil, karanlık tema, verileri yedekle ve çıkış yap butonları; üst çubuktan TR/EN ve aydınlık/karanlık butonları kaldırılmıştır. Bu işlevler yalnızca Ayarlar sayfasındadır.
 ---
 
 ## 2. Ortak İskelet (`features/shell`)

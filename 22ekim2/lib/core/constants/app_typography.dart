@@ -53,6 +53,6 @@ class AppTypography {
   static const TextStyle link = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,
-    decoration: TextDecoration.underline,
+    decoration: TextDecoration.none,
   );
 }

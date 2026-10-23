@@ -96,6 +96,24 @@ class AppTheme {
           side: const BorderSide(color: AppColors.lightBorder, width: 1),
         ),
       ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          textStyle: const TextStyle(decoration: TextDecoration.none),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          textStyle: const TextStyle(decoration: TextDecoration.none),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          textStyle: const TextStyle(decoration: TextDecoration.none),
+        ),
+      ),
+      chipTheme: const ChipThemeData(
+        labelStyle: TextStyle(decoration: TextDecoration.none),
+      ),
       bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: AppColors.lightBgCard,
         shape: RoundedRectangleBorder(
@@ -167,6 +185,24 @@ class AppTheme {
           borderRadius: BorderRadius.circular(20),
           side: const BorderSide(color: AppColors.darkBorder, width: 1),
         ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          textStyle: const TextStyle(decoration: TextDecoration.none),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          textStyle: const TextStyle(decoration: TextDecoration.none),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          textStyle: const TextStyle(decoration: TextDecoration.none),
+        ),
+      ),
+      chipTheme: const ChipThemeData(
+        labelStyle: TextStyle(decoration: TextDecoration.none),
       ),
       bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: AppColors.darkBgCard,

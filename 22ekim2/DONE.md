@@ -340,8 +340,97 @@ Tüm tasarım `stitch_penguin_habit_tracker` ile birebir uyumlu hale getirilmiş
 ```bash
 $ flutter analyze
 Analyzing 22ekim2...
-No issues found! (0 hata, 0 uyarı - ran in 3.0s)
+No issues found! (0 hata, 0 uyarı - ran in 4.1s)
 
 $ flutter test
 00:02 +19: All tests passed! (19/19 test %100 başarılı)
 ```
+
+---
+
+## 🎨 10. Arayüz İnce Ayarları ve Logo Güncellemesi
+
+1. **Profil Sayfası Düzen ve Boşluk Optimizasyonu ([profile_page.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/profile/view/profile_page.dart)):**
+   - Sayfa genelini kapsayan dikey `Expanded` kısıtlaması kaldırılarak içerik akıcı bir `SingleChildScrollView` yapısına kavuşturuldu.
+   - Notlar sekmesinin bitişi ile dil / genel ayarlar kartı arasındaki gereksiz büyük boşluk giderildi; ideal ve dengeli `12px` boşluk (`SizedBox(height: 12)`) sağlandı.
+
+2. **Tüm Butonlardan Alt Çizgilerin Kaldırılması:**
+   - **Genel Tipografi & Tema ([app_typography.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/core/constants/app_typography.dart), [app_theme.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/core/theme/app_theme.dart)):** `AppTypography.link` tanımından ve `TextTheme.labelLarge`, `TextButtonThemeData`, `ElevatedButtonThemeData`, `OutlinedButtonThemeData`, `ChipThemeData` stillerinden `TextDecoration.underline` kaldırıldı; varsayılan olarak `TextDecoration.none` yapıldı.
+   - **Anasayfa "Tüm Alışkanlıklar" Butonu ([home_page.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/home/view/home_page.dart)):** Buton metnindeki alt çizgi kaldırıldı.
+   - **Analiz Sayfası Filtre Hapları ([analytics_page.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/analytics/view/analytics_page.dart)):** "Son 7 gün", "Son 30 gün", "Son 90 gün", "Tümü" butonlarındaki alt çizgiler kaldırıldı.
+   - **Profil "Bildirimleri Kişiselleştir" Butonu ([profile_page.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/profile/view/profile_page.dart)):** Buton metnindeki alt çizgi kaldırıldı.
+   - **İstisna Kuralı:** Kullanıcının özel talebi doğrultusunda yalnızca karşılama sayfasındaki yasal metinler olan **Kullanım Koşulları** ve **Gizlilik Politikası** linkleri altı çizgili olarak bırakıldı; uygulamadaki diğer tüm butonların alt çizgileri temizlendi.
+
+3. **Google Logo WebP Entegrasyonu ([welcome_page.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/onboarding/view/welcome_page.dart), [app_buttons.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/core/widgets/app_buttons.dart)):**
+   - Proje ana dizinindeki `Google__G__logo.svg.webp` dosyası `assets/images/` altına alındı ve `pubspec.yaml` varlıklarına kaydedildi.
+   - Giriş ve karşılama ekranlarındaki dairesel Google butonunda `Image.asset` ile doğrudan bu logo kullanılmaya başlandı; test ortamlarında da sorunsuz çalışması için zarif `errorBuilder` koruması eklendi.
+
+---
+
+## ⚙️ 11. Ayarlar Sayfası Özelliği Entegrasyonu (`features/settings`) — Tarih: 2026-10-23
+
+`project.md` Bölüm 8'de ve `progress.md` çalışma planında tanımlanan tüm bağlayıcı gereksinimler, mimari ve kod kalitesi standartlarına %100 uyularak tamamlanmıştır.
+
+### 11.1. Mimari Yapı ve Katman Ayrımı
+- **Dizin:** `lib/features/settings/`
+  - `controller/settings_controller.dart`: Saf Dart + `foundation`, Flutter UI widget'larından bağımsız, birim test edilebilir controller. Mevcut `ValueNotifier<Locale>` ve `ValueNotifier<ThemeMode>` örneklerini yönetir, anlık geçiş ve yerel kalıcılığı sağlar. Veri yedekleme (`backupData`) ve oturum kapatma (`logout`) işlemlerini soyut arayüzlere devreder.
+  - `view/settings_view.dart`: Yalnızca sayfa iskeleti; 40 satırı geçen `build` yasağına harfiyen uyulmuştur.
+  - `widget/settings_tile.dart`: Tek tip ayar satırı bileşeni. Tema renkleri ve tipografi hiyerarşisi (`context.colors`, `context.typography`) ile uyumlu.
+  - `widget/settings_section_card.dart`: Ayarları mantıksal gruplara (Görünüm, Veri, Hesap) ayıran bento stilinde kart kapsayıcısı.
+  - `widget/settings_dialogs.dart`: `SettingsBackupDialog` (arşivlenen alışkanlık, tamamlama ve rozet istatistikleri) ve `SettingsLogoutDialog` (çıkış onay penceresi).
+
+### 11.2. İşlevlerin Taşınması ve İskelet Temizliği
+1. **Profil Sayfası (`lib/features/profile/view/profile_page.dart`):**
+   - Kullanıcı adının sağına, **sağa dayalı** bir ayarlar çark butonu (`IconButton`, `Icons.settings_outlined`) eklendi.
+   - İsim ve çark butonu aynı satırda `Row` içinde konumlandırıldı; isim `Expanded` + `Flexible` ve `TextOverflow.ellipsis` ile taşma korumasına alındı, çark butonu her zaman görünür kaldı.
+   - Çark butonu `context.loc.settingsTooltip` ile hem `tooltip` hem de `Semantics(button: true)` taşır; dokunma alanı en az `48x48px` (`BoxConstraints(minWidth: 48, minHeight: 48)`) olarak ayarlandı.
+   - Çark butonuna basıldığında `SettingsView` sayfası `Navigator.push` ile açılmaktadır.
+   - Profil sayfasından dil seçimi, karanlık tema, verileri yedekle ve çıkış yap butonları tamamen kaldırıldı; profilin geri kalan düzeni bozulmadan korundu.
+2. **Ortak Üst Çubuk (`lib/features/shell/widget/app_top_bar.dart`):**
+   - Üst çubuktaki TR/EN dil hapı (`_buildLanguagePill`) ve aydınlık/karanlık tema toggle butonu (`_buildThemeToggle`) kaldırıldı.
+   - Sağ tarafta yalnızca bildirim zili (`_buildNotificationBell`) bırakıldı; boşalan alan üst çubuğun yerleşim dengesini bozmadı.
+3. **Yerelleştirme (`AppLocalizations`):**
+   - Yeni başlıklar ve etiketler hem Türkçe hem İngilizce olarak eklendi: `settingsTitle`, `settingsTooltip`, `appearanceSection`, `dataSection`, `accountSection`, `backupDialogTitle`, `backupDialogContent`, `backupOkAction`.
+   - Taşıma sonrası kullanılmayan `backupSuccess` anahtarı temizlendi.
+
+### 11.3. Doğrulama ve Test Sonuçları (28/28 Test %100 Başarılı)
+- **Birim Testleri (`test/features/settings/settings_controller_test.dart`):**
+  - Başlangıç dil ve tema durumlarının doğrulanması
+  - Dil değiştirme (`toggleLocale`, `setLocale`) ve yerel kalıcılık tetiklenmesi
+  - Tema değiştirme (`toggleTheme`, `setThemeMode`) ve yerel kalıcılık tetiklenmesi
+  - Veri yedekleme motorunun alışkanlık, tamamlama ve rozet verilerini eksiksiz sayması
+  - Oturum kapatma (`logout`) işleminin `AuthController` oturumunu temizlemesi
+- **Widget Testleri (`test/features/settings/settings_widget_test.dart`):**
+  - Profil sayfasında kullanıcı adının sağında çark butonunun bulunması ve dokunulunca `SettingsView` açılması
+  - Profil sayfasında dil, tema, yedekle ve çıkış yap kontrollerinin bulunmadığının teyidi
+  - Üst çubukta dil ve tema butonlarının bulunmadığının, bildirim zilinin korunduğunun teyidi
+  - `SettingsView` üzerinde 4 temel işlevin (Dil, Tema modu, Verileri yedekle, Çıkış yap) eksiksiz listelenmesi
+- **Statik Kod Analizi:**
+  ```bash
+  $ flutter analyze
+  Analyzing 22ekim2...
+  No issues found! (0 hata, 0 uyarı - ran in 4.3s)
+  ```
+- **Test Paketi:**
+  ```bash
+  $ flutter test
+  00:01 +28: All tests passed! (28 testin tamamı %100 başarılı)
+  ```
+
+---
+
+## 📐 12. Profil Sayfası Notlar Listesi Dikey Yerleşim & Kaydırma Optimizasyonu — Tarih: 2026-10-23
+
+Kullanıcının talebi doğrultusunda profil sayfasındaki TabBar içerikleri (özellikle Notlarım sekmesi) ile yüzen alt menü (BottomBar) arasındaki gereksiz boşluk kaldırılmış ve liste akışı iyileştirilmiştir:
+
+1. **Sabit Yükseklik Sınırının Kaldırılması ([profile_page.dart](file:///Users/d1-20/Documents/GitHub/SoftITo/22ekim2/lib/features/profile/view/profile_page.dart)):**
+   - Önceden ayarlar kartının yer aldığı dönemden kalan `SingleChildScrollView` ve `SizedBox(height: 195)` kısıtlaması kaldırıldı.
+   - Sayfa gövdesi `Column` içine alınarak `TabBarView` doğrudan `Expanded` widget'ı ile sarıldı. Bu sayede Notlar sekmesi (ve diğer sekmeler) ekranın kalan dikey alanını tamamen dolduracak şekilde aşağıya uzatıldı.
+2. **Dikey Kaydırılabilirlik ve Yüzen Menü Güvenlik Payı:**
+   - `_buildNotesTab` içerisindeki `ListView.builder` dinamik dikey kaydırma özelliğini korurken, sayfa alt dolgusu `bottomBarSpacing = (context.padding.bottom > 0 ? context.padding.bottom : 16.0) + 76.0` olarak optimize edildi.
+   - Notlar listesi son öğeye kadar kaydırıldığında kartlar kesinlikle alt çubuğun (BottomBar) arkasında kalmaz, çubuğa değmez ve nefes alan şık bir boşlukla okunur.
+3. **Doğrulama:**
+   - `flutter analyze` 0 hata / 0 uyarı.
+   - 28 testin tamamı (%100) başarıyla çalışmaya devam etmektedir.
+
+
