@@ -708,10 +708,15 @@ Eğer 5 ayrı sayfada `final dio = Dio();` derseniz:
 * **Mantık:** Sunucudan gelen veriye asla %100 güvenmeme prensibi.
 
 
+---- 
+# SORULAR
+blockbuilder içne showbuilder veya snackbar yazılırsa ne felaket olur ?
+
+- BlocBuilder içine showDialog veya SnackBar gibi yan etkiler (side effects) yazılırsa, Flutter'ın ekran çizim (rebuild) döngüsüne yakalanarak aynı işlemin kontrolsüzce defalarca tekrarlanması felaketi yaşanır.
 
 
 
-
+------
 
 
 
