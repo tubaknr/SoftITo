@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'core/firebase/firebase_service.dart';
+import 'core/firebase/repository_factory.dart';
 import 'core/l10n/app_localizations.dart';
 import 'core/l10n/locale_controller.dart';
 import 'core/services/local_store.dart';
 import 'core/theme/app_theme.dart';
 import 'core/theme/theme_controller.dart';
 import 'features/auth/controller/auth_controller.dart';
-import 'features/auth/data/auth_repository.dart';
 import 'features/onboarding/view/welcome_page.dart';
 import 'features/shell/view/shell_page.dart';
 
@@ -17,8 +18,11 @@ void main() async {
   await ThemeController.instance.init();
   await LocaleController.instance.init();
 
+  // Initialize Firebase (Firebase Auth & Cloud Firestore)
+  await FirebaseService.instance.init();
+
   const localStore = SharedPreferencesLocalStore();
-  final authRepository = LocalAuthRepository(localStore: localStore);
+  final authRepository = RepositoryFactory.createAuthRepository(localStore: localStore);
   final authController = AuthController(repository: authRepository);
   await authController.init();
 

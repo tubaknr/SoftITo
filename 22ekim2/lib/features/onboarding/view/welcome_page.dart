@@ -131,13 +131,12 @@ class WelcomePage extends StatelessWidget {
                   ),
                 );
               },
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(16),
               child: Container(
-                width: 34,
-                height: 34,
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
                   color: colors.bgCard.withValues(alpha: 0.9),
-                  shape: BoxShape.circle,
+                  borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: colors.borderLight),
                   boxShadow: [
                     BoxShadow(
@@ -147,10 +146,24 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Icon(
-                  Icons.login_rounded,
-                  color: colors.primary,
-                  size: 17,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.login_rounded,
+                      color: colors.primary,
+                      size: 15,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      context.loc.loginAction,
+                      style: TextStyle(
+                        fontSize: 11.5,
+                        fontWeight: FontWeight.w700,
+                        color: colors.primary,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -492,7 +505,33 @@ class WelcomePage extends StatelessWidget {
         // Google OAuth: purely circular button, only Google logo, NO text
         _buildGoogleCircleButton(context),
 
-        const SizedBox(height: 14),
+        const SizedBox(height: 12),
+
+        // Text Action: "Zaten Hesabım Var → Giriş Yap"
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => LoginPage(authController: authController),
+              ),
+            );
+          },
+          style: TextButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            minimumSize: Size.zero,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+          child: Text(
+            context.loc.alreadyHaveAccountAction,
+            style: TextStyle(
+              fontSize: 13,
+              color: colors.primary,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 10),
 
         // Legal / Privacy Disclaimer with clickable links opening the browser
         _buildLegalDisclaimer(context),

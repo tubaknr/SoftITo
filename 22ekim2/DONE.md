@@ -1,12 +1,12 @@
 # PenguHabit — Alışkanlık Takip & Kişisel Gelişim Uygulaması (DONE.md)
 
-Bu doküman, `/Users/d1-20/Documents/GitHub/SoftITo/22ekim2/` dizininde yer alan `project.md`, `SKILL.md` ve `style.md` şartnameleri doğrultusunda geliştirilen **PenguHabit** uygulamasının mimari kararlarını, tasarım sistemi entegrasyonunu, veri modellerini, reaktif durum yönetimini, saf Dart iş motorlarını, arayüz bileşenlerini ve birim/widget test sonuçlarını eksiksiz ve ayrıntılı olarak kayıt altına almaktadır.
+Bu doküman, `/Users/d1-20/Documents/GitHub/SoftITo/22ekim2/` dizininde yer alan `project.md`, `SKILL.md` ve `style.md` şartnameleri doğrultusunda geliştirilen **Small Tick Big Grow** uygulamasının mimari kararlarını, tasarım sistemi entegrasyonunu, veri modellerini, reaktif durum yönetimini, saf Dart iş motorlarını, arayüz bileşenlerini ve birim/widget test sonuçlarını eksiksiz ve ayrıntılı olarak kayıt altına almaktadır.
 
 ---
 
 ## 📋 1. Proje Kimliği ve Temel Özellikler
 
-- **Uygulama Adı:** PenguHabit
+- **Uygulama Adı:** Small Tick Big Grow 
 - **Uygulama Türü:** Alışkanlık takip & kişisel gelişim uygulaması (günlük alışkanlıklar, seriler, rozetler, duygu & farkındalık notları, takvim ve analiz).
 - **Marka Mottosu:** *"Küçük adımlar, büyük hedeflerin ruhudur."* (TR) / *"Small steps are the soul of great goals."* (EN)
 - **Tasarım Konsepti:**
@@ -432,5 +432,3 @@ Kullanıcının talebi doğrultusunda profil sayfasındaki TabBar içerikleri (�
 3. **Doğrulama:**
    - `flutter analyze` 0 hata / 0 uyarı.
    - 28 testin tamamı (%100) başarıyla çalışmaya devam etmektedir.
-
-

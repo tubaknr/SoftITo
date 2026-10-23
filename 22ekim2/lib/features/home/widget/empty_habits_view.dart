@@ -11,19 +11,22 @@ class EmptyHabitsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomBarSpacing =
+        110.0 + (context.padding.bottom > 0 ? context.padding.bottom : 16.0);
+
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+        padding: EdgeInsets.fromLTRB(24, 12, 24, bottomBarSpacing),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const PenguinMascotWidget(
               pose: PenguinPose.curiousEmpty,
-              size: 200,
+              size: 150,
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
             _buildEmptyTexts(context),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
             PrimaryGradientButton(
               label: context.loc.addFirstHabit,
               onPressed: onAddHabit,
