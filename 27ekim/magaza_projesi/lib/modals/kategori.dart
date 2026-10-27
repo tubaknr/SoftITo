@@ -4,7 +4,7 @@ enum Kategori{
     giyim('Giyim', 'G'),
     evYasam('Ev & Yaşam', 'EY'),
     kozmetik('Kozmetik', 'K'),
-    oto('Oto', 'O'),
+    oto('Oto', 'O');
 
     final String baslik;
     final String ikon;

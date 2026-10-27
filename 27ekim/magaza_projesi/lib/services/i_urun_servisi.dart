@@ -1,6 +1,7 @@
 import '../modals/kategori.dart';
 import '../modals/urun.dart';
 
+// INTERFACE
 abstract class IUrunServisi{
 
     Future<List<Urun>> tumUrunleriGetir();
