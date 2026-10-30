@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/urun.dart';
+import '../modals/urun.dart';
 import 'stok_rozeti.dart';
 
 // Listedeki Her Bir Ürünü Gösteren Kart. Yerleşim: [Resim] [Bilgiler] [Kalp].

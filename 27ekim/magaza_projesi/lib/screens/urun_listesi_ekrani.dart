@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../models/kategori.dart';
-import '../models/urun.dart';
+import '../modals/kategori.dart';
+import '../modals/urun.dart';
 import '../services/i_urun_servisi.dart';
 import '../services/mock_urun_servisi.dart';
 import '../widgets/urun_karti.dart';
+import '../services/api_urun_servisi.dart';
 
 // Uygulamanın Ana Ekranı. Durumu (State) Yönetir ve Parçaları Bir Araya Getirir.
 // StatefulWidget: Zamanla DEĞİŞEN Bir Durumu Var (Liste, Filtre, Yükleniyor Bilgisi).
@@ -20,12 +21,12 @@ class UrunListesiEkrani extends StatefulWidget {
 class _UrunListesiEkraniState extends State<UrunListesiEkrani> {
   // Tip Olarak Interface, Nesne Olarak Mock Kullanılıyor.
   // Gerçek API Gelince Sadece Eşittirin Sağ Tarafı Değiştirilir.
-  final IUrunServisi _servis = MockUrunServisi();
+  final IUrunServisi _servis = ApiUrunServisi();
 
   // Arama Kutusundaki Metni Okumak ve Temizlemek İçin Kullanılan "Kumanda".
   final TextEditingController _aramaController = TextEditingController();
 
-  // Ekran Başta "Yükleniyor" Durumunda Açılır.
+  // Ekran Başta "Yükleniyor" Durumunda Açılır. 
   bool _yukleniyorMu = true;
   // Lint Uyarısını Susturur (Aslında Gereksiz, Çünkü Değişken Sonradan Değiştiriliyor).
   // ignore: prefer_final_fields

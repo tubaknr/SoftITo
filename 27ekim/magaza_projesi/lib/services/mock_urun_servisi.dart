@@ -1,6 +1,6 @@
 // Ürünleri Oluşturmak İçin Gereken Modeller.
-import '../models/kategori.dart';
-import '../models/urun.dart';
+import '../modals/kategori.dart';
+import '../modals/urun.dart';
 // Uygulanacak Sözleşme (Interface).
 import 'i_urun_servisi.dart';
 
@@ -38,7 +38,7 @@ class MockUrunServisi implements IUrunServisi {
       aciklama: "%100 pamuklu kumaştan üretilen, içi polarlı ve soğuk havalarda sıcak tutan rahat kesim sweatshirt.",
       fiyat: 1299.90,
       resimUrl: "https://picsum.photos/400/400?3",
-      kategori: Kategori.giyim,
+      kategori: Kategori.aksesuar,
       stokAdedi: 50,
     ),
     Urun(
@@ -47,7 +47,7 @@ class MockUrunServisi implements IUrunServisi {
       aciklama: "Esnek likralı kumaş yapısı sayesinde gün boyu maksimum konfor sağlayan modern kesim kot pantolon.",
       fiyat: 1499.50,
       resimUrl: "https://picsum.photos/400/400?4",
-      kategori: Kategori.giyim,
+      kategori: Kategori.aksesuar,
       stokAdedi: 32,
     ),
     Urun(

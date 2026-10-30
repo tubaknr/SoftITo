@@ -1,6 +1,6 @@
 // Metotların Parametre ve Dönüş Tiplerinde Kullanılan Modeller.
-import '../models/kategori.dart';
-import '../models/urun.dart';
+import '../modals/kategori.dart';
+import '../modals/urun.dart';
 
 // Ürün Servisi Sözleşmesi (Interface). Baştaki "I" Harfi "Interface" Anlamına Gelir.
 // abstract: Bu Sınıftan Doğrudan Nesne Oluşturulamaz, Sadece Şablon Görevi Görür.
