@@ -1,6 +1,6 @@
 enum Kategori{
     hepsi('tümü', 'H'),
-    elektronik('Elektornik', 'E'),
+    elektronik('Elektronik', 'E'),
     giyim('Giyim', 'G'),
     evYasam('Ev & Yaşam', 'EY'),
     kozmetik('Kozmetik', 'K'),
