@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../modals/kategori.dart';
 import '../modals/urun.dart';
 import '../services/i_urun_servisi.dart';

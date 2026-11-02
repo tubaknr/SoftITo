@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../modals/urun.dart';
 import 'stok_rozeti.dart';
 
@@ -30,7 +29,7 @@ class UrunKarti extends StatelessWidget {
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       // InkWell: Dokunulabilir Alan + Dokununca Dalga (Ripple) Efekti.
-      child: InkWell(
+      child:InkWell(
         // Dalga Efekti De Kartın Yuvarlak Köşesine Uysun.
         borderRadius: BorderRadius.circular(12),
         // Karta Dokunulunca Ekranın Verdiği Fonksiyonu Çağır.
