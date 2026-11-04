@@ -14,10 +14,10 @@ class BildirimListesiKarti extends StatelessWidget {
   final String? token;
 
   // Kullanıcının konuya abone olup olmadığını belirten boolean değer
-  final bool konuyaAboneMi;
+  final bool konuyaAboneMi; // SWITCH AÇIK MI KAPALI MI 
 
   // Abonelik durumu değiştiğinde tetiklenecek fonksiyon (Callback)
-  final ValueChanged<bool> onAboneDegisti;
+  final ValueChanged<bool> onAboneDegisti; // SWITCH DEĞİŞİNCE ÇAĞRILACAK FONKSİYON 
 
   // Widget'ın kurucu metodu (Constructor), dışarıdan zorunlu parametreleri alır
   const BildirimListesiKarti({
@@ -36,8 +36,8 @@ class BildirimListesiKarti extends StatelessWidget {
       elevation: 0,
       // Kartın köşe kavislerini ve gri ince kenarlık çizgisini ayarlar
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(16), // yuvarlak köşe 
+        side: BorderSide(color: Colors.grey.shade300), // gri çerçeve 
       ),
       // Kartın içindeki yazılara ve ikonlara her yönden boşluk bırakır (Tek çocuk alır)
       child: Padding(
@@ -60,7 +60,7 @@ class BildirimListesiKarti extends StatelessWidget {
                 // İkon ile yazı arasına yatayda 8 birim boşluk koyar
                 const SizedBox(width: 8),
                 // Yazının, satırda kalan boş alanın tamamını kaplamasını sağlayan Expanded (Taşmayı önler)
-                const Expanded(
+                const Expanded( // TEXTİN DIŞINDA EXPANDED!!!!!!!!!!!!!!!!!!!!! TAŞMA HATASI OLMAZ
                   // Ekranda görünecek başlık metni
                   child: Text(
                     'FCM Bildirim Merkezi',
@@ -77,7 +77,7 @@ class BildirimListesiKarti extends StatelessWidget {
                   onChanged: onAboneDegisti, // LIFTING STATE UP
                   activeColor: const Color.fromARGB(15, 160, 40, 50),
                 ),
-              ],
+              ], // ROW BİTTİ 
             ),
             // Abonelik durumuna göre dinamik metin gösteren Text widget'ı (2. Çoklu eleman)
             Text(
@@ -158,8 +158,10 @@ class BildirimListesiKarti extends StatelessWidget {
                     ),
                   )
                 // Eğer liste doluysa verileri liste halinde ekrana basan ListView.separated
+                // LITVIEW, COLUMN İÇİNDE SONSUZ YÜKSEKLİK HATASI VERMESİN VE SAYFANIN KAYDIRMASI İLE ÇAKIŞMASIN DİYE SHRINKWRAP:TRUE + NEVERSCROLLABLESCROLLPHYSICS
                 : ListView.separated(
                     // Sütun içinde sonsuz yükseklik hatasını engellemek için gerekli küçülme ayarı
+                    // 
                     shrinkWrap: true,
                     // Kartın kendi kaydırma özelliğini kapatıp ana sayfa kaydırmasına uyumlu hale getirir
                     physics: const NeverScrollableScrollPhysics(),

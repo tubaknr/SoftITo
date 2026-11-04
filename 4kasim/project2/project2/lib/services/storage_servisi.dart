@@ -27,6 +27,7 @@ class StorageServisi {
   }
 
   // UploadTask: Firebase'e yükleme işleminin durumunu (yüklenen yüzdeyi vb.) takip etmeyi sağlayan bir nesne döndürür.
+  // yükleme zaman alan bir iştir, UploadTask da o işin “takip fişi” gibidir.
   UploadTask yuklemeBaslat({
     required File dosya,
     required String dosyaAdi,
@@ -44,6 +45,18 @@ class StorageServisi {
 
     // Dosyayı ve ek bilgileri Firebase Storage'a yükleme sürecini başlatır ve UploadTask döndürür.
     // KİLİT NOKTA: putFile metodu dosyayı buluta gönderirken, geri kalan süreci dinleyebilmemiz için UploadTask (akış/görev) nesnesi döner.
+    // PUTFILE YÜKLEMEYİ BAŞLATIR VE BEKLEMEDEN UPLOADTASK DÖNER.
+    // BU UPLOADTASK NESNESİ SAYESİNDE EKRAN HEM PROGRESS BAR'I YANİ YÜZDE İLERLEMEYİ HEM DE BİTİŞİ AWAİT İLE BEKLEYEBİLİR.
+    // FONK ASYNC DEĞİL UPLOADTASK DÖNDÜRÜR. ÇÜNKÜ İZLEME İŞİ ÇAĞIRAN TARAFA (EKRANA) BIRAKILMIŞ OLUR. 
+    // EĞER ASYNC OLSAYDI YÜZDE KAÇ YÜKLENDİĞİNİ GÖREMEZDİK 
+    // yükleme zaman alan bir iştir, UploadTask da o işin “takip fişi” gibidir.
+    // Bir fotoğraf 3 MB olsun. İnternet yavaşsa yüklenmesi birkaç saniye sürer. Fonksiyon yükleme bitene kadar
+    // bekleyip sonra bir şey döndürseydi iki sorun çıkardı:
+    // Kullanıcı o süre boyunca “yüzde kaç yüklendi?” göremezdi.
+    // Yüklemeyi durduramaz veya iptal edemezdi.
+    // ref.putFile(...) yüklemeyi başlatır ve hemen bir UploadTask nesnesi döner. 
+    // Yükleme arka planda devam eder, UploadTask ise o yüklemeyi izleyebildiğin bir kumanda gibidir. 
+    // Kargo takip numarası gibi düşünebilirsin: paket yoldadır, sen numarayla nerede olduğuna bakarsın.
     return ref.putFile(dosya, metadata);
   }
 

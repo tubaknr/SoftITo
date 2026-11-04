@@ -9,6 +9,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // yakalayıp işleyen zorunlu global (top-level) arkaplan dinleyici fonksiyonudur.
 // GLOBAL FONKSİYON 
 Future<void> fcmBackgroundHandler(RemoteMessage message) async {}
+// FCM DEN GELEN HAM VERİ, REMOTEMESSAGE TİPİNDEDİR. KARTIN ANLAYACAĞI BİLDİRİMMODELİ'NE EKRAN ÇEVİRİR. 
 
 // Firebase Cloud Messaging (FCM) ve Yerel Bildirim yönetimini tek bir çatı altında toplayan servis sınıfı.
 class FcmBildirimServisi {
@@ -21,6 +22,7 @@ class FcmBildirimServisi {
   final FirebaseMessaging _fcm = FirebaseMessaging.instance;
 
   // KİLİT NOKTA: Cihaz ekranında açılır (heads-up) bildirim göstereN yerel eklenti
+  // UYG AÇIKKEN YEREL BİLDİRİM 
   final FlutterLocalNotificationsPlugin _localPlugin =
       FlutterLocalNotificationsPlugin();
 
