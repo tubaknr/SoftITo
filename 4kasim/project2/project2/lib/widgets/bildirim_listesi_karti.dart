@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../models/bildirim_modeli.dart';
 
+// kart : statelesswidget.
+// liste, token, switch : dışarıdan parametre olarak gelir. 
+// switch e basınca onAboneDegisti fonksiyonunu çağırır, asıl işi ekran yapar. 
+// bu desen: statei yukarı taşımak. LIFTING STATE UP. 
 class BildirimListesiKarti extends StatelessWidget {
   // Dışarıdan gelen bildirimlerin listesini tutan değişken
   final List<BildirimModeli> bildirimler;
@@ -70,7 +74,7 @@ class BildirimListesiKarti extends StatelessWidget {
                 // Abonelik durumunu açıp kapatmaya yarayan Switch düğmesi
                 Switch(
                   value: konuyaAboneMi,
-                  onChanged: onAboneDegisti,
+                  onChanged: onAboneDegisti, // LIFTING STATE UP
                   activeColor: const Color.fromARGB(15, 160, 40, 50),
                 ),
               ],
