@@ -28,5 +28,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSCameraUsageDescription</key> 
+	<string>Uygulamanın fotoğraf çekebilmesi için kameraya erişmesi gerekiyor.</string> 
+	<key>NSPhotoLibraryUsageDescription</key> 
+	<string>Galeriden veya dosya sisteminden görsel seçebilmek için fotoğraf kütüphanesine erişim gerekiyor.</string> 
 </dict>
 </plist>

@@ -63,7 +63,8 @@ class BildirimListesiKarti extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFF172A),
+                      // Not: 0xFF0F172A veya düzgün bir renk kodu olmalı, 0xFFF172A eksik haneliydi, 6 haneye tamamlandı:
+                      color: Color(0xFF0F172A),
                     ),
                   ),
                 ),
@@ -71,7 +72,7 @@ class BildirimListesiKarti extends StatelessWidget {
                 Switch(
                   value: konuyaAboneMi,
                   onChanged: onAboneDegisti,
-                  activeColor: const Color.fromARGB(15, 160, 40, 50),
+                  activeColor: const Color(0xFF006C4A),
                 ),
               ],
             ),
@@ -81,7 +82,7 @@ class BildirimListesiKarti extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 color: konuyaAboneMi
-                    ? const Color.fromARGB(15, 24, 59, 17)
+                    ? const Color(0xFF006C4A)
                     : Colors.grey.shade600,
                 fontWeight: FontWeight.w600,
               ),
@@ -106,10 +107,7 @@ class BildirimListesiKarti extends StatelessWidget {
                   // Sabit açıklama metni
                   const Text(
                     "Cihazın FCM Tokeni",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 26, 40, 52),
-                      fontSize: 11,
-                    ),
+                    style: TextStyle(color: Colors.white70, fontSize: 11),
                   ),
                   // Metinler arası dikey 2 birimlik minik boşluk
                   const SizedBox(height: 2),
@@ -133,7 +131,7 @@ class BildirimListesiKarti extends StatelessWidget {
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
-                color: Color.fromARGB(0, 5, 249, 253),
+                color: Colors.black87,
               ),
             ),
             // Başlık ile liste arasına dikeyde 8 birim boşluk bırakır
@@ -164,14 +162,36 @@ class BildirimListesiKarti extends StatelessWidget {
                     // Her bir liste elemanının arasına ince bir çizgi (Divider) çizen fonksiyon
                     separatorBuilder: (context, index) =>
                         const Divider(height: 1),
-                    // Listenin içindeki her bir veriyi tek tek alıp görsel birer satıra (ListTile) dönüştüren fonksiyon
+                    // Listenin içindeki her bir veriyi tek tek alıp görsel birer satıra dönüştüren fonksiyon
                     itemBuilder: (context, index) {
                       // O anki sıradaki bildirim nesnesini değişkene aktarır
-                      final bildirim = bildirimler[index];
+                      final b = bildirimler[index];
                       // Bildirimi görsel bir satır elemanı olarak ekrana çizer
                       return ListTile(
-                        title: Text(bildirim.baslik ?? 'Başlıksız'),
-                        subtitle: Text(bildirim.icerik ?? ''),
+                        contentPadding: EdgeInsets.zero,
+                        leading: CircleAvatar(
+                          backgroundColor: const Color(0xFFE0F2F1),
+                          child: const Icon(
+                            Icons.mark_email_unread_outlined,
+                            color: Color(0xFF006C4A),
+                            size: 20,
+                          ),
+                        ),
+                        title: Text(
+                          b.baslik,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                        subtitle: Text(b.icerik),
+                        trailing: Text(
+                          '${b.tarih.hour.toString().padLeft(2, '0')}:${b.tarih.minute.toString().padLeft(2, '0')}',
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.grey.shade500,
+                          ),
+                        ),
                       );
                     },
                   ),

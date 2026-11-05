@@ -50,6 +50,14 @@ class FcmBildirimServisi {
     FirebaseMessaging.onBackgroundMessage(fcmBackgroundHandler);
   }
 
+  Future<String?> tokenAl() async {
+    try {
+      return await _fcm.getToken();
+    } catch (_) {
+      return null;
+    }
+  }
+
   // Belirtilen bir FCM konu başlığına (topic) cihazı abone yapan fonksiyon
   Future<void> konuyaAboneOl(String konu) async {
     // KİLİT NOKTA: Firebase sunucusuna istek atarak cihazı ilgili konunun yayın grubuna dâhil eder.
