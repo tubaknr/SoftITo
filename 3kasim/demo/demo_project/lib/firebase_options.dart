@@ -53,7 +53,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyABKjCKwhFayL8ZVprPKlEkFC1CGSmOM2o',
+    apiKey: dotenv.env["FIREBASE_APIKEY"],
     appId: '1:449956280444:ios:160915e63b5853895f71f9',
     messagingSenderId: '449956280444',
     projectId: 'veritabani-62c79',

@@ -3,28 +3,40 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // KİLİT NOKTA: Dart'ın tree-shaking (kullanılmayan kodları silme) mekanizmasının,
 // uygulama arkaplandayken tetiklenecek bu fonksiyonu silmemesi için gereken işaretçidir.
-@pragma('vm:entry-point')
+// AŞAĞISINDAKİ KULLANILMIYOR DİYE SİLİNMESİN DİYE KORUR 
+@pragma('vm:entry-point') 
 // KİLİT NOKTA: Uygulama tamamen kapalıyken veya arkaplandayken gelen FCM bildirimlerini
 // yakalayıp işleyen zorunlu global (top-level) arkaplan dinleyici fonksiyonudur.
+// GLOBAL FONKSİYON 
 Future<void> fcmBackgroundHandler(RemoteMessage message) async {}
+// FCM DEN GELEN HAM VERİ, REMOTEMESSAGE TİPİNDEDİR. KARTIN ANLAYACAĞI BİLDİRİMMODELİ'NE EKRAN ÇEVİRİR. 
 
 // Firebase Cloud Messaging (FCM) ve Yerel Bildirim yönetimini tek bir çatı altında toplayan servis sınıfı.
 class FcmBildirimServisi {
   // KİLİT NOKTA: Firebase Messaging kütüphanesinin tekil örneğini (instance) alarak sunucu iletişimi kurar.
+  // SINGLETON DESIGN PATTERN !!! 
+  // Singleton, yazılım mühendisliğinde bir sınıfın bellekte yalnızca tek bir örneğinin 
+  //(instance) olmasını garanti eden ve bu nesneye uygulama genelinden global bir erişim 
+  //noktası sağlayan bir yapısal tasarım desenidir.
+  // SUNUCUYLA KONUŞAN NESNE !!! 
   final FirebaseMessaging _fcm = FirebaseMessaging.instance;
 
-  // KİLİT NOKTA: Cihaz ekranında açılır (heads-up) bildirim gösterebilmek için yerel eklentiyi tanımlar.
+  // KİLİT NOKTA: Cihaz ekranında açılır (heads-up) bildirim göstereN yerel eklenti
+  // UYG AÇIKKEN YEREL BİLDİRİM 
   final FlutterLocalNotificationsPlugin _localPlugin =
       FlutterLocalNotificationsPlugin();
 
   // Servisi ve bildirim dinleyicilerini başlatan ana asenkron fonksiyon
   Future<void> baslat({
+    // UYG ÖN PLANDA AÇIKKEN ONMESAJGELDİ ÇALIŞIR 
     required Function(RemoteMessage message) onMesajGeldi,
   }) async {
     // KİLİT NOKTA: iOS ve destekleyen Android sürümleri için kullanıcıdan bildirim izni (ses, rozet, uyarı) ister.
+    // İZİN İSTER
     await _fcm.requestPermission(alert: true, badge: true, sound: true);
 
     // Android tarafında bildirimde görünecek uygulama ikonunu belirleyen ayar nesnesi
+    // BİLDİRİMDE GÖRÜNECEK İKON
     const androidSettings = AndroidInitializationSettings(
       '@mipmap/ic_launcher',
     );
@@ -37,9 +49,12 @@ class FcmBildirimServisi {
     );
 
     // KİLİT NOKTA: Yerel bildirim eklentisini, yukarıda hazırlanan platform ayarlarıyla sisteme kaydeder.
+    // EKLENTİYİ KURAR
     await _localPlugin.initialize(initSettings);
 
     // KİLİT NOKTA: Uygulama önplandayken (açık ve aktifken) gelen FCM mesajlarını anlık olarak dinler.
+    // DİNLEYİCİLERİ BAĞLAR 
+    // UYG AÇIKKEN GELEN MESAJLAR YAKALANIR. 
     FirebaseMessaging.onMessage.listen((message) {
       // Mesaj geldiğinde telefonda görsel yerel bildirim kutusunu tetikler
       _yerelBildirimGoster(message);

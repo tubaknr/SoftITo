@@ -17,6 +17,8 @@ class BildirimModeli {
 
   // KİLİT NOKTA: Sınıfın zorunlu alanlarını dışarıdan alan, okunduMu değerine ise varsayılan olarak 'false' atayan kurucu (constructor) metot.
   const BildirimModeli({
+    // ALANLAR FINAL -> NESNE OLUŞTURULDUKTAN SONRA DEĞİŞTİRİLEMEZ. 
+    // FINAL -> STATE YÖNETİMİNİ GÜVENLİ YAPAR. YANLIŞLIKLA VERİ BOZULMAZ, DEĞİŞİKLİK VARSA YENİ NESNE ÜRETİLİR. 
     required this.id,
     required this.baslik,
     required this.icerik,
