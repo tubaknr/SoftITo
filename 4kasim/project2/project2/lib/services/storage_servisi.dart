@@ -1,77 +1,101 @@
+// dart:io -> File sınıfı buradan gelir (cihazdaki dosyayı temsil eder).
 import 'dart:io';
 
+// Firebase Storage: fotoğraf, video gibi dosyaları buluta yükleyip saklamayı sağlar.
 import 'package:firebase_storage/firebase_storage.dart';
+// image_picker: kullanıcının galerisinden veya kamerasından fotoğraf seçmeyi sağlar.
 import 'package:image_picker/image_picker.dart';
 
+// ---------------------------------------------------------------
+// StorageServisi
+// ---------------------------------------------------------------
+// Dosya işlerini (seçme, yükleme, link alma, silme) tek sınıfta toplar.
+// Ekranlar Firebase'i doğrudan bilmez, sadece bu servisi çağırır.
 class StorageServisi {
-  // KİLİT NOKTA: Firebase Storage servisinin örneğini (instance) alarak bulut depolama işlemlerini başlatır.
+  // Firebase Storage'ın tekil (singleton) örneği: buluttaki depoyla konuşan nesne.
+  // Yükleme, silme ve dosya yolu (referans) oluşturma işlemleri bununla yapılır.
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  // KİLİT NOKTA: Cihazın galerisinden veya kamerasından görsel seçmek için ImagePicker nesnesi oluşturur.
+  // Galeri/kamera penceresini açan nesne.
   final ImagePicker _picker = ImagePicker();
 
+  // ---------------------------------------------------------------
+  // 1) GÖRSEL SEÇME
+  // ---------------------------------------------------------------
+  // kameradan: true -> kamera açılır, false -> galeri açılır.
+  // Dönen değer: seçilen fotoğraf (File) veya kullanıcı vazgeçtiyse null.
   Future<File?> gorselSec({bool kameradan = false}) async {
-    // KİLİT NOKTA: Asenkron (await) olarak cihazdan görsel seçme pencerisini açar.
+    // Seçim penceresini açar ve kullanıcının seçmesini BEKLER (await).
     final XFile? xFile = await _picker.pickImage(
-      // Parametreden gelen değere göre kaynağın kamera mı yoksa galeri mi olacağını seçer.
+      // Kaynak: parametreden gelen değere göre kamera veya galeri.
       source: kameradan ? ImageSource.camera : ImageSource.gallery,
-      imageQuality: 80, // Görselin kalitesini %80'e düşürerek boyutunu küçültür (sunucuda yer kazandırır).
-      maxWidth: 1200, // Görselin genişliğini en fazla 1200 piksel yapar.
+      imageQuality: 80, // Kaliteyi %80'e düşürür -> dosya küçülür, yükleme hızlanır, depolama tasarrufu olur.
+      maxWidth:
+          1200, // Genişliği en fazla 1200 piksel yapar -> yine boyutu küçültür.
     );
 
-    // Kullanıcı fotoğraf seçmekten vazgeçerse veya geri tuşuna basarsa işlem sonlandırılır.
+    // Kullanıcı geri tuşuna basıp seçimden vazgeçtiyse xFile null gelir; işlem burada biter.
     if (xFile == null) return null;
 
-    // Seçilen geçici resmi, uygulamanın kullanabileceği bir File nesnesine dönüştürüp geri döndürür.
+    // image_picker'ın verdiği XFile'ı, Firebase'in yükleyebildiği File tipine çevirir.
+    // xFile.path: fotoğrafın telefondaki geçici konumudur.
     return File(xFile.path);
   }
 
-  // UploadTask: Firebase'e yükleme işleminin durumunu (yüklenen yüzdeyi vb.) takip etmeyi sağlayan bir nesne döndürür.
-  // yükleme zaman alan bir iştir, UploadTask da o işin “takip fişi” gibidir.
+  // ---------------------------------------------------------------
+  // 2) YÜKLEME
+  // ---------------------------------------------------------------
+  // DİKKAT: Bu fonksiyon async DEĞİL ve UploadTask döndürür (Future değil).
+  // Neden? Yükleme zaman alır. Fonksiyon bitmesini beklese:
+  //   - Kullanıcı "yüzde kaç yüklendi?" göremezdi,
+  //   - Yüklemeyi durdurup iptal edemezdi.
+  // UploadTask, yüklemenin "kargo takip numarası" gibidir: yükleme arkaplanda
+  // sürerken ekran bu nesneden ilerlemeyi (progress bar) izler ve bitişi bekler.
+  //
+  // Parametreler ekrandan gelir:
+  //   dosya    -> gorselSec()'ten dönen File
+  //   dosyaAdi -> buluttaki dosya adı (örn. "profil_123.png")
+  //   klasor   -> buluttaki klasör (varsayılan: "yuklemeler")
   UploadTask yuklemeBaslat({
     required File dosya,
     required String dosyaAdi,
     String klasor = 'yuklemeler',
   }) {
-    // Firebase Storage içinde dosyanın kaydedileceği konumu (yolu) belirler (klasor/dosyaAdi).
+    // Dosyanın bulutta kaydedileceği adres (referans): "klasor/dosyaAdi".
+    // Bu adres Storage içindeki yol gibidir.
     final Reference ref = _storage.ref().child('$klasor/$dosyaAdi');
 
-    // Dosyanın türünü (örneğin image/png) ve ek bilgileri (kim yükledi vb.) Firebase'e kaydetmek için kullanılır.
+    // Metadata: dosya hakkında ek bilgi.
     final metadata = SettableMetadata(
+      // Dosya türü. Tarayıcı/uygulama dosyayı buna göre doğru açar.
       contentType: 'image/png',
-      // KİLİT NOKTA: Dosyaya özel meta veriler ekleyerek yükleyen kişi veya ek bilgileri bulut üzerinde saklar.
+      // Kendi eklediğimiz bilgiler (örn. dosyayı kim yükledi). Bulutta dosyayla birlikte saklanır.
       customMetadata: {'ekleyen': 'Ali Ay'},
     );
 
-    // Dosyayı ve ek bilgileri Firebase Storage'a yükleme sürecini başlatır ve UploadTask döndürür.
-    // KİLİT NOKTA: putFile metodu dosyayı buluta gönderirken, geri kalan süreci dinleyebilmemiz için UploadTask (akış/görev) nesnesi döner.
-    // PUTFILE YÜKLEMEYİ BAŞLATIR VE BEKLEMEDEN UPLOADTASK DÖNER.
-    // BU UPLOADTASK NESNESİ SAYESİNDE EKRAN HEM PROGRESS BAR'I YANİ YÜZDE İLERLEMEYİ HEM DE BİTİŞİ AWAİT İLE BEKLEYEBİLİR.
-    // FONK ASYNC DEĞİL UPLOADTASK DÖNDÜRÜR. ÇÜNKÜ İZLEME İŞİ ÇAĞIRAN TARAFA (EKRANA) BIRAKILMIŞ OLUR. 
-    // EĞER ASYNC OLSAYDI YÜZDE KAÇ YÜKLENDİĞİNİ GÖREMEZDİK 
-    // yükleme zaman alan bir iştir, UploadTask da o işin “takip fişi” gibidir.
-    // Bir fotoğraf 3 MB olsun. İnternet yavaşsa yüklenmesi birkaç saniye sürer. Fonksiyon yükleme bitene kadar
-    // bekleyip sonra bir şey döndürseydi iki sorun çıkardı:
-    // Kullanıcı o süre boyunca “yüzde kaç yüklendi?” göremezdi.
-    // Yüklemeyi durduramaz veya iptal edemezdi.
-    // ref.putFile(...) yüklemeyi başlatır ve hemen bir UploadTask nesnesi döner. 
-    // Yükleme arka planda devam eder, UploadTask ise o yüklemeyi izleyebildiğin bir kumanda gibidir. 
-    // Kargo takip numarası gibi düşünebilirsin: paket yoldadır, sen numarayla nerede olduğuna bakarsın.
+    // putFile: yüklemeyi BAŞLATIR ve beklemeden hemen UploadTask döndürür.
+    // Yükleme arkaplanda devam eder; UploadTask ile izlenir.
     return ref.putFile(dosya, metadata);
   }
 
-  // Firebase'e yüklenen dosyanın internet üzerinden (tarayıcıdan veya uygulamadan) erişilebilmesi için
-  // gereken paylaşılabilir URL adresini (bağlantısını) getirir.
-  // Bu link genellikle veritabanında (Firestore vb.) saklanır.
+  // ---------------------------------------------------------------
+  // 3) İNDİRME LİNKİ ALMA
+  // ---------------------------------------------------------------
+  // Yüklenen dosyanın internetten erişilebilen adresini (URL) verir.
+  // 'ref' parametresi yükleme tamamlandıktan sonra gelir (örn. snapshot.ref).
+  // Bu URL genellikle Firestore'a kaydedilir, ekranda Image.network ile gösterilir.
   Future<String> urlGetir(Reference ref) async {
-    // KİLİT NOKTA: Storage üzerindeki dosya referansından güvenli indirme linkini (Download URL) asenkron olarak çeker.
     return await ref.getDownloadURL();
   }
 
+  // ---------------------------------------------------------------
+  // 4) SİLME
+  // ---------------------------------------------------------------
+  // dosyaYolu: bulutta dosyanın yolu (örn. "yuklemeler/profil_123.png").
   Future<void> dosyaSil(String dosyaYolu) async {
-    // Silinecek dosyanın konumunu bulur.
+    // Yoldan dosyanın referansını bulur.
     final Reference ref = _storage.ref().child(dosyaYolu);
-    // KİLİT NOKTA: Belirtilen yoldaki dosyayı Firebase Storage sunucusundan kalıcı olarak siler.
+    // Dosyayı buluttan kalıcı olarak siler (geri alınamaz).
     await ref.delete();
   }
 }
