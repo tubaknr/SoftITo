@@ -1,29 +1,29 @@
-import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class StorageService{
-  final FirebaseStorage _storage = FirebaseStorage.instance;
+class OgrenciModel{
+    final String id;
+    final String adSoyad; 
+    final String projeAdi;
+    final int notu;
+    final DateTime kayitTarihi;
 
-  Future<TaskSnapshot> uploadFile({
-    required File file,
-    required String path,
-    required String fileName,
-  }) {
-    final Reference ref = _storage.ref().child('$path/$fileName');
-    final metadata = SettableMetadata(
-      contentType: 'image/jpeg',
-      customMetadata: {'uplader': 'Tuba'}
-    );
-
-    final UploadTask task = ref.putFile(file, metadata);
-
-    task.snapshotEvents.listen((TaskSnapshot snapshot) {
-      final double progress = snapshot.bytesTransferred/snapshot.totalBytes;
-      debugPrint('Uploading: %${(progress*100).toStringAsFixed(1)}');
+    const OgrenciModel({
+        required this.id,
+        required this.adSoyad,
+        required this.projeAdi,
+        required this.notu,
+        required this.kayitTarihi,
     });
 
-    return task;
-  }
+    factory OgrenciModel.fromFireStore(DocumentSnapshot doc) {
+        final veri = doc.data() as Map<String, dynamic>? ?? {};
 
+        return OgrenciModel(
+            id: doc.id,
+            adSoyad: veri['adSoyad'] as String? ?? 'İsimsiz Öğrenci',
+            projeAdi: veri['projeAdi'] as String? ?? 'Proje 1',
+            notu: (veri['notu'] as num?)?.toInt() ?? 0,
+            kayitTarihi: (veri['kayitTarihi'] as Timestamp?)?.toDate() ?? DateTime.now(),
+        );
+    }
 }
