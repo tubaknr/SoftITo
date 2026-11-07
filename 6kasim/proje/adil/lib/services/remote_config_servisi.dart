@@ -48,7 +48,7 @@ class RemoteConfigServisi {
     // activate: indirilen değerleri uygulamada geçerli yapar.
     // try/catch: internet yoksa vb. hata olursa uygulama çökmesin, varsayılanlarla devam etsin.
     try {
-      _firebaseRemoteConfig.fetchAndActivate();
+      await _firebaseRemoteConfig.fetchAndActivate();
     } catch (_) {}
   }
 
