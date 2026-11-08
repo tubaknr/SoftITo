@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "923115522166",
+    "project_id": "firestore-ogrenci-yonetim-uygu",
+    "storage_bucket": "firestore-ogrenci-yonetim-uygu.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923115522166:android:ed66486f11248bdb543757",
+        "android_client_info": {
+          "package_name": "com.example.firestore_ogrenci_yonetim_uygulamasi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeCofiGfnlILV4tlH9hKQ2nfLsWR0xP-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
