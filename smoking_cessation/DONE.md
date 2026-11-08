@@ -243,3 +243,45 @@ Bu dosya, projenin her geliştirme adımında yapılan işlemleri, oluşturulan/
   - `/snap/bin/flutter analyze` → No issues found! (0 sorun)
   - `/snap/bin/flutter test` → 16 test geçti
 - **Durum:** ✅ Çözüldü ve Doğrulandı
+
+## [Görsel Güncelleme] Canlı Sayaç Dairesel Göstergesi — 2026-11-08 17:21
+- **Ne yapıldı:**
+  - Ana ekrandaki `TimerDisplay` göstergesi kullanıcı ekran görüntüsüne ve Lumina Recovery stil kılavuzuna birebir uygun hale getirildi:
+    - Üstte "SİGARASIZ TEMİZ HAYAT" parlayan yeşil noktalı hap rozeti.
+    - Ortada `_DualRingPainter` ile çift neon dairesel halka (dış neon zümrüt yeşili, iç camgöbeği).
+    - Halka merkezinde "KAZANILAN SÜRE", büyük Gün (G) ve Saat (S) rakamları, Dakika (Dk) ve parlayan Saniye (Sn) çipleri, "Duman solumadan geçen an" alt metni.
+    - Kartın altında rüzgar ikonuyla "Karbonmonoksit: %0 Normalize" ve onay ikonuyla "Stabil" telemetri göstergeleri.
+- **Dosyalar:**
+  - [lib/widgets/timer_display.dart](lib/widgets/timer_display.dart) (güncellendi, 321 satır)
+  - [test/widget_smoke_test.dart](test/widget_smoke_test.dart) (güncellendi, 107 satır)
+  - [DONE.md](DONE.md) (güncellendi)
+- **SOLID / kural notu:**
+  - SRP: Görsel çizim `CustomPainter` ve `TimerDisplay` widget'ında toplandı, hiçbir harici kütüphane eklenmedi.
+  - Kod kalitesi: Tüm yorumlar Türkçe ve <= 50 karakter kuralına uygundur.
+- **Komutlar:**
+  - `/snap/bin/flutter analyze` → No issues found! (0 sorun)
+  - `/snap/bin/flutter test` → 16 test geçti
+- **Durum:** ✅ Tamamlandı
+
+## [Görsel & Dinamik Güncelleme] Sayaç Halka Doluluk Animasyonu ve Metin Temizliği — 2026-11-08 17:28
+- **Ne yapıldı:**
+  - Kullanıcı isteği doğrultusunda `TimerDisplay` (`lib/widgets/timer_display.dart`) bileşeninde aşağıdaki güncellemeler yapıldı:
+    1. Okunaksız olan "KAZANILAN SÜRE" başlık yazısı tamamen kaldırıldı.
+    2. "Duman solumadan geçen an" alt açıklama yazısı tamamen kaldırıldı.
+    3. Halka içi boşluk optimize edilerek Gün ve Saat rakamları (`34px`), Dakika ve Saniye çipleri (`[57 Dk] : [28 Sn]`) merkeze dengeli ve ferah bir şekilde hizalandı.
+    4. Dairesel widget'taki sabit açılı yaylar dinamik hale getirildi:
+       - **Dış Yeşil Halka (`#4EDEA3`):** Sigarasız geçen süreye bağlı olarak kademeli hedeflere (1 gün, 3 gün, 7 gün, 14 gün, 30 gün, 90 gün, 180 gün, 1 yıl) doğru saat ve saniye hassasiyetinde dinamik olarak dolar.
+       - **İç Camgöbeği Halka (`#4CD7F6`):** İlk 24 saat içinde saatlik döngü (60 dakika), 24 saat sonrasında ise günlük 24 saatlik döngüye göre sigarasız geçen süre arttıkça canlı olarak dolar.
+    5. `_DualRingPainter`'a `outerProgress` ve `innerProgress` parametreleri entegre edildi; `shouldRepaint` ile süre aktıkça akıcı yeniden çizim sağlandı.
+- **Dosyalar:**
+  - [lib/widgets/timer_display.dart](lib/widgets/timer_display.dart) (güncellendi, 345 satır)
+  - [DONE.md](DONE.md) (güncellendi)
+- **SOLID / kural notu:**
+  - SRP: Süreye bağlı halka doluluk oranlarının hesabı ve görsel sunumu `TimerDisplay` ve `_DualRingPainter` içinde soyutlandı.
+  - Sınırlar: `lib/` altında tam 25 dosya korundu, yorumların tümü Türkçe ve satır başına <= 50 karakter kuralına uygundur.
+- **Komutlar:**
+  - Python kural doğrulama: Tüm ekranlar <= 200 satır, `build` metodları <= 40 satır, yorumlar <= 50 karakter, toplam 25 dosya.
+  - `/snap/bin/flutter analyze` → No issues found! (0 sorun)
+  - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
+- **Durum:** ✅ Tamamlandı
+

@@ -69,7 +69,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(HomeShellScreen), findsOneWidget);
-    expect(find.text('DUMANSIZ GEÇEN SÜRE'), findsOneWidget);
+    expect(find.text('SİGARASIZ TEMİZ HAYAT'), findsOneWidget);
 
     // Sağlık sekmesine geçiş
     await tester.tap(find.byIcon(Icons.favorite_border));
