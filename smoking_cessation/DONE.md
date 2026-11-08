@@ -285,3 +285,37 @@ Bu dosya, projenin her geliştirme adımında yapılan işlemleri, oluşturulan/
   - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
 - **Durum:** ✅ Tamamlandı
 
+## [Görsel & Düzen Güncellemesi] Kriz Dalgası ve Zihinsel Hatırlatıcı Kartları — 2026-11-08 17:36
+- **Ne yapıldı:**
+  - Kullanıcının ilettiği ekran görüntüsüne ve konumlandırma isteğine uygun olarak ana sayfa akışı güncellendi:
+    1. **Konumlandırma Düzeni:**
+       - Özgürlük Takibi Başlığı
+       - Canlı Dairesel Sayaç (`TimerDisplay`)
+       - Kazanımlar Bölümü (Tasarruf, İçilmeyen ve **Kazanılan Yaşam Süresi** kartı)
+       - **Kazanılan Yaşam Süresi kartının hemen altına:** Kriz Dalgası Kartı (`CrisisSectionCard`)
+       - **Kriz kartının hemen altına:** Zihinsel Hatırlatıcı Kartı (`MentalReminderCard`)
+    2. **Kriz Dalgası Kartı Tasarımı (`CrisisSectionCard`):**
+       - Üstte pembe-kırmızı uyarı ikonu ile `"KRİZ DALGASI MI GELDİ?"` başlığı.
+       - Ortada `"Sigara isteği ortalama 3–5 dakika sürer ve sonra söner. Derin nefes al ve panik butonuna bas."` bilgilendirme metni (3–5 dakika kalın vurgulu).
+       - Altta kırmızı ışıltılı acil panik butonu:
+         - Açık pembe daire içinde hava/nefes simgesi (`Icons.air_rounded`).
+         - Beyaz kalın `"Canım Çekti (Kriz Butonu)"` metni.
+         - Altında açık pembe `"ACİL 4-7-8 NEFES EGZERSİZİ BAŞLAT"` alt başlığı.
+         - Tıklanınca doğrudan nefes ve kriz savar ekranına yönlendirir.
+    3. **Zihinsel Hatırlatıcı Kartı Tasarımı (`MentalReminderCard`):**
+       - Sol tarafta zümrüt yeşili kutuda zihin/psikoloji ikonu (`Icons.psychology_alt_rounded`).
+       - Sağ tarafta `"Zihinsel Hatırlatıcı"` başlığı ve `"Bir sigara yakmak stresi bitirmez, sadece nikotin eksikliğinin yarattığı stresi geçici olarak dindirir. Zaten özgürsün."` alıntısı.
+- **Dosyalar:**
+  - [lib/widgets/stat_card.dart](lib/widgets/stat_card.dart) (güncellendi, 287 satır)
+  - [lib/screens/home_screen.dart](lib/screens/home_screen.dart) (güncellendi, 111 satır)
+  - [DONE.md](DONE.md) (güncellendi)
+- **SOLID / kural notu:**
+  - SRP: Kriz ve hatırlatıcı kartları görsel bileşen olarak `stat_card.dart` içine modüler olarak eklendi, `HomeScreen` sadece düzen ve veri akışını yönetir hale getirildi.
+  - Sınırlar: `lib/` altında tam 25 Dart dosyası korundu, hiçbir ekran 200 satırı (HomeScreen: 111 satır), hiçbir `build` metodu 40 satırı geçmedi. Tüm yorumlar Türkçe ve satır başına <= 50 karakterdir.
+- **Komutlar:**
+  - Python kural doğrulama: Tüm limitler eksiksiz sağlandı.
+  - `/snap/bin/flutter analyze` → No issues found! (0 sorun)
+  - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
+- **Durum:** ✅ Tamamlandı
+
+

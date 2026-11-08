@@ -38,9 +38,11 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 16),
             TimerDisplay(elapsed: quitController.elapsedDuration),
             const SizedBox(height: 16),
-            _buildCravingButton(context),
-            const SizedBox(height: 20),
             _buildStatsSection(),
+            const SizedBox(height: 16),
+            CrisisSectionCard(onPanicTap: () => _openCravingScreen(context)),
+            const SizedBox(height: 14),
+            const MentalReminderCard(),
           ],
         );
       },
@@ -58,73 +60,6 @@ class HomeScreen extends StatelessWidget {
           style: AppTheme.bodyMedium,
         ),
       ],
-    );
-  }
-
-  Widget _buildCravingButton(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(20),
-        onTap: () => _openCravingScreen(context),
-        child: Container(
-          padding: const EdgeInsets.all(18),
-          decoration: BoxDecoration(
-            color: AppTheme.surfaceLow,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppTheme.dangerSos, width: 1.5),
-            boxShadow: const [
-              BoxShadow(
-                color: AppTheme.dangerSosGlow,
-                blurRadius: 20,
-                spreadRadius: -2,
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: const BoxDecoration(
-                  color: AppTheme.dangerSosGlow,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.local_fire_department_rounded,
-                  color: AppTheme.dangerSos,
-                  size: 28,
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Canım Çekti (Kriz Butonu)',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppTheme.onSurface,
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      '5 dakikalık nefes egzersizi başlat',
-                      style: AppTheme.bodySmall,
-                    ),
-                  ],
-                ),
-              ),
-              const Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: AppTheme.onSurfaceVariant,
-                size: 16,
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 
