@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kriz Anı &amp; Nefes Egzersizi | Arınma Takibi</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#e29100",
+            "primary-container": "#10b981",
+            "outline-variant": "#3c4a42",
+            "primary": "#4edea3",
+            "surface-container-high": "#272a33",
+            "surface-container-low": "#181b25",
+            "tertiary-fixed": "#ffddb8",
+            "on-tertiary": "#472a00",
+            "on-background": "#e0e2ef",
+            "on-error-container": "#ffdad6",
+            "on-primary": "#003824",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#001f26",
+            "on-primary-container": "#00422b",
+            "surface-bright": "#363943",
+            "tertiary": "#ffb95f",
+            "primary-fixed-dim": "#4edea3",
+            "secondary-container": "#03b5d3",
+            "on-tertiary-container": "#523200",
+            "surface-dim": "#10131c",
+            "secondary-fixed": "#acedff",
+            "inverse-primary": "#006c49",
+            "surface-container-highest": "#32343e",
+            "on-tertiary-fixed": "#2a1700",
+            "on-error": "#690005",
+            "on-surface-variant": "#bbcabf",
+            "on-tertiary-fixed-variant": "#653e00",
+            "inverse-on-surface": "#2d303a",
+            "surface-container-lowest": "#0b0e17",
+            "primary-fixed": "#6ffbbe",
+            "error-container": "#93000a",
+            "secondary-fixed-dim": "#4cd7f6",
+            "surface-tint": "#4edea3",
+            "inverse-surface": "#e0e2ef",
+            "background": "#10131c",
+            "surface-variant": "#32343e",
+            "surface": "#10131c",
+            "on-secondary-fixed-variant": "#004e5c",
+            "surface-container": "#1c1f29",
+            "secondary": "#4cd7f6",
+            "on-primary-fixed-variant": "#005236",
+            "on-secondary-container": "#00424e",
+            "on-surface": "#e0e2ef",
+            "on-primary-fixed": "#002113",
+            "outline": "#86948a",
+            "on-secondary": "#003640",
+            "tertiary-fixed-dim": "#ffb95f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-metric": ["JetBrains Mono"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "label-mono-sm": ["JetBrains Mono"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-metric": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "label-mono-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-xl": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    @keyframes subtleGlow {
+      0%, 100% { box-shadow: 0 0 24px -4px rgba(78, 222, 163, 0.2); }
+      50% { box-shadow: 0 0 36px 4px rgba(76, 215, 246, 0.28); }
+    }
+    .breathing-glow {
+      animation: subtleGlow 4s infinite ease-in-out;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen flex flex-col justify-between selection:bg-primary selection:text-on-primary">
+<!-- Modal Screen Wrapper / Max Width Mobile Canvas -->
+<main class="w-full max-w-md mx-auto min-h-screen flex flex-col justify-between px-5 pt-6 pb-8 relative overflow-hidden bg-gradient-to-b from-surface via-surface-container-lowest to-surface-container-lowest">
+<!-- Ambient Background Light Bloom -->
+<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-80 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- Header Section -->
+<header class="relative z-10 flex items-start justify-between gap-4 pt-2">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label-caps text-label-caps uppercase text-secondary">SOS Acil Rahatlama</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+          Derin Bir Nefes Al, Bu Kriz Geçecek
+        </h1>
+</div>
+<button aria-label="Kapat" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors active:scale-95 border border-outline-variant/30" onclick="window.history.back()" type="button">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</header>
+<!-- Center Section: Countdown & Breathing Rhythm Sphere -->
+<section class="relative z-10 flex flex-col items-center justify-center my-6">
+<!-- 5-Minute Crisis Countdown -->
+<div class="flex flex-col items-center mb-6">
+<div class="flex items-center gap-1.5 text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="timer">timer</span>
+<span class="font-label-caps text-label-caps uppercase">5 Dakikalık Kriz Geri Sayımı</span>
+</div>
+<div class="font-label-metric text-headline-xl text-primary tracking-tight flex items-baseline gap-1" id="timer-display">
+<span>04</span>
+<span class="animate-pulse">:</span>
+<span>38</span>
+</div>
+</div>
+<!-- Concentric Interactive Breathing Guide -->
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- Outer Static Ring Guide -->
+<div class="absolute inset-0 rounded-full border border-outline-variant/30"></div>
+<div class="absolute inset-4 rounded-full border border-secondary/20"></div>
+<!-- Animated Pulsing Waves -->
+<div class="absolute inset-0 rounded-full bg-secondary/10 transition-transform duration-1000 ease-in-out scale-90" id="pacer-wave"></div>
+<!-- Central Resonant Node -->
+<div class="w-44 h-44 rounded-full bg-surface-container border border-primary/30 breathing-glow flex flex-col items-center justify-center text-center p-4 relative z-20 transition-transform duration-1000 ease-in-out shadow-2xl" id="pacer-circle">
+<span class="material-symbols-outlined text-primary mb-1 transition-transform" data-icon="air">air</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight" id="breath-phase">Nefes Al</span>
+<span class="font-label-metric text-headline-md text-secondary font-bold mt-0.5" id="breath-count">4 sn</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">4-4-4 Ritmi</span>
+</div>
+</div>
+<!-- Quick Audio/Haptic Toggle Sub-bar -->
+<div class="mt-6 flex items-center justify-center gap-3">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-all text-xs font-body-sm active:scale-95" id="sound-btn" onclick="toggleControl('sound')" type="button">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="volume_up">volume_up</span>
+<span id="sound-label">Doğa Sesi: Açık</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-secondary transition-all text-xs font-body-sm active:scale-95" id="vibe-btn" onclick="toggleControl('vibe')" type="button">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="vibration">vibration</span>
+<span id="vibe-label">Titreşim: Aktif</span>
+</button>
+</div>
+</section>
+<!-- Motivation Bento Card -->
+<section class="relative z-10 mb-5">
+<div class="bg-surface-container/90 backdrop-blur-md rounded-xl p-4 border border-outline-variant/30 flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-lg" data-icon="vital_signs">vital_signs</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-primary">Biyolojik Gerçek</span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant">Pik: 3 dk</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-1 leading-snug">
+            Sigara içme isteği ortalama 3-5 dakika sürer. Bu dalga birazdan geçecek ve ciğerlerin sana teşekkür edecek.
+          </p>
+</div>
+</div>
+</section>
+<!-- Quick Action Emergency Support CTAs -->
+<footer class="relative z-10 flex flex-col gap-2.5">
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Cold Water Action -->
+<button class="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface transition-all active:scale-95 font-body-md text-body-md" onclick="triggerSupportAction('water')" type="button">
+<span class="material-symbols-outlined text-secondary" data-icon="water_drop">water_drop</span>
+<span class="truncate">Soğuk Su İçtim</span>
+</button>
+<!-- Distract Action -->
+<button class="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface transition-all active:scale-95 font-body-md text-body-md" onclick="triggerSupportAction('distract')" type="button">
+<span class="material-symbols-outlined text-tertiary" data-icon="extension">extension</span>
+<span class="truncate">Dikkatimi Dağıt</span>
+</button>
+</div>
+<!-- Primary High-Impact Triumph CTA -->
+<button class="w-full py-3.5 px-4 rounded-full bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary font-headline-md text-headline-md flex items-center justify-center gap-2 shadow-[0px_0px_24px_-4px_rgba(16,185,129,0.4)] hover:brightness-110 active:scale-[0.98] transition-all" onclick="celebrateVictory()" type="button">
+<span class="material-symbols-outlined font-bold" data-icon="check_circle">check_circle</span>
+<span>Krizi Yendim!</span>
+</button>
+</footer>
+</main>
+<!-- Interactive Breathing Micro-Engine & Realtime Timer -->
+<script>
+    // Breathing Cycle: 4s Breathe In, 4s Hold, 4s Breathe Out
+    const phases = [
+      { name: "Nefes Al", duration: 4, scale: 1.18, waveScale: 1.35, color: "text-primary" },
+      { name: "Tut", duration: 4, scale: 1.18, waveScale: 1.35, color: "text-secondary" },
+      { name: "Ver", duration: 4, scale: 0.95, waveScale: 0.85, color: "text-on-surface-variant" }
+    ];
+
+    let currentPhaseIndex = 0;
+    let secondsLeftInPhase = 4;
+    
+    const phaseLabel = document.getElementById("breath-phase");
+    const countLabel = document.getElementById("breath-count");
+    const pacerCircle = document.getElementById("pacer-circle");
+    const pacerWave = document.getElementById("pacer-wave");
+
+    function runBreathingPacer() {
+      const activePhase = phases[currentPhaseIndex];
+      phaseLabel.innerText = activePhase.name;
+      countLabel.innerText = secondsLeftInPhase + " sn";
+
+      if (secondsLeftInPhase === activePhase.duration) {
+        pacerCircle.style.transform = `scale(${activePhase.scale})`;
+        pacerWave.style.transform = `scale(${activePhase.waveScale})`;
+      }
+
+      secondsLeftInPhase--;
+
+      if (secondsLeftInPhase < 0) {
+        currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+        secondsLeftInPhase = phases[currentPhaseIndex].duration;
+      }
+    }
+
+    setInterval(runBreathingPacer, 1000);
+
+    // Crisis 5-minute countdown simulation
+    let totalSecondsRemaining = 278; // 04:38
+    const timerDisplay = document.getElementById("timer-display");
+
+    setInterval(() => {
+      if (totalSecondsRemaining > 0) {
+        totalSecondsRemaining--;
+        const mins = String(Math.floor(totalSecondsRemaining / 60)).padStart(2, '0');
+        const secs = String(totalSecondsRemaining % 60).padStart(2, '0');
+        timerDisplay.innerHTML = `<span>${mins}</span><span class="animate-pulse">:</span><span>${secs}</span>`;
+      }
+    }, 1000);
+
+    // Interactive button actions
+    let soundEnabled = true;
+    let vibeEnabled = true;
+
+    function toggleControl(type) {
+      if (type === 'sound') {
+        soundEnabled = !soundEnabled;
+        document.getElementById('sound-label').innerText = soundEnabled ? "Doğa Sesi: Açık" : "Doğa Sesi: Kapalı";
+      } else {
+        vibeEnabled = !vibeEnabled;
+        document.getElementById('vibe-label').innerText = vibeEnabled ? "Titreşim: Aktif" : "Titreşim: Kapalı";
+      }
+    }
+
+    function triggerSupportAction(action) {
+      if (action === 'water') {
+        alert("Harika! Su içmek ağızdaki reseptörleri canlandırır ve dopamin arayışını yatıştırır. Derin nefese devam et.");
+      } else if (action === 'distract') {
+        alert("Zihnini 1 dakika boyunca odadaki 5 mavi nesneyi saymaya odakla.");
+      }
+    }
+
+    function celebrateVictory() {
+      const circle = document.getElementById("pacer-circle");
+      circle.classList.add("bg-primary-container", "text-on-primary-container");
+      alert("Tebrikler! Bir atağı daha iraden ve ciğerlerin lehine kazandın. +10 Sağlık Puanı eklendi!");
+    }
+  </script>
+</body></html>

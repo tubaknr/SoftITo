@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Özgürlük Sayacı - Sigara Bırakma Takibi</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#e29100",
+            "primary-container": "#10b981",
+            "outline-variant": "#3c4a42",
+            "primary": "#4edea3",
+            "surface-container-high": "#272a33",
+            "surface-container-low": "#181b25",
+            "tertiary-fixed": "#ffddb8",
+            "on-tertiary": "#472a00",
+            "on-background": "#e0e2ef",
+            "on-error-container": "#ffdad6",
+            "on-primary": "#003824",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#001f26",
+            "on-primary-container": "#00422b",
+            "surface-bright": "#363943",
+            "tertiary": "#ffb95f",
+            "primary-fixed-dim": "#4edea3",
+            "secondary-container": "#03b5d3",
+            "on-tertiary-container": "#523200",
+            "surface-dim": "#10131c",
+            "secondary-fixed": "#acedff",
+            "inverse-primary": "#006c49",
+            "surface-container-highest": "#32343e",
+            "on-tertiary-fixed": "#2a1700",
+            "on-error": "#690005",
+            "on-surface-variant": "#bbcabf",
+            "on-tertiary-fixed-variant": "#653e00",
+            "inverse-on-surface": "#2d303a",
+            "surface-container-lowest": "#0b0e17",
+            "primary-fixed": "#6ffbbe",
+            "error-container": "#93000a",
+            "secondary-fixed-dim": "#4cd7f6",
+            "surface-tint": "#4edea3",
+            "inverse-surface": "#e0e2ef",
+            "background": "#10131c",
+            "surface-variant": "#32343e",
+            "surface": "#10131c",
+            "on-secondary-fixed-variant": "#004e5c",
+            "surface-container": "#1c1f29",
+            "secondary": "#4cd7f6",
+            "on-primary-fixed-variant": "#005236",
+            "on-secondary-container": "#00424e",
+            "on-surface": "#e0e2ef",
+            "on-primary-fixed": "#002113",
+            "outline": "#86948a",
+            "on-secondary": "#003640",
+            "tertiary-fixed-dim": "#ffb95f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-metric": ["JetBrains Mono"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "label-mono-sm": ["JetBrains Mono"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-metric": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "label-mono-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-xl": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    @keyframes subtle-breath {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .animate-pulse-ring {
+      animation: pulse-ring 2.8s ease-in-out infinite;
+    }
+    .animate-breath {
+      animation: subtle-breath 5s ease-in-out infinite;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary selection:text-on-primary min-h-screen pb-28">
+<!-- TopAppBar Component (from Shared Components JSON) -->
+<header class="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-5 h-16 max-w-md mx-auto bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-none right-0">
+<div class="flex items-center gap-3">
+<div class="relative w-9 h-9 rounded-full bg-surface-container-high border border-primary/30 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="vital_signs">vital_signs</span>
+<span class="absolute top-0 right-0 w-2.5 h-2.5 bg-primary rounded-full ring-2 ring-surface"></span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-surface dark:text-on-surface tracking-tight leading-none">Arınma Takibi</h1>
+<span class="text-label-caps font-label-caps text-primary tracking-widest uppercase">Canlı Yenilenme</span>
+</div>
+</div>
+<!-- Urgent SOS Action Button -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-error-container/80 border border-error/50 text-error hover:bg-error-container transition-colors duration-150 active:scale-95 shadow-[0_0_16px_rgba(255,180,171,0.25)]">
+<span class="material-symbols-outlined text-lg" data-icon="air">air</span>
+<span class="text-label-caps font-label-caps font-bold">SOS</span>
+</button>
+</header>
+<!-- Main Content Container (Mobile Centered Rhythm) -->
+<main class="max-w-md mx-auto pt-20 px-5 flex flex-col gap-5">
+<!-- Hero: Circular Progress Radial Counter -->
+<section class="relative w-full rounded-2xl bg-surface-container-lowest border border-white/[0.06] p-6 flex flex-col items-center justify-center overflow-hidden shadow-[0_0_32px_-8px_rgba(16,185,129,0.15)]">
+<!-- Ambient Glow Behind Radial Counter -->
+<div class="absolute -top-12 -left-12 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-12 -right-12 w-48 h-48 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Badge Title -->
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#4edea3]"></span>
+<span class="text-label-caps font-label-caps text-primary uppercase tracking-wider">Sigarasız Temiz Hayat</span>
+</div>
+<!-- Dial Container -->
+<div class="relative w-64 h-64 flex items-center justify-center my-1 animate-breath">
+<!-- SVG Radial Progress Multi-Rings -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 240 240">
+<!-- Background track -->
+<circle cx="120" cy="120" fill="transparent" r="100" stroke="rgba(255,255,255,0.06)" stroke-width="10"></circle>
+<circle cx="120" cy="120" fill="transparent" r="82" stroke="rgba(255,255,255,0.04)" stroke-width="6"></circle>
+<!-- Outer Neon Emerald Track (Cilia & Lung Regeneration Progress ~68%) -->
+<circle class="drop-shadow-[0_0_12px_rgba(78,222,163,0.7)] transition-all duration-1000" cx="120" cy="120" fill="transparent" r="100" stroke="#4edea3" stroke-dasharray="628.3" stroke-dashoffset="201" stroke-linecap="round" stroke-width="10"></circle>
+<!-- Inner Secondary Cyan Track (Oxygen Level Restored ~85%) -->
+<circle class="drop-shadow-[0_0_8px_rgba(76,215,246,0.6)] transition-all duration-1000" cx="120" cy="120" fill="transparent" r="82" stroke="#4cd7f6" stroke-dasharray="515.2" stroke-dashoffset="82" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<!-- Center Counter Display -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase tracking-widest mb-1">Kazanılan Süre</span>
+<div class="flex items-baseline justify-center gap-1 text-primary">
+<span class="font-label-metric text-label-metric font-bold text-on-surface tracking-tight" id="days-counter">14</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant mr-1">G</span>
+<span class="font-label-metric text-label-metric font-bold text-on-surface tracking-tight" id="hours-counter">08</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">S</span>
+</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-mono-sm text-label-mono-sm text-primary">
+<span class="bg-surface-container px-2 py-0.5 rounded border border-outline-variant/30 text-on-surface" id="mins-counter">32 Dk</span>
+<span class="text-primary font-bold animate-pulse">:</span>
+<span class="bg-surface-container px-2 py-0.5 rounded border border-primary/40 text-primary drop-shadow-[0_0_8px_rgba(78,222,163,0.5)]" id="secs-counter">45 Sn</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2">Duman solumadan geçen an</p>
+</div>
+</div>
+<!-- Quick biological stat foot -->
+<div class="w-full flex items-center justify-between pt-3 mt-2 border-t border-white/[0.05] text-body-sm font-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="air">air</span> Karbonmonoksit: <span class="text-secondary font-semibold ml-0.5">%0 Normalize</span>
+</span>
+<span class="text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="check_circle">check_circle</span> Stabil
+        </span>
+</div>
+</section>
+<!-- Cellular & Biological Rejuvenation Card (Avatar & Lungs Telemetry) -->
+<section class="rounded-2xl bg-surface-container-low border border-white/[0.06] p-4 relative overflow-hidden">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="ecg_heart">ecg_heart</span>
+<h2 class="text-headline-md font-headline-md text-on-surface">Biyolojik Yenilenme</h2>
+</div>
+<!-- Regeneration Badge -->
+<span class="px-2.5 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-label-caps font-label-caps">
+          Vücut Onarımı: %68
+        </span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Illustration Visual Container: Transformation from pale ash to glowing turquoise biology -->
+<div class="relative w-24 h-28 rounded-xl bg-surface-container-lowest border border-outline-variant/40 flex-shrink-0 overflow-hidden flex items-center justify-center shadow-inner">
+<img class="w-full h-full object-cover opacity-90 mix-blend-screen" data-alt="A stylized anatomical medical silhouette of human chest and lungs on a pure pitch black backdrop. The left side fades from dull ash-grey sickly smoke particles while the right lung blossoms with radiant glowing emerald green and cyan pulmonary vascular light, representing deep cellular detoxification and cellular rejuvenation in a refined minimal dark-mode aesthetic with ethereal luminescence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3_OcswKPEkiLcq0aE_tgn8mUuO9p2S5Z6xBOKGHQLh7ZJ5TlgUDVahovt8gXyBB8v6VcBnAua_zO82JYzFWOeTsiqD1JJkFO0xhZeJMVSW7mYzr8ln1GjA5OR53TffFdD-1V3hm1EAVr_-rQqe1S--9P7BtgzLYAi39Ld4yVjRXUlMvKRcwlWAdpcHnNEuAr0cVDAFxPACDxRG9C1IluPSmcROfMUHtxe7GUd_z4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<div class="absolute bottom-1 text-center w-full">
+<span class="text-label-caps font-label-caps text-secondary text-[9px] tracking-wider">HÜCRE HIZI: 2.4x</span>
+</div>
+</div>
+<!-- Telemetry Progress Details -->
+<div class="flex-1 flex flex-col justify-between h-full space-y-2.5">
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<span class="text-on-surface font-medium">Akciğer Siliya Aktivitesi</span>
+<span class="font-label-mono-sm text-label-mono-sm text-primary">%74</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full shadow-[0_0_8px_#4edea3]" style="width: 74%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<span class="text-on-surface font-medium">Kan Oksijen Doygunluğu</span>
+<span class="font-label-mono-sm text-label-mono-sm text-secondary">%99</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full shadow-[0_0_8px_#4cd7f6]" style="width: 99%;"></div>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2 pt-0.5">
+            Bronşlar gevşedi, solunum kapasitesi %21 arttı. Fiziksel enerji rezervleri pik yapıyor.
+          </p>
+</div>
+</div>
+</section>
+<!-- Savings Bento Grid -->
+<section>
+<div class="flex items-center justify-between mb-3 px-1">
+<h2 class="text-headline-md font-headline-md text-on-surface">Tasarruf &amp; Yaşam Kazanımı</h2>
+<span class="text-label-caps font-label-caps text-tertiary">Maddi &amp; Fiziksel Getiri</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Biriken Para (Highlight Card) -->
+<div class="col-span-2 rounded-2xl bg-surface-container-low border border-white/[0.08] p-4 relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary/15 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between">
+<div>
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase tracking-wider block mb-1">Cepte Kalan Birikim</span>
+<div class="flex items-baseline gap-1">
+<span class="font-label-metric text-label-metric text-tertiary font-bold tracking-tight drop-shadow-[0_0_12px_rgba(255,185,95,0.4)]">910</span>
+<span class="text-headline-md font-headline-md text-tertiary font-bold">₺</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-tertiary/10 border border-tertiary/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-2xl" data-icon="savings">savings</span>
+</div>
+</div>
+<div class="mt-3 flex items-center justify-between pt-2 border-t border-white/[0.04] text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Aylık tahmini kazanç:</span>
+<span class="text-on-surface font-semibold font-label-mono-sm">1.950 ₺</span>
+</div>
+</div>
+<!-- İçilmeyen Sigara -->
+<div class="rounded-2xl bg-surface-container-low border border-white/[0.06] p-4 flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase">İçilmeyen</span>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="smoke_free">smoke_free</span>
+</div>
+<div>
+<div class="font-label-metric text-label-metric text-on-surface font-bold leading-none mb-1">286</div>
+<span class="text-body-sm font-body-sm text-primary font-medium">Adet Zehir Reddedildi</span>
+</div>
+<div class="mt-3 pt-2 border-t border-white/[0.04] text-label-caps font-label-caps text-on-surface-variant">
+            14.3 Paket Kurtarıldı
+          </div>
+</div>
+<!-- Kazanılan Yaşam Süresi -->
+<div class="rounded-2xl bg-surface-container-low border border-white/[0.06] p-4 flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Yaşam Süresi</span>
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="hourglass_top">hourglass_top</span>
+</div>
+<div>
+<div class="font-label-metric text-label-metric text-secondary font-bold leading-none mb-1">1G 9S</div>
+<span class="text-body-sm font-body-sm text-secondary font-medium">Ömre Geri Eklendi</span>
+</div>
+<div class="mt-3 pt-2 border-t border-white/[0.04] text-label-caps font-label-caps text-on-surface-variant">
+            Her dal ≈ 11 dk ömür
+          </div>
+</div>
+</div>
+</section>
+<!-- Emergency Crisis SOS Button & Calming Action Unit -->
+<section class="mt-1">
+<div class="relative rounded-2xl bg-surface-container border border-outline-variant/30 p-4 overflow-hidden">
+<!-- Pulsing Ambient Wave behind Button -->
+<div class="absolute inset-0 bg-gradient-to-r from-secondary-container/10 via-error-container/10 to-transparent pointer-events-none"></div>
+<div class="flex flex-col items-center text-center mb-3">
+<div class="flex items-center gap-1.5 text-error mb-1">
+<span class="material-symbols-outlined text-base" data-icon="warning">warning</span>
+<span class="text-label-caps font-label-caps font-bold tracking-widest uppercase">Kriz Dalgası mı Geldi?</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-xs">
+            Sigara isteği ortalama <span class="text-on-surface font-semibold">3-5 dakika</span> sürer ve sonra söner. Derin nefes al ve panik butonuna bas.
+          </p>
+</div>
+<!-- Master Panic Button -->
+<button class="relative w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-error-container to-surface-container-high border border-error/50 flex items-center justify-center gap-3 text-on-surface shadow-[0_0_24px_rgba(147,0,10,0.35)] active:scale-95 transition-transform duration-150 group">
+<!-- Pulse animation layer -->
+<span class="absolute inset-0 rounded-xl border-2 border-error/40 animate-pulse-ring pointer-events-none"></span>
+<div class="w-8 h-8 rounded-full bg-error flex items-center justify-center text-on-error shadow-[0_0_12px_#ffb4ab]">
+<span class="material-symbols-outlined text-xl" data-icon="air">air</span>
+</div>
+<div class="text-left">
+<span class="block text-headline-md font-headline-md font-bold tracking-tight text-white leading-none">Canım Çekti (Kriz Butonu)</span>
+<span class="text-label-caps font-label-caps text-error tracking-wider uppercase">Acil 4-7-8 Nefes Egzersizi Başlat</span>
+</div>
+</button>
+</div>
+</section>
+<!-- Daily Motivational Grounding Card -->
+<section class="rounded-xl bg-surface-container-lowest border border-white/[0.04] p-3.5 flex items-start gap-3">
+<div class="p-2 rounded-lg bg-primary/10 text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="psychology">psychology</span>
+</div>
+<div>
+<h3 class="text-body-md font-body-md font-semibold text-on-surface">Zihinsel Hatırlatıcı</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 leading-relaxed">
+          "Bir sigara yakmak stresi bitirmez, sadece nikotin eksikliğinin yarattığı stresi geçici olarak dindirir. Zaten özgürsün."
+        </p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Component (Exact mapping from Shared Components JSON) -->
+<!-- Destination count: 5. Active: Sayaç (Index 0). Inactive: Sağlık, Günlük, Nefes, Ayarlar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around px-2 pt-2 pb-6 max-w-md mx-auto right-0 bg-surface-container-lowest/90 dark:bg-surface-container-lowest/90 backdrop-blur-xl border-t border-outline-variant/20 shadow-[0_-4px_24px_rgba(0,0,0,0.6)]">
+<!-- Item 1: Sayaç (Active Destination) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary font-medium gap-1 active:scale-90 transition-transform duration-150" href="#sayac">
+<div class="relative">
+<span class="material-symbols-outlined text-2xl" data-icon="timer">timer</span>
+<span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_6px_#4edea3]"></span>
+</div>
+<span class="text-body-sm font-body-sm tracking-tight">Sayaç</span>
+</a>
+<!-- Item 2: Sağlık -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant gap-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-90" href="#saglik">
+<span class="material-symbols-outlined text-2xl" data-icon="vital_signs">vital_signs</span>
+<span class="text-body-sm font-body-sm tracking-tight">Sağlık</span>
+</a>
+<!-- Item 3: Günlük -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant gap-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-90" href="#gunluk">
+<span class="material-symbols-outlined text-2xl" data-icon="calendar_month">calendar_month</span>
+<span class="text-body-sm font-body-sm tracking-tight">Günlük</span>
+</a>
+<!-- Item 4: Nefes -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant gap-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-90" href="#nefes">
+<span class="material-symbols-outlined text-2xl" data-icon="air">air</span>
+<span class="text-body-sm font-body-sm tracking-tight">Nefes</span>
+</a>
+<!-- Item 5: Ayarlar -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant gap-1 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-90" href="#ayarlar">
+<span class="material-symbols-outlined text-2xl" data-icon="settings">settings</span>
+<span class="text-body-sm font-body-sm tracking-tight">Ayarlar</span>
+</a>
+</nav>
+<!-- Interactive Seconds Ticker Script for realistic bio-telemetry -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let seconds = 45;
+      let minutes = 32;
+      const secsEl = document.getElementById("secs-counter");
+      const minsEl = document.getElementById("mins-counter");
+
+      setInterval(() => {
+        seconds++;
+        if (seconds >= 60) {
+          seconds = 0;
+          minutes++;
+          if (minsEl) minsEl.textContent = minutes + " Dk";
+        }
+        if (secsEl) {
+          secsEl.textContent = (seconds < 10 ? "0" + seconds : seconds) + " Sn";
+        }
+      }, 1000);
+    });
+  </script>
+</body></html>

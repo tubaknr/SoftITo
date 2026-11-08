@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kutlamalar ve Bildirimler</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#e29100",
+            "primary-container": "#10b981",
+            "outline-variant": "#3c4a42",
+            "primary": "#4edea3",
+            "surface-container-high": "#272a33",
+            "surface-container-low": "#181b25",
+            "tertiary-fixed": "#ffddb8",
+            "on-tertiary": "#472a00",
+            "on-background": "#e0e2ef",
+            "on-error-container": "#ffdad6",
+            "on-primary": "#003824",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#001f26",
+            "on-primary-container": "#00422b",
+            "surface-bright": "#363943",
+            "tertiary": "#ffb95f",
+            "primary-fixed-dim": "#4edea3",
+            "secondary-container": "#03b5d3",
+            "on-tertiary-container": "#523200",
+            "surface-dim": "#10131c",
+            "secondary-fixed": "#acedff",
+            "inverse-primary": "#006c49",
+            "surface-container-highest": "#32343e",
+            "on-tertiary-fixed": "#2a1700",
+            "on-error": "#690005",
+            "on-surface-variant": "#bbcabf",
+            "on-tertiary-fixed-variant": "#653e00",
+            "inverse-on-surface": "#2d303a",
+            "surface-container-lowest": "#0b0e17",
+            "primary-fixed": "#6ffbbe",
+            "error-container": "#93000a",
+            "secondary-fixed-dim": "#4cd7f6",
+            "surface-tint": "#4edea3",
+            "inverse-surface": "#e0e2ef",
+            "background": "#10131c",
+            "surface-variant": "#32343e",
+            "surface": "#10131c",
+            "on-secondary-fixed-variant": "#004e5c",
+            "surface-container": "#1c1f29",
+            "secondary": "#4cd7f6",
+            "on-primary-fixed-variant": "#005236",
+            "on-secondary-container": "#00424e",
+            "on-surface": "#e0e2ef",
+            "on-primary-fixed": "#002113",
+            "outline": "#86948a",
+            "on-secondary": "#003640",
+            "tertiary-fixed-dim": "#ffb95f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-metric": ["JetBrains Mono"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "label-mono-sm": ["JetBrains Mono"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-metric": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "label-mono-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-xl": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+    }
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+    .animate-pulse-glow {
+      animation: pulse-slow 3s infinite ease-in-out;
+    }
+    .confetti-particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen pb-28">
+<!-- Top Navigation (Shared Component Anchor) -->
+<header class="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-5 h-16 max-w-md mx-auto right-0 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center border border-outline-variant/40" title="Kullanıcı profil rozeti ve iyileşme durumu göstergesi">
+<span class="material-symbols-outlined text-primary text-body-lg" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">Arınma Takibi</h1>
+</div>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-bright active:scale-95 transition-all duration-150 border border-secondary/30 text-secondary" type="button">
+<span class="material-symbols-outlined text-body-md" data-icon="air">air</span>
+<span class="text-label-caps font-label-caps tracking-wider">SOS</span>
+</button>
+</header>
+<!-- Main Container -->
+<main class="max-w-md mx-auto px-margin pt-20 space-y-space-lg">
+<!-- Screen Title Section -->
+<div class="pt-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="text-label-caps font-label-caps text-primary tracking-widest uppercase">CANLI REKOR & BİLDİRİMLER</span>
+</div>
+<h2 class="text-headline-xl-mobile font-headline-xl-mobile text-on-surface">Kutlamalar ve Bildirimler</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Biyolojik iyileşme dönüm noktaların ve farkındalık uyarıların.</p>
+</div>
+<!-- 1. Hero Achievement Card: 1. Hafta Tamamlandı! -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container border border-primary/20 p-5 shadow-[0_0_24px_-4px_rgba(16,185,129,0.25)]">
+<!-- Decorative Confetti & Ambient Nodes -->
+<div class="absolute -top-10 -right-10 w-36 h-36 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-10 -left-10 w-36 h-36 bg-secondary/10 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Floating Simulated Confetti Shards -->
+<span class="confetti-particle bg-primary top-4 right-12 rotate-12"></span>
+<span class="confetti-particle bg-secondary top-8 right-24 rotate-45"></span>
+<span class="confetti-particle bg-tertiary top-16 right-8 -rotate-12"></span>
+<span class="confetti-particle bg-primary-fixed top-6 right-36 rotate-90"></span>
+<span class="confetti-particle bg-secondary-fixed top-12 right-2 rotate-6"></span>
+<div class="flex items-start justify-between relative z-10">
+<div class="flex items-center gap-3.5">
+<div class="relative flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 border-2 border-primary shadow-[0_0_16px_rgba(78,222,163,0.35)] animate-pulse-glow">
+<span class="material-symbols-outlined text-primary text-headline-lg" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<div class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary text-[10px] font-bold">✓</div>
+</div>
+<div>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/15 text-primary text-label-caps font-label-caps mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              ALTIN DÖNÜM NOKTASI
+            </div>
+<h3 class="text-headline-md font-headline-md font-bold text-on-surface">1. Hafta Tamamlandı!</h3>
+</div>
+</div>
+</div>
+<div class="mt-4 relative z-10 bg-surface-container-lowest/70 backdrop-blur-md rounded-lg p-3.5 border border-white/5">
+<p class="text-body-md font-body-md text-on-surface leading-snug">
+<span class="text-primary font-semibold">Tebrikler!</span> Vücudundaki nikotin tamamen temizlendi. Tat alma duyuların yeniden doğdu ve akciğerlerindeki siller kendini onarmaya başladı.
+        </p>
+<div class="mt-3 pt-3 border-t border-outline-variant/20 flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="savings">savings</span>
+            Tasarruf Edilen:
+          </span>
+<span class="font-label-metric text-label-mono-sm text-primary font-bold tracking-tight">455,00 TL</span>
+</div>
+</div>
+<!-- Action Button -->
+<button class="mt-4 w-full py-2.5 px-4 rounded-full bg-gradient-to-r from-primary-container to-inverse-primary text-on-primary font-headline-md text-body-md font-bold flex items-center justify-center gap-2 shadow-[0_0_18px_rgba(16,185,129,0.3)] active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined text-base" data-icon="share">share</span>
+<span>Başarıyı Kutla & Paylaş</span>
+</button>
+</div>
+<!-- 2. Upcoming Milestone Badges (Gelecek Kutlama Rozetleri) -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">İyileşme Rozetleri</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Biyolojik yenilenme yolculuğun</p>
+</div>
+<span class="text-label-mono-sm font-label-mono-sm text-secondary bg-surface-container px-2.5 py-1 rounded-full border border-secondary/20">3 / 6 Açıldı</span>
+</div>
+<!-- Grid of Milestone Badges -->
+<div class="grid grid-cols-3 gap-2.5">
+<!-- 24 Saat (Earned) -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container border border-primary/30 relative group">
+<div class="w-11 h-11 rounded-full bg-primary/10 border border-primary/40 flex items-center justify-center mb-2 shadow-[0_0_12px_rgba(78,222,163,0.15)]">
+<span class="material-symbols-outlined text-primary text-headline-md" data-icon="timer" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<span class="text-body-sm font-body-sm font-bold text-on-surface text-center">24 Saat</span>
+<span class="text-[10px] text-primary font-label-caps mt-0.5">KAZANILDI</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<!-- 3 Gün (Earned) -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container border border-primary/30 relative">
+<div class="w-11 h-11 rounded-full bg-primary/10 border border-primary/40 flex items-center justify-center mb-2 shadow-[0_0_12px_rgba(78,222,163,0.15)]">
+<span class="material-symbols-outlined text-primary text-headline-md" data-icon="lungs" style="font-variation-settings: 'FILL' 1;">file_copy</span>
+</div>
+<span class="text-body-sm font-body-sm font-bold text-on-surface text-center">3 Gün</span>
+<span class="text-[10px] text-primary font-label-caps mt-0.5">KAZANILDI</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<!-- 1 Hafta (Earned - Current Active) -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container-high border-2 border-primary shadow-[0_0_18px_rgba(78,222,163,0.25)] relative">
+<div class="w-11 h-11 rounded-full bg-primary text-on-primary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-headline-md" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<span class="text-body-sm font-body-sm font-bold text-primary text-center">1 Hafta</span>
+<span class="text-[10px] text-primary font-label-caps font-bold mt-0.5">KAZANILDI</span>
+<span class="absolute -top-1.5 -right-1 px-1 bg-primary text-on-primary text-[8px] font-bold rounded">YENİ</span>
+</div>
+<!-- 1 Ay (Next - In Progress) -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container border border-secondary/40 relative bg-gradient-to-b from-surface-container to-surface-container-high">
+<div class="w-11 h-11 rounded-full bg-secondary/15 border border-secondary flex items-center justify-center mb-2 shadow-[0_0_14px_rgba(76,215,246,0.25)]">
+<span class="material-symbols-outlined text-secondary text-headline-md" data-icon="lock_open">lock_open</span>
+</div>
+<span class="text-body-sm font-body-sm font-bold text-on-surface text-center">1 Ay</span>
+<span class="text-[10px] text-secondary font-label-caps font-bold mt-0.5">SIRADA (%23)</span>
+<div class="w-full bg-surface-container-lowest h-1 rounded-full mt-1.5 overflow-hidden">
+<div class="bg-secondary h-full rounded-full w-[23%]"></div>
+</div>
+</div>
+<!-- 3 Ay (Locked) -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container-low border border-white/5 opacity-60">
+<div class="w-11 h-11 rounded-full bg-surface-container-highest flex items-center justify-center mb-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-headline-md" data-icon="lock">lock</span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant text-center">3 Ay</span>
+<span class="text-[10px] text-on-surface-variant/70 font-label-caps mt-0.5">KİLİTLİ</span>
+</div>
+<!-- 1 Yıl (Locked Milestone) -->
+<div class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container-low border border-white/5 opacity-60">
+<div class="w-11 h-11 rounded-full bg-surface-container-highest flex items-center justify-center mb-2 text-tertiary">
+<span class="material-symbols-outlined text-headline-md" data-icon="social_leaderboard">social_leaderboard</span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant text-center">1 Yıl</span>
+<span class="text-[10px] text-tertiary/70 font-label-caps mt-0.5">EFSANE</span>
+</div>
+</div>
+</div>
+<!-- 3. Notification Settings & Preview Cards -->
+<div class="space-y-space-md pt-2">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Bildirim Önizlemeleri & Ayarlar</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Kriz anlarında seni koruyan akıllı kurgular</p>
+</div>
+<button class="text-label-caps font-label-caps text-primary hover:underline" type="button">TÜMÜNÜ TEST ET</button>
+</div>
+<!-- Preview Item 1: Günlük Motivasyon Bildirimi -->
+<div class="p-4 rounded-xl bg-surface-container border border-white/5 space-y-3 hover:border-outline-variant/40 transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-tertiary/10 border border-tertiary/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-body-md" data-icon="wb_sunny">wb_sunny</span>
+</div>
+<div>
+<h4 class="text-body-md font-body-md font-semibold text-on-surface">Günlük Motivasyon Bildirimi</h4>
+<span class="text-label-mono-sm font-label-mono-sm text-on-surface-variant">Zaman: Her Gün 09:00</span>
+</div>
+</div>
+<!-- Toggle switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-primary-container peer-checked:after:bg-on-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Phone Push Notification Preview Mockup -->
+<div class="rounded-lg bg-surface-container-lowest/80 border border-white/5 p-3 flex gap-3 items-start">
+<div class="w-6 h-6 rounded bg-primary/20 flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-sm" data-icon="notifications_active">notifications_active</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-on-surface tracking-wide">ARINMA REHBERİ</span>
+<span class="text-[10px] font-label-mono-sm text-on-surface-variant">09:00</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+              "Sabah 09:00 - Günaydın! Bugün cebinde fazladan <span class="text-primary font-medium">65 TL</span> ve daha temiz ciğerler var."
+            </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 text-label-caps font-label-caps text-on-surface-variant">
+<span>Sıklık: Günde 1 kez</span>
+<button class="text-secondary hover:text-secondary-fixed flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+            Saati Değiştir
+          </button>
+</div>
+</div>
+<!-- Preview Item 2: Kriz Önleme Hatırlatıcısı -->
+<div class="p-4 rounded-xl bg-surface-container border border-secondary/20 space-y-3 hover:border-secondary/40 transition-colors shadow-[0_0_16px_-4px_rgba(6,182,212,0.15)]">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-secondary/10 border border-secondary/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-body-md" data-icon="crisis_alert">crisis_alert</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h4 class="text-body-md font-body-md font-semibold text-on-surface">Kriz Önleme Hatırlatıcısı</h4>
+<span class="px-1.5 py-0.2 rounded text-[9px] bg-secondary/20 text-secondary font-bold">AKILLI</span>
+</div>
+<span class="text-label-mono-sm font-label-mono-sm text-on-surface-variant">Tetikleyici Saat: 16:45</span>
+</div>
+</div>
+<!-- Toggle switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-primary-container peer-checked:after:bg-on-secondary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Phone Push Notification Preview Mockup -->
+<div class="rounded-lg bg-surface-container-lowest/80 border border-secondary/15 p-3 flex gap-3 items-start">
+<div class="w-6 h-6 rounded bg-secondary/20 flex items-center justify-center text-secondary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-sm" data-icon="self_improvement">self_improvement</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-secondary tracking-wide">FARKINDALIK ÇAĞRISI</span>
+<span class="text-[10px] font-label-mono-sm text-on-surface-variant">Şimdi</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+              "En çok zorlandığın saat geldi, derin bir nefes al ve bir bardak soğuk su iç. Bu his 3 dakika içinde geçecek."
+            </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 text-label-caps font-label-caps text-on-surface-variant">
+<span class="flex items-center gap-1 text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Tetikleyici Analiz Modu Aktif
+          </span>
+<button class="text-secondary hover:text-secondary-fixed flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="tune">tune</span>
+            Hassasiyet
+          </button>
+</div>
+</div>
+<!-- Preview Item 3: Dönüm Noktası Uyarısı -->
+<div class="p-4 rounded-xl bg-surface-container border border-white/5 space-y-3 hover:border-outline-variant/40 transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-body-md" data-icon="emoji_events">emoji_events</span>
+</div>
+<div>
+<h4 class="text-body-md font-body-md font-semibold text-on-surface">Dönüm Noktası Uyarısı</h4>
+<span class="text-label-mono-sm font-label-mono-sm text-on-surface-variant">Otomatik Milestones</span>
+</div>
+</div>
+<!-- Toggle switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-primary-container peer-checked:after:bg-on-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Phone Push Notification Preview Mockup -->
+<div class="rounded-lg bg-surface-container-lowest/80 border border-white/5 p-3 flex gap-3 items-start">
+<div class="w-6 h-6 rounded bg-primary/20 flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-sm" data-icon="celebration">celebration</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-primary tracking-wide">KUTLAMA ANI</span>
+<span class="text-[10px] font-label-mono-sm text-on-surface-variant">Gelecek</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+              "Tebrikler! 15. gününü tamamladın! Akciğer kapasiten %12 arttı, yürüyüşlerin artık çok daha hafif."
+            </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 text-label-caps font-label-caps text-on-surface-variant">
+<span>Kutlama Efektleri: Ses & Titreşim Açık</span>
+<button class="text-primary hover:text-primary-fixed flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="volume_up">volume_up</span>
+            Ses Seçimi
+          </button>
+</div>
+</div>
+</div>
+<!-- Quick DND (Rahatsız Etme) Mode Mini-Card -->
+<div class="p-3.5 rounded-xl bg-surface-container-low border border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="bedtime">bedtime</span>
+<div>
+<p class="text-body-sm font-body-sm font-medium text-on-surface">Gece Sessiz Modu</p>
+<p class="text-[11px] text-on-surface-variant">23:00 - 08:00 arasında tüm bildirimler sessiz</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white peer-checked:after:bg-on-primary-container after:border-none after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component Anchor) -->
+<!-- Active Destination Logic: Page is Settings/Notifications (Ayarlar destination maps to this screen) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around px-2 pt-2 pb-6 max-w-md mx-auto right-0 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.6)]">
+<!-- 1. Sayaç -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined text-body-lg" data-icon="timer">timer</span>
+<span class="text-body-sm font-body-sm tracking-tight">Sayaç</span>
+</a>
+<!-- 2. Sağlık -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined text-body-lg" data-icon="vital_signs">vital_signs</span>
+<span class="text-body-sm font-body-sm tracking-tight">Sağlık</span>
+</a>
+<!-- 3. Günlük -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined text-body-lg" data-icon="calendar_month">calendar_month</span>
+<span class="text-body-sm font-body-sm tracking-tight">Günlük</span>
+</a>
+<!-- 4. Nefes -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined text-body-lg" data-icon="air">air</span>
+<span class="text-body-sm font-body-sm tracking-tight">Nefes</span>
+</a>
+<!-- 5. Ayarlar (ACTIVE ITEM) -->
+<a class="flex flex-col items-center justify-center text-primary font-medium gap-1 hover:text-primary transition-colors duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined text-body-lg" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-body-sm font-body-sm tracking-tight font-semibold">Ayarlar</span>
+</a>
+</nav>
+</body></html>

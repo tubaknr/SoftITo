@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yeni Hayatına Başla - Arınma Takibi</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#e29100",
+            "primary-container": "#10b981",
+            "outline-variant": "#3c4a42",
+            "primary": "#4edea3",
+            "surface-container-high": "#272a33",
+            "surface-container-low": "#181b25",
+            "tertiary-fixed": "#ffddb8",
+            "on-tertiary": "#472a00",
+            "on-background": "#e0e2ef",
+            "on-error-container": "#ffdad6",
+            "on-primary": "#003824",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#001f26",
+            "on-primary-container": "#00422b",
+            "surface-bright": "#363943",
+            "tertiary": "#ffb95f",
+            "primary-fixed-dim": "#4edea3",
+            "secondary-container": "#03b5d3",
+            "on-tertiary-container": "#523200",
+            "surface-dim": "#10131c",
+            "secondary-fixed": "#acedff",
+            "inverse-primary": "#006c49",
+            "surface-container-highest": "#32343e",
+            "on-tertiary-fixed": "#2a1700",
+            "on-error": "#690005",
+            "on-surface-variant": "#bbcabf",
+            "on-tertiary-fixed-variant": "#653e00",
+            "inverse-on-surface": "#2d303a",
+            "surface-container-lowest": "#0b0e17",
+            "primary-fixed": "#6ffbbe",
+            "error-container": "#93000a",
+            "secondary-fixed-dim": "#4cd7f6",
+            "surface-tint": "#4edea3",
+            "inverse-surface": "#e0e2ef",
+            "background": "#10131c",
+            "surface-variant": "#32343e",
+            "surface": "#10131c",
+            "on-secondary-fixed-variant": "#004e5c",
+            "surface-container": "#1c1f29",
+            "secondary": "#4cd7f6",
+            "on-primary-fixed-variant": "#005236",
+            "on-secondary-container": "#00424e",
+            "on-surface": "#e0e2ef",
+            "on-primary-fixed": "#002113",
+            "outline": "#86948a",
+            "on-secondary": "#003640",
+            "tertiary-fixed-dim": "#ffb95f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "space-xl": "2.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-metric": ["JetBrains Mono"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "label-mono-sm": ["JetBrains Mono"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-metric": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+            "label-mono-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-xl": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 22px;
+      width: 22px;
+      border-radius: 9999px;
+      background: #4edea3;
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(78, 222, 163, 0.65), 0 0 0 2px #0b0e17;
+      margin-top: -8px;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 6px;
+      background: #272a33;
+      border-radius: 9999px;
+    }
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.8) sepia(1) saturate(3) hue-rotate(95deg);
+      cursor: pointer;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen flex flex-col items-center justify-start p-0 m-0 selection:bg-primary selection:text-on-primary">
+<!-- Mobile Viewport Frame -->
+<main class="w-full max-w-md min-h-screen bg-surface-container-lowest flex flex-col relative px-5 pt-8 pb-10 overflow-hidden">
+<!-- Ambient Cellular Glow Effects -->
+<div class="pointer-events-none absolute -top-24 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="pointer-events-none absolute top-1/3 -right-24 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"></div>
+<div class="pointer-events-none absolute bottom-10 left-10 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl"></div>
+<!-- Top Privacy & Zero Friction Trust Badge -->
+<header class="w-full flex items-center justify-between z-10 mb-4">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/30 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="data-icon material-symbols-outlined text-primary text-sm" data-icon="lock">lock</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant tracking-wider uppercase">Giriş / Kayıt gerekmez</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="verified_user">verified_user</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">Cihazında Saklanır</span>
+</div>
+</header>
+<!-- Hero Rejuvenation Symbolic Visual (Dark to Radiance Transformation) -->
+<section class="relative w-full z-10 mb-6 rounded-xl overflow-hidden bg-surface-container-low border border-white/5 p-4 flex flex-col items-center text-center backdrop-blur-xl">
+<div class="relative w-full h-36 rounded-lg overflow-hidden flex items-center justify-center bg-surface-container-lowest/80">
+<!-- Visual Presentation Image -->
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen" data-alt="A striking minimalist cinematic digital artwork depicting a human silhouette undergoing deep biological rejuvenation. The left half displays a muted dark ashen aura representing toxin release, while the right half radiates with vibrant bioluminescent cyan and emerald green neural pathways and pristine oxygenated lung branches. Deep studio shadows, dark room atmospheric haze, precision neon teal luminescence symbolizing cellular repair and fresh breathing vitality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCERYh02rn-UOp-6FhmhV4rxaR0epRuu5F7hiNygMMBtaTFoPLasA-A45L_97spm2MHiPnsyKOCKhuAV7tVPagNXN9HueCTbscbPtaUnu9m4TWE-EiPLg4IKjDCzLjzTm5ir8dggFrqShfziIRMSH2ICp4cFeEZMSRS1LM-uOJJVXqY6eupzMkMtQio9vPRVQUpWJCKLZ4Y6f7atH0aX8m9DTMi1Hpq3IKzS5hbRQg"/>
+<!-- Symbolic Dynamic Transformation Gauge -->
+<div class="relative z-10 flex items-center gap-4 px-4 py-2 rounded-full bg-surface-container-lowest/90 border border-outline-variant/40 shadow-[0_0_24px_rgba(78,222,163,0.15)]">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-base text-outline" data-icon="air">air</span>
+<span class="text-body-sm font-body-sm text-outline">Duman</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="arrow_forward">arrow_forward</span>
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-base text-primary animate-pulse" data-icon="spa">spa</span>
+<span class="text-label-caps font-label-caps text-primary tracking-wide">Yenilenen Beden</span>
+</div>
+</div>
+</div>
+<!-- Main Headline Anchor -->
+<div class="mt-4 text-left w-full">
+<span class="text-label-caps font-label-caps text-primary uppercase tracking-widest block mb-1">Yeni Başlangıç</span>
+<h1 class="text-headline-xl-mobile font-headline-xl-mobile text-on-surface tracking-tight font-extrabold">
+          Yeni Hayatına Başla
+        </h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+          Hücresel iyileşmeni, geri kazanılan nefesini ve biriken birikimini anlık takip et.
+        </p>
+</div>
+</section>
+<!-- Information Form Fields (Glassmorphism Bento Hierarchy) -->
+<form class="w-full flex flex-col gap-3.5 z-10" id="onboarding-form" onsubmit="event.preventDefault();">
+<!-- Field 1: Date & Time Picker Card -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-white/5 backdrop-blur-md hover:border-outline-variant/50 transition-all duration-200">
+<div class="flex items-center justify-between mb-2">
+<label class="flex items-center gap-2 text-label-caps font-label-caps text-on-surface tracking-wider uppercase" for="quit-datetime">
+<span class="material-symbols-outlined text-primary text-base" data-icon="schedule">schedule</span>
+            Sigarayı Bıraktığın Tarih ve Saat
+          </label>
+<span class="text-label-mono-sm font-label-mono-sm text-primary bg-primary/10 px-2 py-0.5 rounded-full">An İtibarıyla</span>
+</div>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-mono-sm text-body-md rounded-lg border border-outline-variant/30 px-3.5 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-150" id="quit-datetime" name="quit_datetime" required="" type="datetime-local"/>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-outline" data-icon="info">info</span>
+          Akciğer ve kan dolaşımı arınma süresi bu ana göre hesaplanır.
+        </p>
+</div>
+<!-- Field 2: Daily Cigarette Count (Range & Number Display) -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-white/5 backdrop-blur-md hover:border-outline-variant/50 transition-all duration-200">
+<div class="flex items-center justify-between mb-1">
+<label class="flex items-center gap-2 text-label-caps font-label-caps text-on-surface tracking-wider uppercase" for="cigs-per-day">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="smoking_rooms">smoking_rooms</span>
+            Günde Kaç Sigara İçiyordun?
+          </label>
+<div class="flex items-baseline gap-1 bg-surface-container-lowest px-2.5 py-0.5 rounded-lg border border-outline-variant/20">
+<span class="font-label-metric text-label-metric text-primary" id="cigs-val-display">20</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">adet</span>
+</div>
+</div>
+<div class="mt-3 flex flex-col gap-2">
+<input class="w-full cursor-pointer" id="cigs-per-day" max="60" min="1" name="cigs_per_day" oninput="document.getElementById('cigs-val-display').innerText = this.value; recalculateSaved();" step="1" type="range" value="20"/>
+<div class="flex justify-between items-center text-label-caps font-label-caps text-outline px-0.5">
+<span>5 adet</span>
+<span>20 (1 Paket)</span>
+<span>40+ adet</span>
+</div>
+</div>
+</div>
+<!-- Dual Input Grid: Pack Price & Pack Cigarette Count -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Field 3: Pack Price (TL) -->
+<div class="bg-surface-container-low rounded-xl p-3.5 border border-white/5 backdrop-blur-md hover:border-outline-variant/50 transition-all duration-200 flex flex-col justify-between">
+<label class="flex items-center gap-1.5 text-label-caps font-label-caps text-on-surface tracking-wider uppercase mb-2" for="pack-price">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="payments">payments</span>
+            Paket Fiyatı (TL)
+          </label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-metric text-headline-md rounded-lg border border-outline-variant/30 pl-3 pr-8 py-2.5 focus:outline-none focus:border-tertiary focus:ring-1 focus:ring-tertiary transition-all duration-150" id="pack-price" min="10" name="pack_price" oninput="recalculateSaved();" required="" step="1" type="number" value="65"/>
+<span class="absolute right-3 font-label-caps text-on-surface-variant font-bold">₺</span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-1.5 block">Örn: 65 ₺</span>
+</div>
+<!-- Field 4: Cigarettes Per Pack -->
+<div class="bg-surface-container-low rounded-xl p-3.5 border border-white/5 backdrop-blur-md hover:border-outline-variant/50 transition-all duration-200 flex flex-col justify-between">
+<label class="flex items-center gap-1.5 text-label-caps font-label-caps text-on-surface tracking-wider uppercase mb-2" for="pack-size">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="inventory_2">inventory_2</span>
+            Paketteki Sigara
+          </label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-lowest text-on-surface font-label-metric text-headline-md rounded-lg border border-outline-variant/30 pl-3 pr-9 py-2.5 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-150" id="pack-size" max="40" min="10" name="pack_size" oninput="recalculateSaved();" required="" type="number" value="20"/>
+<span class="absolute right-3 font-label-caps text-on-surface-variant">dal</span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant mt-1.5 block">Standart: 20</span>
+</div>
+</div>
+<!-- Real-time Dynamic Savings Preview (Card Tier 1) -->
+<div class="w-full bg-surface-container-low rounded-xl p-3.5 border border-primary/20 bg-gradient-to-r from-surface-container-low to-surface-container flex items-center justify-between shadow-[0_0_24px_-4px_rgba(16,185,129,0.15)]">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="savings">savings</span>
+</div>
+<div>
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase tracking-wider block">Yıllık Cebinde Kalacak</span>
+<span class="font-label-metric text-headline-md text-primary" id="yearly-savings">23.725 ₺</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-caps font-label-caps text-outline uppercase tracking-wider block">Aylık Tahmin</span>
+<span class="font-label-mono-sm text-body-md text-on-surface font-semibold" id="monthly-savings">1.950 ₺</span>
+</div>
+</div>
+<!-- Primary Action CTA Button: Glow Ambient Emerald Node -->
+<div class="w-full pt-3 pb-2">
+<button class="w-full py-4 px-6 rounded-full bg-gradient-to-r from-primary-container to-primary text-on-primary-container font-headline-md font-bold text-headline-md flex items-center justify-center gap-2.5 shadow-[0px_0px_32px_0px_rgba(16,185,129,0.45)] hover:shadow-[0px_0px_40px_2px_rgba(16,185,129,0.6)] active:scale-[0.98] transition-all duration-150 group" id="start-button" onclick="handleStartJourney();" type="button">
+<span class="material-symbols-outlined text-2xl transition-transform duration-200 group-hover:scale-110" data-icon="timer">timer</span>
+<span>Sayacı Başlat ve İyileş</span>
+</button>
+</div>
+<!-- Secondary Disclaimer -->
+<p class="text-center text-body-sm font-body-sm text-outline px-4">
+        Herhangi bir parola hatırlamana gerek yok. İstediğin an ayarlar kısmından bu verileri güncelleyebilirsin.
+      </p>
+</form>
+</main>
+<script>
+    // Set default datetime to now in local timezone format (YYYY-MM-DDTHH:mm)
+    window.addEventListener('DOMContentLoaded', () => {
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      const localIso = now.toISOString().slice(0, 16);
+      const quitInput = document.getElementById('quit-datetime');
+      if (quitInput) {
+        quitInput.value = localIso;
+      }
+      recalculateSaved();
+    });
+
+    // Dynamic projection recalculation based on inputs
+    function recalculateSaved() {
+      const cigsPerDay = parseFloat(document.getElementById('cigs-per-day').value) || 0;
+      const packPrice = parseFloat(document.getElementById('pack-price').value) || 0;
+      const packSize = parseFloat(document.getElementById('pack-size').value) || 20;
+
+      if (packSize > 0) {
+        const costPerCig = packPrice / packSize;
+        const dailyCost = cigsPerDay * costPerCig;
+        const monthlyCost = Math.round(dailyCost * 30);
+        const yearlyCost = Math.round(dailyCost * 365);
+
+        const yearlyElem = document.getElementById('yearly-savings');
+        const monthlyElem = document.getElementById('monthly-savings');
+
+        if (yearlyElem) yearlyElem.innerText = yearlyCost.toLocaleString('tr-TR') + ' ₺';
+        if (monthlyElem) monthlyElem.innerText = monthlyCost.toLocaleString('tr-TR') + ' ₺';
+      }
+    }
+
+    // Interactive confirmation response
+    function handleStartJourney() {
+      const btn = document.getElementById('start-button');
+      btn.innerHTML = `
+        <span class="material-symbols-outlined animate-spin text-2xl" data-icon="progress_activity">progress_activity</span>
+        <span>Hazırlanıyor...</span>
+      `;
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = `
+          <span class="material-symbols-outlined text-2xl" data-icon="check_circle">check_circle</span>
+          <span>Sayaç Başlatıldı!</span>
+        `;
+        btn.classList.remove('from-primary-container', 'to-primary');
+        btn.classList.add('bg-primary');
+      }, 700);
+    }
+  </script>
+</body></html>
