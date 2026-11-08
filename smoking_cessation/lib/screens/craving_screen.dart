@@ -1,9 +1,9 @@
 // ========================================
 // DOSYA: craving_screen.dart
 // NE İŞE YARAR: Kriz anında 5 dk geri sayım
-// ve nefes egzersizi sunar.
-// NASIL ÇALIŞIR: CravingController ile nefes
-// fazı, sözler ve sayacı yönetir.
+// ve 4-7-8 nefes egzersizi ekranını sunar.
+// NASIL ÇALIŞIR: CravingController dinler,
+// saniye ve faz durumuna göre arayüz çizer.
 // SOLID: SRP - Kriz müdahale arayüzü sunar.
 // ========================================
 
@@ -33,148 +33,140 @@ class _CravingScreenState extends State<CravingScreen> {
     }
   }
 
+  void _onClose() {
+    _controller?.stopSession();
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final ctrl = _controller ?? AppScope.of(context).cravingController;
 
     return Scaffold(
       backgroundColor: AppTheme.surfaceLowest,
-      appBar: AppBar(
-        title: const Text('Kriz Müdahalesi'),
-        leading: IconButton(
-          icon: const Icon(Icons.close_rounded),
-          onPressed: () {
-            ctrl.stopSession();
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
       body: ListenableBuilder(
         listenable: ctrl,
         builder: (context, _) => SafeArea(
           child: ListView(
-            padding: const EdgeInsets.all(20),
-            children: [
-              _buildTimerSection(ctrl),
-              const SizedBox(height: 16),
-              BreathingCircle(
-                progress: ctrl.phaseProgress,
-                phaseTitle: ctrl.phaseTitle,
-                phase: ctrl.currentPhase,
-              ),
-              const SizedBox(height: 16),
-              _buildQuoteCard(ctrl),
-              const SizedBox(height: 20),
-              _buildActionFooter(ctrl),
-            ],
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 16,
+            ),
+            children: _buildContent(ctrl),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildTimerSection(CravingController ctrl) {
-    final m = (ctrl.remainingSeconds ~/ 60).toString().padLeft(2, '0');
-    final s = (ctrl.remainingSeconds % 60).toString().padLeft(2, '0');
+  // Sayfa içerik widget listesi.
+  List<Widget> _buildContent(CravingController ctrl) {
+    return [
+      _buildTopHeader(),
+      const SizedBox(height: 20),
+      CravingTimerHeader(
+        remainingSeconds: ctrl.remainingSeconds,
+      ),
+      const SizedBox(height: 16),
+      BreathingCircle(
+        progress: ctrl.phaseProgress,
+        phaseTitle: ctrl.phaseTitle,
+        phase: ctrl.currentPhase,
+        countdown: ctrl.phaseCountdown,
+      ),
+      const SizedBox(height: 14),
+      NatureSoundPill(
+        isPlaying: ctrl.isNatureSoundPlaying,
+        onToggle: ctrl.toggleNatureSound,
+      ),
+      const SizedBox(height: 20),
+      const BiologicalFactCard(),
+      const SizedBox(height: 20),
+      _buildWinButton(ctrl),
+    ];
+  }
 
-    return Column(
+  // Üst SOS başlık ve kapatma butonu.
+  Widget _buildTopHeader() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          ctrl.isSuccess ? '00:00' : '$m:$s',
-          style: AppTheme.displayCounter.copyWith(
-            color: AppTheme.secondaryCyan,
-            fontSize: 44,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                '● SOS ACİL RAHATLAMA',
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: AppTheme.secondaryCyan,
+                  letterSpacing: 0.6,
+                ),
+              ),
+              SizedBox(height: 6),
+              Text(
+                'Derin Bir Nefes Al, Bu Kriz Geçecek',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  height: 1.25,
+                ),
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 4),
-        const Text('Kriz isteği ortalama 3-5 dk sürer',
-            style: AppTheme.bodySmall),
+        IconButton(
+          style: IconButton.styleFrom(
+            backgroundColor: const Color(0x1AFFFFFF),
+            shape: const CircleBorder(),
+          ),
+          icon: const Icon(Icons.close_rounded, color: Colors.white),
+          onPressed: _onClose,
+        ),
       ],
     );
   }
 
-  Widget _buildQuoteCard(CravingController ctrl) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppTheme.surfaceLow,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppTheme.outline),
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              const Icon(Icons.format_quote_rounded,
-                  color: AppTheme.warningAmber, size: 20),
-              const SizedBox(width: 8),
-              const Expanded(
-                child: Text('MOTİVASYON', style: AppTheme.labelCaps),
-              ),
-              IconButton(
-                icon: const Icon(Icons.refresh_rounded, size: 20),
-                color: AppTheme.onSurfaceVariant,
-                onPressed: ctrl.nextQuote,
-                tooltip: 'Yeni Söz',
-              ),
-            ],
+  // Krizi yendim başarı ve kapatma butonu.
+  Widget _buildWinButton(CravingController ctrl) {
+    return SizedBox(
+      width: double.infinity,
+      height: 52,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppTheme.primary,
+          foregroundColor: const Color(0xFF022C22),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(26),
           ),
-          const SizedBox(height: 8),
-          Text(
-            '"${ctrl.currentQuote}"',
-            textAlign: TextAlign.center,
-            style: AppTheme.bodyLarge.copyWith(fontStyle: FontStyle.italic),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionFooter(CravingController ctrl) {
-    if (ctrl.isSuccess) {
-      return Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: AppTheme.primaryContainer,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppTheme.outlineActive),
         ),
-        child: Column(
-          children: [
-            const Icon(Icons.check_circle_rounded,
-                color: AppTheme.primary, size: 36),
-            const SizedBox(height: 8),
-            const Text('Başardın! Krizi Yendin.',
-                style: AppTheme.titleSmall),
-            const SizedBox(height: 12),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primary,
-                foregroundColor: AppTheme.surfaceLowest,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
+        onPressed: () {
+          ctrl.completeSession();
+          Navigator.of(context).pop();
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(
+              Icons.check_circle_outline_rounded,
+              color: Color(0xFF022C22),
+              size: 22,
+            ),
+            SizedBox(width: 8),
+            Text(
+              'Krizi Yendim!',
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF022C22),
               ),
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Geri Dön'),
             ),
           ],
         ),
-      );
-    }
-
-    return ElevatedButton.icon(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppTheme.primary,
-        foregroundColor: AppTheme.surfaceLowest,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       ),
-      icon: const Icon(Icons.sentiment_very_satisfied_rounded),
-      label: const Text(
-        'Krizi Yendim! (Temizim)',
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-      ),
-      onPressed: ctrl.completeSession,
     );
   }
 }

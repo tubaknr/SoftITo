@@ -1,21 +1,22 @@
 // ========================================
 // DOSYA: craving_controller.dart
 // NE İŞE YARAR: 5 dakikalık kriz geri sayımı,
-// nefes fazları ve motivasyon sözlerini yönetir.
-// NASIL ÇALIŞIR: Timer ile saniye saniye
-// geri sayar ve nefes fazını belirler.
+// 4-7-8 nefes fazları ve sesi yönetir.
+// NASIL ÇALIŞIR: Timer ile 19 saniyelik
+// döngüde fazları ve geri sayımı belirler.
 // SOLID: SRP - Kriz anı egzersizi durumunu tutar.
 // ========================================
 
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 
-// Nefes döngüsü adımları (4-4-4 ritmi)
+// 4-7-8 nefes döngüsü adımları (19 saniye)
 enum BreathingPhase {
-  inhale, // 0..4 saniye
-  hold,   // 4..8 saniye
-  exhale, // 8..12 saniye
+  inhale, // 0..4 saniye (Nefes Al)
+  hold,   // 4..11 saniye (Tut)
+  exhale, // 11..19 saniye (Nefes Ver)
 }
 
 // SRP: Canım çekti egzersizini yönetir.
@@ -42,6 +43,7 @@ class CravingController extends ChangeNotifier {
   int _remainingSeconds = totalSessionSeconds;
   bool _isActive = false;
   bool _isSuccess = false;
+  bool _isNatureSoundPlaying = false;
   String _currentQuote = '';
 
   CravingController() {
@@ -51,16 +53,17 @@ class CravingController extends ChangeNotifier {
   int get remainingSeconds => _remainingSeconds;
   bool get isActive => _isActive;
   bool get isSuccess => _isSuccess;
+  bool get isNatureSoundPlaying => _isNatureSoundPlaying;
   String get currentQuote => _currentQuote;
 
-  // 12 saniyelik döngüdeki mevcut saniye (0..11)
+  // 19 saniyelik 4-7-8 döngü saniyesi (0..18)
   int get cycleSecond =>
-      (totalSessionSeconds - _remainingSeconds) % 12;
+      (totalSessionSeconds - _remainingSeconds) % 19;
 
   // Aktif nefes fazı
   BreathingPhase get currentPhase {
     if (cycleSecond < 4) return BreathingPhase.inhale;
-    if (cycleSecond < 8) return BreathingPhase.hold;
+    if (cycleSecond < 11) return BreathingPhase.hold;
     return BreathingPhase.exhale;
   }
 
@@ -76,16 +79,44 @@ class CravingController extends ChangeNotifier {
     }
   }
 
+  // Mevcut fazın kalan saniyesi
+  int get phaseCountdown {
+    final sec = cycleSecond;
+    if (sec < 4) return 4 - sec;
+    if (sec < 11) return 11 - sec;
+    return 19 - sec;
+  }
+
   // Nefes dairesi büyüme oranı (0.0..1.0)
   double get phaseProgress {
     final sec = cycleSecond;
     if (sec < 4) {
       return sec / 4.0;
-    } else if (sec < 8) {
+    } else if (sec < 11) {
       return 1.0;
     } else {
-      return (12 - sec) / 4.0;
+      return (19 - sec) / 8.0;
     }
+  }
+
+  // Doğa sesi durumunu değiştirir.
+  void toggleNatureSound() {
+    _isNatureSoundPlaying = !_isNatureSoundPlaying;
+    _syncWebAudio();
+    notifyListeners();
+  }
+
+  // Web ve sistem ses komutunu senkronize eder.
+  void _syncWebAudio() {
+    try {
+      SystemChrome.setApplicationSwitcherDescription(
+        ApplicationSwitcherDescription(
+          label: _isNatureSoundPlaying
+              ? 'cmd:nature:play'
+              : 'cmd:nature:stop',
+        ),
+      );
+    } catch (_) {}
   }
 
   // Seansı başlatır veya yeniden başlatır.
@@ -117,6 +148,10 @@ class CravingController extends ChangeNotifier {
     _timer?.cancel();
     _isActive = false;
     _isSuccess = true;
+    if (_isNatureSoundPlaying) {
+      _isNatureSoundPlaying = false;
+      _syncWebAudio();
+    }
     notifyListeners();
   }
 
@@ -124,6 +159,10 @@ class CravingController extends ChangeNotifier {
   void stopSession() {
     _timer?.cancel();
     _isActive = false;
+    if (_isNatureSoundPlaying) {
+      _isNatureSoundPlaying = false;
+      _syncWebAudio();
+    }
     notifyListeners();
   }
 
@@ -141,6 +180,10 @@ class CravingController extends ChangeNotifier {
   @override
   void dispose() {
     _timer?.cancel();
+    if (_isNatureSoundPlaying) {
+      _isNatureSoundPlaying = false;
+      _syncWebAudio();
+    }
     super.dispose();
   }
 }

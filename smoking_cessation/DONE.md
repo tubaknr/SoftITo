@@ -318,4 +318,47 @@ Bu dosya, projenin her geliştirme adımında yapılan işlemleri, oluşturulan/
   - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
 - **Durum:** ✅ Tamamlandı
 
+## [Görsel & İşlevsel Güncelleme] Kriz Müdahale Ekranı ve 4-7-8 Nefes Egzersizi — 2026-11-08 17:48
+- **Ne yapıldı:**
+  - Kullanıcı isteği ve paylaşılan ekran görüntüsü doğrultusunda kriz müdahale akışı (`CravingScreen`, `BreathingCircle`, `CravingController`) baştan sona güncellendi:
+    1. **Üst Başlık & Kapatma:**
+       - Üstte camgöbeği noktalı `"● SOS ACİL RAHATLAMA"` rozeti.
+       - `"Derin Bir Nefes Al, Bu Kriz Geçecek"` beyaz rahatlatıcı başlık.
+       - Sağ üst köşede şık dairesel kapatma butonu (`Icons.close_rounded`).
+    2. **5 Dakikalık Dijital Sayaç:**
+       - Sayaç ikonu ile `"5 DAKİKALIK KRİZ GERİ SAYIMI"`.
+       - Parlayan yeşil/nane renkli büyük dijital geri sayım (`05 : 00`).
+    3. **4-7-8 Nefes Egzersizi ve Geri Sayım Ritmi:**
+       - Toplam 19 saniyelik tıbbi 4-7-8 ritmine geçildi:
+         - **Nefes Al:** 4 saniye (4-3-2-1 sn geri sayım)
+         - **Tut:** 7 saniye (7-6-5-4-3-2-1 sn geri sayım)
+         - **Nefes Ver:** 8 saniye (8-7-6-5-4-3-2-1 sn geri sayım)
+       - Dairenin merkezinde: Rüzgar ikonu, faz adı (`Nefes Al`, `Tut`, `Nefes Ver`), saniye geri sayımı (örn. `3 sn`) ve altında `"4–7–8 Ritmi"` etiketi.
+       - Eşmerkezli ışıldayan neon halkalar nefes alma fazında genişler, tutma fazında zirvede kalır, verme fazında küçülür.
+    4. **Doğa Sesi Butonu:**
+       - Dairenin altında `"Doğa Sesi: Açık / Kapalı"` butonu eklendi.
+       - Tıklandığında Web Audio API ile tamamen yerel ve çevrimdışı pembe gürültü / yağmur ve orman akarsu ambiyans sesi sentezlenir; tekrar tıklanınca kesilir.
+       - İstenmeyen titreşim butonu kaldırıldı.
+    5. **Biyolojik Gerçek Kartı:**
+       - Nabız dalgası ikonu, `"BİYOLOJİK GERÇEK"` ve `"Pik: 3 dk"` rozeti.
+       - *"Sigara içme isteği ortalama 3–5 dakika sürer. Bu dalga birazdan geçecek ve ciğerlerin sana teşekkür edecek."* açıklaması.
+       - Soğuk su ve dikkat dağıt butonları kaldırıldı.
+    6. **Krizi Yendim Butonu:**
+       - Sayfa altında yeşil zemin üzerinde onay ikonuyla tam genişlikte `"Krizi Yendim!"` butonu eklendi.
+- **Dosyalar:**
+  - [lib/features/craving/craving_controller.dart](lib/features/craving/craving_controller.dart) (güncellendi, 187 satır)
+  - [lib/widgets/breathing_circle.dart](lib/widgets/breathing_circle.dart) (güncellendi, 360 satır)
+  - [lib/screens/craving_screen.dart](lib/screens/craving_screen.dart) (güncellendi, 172 satır)
+  - [web/index.html](web/index.html) (güncellendi, 128 satır)
+  - [DONE.md](DONE.md) (güncellendi)
+- **SOLID / kural notu:**
+  - SRP: Kriz süreci yönetimi `CravingController`'da, arayüz blokları `breathing_circle.dart` bileşenlerinde, sayfa birleşimi `CravingScreen`'de tutuldu.
+  - Sınırlar: `lib/` altında tam 25 Dart dosyası korundu, `CravingScreen` 172 satır ile <= 200 kuralına tam uygundur. Tüm `build` metotları <= 40 satır, tüm yorumlar Türkçe ve <= 50 karakterdir.
+- **Komutlar:**
+  - Python kural doğrulama: Tüm limitler eksiksiz sağlandı.
+  - `/snap/bin/flutter analyze` → No issues found! (0 sorun)
+  - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
+- **Durum:** ✅ Tamamlandı
+
+
 
