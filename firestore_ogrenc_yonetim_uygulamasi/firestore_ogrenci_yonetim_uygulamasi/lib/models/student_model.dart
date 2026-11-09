@@ -20,7 +20,9 @@ class Student { // Bir Öğrenciyi Temsil Eden Model Class'tır.
   });
 
   factory Student.fromFireStore(DocumentSnapshot snapshot) { // Firestore Document'ından Student Üreten factory Constructor'dır.
+    
     final data = snapshot.data() as Map<String, dynamic>? ?? {}; // Document Verisini Map'e Çevirir, null İse Boş Map Kullanır.
+    
     return Student( // Map'teki Değerlerle Yeni Bir Student Döndürür.
       id: snapshot.id, // Document id'sini id Olarak Atar.
       nameSurname: data['nameSurname'] as String? ?? '', // nameSurname'ü Okur, Yoksa Boş String Atar.

@@ -318,6 +318,7 @@ Bu dosya, projenin her geliştirme adımında yapılan işlemleri, oluşturulan/
   - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
 - **Durum:** ✅ Tamamlandı
 
+
 ## [Görsel & İşlevsel Güncelleme] Kriz Müdahale Ekranı ve 4-7-8 Nefes Egzersizi — 2026-11-08 17:48
 - **Ne yapıldı:**
   - Kullanıcı isteği ve paylaşılan ekran görüntüsü doğrultusunda kriz müdahale akışı (`CravingScreen`, `BreathingCircle`, `CravingController`) baştan sona güncellendi:
@@ -362,3 +363,163 @@ Bu dosya, projenin her geliştirme adımında yapılan işlemleri, oluşturulan/
 
 
 
+
+
+## [Görsel & Tasarım Güncellemesi] Sağlık Kazanımları ve Zaman Çizelgesi — 2026-11-08 18:00
+- **Ne yapıldı:**
+  - `style/sa_l_k_kazan_mlar_zaman_izelgesi/screen.png` görselindeki tasarım ve bilgi mimarisi birebir incelenerek sağlık sayfası baştan sona güncellendi:
+    1. **Üst Başlık Kartı (`HealthHeaderCard`):**
+       - Yeşil ışıltılı `"● Biyolojik İyileşme"` hap rozeti.
+       - `"Sağlık İyileşme Süreci"` ana başlığı.
+       - `"Vücudunun sigarasız geçen her dakikadaki mucizevi onarımı"` açıklama metni.
+       - Alt satırda kalp dalgası simgesi ile `"Toplam Onarım Fazı: Seviye X"` ve dinamik `"$completed / $total Tamam"` sayacı.
+    2. **İkili Metrik Göstergeleri (`HealthMetricCards`):**
+       - Sol kart: **AKCİĞER KAPASİTESİ** (Hava ikonu, `+X%` camgöbeği değer, `Oksijen absorpsiyonu` alt yazısı).
+       - Sağ kart: **HÜCRESEL TOKSİN** (Kalp ikonu, `0 ppm` yeşil değer, `Karbonmonoksit arındı` alt yazısı).
+    3. **Zaman Çizelgesi Başlığı:**
+       - `"Zaman Çizelgesi"` beyaz başlığı ve yanında yeşil çerçeveli `"AKTİF İZLEME"` hap etiketi.
+    4. **8 Kademeli Sağlık Zaman Çizelgesi (`HealthTimelineTile`):**
+       - Görseldeki 8 aşama eklendi:
+         - 20 Dakika: Nabız ve Kan Basıncı Normale Döndü
+         - 8 Saat: Kandaki Oksijen Seviyesi Arttı
+         - 24 Saat: Karbonmonoksit Temizlendi
+         - 48 Saat: Tat ve Koku Duyuları Keskinleşti
+         - 72 Saat: Bronşlar Gevşedi, Nefes Almak Kolaylaştı
+         - 2 Hafta – 3 Ay: Kan Dolaşımı ve Akciğer Fonksiyonu Güçleniyor
+         - 1 Yıl: Kalp Krizi Riski Yarı Yarıya Düşüyor
+         - 5 Yıl: Felç Riski Sigara İçmeyen Biriyle Aynı Düzeye İner
+       - Sol tarafta dikey bağlı düğüm ikonları (tamamlananlarda yeşil onay işareti, aktif olanda parlayan camgöbeği halka, kilitli olanlarda kilit simgesi).
+       - Kart içinde süre rozeti (`20 DAKİKA` vb.), durum etiketi (`● Tamamlandı`, `● İyileşme Sürüyor`, `Uzun Vadeli`, `🔒 Gelecek Hedef`), yüzde kutusu (`%100`, `%74`, `%18`, `🔒`), başlık, açıklama ve renkli ince ilerleme çubuğu.
+       - Aktif kademede altta `"Dolaşım & Silya Rejenerasyonu"` ve `"Hedefe X Gün Kaldı"` telemetri satırı.
+    5. **Hücresel Yenilenme Motivasyon Kartı (`CellularRenewalCard`):**
+       - Yıldız ışıltısı ikonu ile `"Hücresel Yenilenme Sürüyor"` ve *"Vücudun 72 saatten beridir kendi silya dokularını 2 kat hızlı örüyor. Kararlılığını koru!"* kartı.
+- **Dosyalar:**
+  - [lib/models/health_milestone.dart](lib/models/health_milestone.dart) (güncellendi, 137 satır)
+  - [lib/widgets/health_timeline_tile.dart](lib/widgets/health_timeline_tile.dart) (güncellendi, 731 satır)
+  - [lib/screens/health_screen.dart](lib/screens/health_screen.dart) (güncellendi, 127 satır)
+  - [DONE.md](DONE.md) (güncellendi)
+- **SOLID / kural notu:**
+  - OCP: `HealthMilestone.defaultMilestones` mevcut testler için aynen korundu; `timelineMilestones` 8 kademeli zengin görsel model için eklendi.
+  - SRP: Görsel kart blokları `health_timeline_tile.dart` içine modüler dağıtıldı; `HealthScreen` sadece 127 satır kaldı.
+  - Sınırlar: `lib/` altında tam 25 Dart dosyası korundu. Hiçbir ekran 200 satırı, hiçbir `build` metodu 40 satırı geçmedi. Tüm yorumlar Türkçe ve <= 50 karakterdir.
+- **Komutlar:**
+  - Python kural doğrulama: Tüm limitler eksiksiz sağlandı.
+  - `/snap/bin/flutter analyze` → No issues found! (0 sorun)
+  - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
+- **Durum:** ✅ Tamamlandı
+
+## [Görsel & Tasarım Güncellemesi] Günlük Kayıt ve Takvim Ekranı — 2026-11-09 05:04
+- **Ne yapıldı:**
+  - `/style/g_nl_k_kay_t_ve_takvim/screen.png` görselindeki tasarım ve bilgi mimarisi dikkatle incelenerek günlük sayfası baştan sona güncellendi:
+    1. **Üst Başlık Bloğu:**
+       - Üstte yeşil fontla `"GÜN X • TEMİZ CİĞERLER"` rozeti ve sağda geçerli ay (`Mayıs 2024` vb.).
+       - Beyaz büyük `"Günlük Bırakma Günlüğü"` başlığı.
+    2. **Günlük Kayıt Kartı (`DiaryCheckInCard`):**
+       - Üstte düzenleme simgesi ile `"Bugün sigara içtin mi?"` ve `"Bugün"` rozeti.
+       - İki satırlı büyük onay butonu: Onay rozeti simgesi, `"Bugün İçmedim"` ve altında `"(Temizim)"` etiketi (tıklandığında anında durumu günceller).
+       - Çekim/Kriz Yoğunluğu bölümü: Sol başta `"ÇEKİM / KRİZ YOĞUNLUĞU"`, sağda seviye metni (örn. `"1: Rahat Seviye"`, `"2: Hafif Seviye"`, `"3: Orta Seviye"`, `"4: Zor Seviye"`, `"5: Şiddetli Kriz"`).
+       - 1-5 alev ikonlu seviye butonları; seçilen seviye yeşil kenarlık ve alev parıltısıyla vurgulanır.
+       - `"KISA NOT EKLE"` bölümü ve çok satırlı şık not giriş alanı (`"Akşam kahvesi sonrası zorlandım..."` ipucu metni ile).
+       - Altında arşiv/kayıt simgeli tam genişlikte `"Kaydet"` butonu.
+    3. **Takvim & Zincir Takibi Kartı (`DiaryCalendar`):**
+       - Takvim ikonu, `"Takvim & Zincir Takibi"` başlığı ve `< Ay Yıl >` ay geçiş butonları.
+       - Haftanın günleri: `PT   SA   ÇA   PE   CU   CT   PZ`.
+       - Günler ızgarası:
+         - Bugünün tarihi yeşil kenarlıkla vurgulanır.
+         - Gün numaralarının altında duruma göre renkli minik noktalar:
+           - Yeşil nokta: `● Temiz / Başarılı`
+           - Sarı/amber nokta: `● Zorlanılan Gün` (kriz seviyesi $\ge$ 3)
+           - Kırmızı nokta: `● Kriz Yaşandı`
+         - Gelecek ve önceki ay günleri yumuşak silik tonda gösterilir.
+       - Kartın altında üç renkli açıklama lejantı (`Temiz / Başarılı`, `Zorlanılan Gün`, `Kriz Yaşandı`).
+    4. **Alt İkili İstatistik Kartları (`DiaryStatCards`):**
+       - Sol kart: **MEVCUT SERİ** (Yıldırım simgesi, yeşil rakamla `X Gün` ve `"Kesintisiz Temiz"` alt metni).
+       - Sağ kart: **EN ÇOK TETİKLEYEN** (Saat simgesi, `"Akşam Saatleri"` ve `"20:00 - 22:30 arası"` alt metni).
+- **Dosyalar:**
+  - [lib/widgets/diary_calendar.dart](lib/widgets/diary_calendar.dart) (güncellendi, 756 satır)
+  - [lib/screens/diary_screen.dart](lib/screens/diary_screen.dart) (güncellendi, 145 satır)
+  - [DONE.md](DONE.md) (güncellendi)
+- **SOLID / kural notu:**
+  - SRP: Görsel kayıt blokları ve takvim `diary_calendar.dart` içine modüler dağıtıldı; `DiaryScreen` sadece 145 satır kaldı.
+  - Sınırlar: `lib/` altında tam 25 Dart dosyası korundu. Hiçbir ekran 200 satırı, hiçbir `build` metodu 40 satırı geçmedi. Tüm yorumlar Türkçe ve <= 50 karakterdir.
+- **Komutlar:**
+  - Python kural doğrulama: Tüm limitler eksiksiz sağlandı.
+  - `/snap/bin/flutter analyze` → No issues found! (0 sorun)
+  - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
+- **Durum:** ✅ Tamamlandı
+
+
+## [Görsel & Tasarım Güncellemesi] Kutlamalar, Rozetler ve Bildirimler (Ayarlar Ekranı) — 2026-11-09 05:33
+- **Ne yapıldı:**
+  - `/style/bildirimler_ve_kutlamalar/screen.png` görselindeki tasarım ve bilgi mimarisi incelenerek ayarlar sayfası baştan sona güncellendi:
+    1. **Üst Başlık Bloğu (`SettingsHeader`):**
+       - Yeşil nokta ile `"● CANLI REKOR & BİLDİRİMLER"` başlık üstü etiketi.
+       - `"Kutlamalar ve Bildirimler"` beyaz kalın ana başlık.
+       - `"Biyolojik iyileşme dönüm noktaların ve farkındalık uyarıların."` gri alt açıklama metni.
+    2. **Altın Dönüm Noktası Kutlama Kartı (`MilestoneCelebrationCard`):**
+       - Üstte yeşil halka içinde altın madalya ve sağ üstünde onay tiki rozeti.
+       - `"● ALTIN DÖNÜM NOKTASI 🌿"` yeşil kapsül rozeti ve `"1. Hafta Tamamlandı!"` ana başlığı.
+       - Koyu kutu içinde tebrik metni: `"Tebrikler! Vücudundaki nikotin tamamen temizlendi. Tat alma duyuların yeniden doğdu ve akciğerlerindeki siller kendini onarmaya başladı."`.
+       - Alt satırda döngü simgesi ile `"Tasarruf Edilen:"` ve dinamik `"$moneySaved TL"` yeşil parlayan metin.
+       - Tam genişlikte yeşil `"Başarıyı Kutla & Paylaş"` aksiyon butonu.
+    3. **İyileşme Rozetleri 6'lı Izgara Kartı (`RecoveryBadgesSection`):**
+       - Başlık satırı: `"İyileşme Rozetleri"`, `"Biyolojik yenilenme yolculuğun"` ve sağda `"3 / 6 Açıldı"` camgöbeği sayaç rozeti.
+       - 6 rozet içeren 3x2 ızgara:
+         - **24 Saat:** Saat ikonu, yeşil köşe noktası, `"24 Saat"`, yeşil `"KAZANILDI"`.
+         - **3 Gün:** Parıltı ikonu, yeşil köşe noktası, `"3 Gün"`, yeşil `"KAZANILDI"`.
+         - **1 Hafta:** Yeşil çerçeveli, üstünde `"YENİ"` etiketi, rozet ikonu, `"1 Hafta"`, yeşil `"KAZANILDI"`.
+         - **1 Ay:** Kilit açık ikonu, `"1 Ay"`, camgöbeği `"SIRADA (%23)"` ve ilerleme çubuğu.
+         - **3 Ay:** Kilitli ikon, `"3 Ay"`, gri `"KİLİTLİ"`.
+         - **1 Yıl:** Kupa ikonu, `"1 Yıl"`, amber/altın `"EFSANE"`.
+    4. **Bildirim Önizlemeleri & Akıllı Ayarlar (`SettingsNotificationSection`):**
+       - Başlık satırı: `"Bildirim Önizlemeleri & Ayarlar"`, `"Kriz anlarında seni koruyan akıllı kurgular"` ve sağda camgöbeği `"TÜMÜNÜ TEST ET"` butonu.
+       - **Günlük Motivasyon Bildirimi:** Güneş simgesi, `Zaman: Her Gün 09:00`, aktif anahtar. İçeride balon önizleme: Zil ikonu, `"ARINMA REHBERİ"`, saat ve motivasyon mesajı. Altta `"Sıklık: Günde 1 kez"` ve `"Saati Değiştir"` butonu (saat seçiciyi açar).
+       - **Kriz Önleme Hatırlatıcısı:** Güç/kalkan simgesi, `"AKILLI"` etiketi, `Tetikleyici Saat: 16:45`, aktif anahtar. İçeride balon önizleme: `"FARKINDALIK ÇAĞRISI"`, `"Şimdi"` ve farkındalık mesajı. Altta `"● Tetikleyici Analiz Modu Aktif"` ve `"Hassasiyet"` butonu.
+       - **Dönüm Noktası Uyarısı:** Kupa simgesi, `Otomatik Milestones`, aktif anahtar. İçeride balon önizleme: Megafon ikonu, `"KUTLAMA ANI"`, `"Gelecek"` ve tebrik mesajı. Altta `"Kutlama Efektleri: Ses & Titreşim Açık"` ve `"Ses Seçimi"` butonu.
+       - **Gece Sessiz Modu:** Hilal/gece simgesi, `"Gece Sessiz Modu"`, `23:00 - 08:00 arasında tüm bildirimler sessiz`, aktif anahtar.
+    5. **Mevcut Ayarların Korunması (Sayfanın En Altında):**
+       - `"PROFİL BİLGİLERİ"` kartı (Bırakma Tarihi ve Tüketim/Fiyat düzenleme butonları).
+       - `"BİLDİRİMLER"` kartı (Günlük Bildirim açma/kapatma ve Bildirim Saati).
+       - `"Tüm Verileri Sıfırla"` kırmızı tehlike butonu.
+       - `test/widget_smoke_test.dart` duman testi (`PROFİL BİLGİLERİ` bulma beklentisi) eksiksiz geçti.
+- **Dosyalar:**
+  - [lib/widgets/stat_card.dart](lib/widgets/stat_card.dart) (güncellendi, 1374 satır)
+  - [lib/screens/settings_screen.dart](lib/screens/settings_screen.dart) (güncellendi, 194 satır)
+  - [DONE.md](DONE.md) (güncellendi)
+- **SOLID / kural notu:**
+  - SRP: Ayarlar sayfası arayüzü `SettingsScreen` (194 satır) ile kontrol edilirken, bağımsız kart bileşenleri `stat_card.dart` içine taşındı.
+  - Sınırlar: `lib/` altında tam 25 Dart dosyası korundu. Ekran 194 satır ile <= 200 satır kuralına uygundur. Bütün `build` metotları <= 40 satır, tüm yorumlar Türkçe ve <= 50 karakterdir.
+- **Komutlar:**
+  - Python kural doğrulama: Tüm limitler eksiksiz sağlandı.
+  - `/snap/bin/flutter analyze` → No issues found! (0 sorun)
+  - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
+- **Durum:** ✅ Tamamlandı
+
+
+## [Görsel & Sadeliştirme Düzenlemesi] Ayarlar ve Rozetler Ekranı Sadeleştirmesi — 2026-11-09 05:53
+- **Ne yapıldı:**
+  - Kullanıcı talebi doğrultusunda Ayarlar (Kutlamalar ve Rozetler) ekranı sadeleştirildi ve görsel uyumu artırıldı:
+    1. **"Başarıyı Kutla & Paylaş" Butonu Kaldırıldı:**
+       - [`MilestoneCelebrationCard`](file:///home/tuba/Documents/GitHub/SoftITo/smoking_cessation/lib/widgets/stat_card.dart) içerisindeki paylaşım butonu ve ilgili tetikleyiciler tamamen temizlendi.
+    2. **İyileşme Rozetleri Izgarası Yeniden Düzenlendi:**
+       - Dağınık ve aşırı boşluklu duran yapı yerine, sayfanın geri kalan kartları ile aynı arka plan (`AppTheme.surfaceLow`), kenarlık (`AppTheme.outline`) ve iç boşluk (`padding: 16`) standartlarına sahip tek bir uyumlu kart çerçevesi ([`RecoveryBadgesSection`](file:///home/tuba/Documents/GitHub/SoftITo/smoking_cessation/lib/widgets/stat_card.dart)) içine alındı.
+       - Rozet kartları ([`_BadgeCard`](file:///home/tuba/Documents/GitHub/SoftITo/smoking_cessation/lib/widgets/stat_card.dart)) daha kompakt ikon boyutu (36x36), orantılı tipografi ve 8 px'lik dengeli boşluklarla sayfa geneliyle kusursuz uyumlu hale getirildi.
+    3. **Bildirim Bölümü Tamamen Kaldırıldı:**
+       - "Günlük Motivasyon Bildirimi", "Kriz Önleme Hatırlatıcısı", "Dönüm Noktası Uyarısı" ve "Gece Sessiz Modu" içeren tüm önizleme kartları kaldırıldı.
+       - Sayfa altındaki "BİLDİRİMLER" anahtarlı yapılandırma bölümü arayüzden çıkarıldı.
+       - Başlık `"Kutlamalar ve Rozetler"` olarak güncellendi.
+    4. **Çalışan Fonksiyonların Korunması:**
+       - `"PROFİL BİLGİLERİ"` kartı (bırakma tarihi ve sigara maliyeti düzenleme formları) sayfanın altındaki yerinde aynen korundu.
+       - `"Tüm Verileri Sıfırla"` butonu ve onay mekanizması korundu.
+       - `test/widget_smoke_test.dart` duman testi dahil tüm 16 test başarıyla çalıştı.
+- **Dosyalar:**
+  - [lib/widgets/stat_card.dart](lib/widgets/stat_card.dart) (güncellendi, 882 satır)
+  - [lib/screens/settings_screen.dart](lib/screens/settings_screen.dart) (güncellendi, 125 satır)
+  - [DONE.md](DONE.md) (güncellendi)
+- **SOLID / kural notu:**
+  - SRP: Ayarlar ekranı [settings_screen.dart](file:///home/tuba/Documents/GitHub/SoftITo/smoking_cessation/lib/screens/settings_screen.dart) sadece 125 satıra inerek <= 200 satır sınırına tam uydu.
+  - Sınırlar: `lib/` altında 25 Dart dosyası korundu. Tüm `build` metotları <= 40 satır, tüm yorumlar Türkçe ve <= 50 karakterdir.
+- **Komutlar:**
+  - `/snap/bin/flutter analyze` → No issues found! (0 sorun)
+  - `/snap/bin/flutter test` → 16 test geçti (All tests passed!)
+- **Durum:** ✅ Tamamlandı

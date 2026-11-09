@@ -26,60 +26,88 @@ class HealthScreen extends StatelessWidget {
       listenable: quitController,
       builder: (context, _) {
         final elapsed = quitController.elapsedDuration;
-        final milestones = HealthMilestone.defaultMilestones;
-        final completedCount = milestones
+        final milestones = HealthMilestone.timelineMilestones;
+        final completed = milestones
             .where((m) => QuitCalculator.isMilestoneCompleted(elapsed, m))
             .length;
 
         return ListView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 16,
+          ),
           children: [
-            _buildHeader(completedCount, milestones.length),
+            HealthHeaderCard(
+              completed: completed,
+              total: milestones.length,
+            ),
+            const SizedBox(height: 14),
+            HealthMetricCards(elapsed: elapsed),
             const SizedBox(height: 20),
+            _buildTimelineHeader(),
+            const SizedBox(height: 16),
             ..._buildTimelineList(elapsed, milestones),
-            const SizedBox(height: 12),
-            _buildDisclaimer(),
+            const SizedBox(height: 14),
+            const CellularRenewalCard(),
           ],
         );
       },
     );
   }
 
-  Widget _buildHeader(int completed, int total) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  // Zaman çizelgesi başlığı ve aktif izleme hapı.
+  Widget _buildTimelineHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Biyolojik İyileşme', style: AppTheme.headlineLarge),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: AppTheme.primaryContainer,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.outlineActive),
-              ),
-              child: Text(
-                '$completed / $total Tamam',
-                style: AppTheme.labelCaps.copyWith(color: AppTheme.primary),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 6),
         const Text(
-          'Vücudun her geçen dakika kendini onarır.',
-          style: AppTheme.bodyMedium,
+          'Zaman Çizelgesi',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10,
+            vertical: 4,
+          ),
+          decoration: BoxDecoration(
+            color: const Color(0x2610B981),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: const Color(0x3310B981)),
+          ),
+          child: const Text(
+            'AKTİF İZLEME',
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
+              color: AppTheme.primary,
+              letterSpacing: 0.5,
+            ),
+          ),
         ),
       ],
     );
   }
 
+  // Zaman çizelgesi satırları listesini üretir.
   List<Widget> _buildTimelineList(
     Duration elapsed,
     List<HealthMilestone> milestones,
   ) {
+    const labels = [
+      '20 DAKİKA',
+      '8 SAAT',
+      '24 SAAT',
+      '48 SAAT',
+      '72 SAAT',
+      '2 HAFTA – 3 AY',
+      '1 YIL',
+      '5 YIL',
+    ];
+
     return List.generate(milestones.length, (index) {
       final item = milestones[index];
       final isDone = QuitCalculator.isMilestoneCompleted(elapsed, item);
@@ -91,31 +119,9 @@ class HealthScreen extends StatelessWidget {
         progress: prog,
         isFirst: index == 0,
         isLast: index == milestones.length - 1,
+        durationLabel: labels[index],
+        elapsed: elapsed,
       );
     });
-  }
-
-  Widget _buildDisclaimer() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: AppTheme.surfaceLow,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppTheme.outline),
-      ),
-      child: const Row(
-        children: [
-          Icon(Icons.info_outline_rounded,
-              size: 18, color: AppTheme.onSurfaceMuted),
-          SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              'Genel bilgilendirmedir, tıbbi tavsiye değildir.',
-              style: AppTheme.bodySmall,
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

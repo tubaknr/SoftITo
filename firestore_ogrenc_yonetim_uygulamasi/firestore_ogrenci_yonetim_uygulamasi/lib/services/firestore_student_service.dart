@@ -3,10 +3,13 @@ import 'package:flutter/foundation.dart'; // debugPrint için flutter/foundation
 import '../models/student_model.dart'; // Student Model Class'ını import Eder.
 
 class FirestoreStudentService { // Öğrenci Verileri için Firestore CRUD İşlemlerini Yapan Service Class'tır.
+  
   final CollectionReference _studentCollection = FirebaseFirestore.instance.collection('students'); // students Collection'ına Referans Tutan Private Field'dır.
 
   Future<String> addStudent({required Student student}) async { // Yeni Öğrenci Ekleyip Oluşan Document id'sini Döndüren async Metottur.
+    
     try { // Hata Oluşabilecek Firestore İşlemini try Bloğuna Alır.
+      
       final docRef = await _studentCollection.add({ // Otomatik id ile Yeni Document Ekler ve DocumentReference'ı Alır.
         'nameSurname': student.nameSurname, // nameSurname Alanını Yazar.
         'email': student.email, // email Alanını Yazar.
